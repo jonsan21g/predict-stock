@@ -1,0 +1,14 @@
+# Bytecode & Caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Data Cache
+data/cache/
+*.tmp
+*.log
+
+# Environments
+venv/
+.env/

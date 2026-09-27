@@ -1,0 +1,196 @@
+{
+  "description": "Wave Rider Focused Universe: 27 Top-Tier US Tech, Semiconductor & Memory Equities",
+  "updated_at": "2026-09-27",
+  "stocks": [
+    {
+      "ticker": "MU",
+      "name": "Micron Technology Inc.",
+      "category": "Pure Memory & Storage",
+      "exchange": "NASDAQ",
+      "role": "US pure-play DRAM, NAND and HBM memory leader"
+    },
+    {
+      "ticker": "WDC",
+      "name": "Western Digital Corp.",
+      "category": "Pure Memory & Storage",
+      "exchange": "NASDAQ",
+      "role": "Flash memory, NAND and enterprise storage"
+    },
+    {
+      "ticker": "STX",
+      "name": "Seagate Technology Holdings plc",
+      "category": "Pure Memory & Storage",
+      "exchange": "NASDAQ",
+      "role": "High-capacity data center mass storage"
+    },
+    {
+      "ticker": "SKHY",
+      "name": "SK hynix Inc.",
+      "category": "Pure Memory & Storage",
+      "exchange": "NASDAQ",
+      "role": "Global memory & HBM titan"
+    },
+    {
+      "ticker": "SNDK",
+      "name": "Sandisk Corporation",
+      "category": "Pure Memory & Storage",
+      "exchange": "NASDAQ",
+      "role": "Flash memory storage and embedded memory"
+    },
+    {
+      "ticker": "LRCX",
+      "name": "Lam Research Corp.",
+      "category": "Capital Equipment (Picks & Shovels)",
+      "exchange": "NASDAQ",
+      "role": "Etch & deposition equipment for 3D NAND & DRAM fabs"
+    },
+    {
+      "ticker": "AMAT",
+      "name": "Applied Materials Inc.",
+      "category": "Capital Equipment (Picks & Shovels)",
+      "exchange": "NASDAQ",
+      "role": "Largest semiconductor equipment maker globally"
+    },
+    {
+      "ticker": "KLAC",
+      "name": "KLA Corporation",
+      "category": "Capital Equipment (Picks & Shovels)",
+      "exchange": "NASDAQ",
+      "role": "Process yield inspection and defect analysis equipment"
+    },
+    {
+      "ticker": "ASML",
+      "name": "ASML Holding N.V. (ADR)",
+      "category": "Capital Equipment (Picks & Shovels)",
+      "exchange": "NASDAQ",
+      "role": "Global monopoly on EUV lithography machines"
+    },
+    {
+      "ticker": "TXN",
+      "name": "Texas Instruments Inc.",
+      "category": "Capital Equipment (Picks & Shovels)",
+      "exchange": "NASDAQ",
+      "role": "Analog and embedded semiconductor cash flow fortress"
+    },
+    {
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "category": "AI Compute & Systems",
+      "exchange": "NASDAQ",
+      "role": "GPU compute, AI accelerator & HBM memory demand driver"
+    },
+    {
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices Inc.",
+      "category": "AI Compute & Systems",
+      "exchange": "NASDAQ",
+      "role": "High-beta x86 CPU and AI GPU accelerator provider"
+    },
+    {
+      "ticker": "SMCI",
+      "name": "Super Micro Computer Inc.",
+      "category": "AI Compute & Systems",
+      "exchange": "NASDAQ",
+      "role": "High-density modular liquid-cooled AI server racks"
+    },
+    {
+      "ticker": "DELL",
+      "name": "Dell Technologies Inc.",
+      "category": "AI Compute & Systems",
+      "exchange": "NYSE",
+      "role": "Enterprise AI servers and storage infrastructure"
+    },
+    {
+      "ticker": "INTC",
+      "name": "Intel Corporation",
+      "category": "AI Compute & Systems",
+      "exchange": "NASDAQ",
+      "role": "Leading US foundry and processor manufacturer"
+    },
+    {
+      "ticker": "TSM",
+      "name": "Taiwan Semiconductor Manufacturing Co. (ADR)",
+      "category": "AI Compute & Systems",
+      "exchange": "NYSE",
+      "role": "Foundry fabricating >90% of global advanced AI chips"
+    },
+    {
+      "ticker": "AVGO",
+      "name": "Broadcom Inc.",
+      "category": "Connectivity & Custom Silicon",
+      "exchange": "NASDAQ",
+      "role": "Custom AI ASICs and data center networking silicon"
+    },
+    {
+      "ticker": "QCOM",
+      "name": "Qualcomm Inc.",
+      "category": "Connectivity & Custom Silicon",
+      "exchange": "NASDAQ",
+      "role": "Wireless, mobile processors and edge AI silicon"
+    },
+    {
+      "ticker": "ARM",
+      "name": "Arm Holdings plc (ADR)",
+      "category": "Connectivity & Custom Silicon",
+      "exchange": "NASDAQ",
+      "role": "Power-efficient CPU architecture licensor"
+    },
+    {
+      "ticker": "MRVL",
+      "name": "Marvell Technology Inc.",
+      "category": "Connectivity & Custom Silicon",
+      "exchange": "NASDAQ",
+      "role": "High-speed electro-optics and memory interconnects"
+    },
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft Corporation",
+      "category": "Mega-Cap Anchors",
+      "exchange": "NASDAQ",
+      "role": "AAA balance sheet, Azure Cloud and enterprise AI"
+    },
+    {
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "category": "Mega-Cap Anchors",
+      "exchange": "NASDAQ",
+      "role": "Consumer silicon ecosystem with world-class cash reserves"
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc.",
+      "category": "Mega-Cap Anchors",
+      "exchange": "NASDAQ",
+      "role": "Google Cloud, search monopoly, and custom TPU silicon"
+    },
+    {
+      "ticker": "AMZN",
+      "name": "Amazon.com Inc.",
+      "category": "Mega-Cap Anchors",
+      "exchange": "NASDAQ",
+      "role": "AWS cloud infrastructure and hyperscale server demand"
+    },
+    {
+      "ticker": "META",
+      "name": "Meta Platforms Inc.",
+      "category": "Mega-Cap Anchors",
+      "exchange": "NASDAQ",
+      "role": "Open-source AI leader and massive compute spender"
+    },
+    {
+      "ticker": "TSLA",
+      "name": "Tesla Inc.",
+      "category": "Mega-Cap Anchors",
+      "exchange": "NASDAQ",
+      "role": "Autonomous driving, AI Dojo compute, high-beta momentum"
+    },
+    {
+      "ticker": "SPCX",
+      "name": "Space Exploration Technologies Corp / ETF",
+      "category": "Mega-Cap Anchors",
+      "exchange": "NASDAQ",
+      "role": "Aerospace, commercial space and advanced tech exposure"
+    }
+  ]
+}
+
