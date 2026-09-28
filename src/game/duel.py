@@ -449,8 +449,12 @@ def bot_evaluate_turn(
                         pol_txt = "Recent Congressional BUY detected"
                     else:
                         pol_txt = "No recent Capitol trades"
-                    ins_txt = "Insider cluster accumulation" if sm.get("insider_cluster") else ("Insider open-market buying" if sm.get("insider_buy") else "Normal insider volume")
-                    sent_txt = f"Sentiment is {sm.get('sentiment_label', 'NEUTRAL')}"
+                    if sm.get("is_pelosi_effect"):
+                        sent_txt = f"Sentiment is {sm.get('sentiment_label', 'NEUTRAL')} with ACTIVE PELOSI EFFECT viral retail copy-trading hype (Score: {sm.get('retail_hype_score', 0)}/100)"
+                    elif sm.get("viral_politician_buzz"):
+                        sent_txt = f"Sentiment is {sm.get('sentiment_label', 'NEUTRAL')} with active politician/smart-money social buzz"
+                    else:
+                        sent_txt = f"Sentiment is {sm.get('sentiment_label', 'NEUTRAL')}"
 
                     rationale = (
                         f"Day-1 Wave Ignition: {top.get('ignition_type', 'MOMENTUM_ALIGN')} with RVOL {top.get('rvol', 1.0):.2f}x "

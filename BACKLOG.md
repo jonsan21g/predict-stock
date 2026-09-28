@@ -68,7 +68,7 @@ A key architectural distinction is drawn between **Primary Capital Footprints** 
 | :--- | :--- | :--- | :--- | :--- |
 | `SOC-01` | **Financial News & Sentiment Tracker** | ✅ **Done** | Scrapes financial headlines, computes sentiment polarity, and measures discussion velocity. | `src/fetchers/social_sentiment.py` |
 | `SOC-02` | **Point-in-Time Feature Engineering** | ✅ **Done** | Computes RVOL, CRR, Bollinger Band Width, EMA alignment, and forward target labeling without lookahead bias. | `src/analysis/features.py` |
-| `SOC-03` | **Targeted Politician Viral Buzz ("Pelosi Effect")** | 💬 **In Discussion** *(Item 2)* | Targeted query monitoring (`"<TICKER> congress buy"`, `"<TICKER> pelosi"`, `"<TICKER> insider"`) on Reddit/StockTwits to detect retail herd ignition. | **High Momentum Trigger / Zero Cost** |
+| `SOC-03` | **Targeted Politician Viral Buzz ("Pelosi Effect")** | ✅ **Done** *(Item 2)* | Real-time StockTwits streams and targeted news monitoring for politician/insider copy-trading herd velocity. | `src/fetchers/social_sentiment.py` |
 | `SOC-04` | **X (Twitter) Influencer Tracker Scraper** | 💬 **In Discussion** *(Item 4 alt)* | Monitors public tweets/alerts from `@PelosiTracker_`, `@UnusualWhales`, and `@QuiverQuant` without paid API keys. | Requires resilient public scraping |
 | `SOC-05` | **Options Market Whale Sweeps (Unusual Options)** | 💬 **In Discussion** *(Item 4 alt)* | Detects heavy out-of-the-money call option sweeps and high call/put volume ratios preceding wave ignition. | Requires free options data source |
 

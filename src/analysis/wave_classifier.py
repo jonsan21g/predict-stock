@@ -189,7 +189,11 @@ def score_single_stock(ticker: str, model_path: Optional[str] = None) -> Dict[st
         smart_money_bonus += 15
     elif insider.get("has_recent_buy"):
         smart_money_bonus += 8
-    if sentiment.get("sentiment_label") == "BULLISH":
+    if sentiment.get("is_pelosi_effect_active"):
+        smart_money_bonus += 12  # Massive viral copy-trading hype (Pelosi Effect)
+    elif sentiment.get("viral_politician_buzz"):
+        smart_money_bonus += 8   # Active politician / smart-money buzz on social feeds
+    elif sentiment.get("sentiment_label") == "BULLISH":
         smart_money_bonus += 5
 
     composite_score = int(min(100, round((wave_probability * 70) + smart_money_bonus)))
@@ -221,7 +225,12 @@ def score_single_stock(ticker: str, model_path: Optional[str] = None) -> Dict[st
             "insider_buy": insider.get("has_recent_buy", False),
             "insider_cluster": insider.get("has_cluster_buy", False),
             "insider_score": insider.get("insider_score", 0),
-            "sentiment_label": sentiment.get("sentiment_label", "NEUTRAL")
+            "sentiment_label": sentiment.get("sentiment_label", "NEUTRAL"),
+            "viral_politician_buzz": sentiment.get("viral_politician_buzz", False),
+            "is_pelosi_effect": sentiment.get("is_pelosi_effect_active", False),
+            "retail_hype_score": sentiment.get("retail_hype_score", 0),
+            "buzz_keywords": sentiment.get("matched_buzz_keywords", []),
+            "social_volume": sentiment.get("total_volume", 0)
         }
     }
 
