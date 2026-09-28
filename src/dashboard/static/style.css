@@ -1740,30 +1740,45 @@ body {
 th.sortable {
   cursor: pointer;
   user-select: none;
-  transition: color 0.15s ease, background 0.15s ease;
-  position: relative;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 th.sortable:hover {
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.08);
+  color: #38bdf8 !important;
+  background: rgba(56, 189, 248, 0.15) !important;
 }
 
 th.sortable.active-sort {
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8 !important;
+  background: rgba(56, 189, 248, 0.2) !important;
+  border-bottom: 2px solid #38bdf8;
 }
 
 .sort-icon {
-  font-size: 10px;
-  margin-left: 4px;
+  font-size: 11px;
+  margin-left: 6px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
   display: inline-block;
-  opacity: 0.7;
+  vertical-align: middle;
+  font-family: monospace;
+  line-height: 1;
+  transition: all 0.15s ease;
+}
+
+th.sortable:hover .sort-icon {
+  background: rgba(56, 189, 248, 0.25);
+  color: #38bdf8;
 }
 
 th.sortable.active-sort .sort-icon {
-  opacity: 1;
-  color: #38bdf8;
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 900;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
 }
 
 /* High-Contrast Smart Money Badges */
