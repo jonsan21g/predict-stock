@@ -118,10 +118,12 @@ function renderRadarTable() {
 
     const sm = item.smart_money || {};
     let badges = [];
-    if (sm.politician_buy) badges.push(`<span title="Recent US Congress Buy">🏛️ Congress</span>`);
+    if (sm.jurisdiction_match) badges.push(`<span class="badge" style="background:#7c3aed; color:#fff;" title="High Congressional Committee Jurisdiction Match">🏛️ Committee Match</span>`);
+    else if (sm.politician_buy) badges.push(`<span title="Recent US Congress Buy">🏛️ Congress</span>`);
     if (sm.insider_cluster) badges.push(`<span title="Executive Cluster Buy">👔 ClusterBuy</span>`);
     else if (sm.insider_buy) badges.push(`<span title="Insider Buy">👔 Insider</span>`);
-    if (sm.sentiment_label === "BULLISH") badges.push(`<span title="Positive News Velocity">💬 Bullish</span>`);
+    if (sm.is_pelosi_effect) badges.push(`<span class="badge" style="background:#ea580c; color:#fff;" title="Active Pelosi Effect Viral Retail Herd">🔥 Pelosi Effect</span>`);
+    else if (sm.sentiment_label === "BULLISH") badges.push(`<span title="Positive News Velocity">💬 Bullish</span>`);
 
     tr.innerHTML = `
       <td>${idx + 1}</td>
@@ -202,6 +204,7 @@ async function loadDeepDive(ticker) {
 
         <div class="card-box">
           <h3>🏛️ US Congressional Activity (STOCK Act)</h3>
+          ${sm.jurisdiction_match ? `<div style="margin-bottom:8px; font-weight:700; color:#c084fc; font-size:12px;">🎯 High Committee Oversight: ${sm.matched_committees && sm.matched_committees.length > 0 ? sm.matched_committees.join(', ') : 'Tech & Commerce'}</div>` : ''}
           <ul style="list-style:none; padding:0; font-size:13px; display:flex; flex-direction:column; gap:6px;">
             ${pols}
           </ul>
@@ -212,7 +215,26 @@ async function loadDeepDive(ticker) {
           <div style="font-size:13px; line-height:1.6;">
             <div>Score: <strong>${sm.insider_score || 0} / 100</strong></div>
             <div>Cluster Buying: <strong>${sm.insider_cluster ? "YES (2+ Insiders)" : "No"}</strong></div>
-            <div>Sentiment: <strong>${sm.sentiment_label || "NEUTRAL"}</strong></div>
+            <div>Corporate Sentiment: <strong>${sm.sentiment_label || "NEUTRAL"}</strong></div>
+          </div>
+        </div>
+
+        <div class="card-box">
+          <h3>🔥 The Pelosi Effect & Viral Retail Buzz</h3>
+          <div style="font-size:13px; line-height:1.6;">
+            <div>Status: <strong style="color:${sm.pelosi_effect && sm.pelosi_effect.is_active ? '#f59e0b' : (sm.viral_politician_buzz ? '#38bdf8' : '#94a3b8')};">${sm.pelosi_effect && sm.pelosi_effect.is_active ? '🔥 ACTIVE (' + (sm.pelosi_effect.intensity || 'VIRAL') + ')' : (sm.viral_politician_buzz ? '⚡ Emerging Smart-Money Buzz' : 'Dormant')}</strong></div>
+            <div>Retail Hype Score: <strong>${sm.retail_hype_score || 0} / 100</strong></div>
+            ${sm.pelosi_effect && sm.pelosi_effect.primary_catalyst ? `<div style="margin-top:4px;"><span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">${sm.pelosi_effect.primary_catalyst}</span></div>` : ''}
+            ${sm.pelosi_effect && sm.pelosi_effect.prominent_figures && sm.pelosi_effect.prominent_figures.length > 0 ? `<div style="margin-top:4px; font-size:12px;">Citing: <strong style="color:#e2e8f0;">${sm.pelosi_effect.prominent_figures.join(', ')}</strong></div>` : ''}
+            ${sm.pelosi_effect && sm.pelosi_effect.narrative_summary ? `<p style="font-size:12px; color:#cbd5e1; margin-top:8px; background:#0f172a; padding:8px; border-radius:6px; border-left:3px solid #f59e0b;">${sm.pelosi_effect.narrative_summary}</p>` : ''}
+            ${sm.pelosi_effect && sm.pelosi_effect.verbatim_quotes && sm.pelosi_effect.verbatim_quotes.length > 0 ? `
+              <div style="font-size:11px; color:#94a3b8; margin-top:6px;">
+                <strong>Live Stream Quotes:</strong>
+                <ul style="padding-left:14px; margin:4px 0 0 0;">
+                  ${sm.pelosi_effect.verbatim_quotes.map(q => `<li><em>"${q}"</em></li>`).join('')}
+                </ul>
+              </div>
+            ` : ''}
           </div>
         </div>
       </div>

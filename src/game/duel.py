@@ -449,10 +449,12 @@ def bot_evaluate_turn(
                         pol_txt = "Recent Congressional BUY detected"
                     else:
                         pol_txt = "No recent Capitol trades"
-                    if sm.get("is_pelosi_effect"):
-                        sent_txt = f"Sentiment is {sm.get('sentiment_label', 'NEUTRAL')} with ACTIVE PELOSI EFFECT viral retail copy-trading hype (Score: {sm.get('retail_hype_score', 0)}/100)"
+                    pe = sm.get("pelosi_effect", {})
+                    if pe.get("is_active"):
+                        narr = pe.get("narrative_summary", "")
+                        sent_txt = f"ACTIVE PELOSI EFFECT [{pe.get('intensity', 'VIRAL')} - {pe.get('primary_catalyst', 'COPYTRADE')}] (Score: {pe.get('hype_score', 0)}/100). {narr}"
                     elif sm.get("viral_politician_buzz"):
-                        sent_txt = f"Sentiment is {sm.get('sentiment_label', 'NEUTRAL')} with active politician/smart-money social buzz"
+                        sent_txt = f"Emerging politician/smart-money social buzz (Score: {sm.get('retail_hype_score', 0)}/100)"
                     else:
                         sent_txt = f"Sentiment is {sm.get('sentiment_label', 'NEUTRAL')}"
 

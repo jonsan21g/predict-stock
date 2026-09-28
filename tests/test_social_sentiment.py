@@ -37,6 +37,15 @@ def test_scan_politician_viral_buzz_detection():
     assert analysis["is_pelosi_effect_active"] is True
     assert len(analysis["sample_buzz_quotes"]) > 0
 
+    # Detailed Pelosi Effect assertions
+    assert "pelosi_effect" in analysis
+    pe = analysis["pelosi_effect"]
+    assert pe["is_active"] is True
+    assert pe["intensity"] in ["VIRAL_SURGE", "HIGH_VELOCITY"]
+    assert "Nancy / Paul Pelosi" in pe["prominent_figures"]
+    assert pe["primary_catalyst"] == "PELOSI_CONGRESSIONAL_COPYTRADE"
+    assert len(pe["narrative_summary"]) > 20
+
     # 2. Generic, quiet scenario without smart-money buzz
     quiet_corpus = [
         "Quarterly balance sheet updates released today.",
@@ -47,6 +56,7 @@ def test_scan_politician_viral_buzz_detection():
     assert quiet_analysis["politician_mentions_count"] == 0
     assert quiet_analysis["retail_hype_score"] == 0
     assert quiet_analysis["is_pelosi_effect_active"] is False
+    assert quiet_analysis["pelosi_effect"]["is_active"] is False
 
 
 def test_get_ticker_social_sentiment_structure():
@@ -62,3 +72,4 @@ def test_get_ticker_social_sentiment_structure():
     assert "viral_politician_buzz" in res
     assert "retail_hype_score" in res
     assert "is_pelosi_effect_active" in res
+    assert "pelosi_effect" in res

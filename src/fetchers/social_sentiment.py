@@ -106,7 +106,8 @@ def fetch_stocktwits_feed(ticker: str) -> List[Dict[str, Any]]:
 def scan_politician_viral_buzz(text_corpus: List[str]) -> Dict[str, Any]:
     """
     Scans a combined corpus of social messages and news headlines for politician and
-    insider accumulation buzz (the 'Pelosi Effect'). Computes retail hype score (0-100).
+    insider accumulation buzz (the 'Pelosi Effect'). Computes in-depth catalyst classification,
+    prominent figures mentioned, lifecycle stage, retail hype score (0-100), and narrative summary.
     """
     matched_quotes: List[str] = []
     matched_keywords_set = set()
@@ -134,9 +135,87 @@ def scan_politician_viral_buzz(text_corpus: List[str]) -> Dict[str, Any]:
             hype_score += 20  # Massive "Pelosi Effect" multiplier
         if "insider buy" in matched_keywords_set or "cluster buy" in matched_keywords_set:
             hype_score += 15
+        if "whale" in matched_keywords_set or "copy trade" in matched_keywords_set or "copytrade" in matched_keywords_set:
+            hype_score += 10
     hype_score = min(100, hype_score)
 
     is_pelosi_effect = hype_score >= 60
+
+    # 1. Identify Prominent Political & Executive Figures Mentioned
+    prominent_figures = []
+    text_blob = " ".join(text_corpus).lower()
+    if "pelosi" in text_blob:
+        prominent_figures.append("Nancy / Paul Pelosi")
+    if "rick allen" in text_blob:
+        prominent_figures.append("Rep. Rick Allen (House Energy & Commerce)")
+    if "mccaul" in text_blob:
+        prominent_figures.append("Rep. Michael McCaul (Foreign Affairs / CHIPS Act)")
+    if "ro khanna" in text_blob:
+        prominent_figures.append("Rep. Ro Khanna (Armed Services)")
+    if "tuberville" in text_blob:
+        prominent_figures.append("Sen. Tommy Tuberville (Armed Services)")
+    if "ceo" in text_blob or "chief executive" in text_blob:
+        prominent_figures.append("Corporate CEO / C-Suite")
+    if "director" in text_blob or "board member" in text_blob:
+        prominent_figures.append("Board of Directors")
+
+    # 2. Classify Primary Catalyst
+    if "pelosi" in matched_keywords_set:
+        primary_catalyst = "PELOSI_CONGRESSIONAL_COPYTRADE"
+    elif "congress" in matched_keywords_set or "senator" in matched_keywords_set or "stock act" in matched_keywords_set or "capitol" in matched_keywords_set:
+        primary_catalyst = "CAPITOL_HILL_DISCLOSURE"
+    elif "insider buy" in matched_keywords_set or "cluster buy" in matched_keywords_set or "ceo bought" in matched_keywords_set:
+        primary_catalyst = "C_SUITE_INSIDER_WHALE_ACCUMULATION"
+    elif "whale" in matched_keywords_set or "copy trade" in matched_keywords_set or "copytrade" in matched_keywords_set:
+        primary_catalyst = "RETAIL_HERD_WHALE_COPYTRADE"
+    else:
+        primary_catalyst = "ORGANIC_MOMENTUM_DISCUSSION" if is_viral else "DORMANT"
+
+    # 3. Classify Intensity & Lifecycle
+    if hype_score >= 80:
+        intensity = "VIRAL_SURGE"
+        lifecycle_stage = "PEAK_HERD_EXPANSION"
+    elif hype_score >= 60:
+        intensity = "HIGH_VELOCITY"
+        lifecycle_stage = "IGNITION_ACCELERATION"
+    elif hype_score >= 35:
+        intensity = "MODERATE_INTEREST"
+        lifecycle_stage = "EMERGING_AWARENESS"
+    else:
+        intensity = "QUIET / DORMANT"
+        lifecycle_stage = "DORMANT"
+
+    # 4. Generate Narrative Summary
+    if is_pelosi_effect:
+        cat_title = primary_catalyst.replace("_", " ").title()
+        figures_txt = f" citing {', '.join(prominent_figures)}" if prominent_figures else ""
+        narrative = (
+            f"Active Pelosi Effect ({intensity} - Hype Score: {hype_score}/100): "
+            f"Retail social streams are actively circulating {cat_title}{figures_txt}. "
+            f"Discussion demonstrates rapid copy-trading accumulation with strong bullish bias."
+        )
+    elif is_viral:
+        keywords_sample = ", ".join(list(matched_keywords_set)[:3])
+        narrative = (
+            f"Emerging Smart-Money Chatter ({intensity} - Hype Score: {hype_score}/100): "
+            f"Traders are discussing smart-money catalysts ({keywords_sample}). "
+            f"Retail awareness is building but remains below the peak viral copy-trading herd threshold."
+        )
+    else:
+        narrative = "No active politician copy-trading or viral smart-money chatter detected on social streams."
+
+    pelosi_effect_details = {
+        "is_active": is_pelosi_effect,
+        "intensity": intensity,
+        "hype_score": hype_score,
+        "primary_catalyst": primary_catalyst,
+        "prominent_figures": prominent_figures,
+        "lifecycle_stage": lifecycle_stage,
+        "narrative_summary": narrative,
+        "matched_keywords": sorted(list(matched_keywords_set)),
+        "mentions_count": total_mentions,
+        "verbatim_quotes": matched_quotes[:3]
+    }
 
     return {
         "viral_politician_buzz": is_viral,
@@ -144,7 +223,8 @@ def scan_politician_viral_buzz(text_corpus: List[str]) -> Dict[str, Any]:
         "matched_buzz_keywords": sorted(list(matched_keywords_set)),
         "sample_buzz_quotes": matched_quotes[:3],
         "retail_hype_score": hype_score,
-        "is_pelosi_effect_active": is_pelosi_effect
+        "is_pelosi_effect_active": is_pelosi_effect,
+        "pelosi_effect": pelosi_effect_details
     }
 
 
@@ -164,7 +244,7 @@ def get_ticker_social_sentiment(ticker: str, force_refresh: bool = False) -> Dic
                 with open(cache_file, "r", encoding="utf-8") as f:
                     cached = json.load(f)
                     # Backwards compatibility check
-                    if "viral_politician_buzz" in cached:
+                    if "pelosi_effect" in cached:
                         return cached
         except Exception:
             pass
@@ -240,6 +320,7 @@ def get_ticker_social_sentiment(ticker: str, force_refresh: bool = False) -> Dic
         "sample_buzz_quotes": viral_analysis["sample_buzz_quotes"],
         "retail_hype_score": viral_analysis["retail_hype_score"],
         "is_pelosi_effect_active": viral_analysis["is_pelosi_effect_active"],
+        "pelosi_effect": viral_analysis["pelosi_effect"],
         "updated_at": datetime.now(timezone.utc).isoformat()
     }
 

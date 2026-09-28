@@ -230,7 +230,8 @@ def score_single_stock(ticker: str, model_path: Optional[str] = None) -> Dict[st
             "is_pelosi_effect": sentiment.get("is_pelosi_effect_active", False),
             "retail_hype_score": sentiment.get("retail_hype_score", 0),
             "buzz_keywords": sentiment.get("matched_buzz_keywords", []),
-            "social_volume": sentiment.get("total_volume", 0)
+            "social_volume": sentiment.get("total_volume", 0),
+            "pelosi_effect": sentiment.get("pelosi_effect", {})
         }
     }
 
