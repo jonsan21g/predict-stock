@@ -462,6 +462,12 @@ function renderDuelScoreboard(data) {
   document.getElementById("bot-cash").textContent = `$${b.cash.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
   document.getElementById("bot-stocks").textContent = `$${b.stock_value.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
   document.getElementById("bot-positions-count").textContent = b.positions.length;
+
+  const botAutoSub = document.getElementById("bot-auto-sub");
+  if (botAutoSub) {
+    const lastEval = b.last_evaluated_at || "Just Initialized";
+    botAutoSub.textContent = `🟢 Auto-Evaluator Active • Last: ${lastEval}`;
+  }
 }
 
 function populateOrderTickerSelect() {

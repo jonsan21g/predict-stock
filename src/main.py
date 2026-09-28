@@ -204,10 +204,17 @@ def main():
     parser.add_argument("--train", action="store_true", help="Retrain ML model on all watchlist historical data")
     parser.add_argument("--duel", action="store_true", help="Display 5-Day Player vs. Bot Duel scoreboard & portfolio")
     parser.add_argument("--bot-turn", action="store_true", help="Trigger autonomous Bot evaluation & execution cycle")
+    parser.add_argument("--auto-bot", action="store_true", help="Run continuous autonomous bot loop in terminal (Ctrl+C to stop)")
     parser.add_argument("--reset-duel", action="store_true", help="Reset 5-Day Duel to starting $30,000 cash balance")
     parser.add_argument("--order", nargs=3, metavar=("ACTION", "TICKER", "SHARES"), help="Execute Player order (e.g. --order BUY NVDA 20)")
 
     args = parser.parse_args()
+
+    if args.auto_bot:
+        from src.dashboard.app import autonomous_bot_worker
+        print("\n[WAVE RIDER] Starting Continuous Autonomous Bot Daemon (Press Ctrl+C to exit)...")
+        autonomous_bot_worker()
+        return
 
     if args.reset_duel:
         initialize_game_state(force_reset=True)

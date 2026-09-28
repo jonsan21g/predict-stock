@@ -5,6 +5,8 @@ Runs locally at http://localhost:5050 with zero external cloud dependencies.
 
 import os
 import sys
+import threading
+from datetime import datetime, timezone
 from typing import Dict, Any
 from flask import Flask, render_template, jsonify, request
 
@@ -135,10 +137,84 @@ def api_backtest():
         return jsonify({"error": str(e)}), 400
 
 
+# Background Autonomous Bot Daemon State
+BOT_DAEMON_THREAD = None
+BOT_STOP_EVENT = threading.Event()
+NEXT_BOT_EVAL_TIME = None
+
+
+def is_us_market_window() -> bool:
+    """Checks if US market / pre-market is in active weekday window (Mon 12:00 UTC to Fri 21:00 UTC)."""
+    now_utc = datetime.now(timezone.utc)
+    if now_utc.weekday() in [5, 6]:  # Sat, Sun
+        return False
+    if now_utc.weekday() == 0 and now_utc.hour < 12:  # Mon before 12 UTC (14:00 CET)
+        return False
+    if now_utc.weekday() == 4 and now_utc.hour >= 21:  # Fri after 21 UTC (23:00 CET)
+        return False
+    return True
+
+
+def autonomous_bot_worker():
+    """
+    Background daemon worker that runs autonomously during the 5-day duel.
+    Evaluates positions and scans for Day-1 Wave Ignition automatically.
+    Interval: 30 minutes during market hours, 60 minutes off-hours.
+    """
+    global NEXT_BOT_EVAL_TIME
+    print("\n[AUTONOMOUS BOT] Background daemon thread initialized. Fully automated trading ACTIVE.")
+
+    # Run an initial evaluation 5 seconds after server startup
+    if not BOT_STOP_EVENT.wait(5):
+        try:
+            print("[AUTONOMOUS BOT] Running startup market & position evaluation...")
+            res = bot_evaluate_turn(force=False)
+            if res.get("actions_count", 0) > 0:
+                print(f"[AUTONOMOUS BOT] Startup run executed {res['actions_count']} autonomous action(s):")
+                for a in res.get("actions_taken", []):
+                    print(f"  • {a}")
+            else:
+                print("[AUTONOMOUS BOT] Startup check complete: Portfolio balanced. No changes needed.")
+        except Exception as e:
+            print(f"[AUTONOMOUS BOT] Startup check notice: {e}")
+
+    while not BOT_STOP_EVENT.is_set():
+        interval = 1800 if is_us_market_window() else 3600
+        next_dt = datetime.now(timezone.utc).timestamp() + interval
+        NEXT_BOT_EVAL_TIME = datetime.fromtimestamp(next_dt, timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+
+        if BOT_STOP_EVENT.wait(interval):
+            break
+
+        try:
+            now_str = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+            print(f"\n[AUTONOMOUS BOT] {now_str} — Scheduled market scan & position evaluation...")
+            res = bot_evaluate_turn(force=False)
+            if res.get("actions_count", 0) > 0:
+                print(f"[AUTONOMOUS BOT] Executed {res['actions_count']} autonomous action(s):")
+                for a in res.get("actions_taken", []):
+                    print(f"  • {a}")
+            else:
+                print("[AUTONOMOUS BOT] Scheduled check complete: Portfolio balanced. No changes needed.")
+        except Exception as e:
+            print(f"[AUTONOMOUS BOT] Notice during scheduled evaluation: {e}")
+
+
+def start_bot_daemon():
+    """Starts the autonomous bot background worker thread."""
+    global BOT_DAEMON_THREAD
+    if BOT_DAEMON_THREAD is None or not BOT_DAEMON_THREAD.is_alive():
+        BOT_STOP_EVENT.clear()
+        BOT_DAEMON_THREAD = threading.Thread(target=autonomous_bot_worker, daemon=True)
+        BOT_DAEMON_THREAD.start()
+
+
 @app.route("/api/game")
 def api_game():
     try:
         status = get_live_duel_status()
+        status["bot_auto_active"] = True
+        status["next_bot_run"] = NEXT_BOT_EVAL_TIME or "Scheduled (Next ~30-60m)"
         return jsonify(status)
     except Exception as e:
         return jsonify({"error": str(e)}), 400
@@ -176,10 +252,9 @@ def api_game_reset():
 
 
 def run_dashboard(host="127.0.0.1", port=5050):
+    start_bot_daemon()
     print(f"\n[WAVE RIDER] Local Dashboard active at http://{host}:{port}")
     app.run(host=host, port=port, debug=False)
-
-
 
 
 if __name__ == "__main__":

@@ -135,7 +135,8 @@ def calculate_portfolio_valuation(portfolio: Dict[str, Any], live_prices: Option
         "total_pnl_pct": round(total_pnl_pct, 2),
         "positions": updated_positions,
         "history": portfolio.get("history", []),
-        "decision_logs": portfolio.get("decision_logs", [])
+        "decision_logs": portfolio.get("decision_logs", []),
+        "last_evaluated_at": portfolio.get("last_evaluated_at", "Awaiting First Check")
     }
 
 
@@ -465,6 +466,7 @@ def bot_evaluate_turn(
                     state["bot"]["decision_logs"].append(disclosure)
                     actions_taken.append(f"BOT BOUGHT {shares_to_buy} {ticker} @ ${curr_price:.2f} ({rationale})")
 
+    state["bot"]["last_evaluated_at"] = now_str
     save_game_state(state)
     return {
         "status": "SUCCESS",
