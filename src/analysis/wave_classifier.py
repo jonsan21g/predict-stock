@@ -18,6 +18,7 @@ from src.fetchers.price_fetcher import load_watchlist, get_daily_history
 from src.fetchers.politician_data import get_ticker_congress_signals
 from src.fetchers.insider_data import get_insider_signals
 from src.fetchers.social_sentiment import get_ticker_social_sentiment
+from src.fetchers.contracts_data import get_ticker_contract_signals
 from src.analysis.features import (
     build_feature_matrix,
     create_wave_target,
@@ -167,6 +168,7 @@ def score_single_stock(ticker: str, model_path: Optional[str] = None) -> Dict[st
     congress = get_ticker_congress_signals(ticker)
     insider = get_insider_signals(ticker)
     sentiment = get_ticker_social_sentiment(ticker)
+    contracts = get_ticker_contract_signals(ticker)
 
     matrix = build_feature_matrix(df, congress, insider, sentiment)
     latest_bar = matrix.iloc[-1]
@@ -189,6 +191,10 @@ def score_single_stock(ticker: str, model_path: Optional[str] = None) -> Dict[st
         smart_money_bonus += 15
     elif insider.get("has_recent_buy"):
         smart_money_bonus += 8
+    if contracts.get("total_contract_value_usd", 0) >= 500_000_000.0:
+        smart_money_bonus += 12  # Mega defense/federal contractor ($500M+)
+    elif contracts.get("has_major_contract"):
+        smart_money_bonus += 8   # Major prime federal contract ($25M+)
     if sentiment.get("is_pelosi_effect_active"):
         smart_money_bonus += 12  # Massive viral copy-trading hype (Pelosi Effect)
     elif sentiment.get("viral_politician_buzz"):
@@ -231,7 +237,17 @@ def score_single_stock(ticker: str, model_path: Optional[str] = None) -> Dict[st
             "retail_hype_score": sentiment.get("retail_hype_score", 0),
             "buzz_keywords": sentiment.get("matched_buzz_keywords", []),
             "social_volume": sentiment.get("total_volume", 0),
-            "pelosi_effect": sentiment.get("pelosi_effect", {})
+            "pelosi_effect": sentiment.get("pelosi_effect", {}),
+            "contracts": {
+                "total_value_usd": contracts.get("total_contract_value_usd", 0.0),
+                "contract_count": contracts.get("contract_count", 0),
+                "has_major_contract": contracts.get("has_major_contract", False),
+                "is_defense_contract": contracts.get("is_defense_contract", False),
+                "contract_score": contracts.get("contract_score", 0),
+                "top_agencies": contracts.get("top_agencies", []),
+                "top_award_amount_usd": contracts.get("top_award_amount_usd", 0.0),
+                "recent_contracts": contracts.get("recent_contracts", [])[:3]
+            }
         }
     }
 

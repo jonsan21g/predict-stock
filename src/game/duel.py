@@ -455,12 +455,16 @@ def bot_evaluate_turn(
                         sent_txt = f"ACTIVE PELOSI EFFECT [{pe.get('intensity', 'VIRAL')} - {pe.get('primary_catalyst', 'COPYTRADE')}] (Score: {pe.get('hype_score', 0)}/100). {narr}"
                     elif sm.get("viral_politician_buzz"):
                         sent_txt = f"Emerging politician/smart-money social buzz (Score: {sm.get('retail_hype_score', 0)}/100)"
-                    else:
-                        sent_txt = f"Sentiment is {sm.get('sentiment_label', 'NEUTRAL')}"
+                    fed = sm.get("contracts", {})
+                    fed_txt = ""
+                    if fed.get("has_major_contract"):
+                        val_m = fed.get("total_value_usd", 0.0) / 1_000_000.0
+                        agencies = ", ".join(fed.get("top_agencies", []))
+                        fed_txt = f", and US Federal Government Contract backing (${val_m:,.0f}M from {agencies})"
 
                     rationale = (
                         f"Day-1 Wave Ignition: {top.get('ignition_type', 'MOMENTUM_ALIGN')} with RVOL {top.get('rvol', 1.0):.2f}x "
-                        f"and P(Wave) of {prob:.1f}%. External catalysts factored: {pol_txt}, {ins_txt}, and {sent_txt}. "
+                        f"and P(Wave) of {prob:.1f}%. External catalysts factored: {pol_txt}, {ins_txt}, {sent_txt}{fed_txt}. "
                         f"Allocating ${total_cost:,.2f} ({alloc_pct*100:.0f}% of cash) on high conviction."
                     )
 

@@ -56,7 +56,7 @@ A key architectural distinction is drawn between **Primary Capital Footprints** 
 | `SM-01` | **Congressional STOCK Act Scraper** | ✅ **Done** | Scrapes and parses public House and Senate trade disclosures with 12h disk caching. | `src/fetchers/politician_data.py` |
 | `SM-02` | **SEC Form 4 Corporate Insider Parser** | ✅ **Done** | Parses C-suite open-market purchases and detects cluster buying (2+ insiders in 30 days). | `src/fetchers/insider_data.py` |
 | `SM-03` | **Congressional Committee Relevance Matching** | ✅ **Done** *(Item 1)* | Matches politician committee assignments (Armed Services, Science & Tech, Energy & Commerce) to tech/semiconductor tickers with a $2.5\times$ conviction multiplier. | `src/fetchers/politician_data.py` |
-| `SM-04` | **US Federal Government Contract Awards** | 💬 **In Discussion** *(Item 3)* | Ingests DoD, DoE, and NASA federal tech/compute contracts via the free `api.usaspending.gov` API before earnings reflect them. | **High Fundamental Value / Zero Cost** |
+| `SM-04` | **US Federal Government Contract Awards** | ✅ **Done** *(Item 3)* | Ingests DoD, DoE, and NASA federal tech/compute contracts via official `api.usaspending.gov` API ($0 cost). | `src/fetchers/contracts_data.py` |
 | `SM-05` | **Quiver Quantitative Tracker Feed** | 💬 **In Discussion** *(Item 4)* | Scrapes or ingests Quiver Quant's aggregated political, lobbying, and institutional tracker feeds. | Evaluates against direct sources |
 | `SM-06` | **Institutional 13F Whale Tracking** | 💡 Proposed | Quarterly tracking of top tech hedge funds (e.g. Coatue, Whale Rock, Citadel) via SEC EDGAR. | Medium effort |
 

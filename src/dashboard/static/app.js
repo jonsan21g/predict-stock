@@ -124,6 +124,7 @@ function renderRadarTable() {
     else if (sm.insider_buy) badges.push(`<span title="Insider Buy">👔 Insider</span>`);
     if (sm.is_pelosi_effect) badges.push(`<span class="badge" style="background:#ea580c; color:#fff;" title="Active Pelosi Effect Viral Retail Herd">🔥 Pelosi Effect</span>`);
     else if (sm.sentiment_label === "BULLISH") badges.push(`<span title="Positive News Velocity">💬 Bullish</span>`);
+    if (sm.contracts && sm.contracts.has_major_contract) badges.push(`<span class="badge" style="background:#059669; color:#fff;" title="Prime US Federal Government Contractor ($25M+ Awards)">🛡️ Fed Contract</span>`);
 
     tr.innerHTML = `
       <td>${idx + 1}</td>
@@ -235,6 +236,24 @@ async function loadDeepDive(ticker) {
                 </ul>
               </div>
             ` : ''}
+          </div>
+        </div>
+
+        <div class="card-box">
+          <h3>🛡️ US Federal Government Contracts (USASpending.gov)</h3>
+          <div style="font-size:13px; line-height:1.6;">
+            <div>Contract Score: <strong>${sm.contracts ? sm.contracts.contract_score : 0} / 100</strong></div>
+            <div>Total Active Awards: <strong style="color:#10b981;">$${sm.contracts ? (sm.contracts.total_value_usd / 1000000).toFixed(1) : 0}M USD</strong></div>
+            ${sm.contracts && sm.contracts.is_defense_contract ? `<div style="margin-top:4px;"><span class="badge" style="background:#dc2626; color:#fff; font-size:10px;">Department of Defense (DoD)</span></div>` : ''}
+            ${sm.contracts && sm.contracts.top_agencies && sm.contracts.top_agencies.length > 0 ? `<div style="margin-top:4px; font-size:12px;">Agencies: <strong style="color:#e2e8f0;">${sm.contracts.top_agencies.join(', ')}</strong></div>` : ''}
+            ${sm.contracts && sm.contracts.recent_contracts && sm.contracts.recent_contracts.length > 0 ? `
+              <div style="font-size:11px; color:#94a3b8; margin-top:8px;">
+                <strong>Recent Prime Awards:</strong>
+                <ul style="padding-left:14px; margin:4px 0 0 0;">
+                  ${sm.contracts.recent_contracts.slice(0, 3).map(c => `<li>$${(c.amount_usd / 1000000).toFixed(2)}M - ${c.agency}: <em>${c.description.substring(0, 45)}...</em></li>`).join('')}
+                </ul>
+              </div>
+            ` : '<div style="color:#94a3b8; margin-top:4px; font-size:12px;">No major prime federal awards in 24-month window.</div>'}
           </div>
         </div>
       </div>
