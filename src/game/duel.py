@@ -442,7 +442,13 @@ def bot_evaluate_turn(
 
                     # Gather outside-the-tool context for required transparent disclosure
                     sm = top.get("smart_money", {})
-                    pol_txt = "Recent Congressional BUY detected" if sm.get("politician_buy") else "No recent Capitol trades"
+                    if sm.get("jurisdiction_match"):
+                        comms = ", ".join(sm.get("matched_committees", []))
+                        pol_txt = f"Congressional Committee Oversight BUY ({comms})"
+                    elif sm.get("politician_buy"):
+                        pol_txt = "Recent Congressional BUY detected"
+                    else:
+                        pol_txt = "No recent Capitol trades"
                     ins_txt = "Insider cluster accumulation" if sm.get("insider_cluster") else ("Insider open-market buying" if sm.get("insider_buy") else "Normal insider volume")
                     sent_txt = f"Sentiment is {sm.get('sentiment_label', 'NEUTRAL')}"
 

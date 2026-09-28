@@ -181,7 +181,9 @@ def score_single_stock(ticker: str, model_path: Optional[str] = None) -> Dict[st
 
     # Composite Confidence Score (0 - 100) combining ML probability & smart money
     smart_money_bonus = 0
-    if congress.get("has_recent_buy"):
+    if congress.get("has_jurisdiction_match"):
+        smart_money_bonus += 16  # High-conviction Congressional committee oversight match
+    elif congress.get("has_recent_buy"):
         smart_money_bonus += 10
     if insider.get("has_cluster_buy"):
         smart_money_bonus += 15
@@ -212,6 +214,9 @@ def score_single_stock(ticker: str, model_path: Optional[str] = None) -> Dict[st
         "stop_loss": ignition["stop_loss"],
         "smart_money": {
             "politician_buy": congress.get("has_recent_buy", False),
+            "jurisdiction_match": congress.get("has_jurisdiction_match", False),
+            "matched_committees": congress.get("matched_committees", []),
+            "congress_score": congress.get("congress_score", 0),
             "politicians": congress.get("politicians", []),
             "insider_buy": insider.get("has_recent_buy", False),
             "insider_cluster": insider.get("has_cluster_buy", False),

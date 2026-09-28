@@ -70,12 +70,39 @@ def test_congress_signals_with_mock():
     nvda_signals = get_ticker_congress_signals("NVDA", days=30, all_trades=mock_trades)
     assert nvda_signals["buy_count"] == 2
     assert nvda_signals["has_recent_buy"] is True
+    assert nvda_signals["has_jurisdiction_match"] is True
+    assert nvda_signals["congress_score"] >= 50
+    assert len(nvda_signals["matched_committees"]) >= 1
     assert len(nvda_signals["politicians"]) == 2
 
     msft_signals = get_ticker_congress_signals("MSFT", days=30, all_trades=mock_trades)
     assert msft_signals["buy_count"] == 0
     assert msft_signals["sell_count"] == 1
     assert msft_signals["has_recent_buy"] is False
+    assert msft_signals["has_jurisdiction_match"] is False
+
+
+def test_congress_committee_jurisdiction_matching():
+    from src.fetchers.politician_data import get_politician_committee_info, normalize_politician_name
+
+    assert normalize_politician_name("Rick AllenRepublicanHouseGA") == "Rick Allen"
+    assert normalize_politician_name("Pete SessionsRepublicanHouseTX") == "Pete Sessions"
+
+    # Rick Allen sits on Energy and Commerce (CHIPS Act & Telecom)
+    allen_info = get_politician_committee_info("Rick AllenRepublicanHouseGA")
+    assert allen_info["jurisdiction_match"] is True
+    assert "Energy and Commerce" in allen_info["matched_alpha_committees"]
+    assert allen_info["jurisdiction_weight"] == 2.5
+
+    # Ro Khanna sits on Armed Services (Cyber & Defense Tech)
+    khanna_info = get_politician_committee_info("Ro Khanna")
+    assert khanna_info["jurisdiction_match"] is True
+    assert "Armed Services" in khanna_info["matched_alpha_committees"]
+
+    # Pete Sessions sits on Financial Services / Oversight (Not direct tech/defense oversight)
+    sessions_info = get_politician_committee_info("Pete SessionsRepublicanHouseTX")
+    assert sessions_info["jurisdiction_match"] is False
+    assert sessions_info["jurisdiction_weight"] == 1.0
 
 
 def test_insider_transactions_live():
