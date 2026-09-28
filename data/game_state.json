@@ -20,6 +20,7 @@
     "cash": 30000.0,
     "positions": [],
     "history": [],
-    "decision_logs": []
+    "decision_logs": [],
+    "last_evaluated_at": "2026-09-28 05:29 UTC"
   }
 }

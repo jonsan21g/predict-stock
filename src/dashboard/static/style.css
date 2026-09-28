@@ -638,6 +638,25 @@ body {
   font-weight: 600;
 }
 
+.btn-bot-card-trigger {
+  width: 100%;
+  margin-top: 14px;
+  background: linear-gradient(135deg, #0284c7, #2563eb);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-bot-card-trigger:hover {
+  filter: brightness(1.2);
+  transform: translateY(-1px);
+}
+
 .duel-equity-box {
   margin-bottom: 18px;
 }
