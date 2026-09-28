@@ -17,10 +17,42 @@
     "history": []
   },
   "bot": {
-    "cash": 30000.0,
-    "positions": [],
-    "history": [],
-    "decision_logs": [],
-    "last_evaluated_at": "2026-09-28 15:52 UTC"
+    "cash": 24123.09,
+    "positions": [
+      {
+        "ticker": "TSM",
+        "shares": 13,
+        "avg_price": 452.07,
+        "cost_basis": 5876.91,
+        "opened_at": "2026-09-28 17:08 UTC"
+      }
+    ],
+    "history": [
+      {
+        "id": "tx_b_1",
+        "time": "2026-09-28 17:08 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "TSM",
+        "shares": 13,
+        "price": 452.07,
+        "total_usd": 5876.91,
+        "realized_pnl": 0.0
+      }
+    ],
+    "decision_logs": [
+      {
+        "time": "2026-09-28 17:08 UTC",
+        "action": "BUY",
+        "ticker": "TSM",
+        "shares": 13,
+        "price": 452.07,
+        "total_usd": 5876.91,
+        "rationale": "Day-1 Wave Ignition: NONE with RVOL 0.45x and P(Wave) of 40.8%. External catalysts factored: Congressional Committee Oversight BUY (Energy and Commerce), Corporate Insider BUY ($9,900), ACTIVE PELOSI EFFECT [HIGH_VELOCITY - C_SUITE_INSIDER_WHALE_ACCUMULATION] (Score: 70/100). Active Pelosi Effect (HIGH_VELOCITY - Hype Score: 70/100): Retail social streams are actively circulating C Suite Insider Whale Accumulation citing Corporate CEO / C-Suite. Discussion demonstrates rapid copy-trading accumulation with strong bullish bias.. Allocating $5,876.91 (20% of cash) on high conviction.",
+        "composite_score": 65,
+        "wave_probability": 40.8
+      }
+    ],
+    "last_evaluated_at": "2026-09-28 17:53 UTC"
   }
 }
