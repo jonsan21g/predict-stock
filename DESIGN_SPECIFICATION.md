@@ -242,8 +242,11 @@ predict-stock/
   * `duelPollingInterval`: 15-second background polling timer (`setInterval(loadDuelState, 15000)`).
 
 #### 3. Front-End Controller Modules
-* **Navigation Router (`showTab(tabName)`)**: Swaps visible tab panels without page reloads, cleanly initializes canvas contexts, and triggers tab-specific data fetches.
-* **Wave Radar Controller (`loadRadar()`, `filterCategory(cat)`)**: Ingests `/api/radar`, executes instant DOM filtering across 5 industry sectors, and populates the 13-column quantitative screening table.
+* **Wave Radar Controller (`loadRadar()`, `filterCategory(cat)`, `sortRadarBy(col)`, `updateSortIndicators()`, `renderRadarTable()`)**:
+  * Ingests `/api/radar`, executes instant DOM filtering across 6 industry sectors, and populates the 13-column quantitative screening table.
+  * Provides interactive column sorting with visual direction arrows (`▲` / `▼`) on `Ticker`, `Category`, `Price`, `Change %`, `Wave Prob`, and `Score`.
+  * Renders Smart Money badges with high-contrast, luminous color-coding (`.badge-insider`, `.badge-sentiment-bullish`, `.badge-congress`, `.badge-contracts`, `.badge-pelosi`).
+  * Manages the 6-item `#radar-legend` component explaining Day-1 ignition states (`⚡ IGNITION` vs `Consolidating`), Wave Win probabilities, 0–100 score brackets, Smart Money badges, the dedicated Pelosi Effect & retail herd model (thresholds, intensity tiers, catalysts, and lifecycles), and profit/stop brackets.
 * **Stock Deep-Dive Controller (`loadDeepDive(ticker)`, `renderDeepDiveChart()`)**: Consumes `/api/stock/<ticker>`, renders 4-pillar forensic scorecards, plots multi-overlay price history, and builds tabular audit grids for Congressional trades, Form 4 insider buys, and USASpending federal contracts.
 * **Backtest Laboratory Controller (`executeBacktest()`)**: Ingests `/api/backtest`, binds 6 KPI summary cards, renders the portfolio equity curve, and renders the chronological trade execution ledger.
 * **Duel Desk Controller (`loadDuelState()`, `submitOrder()`, `triggerBotTurn()`, `resetDuel()`)**: Manages the live paper trading terminal, computes dynamic countdowns to Oct 2 23:00 CET, calculates order totals on keystroke, renders mark-to-market open positions, logs transparent bot disclosures, and runs the 15-second background polling cycle.

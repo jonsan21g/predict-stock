@@ -327,11 +327,16 @@ The following matrix provides 100% bidirectional traceability between functional
       * `🏛️ Congress`: Violet/purple background (`rgba(139, 92, 246, 0.18)`), purple border (`#8b5cf6`), and light-purple text (`#a78bfa`).
       * `📜 Contracts`: Cyan/sky background (`rgba(6, 182, 212, 0.18)`), cyan border (`#06b6d4`), and light-cyan text (`#38bdf8`).
   * **Bottom Table Context Legend & Metric Glossary**:
-    * A persistent glassmorphism Legend Card positioned directly beneath the radar table shall explain every column, status badge, and quantitative metric:
-      * **Day-1 Ignition**: `IGNITION` (Violent Day-1 momentum breakout: $\text{RVOL} \ge 1.50\times$, $\text{CRR} \ge 0.68$, and breakout above 20D High or Upper BB) vs. `CONSOLIDATING / WAITING` (Asset in healthy base compression awaiting volume ignition).
+    * A persistent glassmorphism Legend Card positioned directly beneath the radar table shall explain every column, status badge, and quantitative metric across 6 specialized cards:
+      * **Day-1 Ignition**: `⚡ IGNITION` (Violent Day-1 momentum breakout: $\text{RVOL} \ge 1.50\times$, $\text{CRR} \ge 0.68$, and breakout above 20D High or Upper BB, e.g., `BREAKOUT_20D`, `BREAKOUT_BB`, `VOLUME_EXPANSION`) vs. `Consolidating` (Asset compressing in healthy base consolidation or pullback support awaiting volume surge).
       * **Wave Probability ($P(\text{Wave Win})$)**: Calibrated machine-learning probability that the stock will hit $+3.5\%$ upside in 3–5 trading days before triggering the $-2.5\%$ stop loss floor.
       * **Composite Score (0–100)**: Quantitative conviction combining technical momentum with Smart Money bonuses ($\ge 85$: Whale Tier / 50% max allocation; $\ge 70$: Prime Wave Setup / 35% allocation; $\ge 65$: Autonomous Bot Auto-Trigger / 20% allocation; $<65$: Watchlist / Consolidation).
-      * **Smart Money Footprint**: Detailed definitions for 🏛️ `Congress` (STOCK Act purchases within 90 days, $2.5\times$ weight if on oversight committee), 💼 `Insider` (SEC Form 4 C-Suite whale buys or cluster purchases), 📜 `Contracts` (Major US Federal technology procurement awards on USASpending), and 📈 `Bullish / Pelosi` (Social sentiment velocity spike and viral copy-trade herd momentum).
+      * **Smart Money Footprint**: Detailed definitions for 🏛️ `Congress` (STOCK Act purchases within 90 days, $2.5\times$ weight if on oversight committee), 💼 `Insider` (SEC Form 4 C-Suite whale buys or cluster purchases), 🛡️ `Fed Contract` (Major US Federal technology procurement awards on USASpending), and 💬 `Bullish` (Positive news polarity and social sentiment velocity).
+      * **The Pelosi Effect & Retail Herd Momentum**: Dedicated diagnostic card detailing the self-fulfilling viral copy-trading phenomenon:
+        * *Trigger Threshold*: Active when composite `Retail Hype Score >= 60/100` (combining viral catalyst, mention velocity, and Pelosi mention multiplier).
+        * *Intensity Tiers*: `VIRAL_SURGE` (80–100: peak retail frenzy), `HIGH_VELOCITY` (60–79: active trigger threshold), `MODERATE_INTEREST` (35–59: emerging buzz), `QUIET / DORMANT` (<35: sub-threshold).
+        * *Primary Catalysts*: `PELOSI_CONGRESSIONAL_COPYTRADE` (+20 bonus), `CAPITOL_HILL_DISCLOSURE`, `C_SUITE_INSIDER_WHALE_ACCUMULATION`, `RETAIL_HERD_WHALE_COPYTRADE`.
+        * *Lifecycle Stages*: `DORMANT` $\rightarrow$ `EMERGING_AWARENESS` $\rightarrow$ `IGNITION_ACCELERATION` $\rightarrow$ `PEAK_HERD_EXPANSION`.
       * **Execution Brackets**: `Target 1` ($+3.5\%$ profit scale-out), `Target 2` ($+6.0\%$ trend runner), and `Stop Loss` ($-2.5\%$ initial risk floor or trailing 5 EMA).
 * **Verification & Test**: `TC-UI-03` in [`tests/test_interface.py::test_dashboard_radar_premarket`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py).
 
