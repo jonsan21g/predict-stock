@@ -8,6 +8,7 @@ let deepDiveChart = null;
 let backtestChart = null;
 
 document.addEventListener("DOMContentLoaded", () => {
+  updateSortIndicators();
   loadRadar();
 });
 
@@ -114,10 +115,10 @@ function updateSortIndicators() {
     if (icon && th) {
       if (col === currentSortColumn) {
         th.classList.add("active-sort");
-        icon.textContent = currentSortDirection === "asc" ? "▲" : "▼";
+        icon.innerHTML = currentSortDirection === "asc" ? "&#9650;" : "&#9660;";
       } else {
         th.classList.remove("active-sort");
-        icon.textContent = "↕";
+        icon.innerHTML = "&#x21C5;";
       }
     }
   });

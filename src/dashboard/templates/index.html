@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wave Rider — Quantitative Momentum Engine</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="/static/style.css?v=3">
+  <link rel="stylesheet" href="/static/style.css?v=4">
 </head>
 <body>
   <div class="app-container">
@@ -75,13 +75,13 @@
           <thead>
             <tr>
               <th>#</th>
-              <th class="sortable" onclick="sortRadarBy('ticker')" title="Sort by Ticker">Ticker <span class="sort-icon" id="sort-ticker">↕</span></th>
-              <th class="sortable" onclick="sortRadarBy('category')" title="Sort by Category">Category <span class="sort-icon" id="sort-category">↕</span></th>
-              <th class="sortable" onclick="sortRadarBy('current_price')" title="Sort by Price">Price <span class="sort-icon" id="sort-current_price">↕</span></th>
-              <th class="sortable" onclick="sortRadarBy('change_pct')" title="Sort by 24h Change">Change <span class="sort-icon" id="sort-change_pct">↕</span></th>
+              <th class="sortable" onclick="sortRadarBy('ticker')" title="Click to sort by Ticker">Ticker <span class="sort-icon" id="sort-ticker">&#x21C5;</span></th>
+              <th class="sortable" onclick="sortRadarBy('category')" title="Click to sort by Category">Category <span class="sort-icon" id="sort-category">&#x21C5;</span></th>
+              <th class="sortable" onclick="sortRadarBy('current_price')" title="Click to sort by Price">Price <span class="sort-icon" id="sort-current_price">&#x21C5;</span></th>
+              <th class="sortable" onclick="sortRadarBy('change_pct')" title="Click to sort by 24h Change">Change <span class="sort-icon" id="sort-change_pct">&#x21C5;</span></th>
               <th>Day-1 Ignition</th>
-              <th class="sortable" onclick="sortRadarBy('wave_probability')" title="Sort by Wave Probability">Wave Prob <span class="sort-icon" id="sort-wave_probability">↕</span></th>
-              <th class="sortable active-sort" onclick="sortRadarBy('composite_score')" title="Sort by Composite Score">Score <span class="sort-icon" id="sort-composite_score">▼</span></th>
+              <th class="sortable" onclick="sortRadarBy('wave_probability')" title="Click to sort by Wave Probability">Wave Prob <span class="sort-icon" id="sort-wave_probability">&#x21C5;</span></th>
+              <th class="sortable active-sort" onclick="sortRadarBy('composite_score')" title="Click to sort by Composite Score">Score <span class="sort-icon" id="sort-composite_score">&#9660;</span></th>
               <th>Target 1 (+3.5%)</th>
               <th>Target 2 (+6.0%)</th>
               <th>Stop (-2.5%)</th>
@@ -514,6 +514,6 @@
     </footer>
   </div>
 
-  <script src="/static/app.js?v=3"></script>
+  <script src="/static/app.js?v=4"></script>
 </body>
 </html>
