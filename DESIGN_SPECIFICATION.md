@@ -226,6 +226,30 @@ predict-stock/
 
 ---
 
+### 4.4 Web Front-End Presentation Architecture (`src/dashboard/static/` & `templates/`)
+
+#### 1. UI Technology Stack & Design System
+* **HTML5 Single-Page Application (`templates/index.html`)**: Semantic single-page application hosting 4 dynamic view panels (`tab-radar`, `tab-deepdive`, `tab-backtest`, `tab-duel`), persistent top header, and universe overview KPI strip.
+* **CSS3 Glassmorphic Styling (`static/style.css`)**: Glassmorphism design system using semi-transparent frosted cards (`background: rgba(15, 23, 42, 0.75)`, `backdrop-filter: blur(12px)`), dark slate palette (`#090d16`, `#0f172a`), neon accent borders (`#00f2fe`, `#4facfe`, `#10b981`), and responsive CSS flexbox/grid layouts.
+* **Hardware-Accelerated Canvas Charting**: Chart.js 4.x integration for 60-day multi-overlay price charts (EMAs, Target 1, Target 2, Stop loss) and backtest equity growth curves.
+
+#### 2. Client-Side State Model (`static/app.js`)
+* **State Variables**:
+  * `currentMode`: Active operational scanning mode (`eod` vs `premarket`).
+  * `radarData`: Cached array of ranked 27-stock payload objects enabling instant client-side category filtering.
+  * `deepDiveChart`: Active Chart.js instance for the 60-day technical canvas.
+  * `equityChart`: Active Chart.js instance for the backtest equity curve canvas.
+  * `duelPollingInterval`: 15-second background polling timer (`setInterval(loadDuelState, 15000)`).
+
+#### 3. Front-End Controller Modules
+* **Navigation Router (`showTab(tabName)`)**: Swaps visible tab panels without page reloads, cleanly initializes canvas contexts, and triggers tab-specific data fetches.
+* **Wave Radar Controller (`loadRadar()`, `filterCategory(cat)`)**: Ingests `/api/radar`, executes instant DOM filtering across 5 industry sectors, and populates the 13-column quantitative screening table.
+* **Stock Deep-Dive Controller (`loadDeepDive(ticker)`, `renderDeepDiveChart()`)**: Consumes `/api/stock/<ticker>`, renders 4-pillar forensic scorecards, plots multi-overlay price history, and builds tabular audit grids for Congressional trades, Form 4 insider buys, and USASpending federal contracts.
+* **Backtest Laboratory Controller (`executeBacktest()`)**: Ingests `/api/backtest`, binds 6 KPI summary cards, renders the portfolio equity curve, and renders the chronological trade execution ledger.
+* **Duel Desk Controller (`loadDuelState()`, `submitOrder()`, `triggerBotTurn()`, `resetDuel()`)**: Manages the live paper trading terminal, computes dynamic countdowns to Oct 2 23:00 CET, calculates order totals on keystroke, renders mark-to-market open positions, logs transparent bot disclosures, and runs the 15-second background polling cycle.
+
+---
+
 ## 5. REST API Interface Specification
 
 ### `GET /api/radar`

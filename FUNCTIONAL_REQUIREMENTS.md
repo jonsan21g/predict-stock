@@ -296,18 +296,97 @@ The following matrix provides 100% bidirectional traceability between functional
 * **Mandatory Disclosure**: The bot must log an audit record citing its exact technical rationale, RVOL, probability, and all external catalysts (Committee oversight, Form 4 purchases, Federal contracts, Pelosi effect).
 * **Verification & Test**: `TC-GAME-06` in [`tests/test_game.py::test_bot_evaluate_turn_with_disclosures`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py).
 
-#### `FR-06-07`: Web Dashboard REST Endpoints
-* **Description**: The Flask dashboard (`http://localhost:5050`) shall provide:
-  * `GET /`: Glassmorphism responsive single-page web application.
-  * `GET /api/health`: Health status probe.
-  * `GET /api/radar?mode={eod|premarket}`: Ranked 27-stock radar table.
-  * `GET /api/stock/<ticker>`: Full 4-pillar forensic intelligence payload.
-  * `GET /api/backtest`: Walkforward simulation engine.
-  * `GET /api/game`: Real-time duel state and scoreboard.
-  * `POST /api/game/order`: Order execution endpoint.
-  * `POST /api/game/bot-turn`: Manual on-demand bot trigger.
-  * `POST /api/game/reset`: Reset duel to starting cash.
-* **Verification & Tests**: `TC-UI-01` through `TC-UI-07` in [`tests/test_interface.py`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py).
+#### `FR-06-07`: Web Dashboard Glassmorphism Shell, Top Banner & Responsive Theme
+* **Description**: The system shall serve a responsive, high-performance single-page web application (`index.html`, `style.css`, `app.js`) via `GET /`:
+  * **Design System**: Glassmorphic dark aesthetic utilizing semi-transparent frosted glass containers (`rgba(15, 23, 42, 0.75)` with `backdrop-filter: blur(12px)`), slate-900 background (`#090d16`), and high-contrast accent highlights (cyan `#00f2fe`, purple `#4facfe`, emerald `#10b981`, rose `#f43f5e`, gold `#fbbf24`).
+  * **Header Controls**: Dynamic operational mode switcher allowing instant toggling between `🌙 End-of-Day (EOD)` and `☀️ Pre-Market (PM)` cadences, and a manual `🔄 Refresh` trigger.
+  * **Universe Overview KPI Banner**: 4 persistent metric blocks displaying Tracked Universe (27 Titans), Execution Strategy (3–5 Day Expansion $+3.5\% / +6.0\%$), Risk Floor ($-2.5\%$ Stop / 5 EMA Trail), and Safety Mandate (Zero Bankruptcy Risk).
+  * **Navigation Tab Controller**: Top-level tab switcher seamlessly routing between 4 primary functional views without browser reload:
+    1. `🌊 Wave Radar`
+    2. `🎯 Stock Deep-Dive`
+    3. `🧪 Backtest Sandbox`
+    4. `⚔️ 5-Day Duel`
+  * **Third-Party CDN Libraries**: Bundles Chart.js 4.x for hardware-accelerated canvas chart rendering.
+* **Verification & Test**: `TC-UI-01` in [`tests/test_interface.py::test_dashboard_index`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py).
+
+#### `FR-06-08`: Dashboard Health Probe API
+* **Description**: The system shall expose a lightweight JSON endpoint at `GET /api/health` returning `{"service": "Wave Rider Momentum Engine", "status": "UP"}`. This endpoint facilitates uptime verification, external cron pingers, and container health probes.
+* **Verification & Test**: `TC-UI-02` in [`tests/test_interface.py::test_dashboard_health`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py).
+
+#### `FR-06-09`: Tab 1 — Wave Radar Grid & Category Sector Filtering
+* **Description**: Tab 1 shall render a ranked, real-time 13-column quantitative screening table populated via `GET /api/radar?mode={eod|premarket}`:
+  * **Category Filter Pills**: Interactive pill buttons allowing instant client-side filtering: `All (27)`, `Memory & Storage (5)`, `Capital Equipment (5)`, `AI Compute (6)`, `Connectivity (4)`, and `Mega-Cap Anchors (7)`.
+  * **Grid Data Columns**:
+    1. `#` (Rank descending by Composite Score)
+    2. `Ticker` (Symbol + Company Name)
+    3. `Category` (Sector pill)
+    4. `Price` (Current market or pre-market price)
+    5. `Change %` (Color-coded daily change)
+    6. `Day-1 Ignition` (Glowing `IGNITION` badge or muted `WAITING`)
+    7. `Wave Prob` (Calibrated $P(\text{Wave Win})$ percentage)
+    8. `Score` (0–100 composite conviction badge with bronze/silver/gold/emerald tiers)
+    9. `Target 1` ($+3.5\%$ profit taking level)
+    10. `Target 2` ($+6.0\%$ runner target level)
+    11. `Stop` ($-2.5\%$ initial capital protection floor)
+    12. `Smart Money Strip` (Badges for Congressional purchases, Form 4 C-Suite accumulation, and USASpending contracts)
+    13. `Actions` (One-click deep-link to Tab 2 `Inspect` and Tab 4 `Buy`)
+* **Verification & Test**: `TC-UI-03` in [`tests/test_interface.py::test_dashboard_radar_premarket`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py).
+
+#### `FR-06-10`: Tab 2 — Stock Deep-Dive 4-Pillar Forensic Suite & Multi-Overlay Chart
+* **Description**: Tab 2 shall render an exhaustive forensic diagnostic view for any of the 27 universe stocks via `GET /api/stock/<ticker>`:
+  * **Interactive Ticker Selector**: Dropdown selector enabling on-demand switching or direct routing from Radar action buttons.
+  * **4-Pillar Forensic Scorecard Ribbon**:
+    1. *Technical Pillar*: RVOL ratio, Close Range Ranking (CRR), 20D High status, Upper Bollinger Band proximity, and 5/20 EMA trend alignment.
+    2. *Smart Money Pillar*: Congressional conviction score, Committee jurisdiction overlap match, and Form 4 C-Suite whale purchase indicators.
+    3. *Federal Contracts Pillar*: 90-day awarded contract value ($) and prime awardee flags from USASpending.
+    4. *Sentiment Velocity & Pelosi Effect*: Financial news polarity score, Pelosi social chatter velocity score, and live community quote feed.
+  * **Multi-Overlay Technical Chart**: Interactive Chart.js canvas plotting 60 trading days of historical closes overlaid with:
+    * 5-day Exponential Moving Average (Purple line)
+    * 20-day Exponential Moving Average (Blue line)
+    * Target 1 level $+3.5\%$ (Green dashed horizontal line)
+    * Target 2 level $+6.0\%$ (Cyan dashed horizontal line)
+    * Stop Loss level $-2.5\%$ (Red dashed horizontal line)
+  * **Tabular Audit Data Grids**:
+    * *Congressional Filings Table*: Filing date, politician name, chamber (House/Senate), committee, transaction type, dollar bracket, and transaction date.
+    * *Form 4 Insider Buys Table*: Filing date, insider name, executive title, transaction type, shares purchased, execution price, and total dollar value.
+    * *USASpending Contracts Table*: Award date, recipient name, awarding agency, dollar value, and contract description.
+    * *Day-1 Ignition Checklist*: Detailed table displaying all 4 core ignition rules with individual pass/fail status and exact numeric criteria.
+* **Verification & Test**: `TC-UI-04` in [`tests/test_interface.py::test_dashboard_stock_detail`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py).
+
+#### `FR-06-11`: Tab 3 — Backtest Sandbox & Walkforward Equity Visualizer
+* **Description**: Tab 3 shall provide an on-demand historical simulation laboratory powered by `GET /api/backtest`:
+  * **Parameter Form**: Ticker selector across the 27 universe stocks and Lookback Period selector (`1y`, `2y`, `3y`).
+  * **6 KPI Metric Cards**:
+    1. *Strategy Return %* (with comparative Buy & Hold benchmark)
+    2. *Win Rate %* (with exact Wins / Losses tally)
+    3. *Profit Factor* (Gross Profit / Gross Loss)
+    4. *Expectancy* ($ net return per trade)
+    5. *Max Drawdown %* (Peak-to-trough equity decline)
+    6. *Average Hold Period* (Holding duration in days, subject to 5-day time exit)
+  * **Equity Curve Canvas**: Chart.js visualization displaying hypothetical account growth starting from a $10,000 baseline.
+  * **Historical Trade Ledger**: Chronological table logging every simulated execution: trade index, entry date, exit date, entry fill, exit fill, share quantity, net P&L ($), return %, holding duration (days), and precise exit reason (`TARGET_1`, `TARGET_2`, `STOP_LOSS`, `5_EMA_TRAIL`, `5D_TIME_STOP`).
+* **Verification & Test**: `TC-UI-05` in [`tests/test_interface.py::test_dashboard_backtest_api`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py).
+
+#### `FR-06-12`: CLI Runner Premarket Execution
+* **Description**: The system shall support a headless terminal pre-market scanner via `python -m src.main --mode premarket` that fetches live gap data, computes composite conviction, and outputs a formatted ANSI terminal table for headless operational verification.
+* **Verification & Test**: `TC-UI-06` in [`tests/test_interface.py::test_cli_premarket_execution`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py).
+
+#### `FR-06-13`: Tab 4 — Live Duel Desk, Mark-to-Market Scoreboard & 15s Auto-Polling
+* **Description**: Tab 4 shall host the active 5-Day "Player vs. Bot" Paper Trading Duel (`GET /api/game`):
+  * **Banner & Countdown Strip**: Real-time countdown timer to match expiration (Friday Oct 2, 2026, 23:00 CET), Dynamic Leader Badge (`⚖️ Tied`, `🏆 Human Player Leading`, `🤖 Autonomous Bot Leading`), and Autonomous Bot Status Pill.
+  * **Dual Live Scoreboard Cards**: Parallel cards for Human Player and Autonomous Bot displaying:
+    * Net Account Equity ($)
+    * Total P&L ($ and %)
+    * Available Buying Power ($ cash)
+    * Invested Market Value ($ in open stocks)
+    * Active Positions Count
+  * **Order Execution Desk**: Interactive trading terminal featuring Action toggle (`BUY` / `SELL`), Stock selector, Shares input with dynamic real-time "Total Order Value" calculation, and instant order submission (`POST /api/game/order`).
+  * **Live Open Positions Table**: Displays all currently held stocks, quantity, average cost basis, real-time market price, unrealized P&L ($ and %), and a one-click `Sell All` liquidator.
+  * **Order History Ledger**: Chronological ledger of all completed market orders with ISO timestamps.
+  * **Autonomous Bot Audit Stream**: Transparent decision log displaying the bot's evaluation history, executed trades, and mandatory outside-catalyst disclosures (technical breakout, RVOL, Congressional backing, insider accumulation, federal contracts).
+  * **15-Second Background Polling Loop**: Client-side JavaScript timer (`setInterval(loadDuelState, 15000)`) automatically re-fetching game state and updating mark-to-market valuations without requiring browser refreshes.
+  * **Administrative Controls**: `⚡ Trigger Bot Turn` (`POST /api/game/bot-turn`) for manual evaluation, and `⚠️ Reset Match` (`POST /api/game/reset`) for bankroll re-initialization.
+* **Verification & Test**: `TC-UI-07` in [`tests/test_interface.py::test_dashboard_game_endpoints`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py).
 
 ---
 
