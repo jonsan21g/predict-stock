@@ -5,7 +5,6 @@ Runs locally at http://localhost:5050 with zero external cloud dependencies.
 
 import os
 import sys
-import time
 import threading
 from datetime import datetime, timezone
 from typing import Dict, Any
@@ -43,18 +42,9 @@ app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 RADAR_CACHE = {"eod": None, "premarket": None}
 
 
-@app.after_request
-def add_no_cache_headers(response):
-    """Prevents local browser caching of dashboard static files and templates during development."""
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0"
-    response.headers["Pragma"] = "no-cache"
-    response.headers["Expires"] = "0"
-    return response
-
-
 @app.route("/")
 def index():
-    return render_template("index.html", v=int(time.time()))
+    return render_template("index.html")
 
 
 @app.route("/api/health")

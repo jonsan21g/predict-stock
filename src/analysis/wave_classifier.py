@@ -234,6 +234,10 @@ def score_single_stock(ticker: str, model_path: Optional[str] = None) -> Dict[st
             "congress_sell_count": congress.get("sell_count", 0),
             "congress_total_trades": congress.get("total_trades", 0),
             "congress_trades": congress.get("trades", []),
+            "quiver_stock_url": congress.get("quiver_stock_url"),
+            "capitoltrades_url": congress.get("capitoltrades_url"),
+            "house_disclosure_url": congress.get("house_disclosure_url"),
+            "senate_disclosure_url": congress.get("senate_disclosure_url"),
 
             # Corporate Insider Pillar
             "insider_buy": insider.get("has_recent_buy", False),
@@ -247,6 +251,9 @@ def score_single_stock(ticker: str, model_path: Optional[str] = None) -> Dict[st
             "unique_buyers": insider.get("unique_buyers", 0),
             "recent_buys": insider.get("recent_buys", []),
             "recent_transactions": insider.get("recent_transactions", []),
+            "openinsider_purchases_url": insider.get("openinsider_purchases_url"),
+            "openinsider_all_url": insider.get("openinsider_all_url"),
+            "sec_edgar_url": insider.get("sec_edgar_url"),
 
             # Social & Pelosi Effect Pillar
             "sentiment_label": sentiment.get("sentiment_label", "NEUTRAL"),
@@ -269,7 +276,9 @@ def score_single_stock(ticker: str, model_path: Optional[str] = None) -> Dict[st
                 "contract_score": contracts.get("contract_score", 0),
                 "top_agencies": contracts.get("top_agencies", []),
                 "top_award_amount_usd": contracts.get("top_award_amount_usd", 0.0),
-                "recent_contracts": contracts.get("recent_contracts", [])
+                "recent_contracts": contracts.get("recent_contracts", []),
+                "usaspending_search_url": contracts.get("usaspending_search_url"),
+                "usaspending_recipient_url": contracts.get("usaspending_recipient_url")
             }
         }
     }

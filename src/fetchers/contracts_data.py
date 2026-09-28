@@ -98,8 +98,14 @@ def fetch_federal_contracts(ticker: str, force_refresh: bool = False) -> List[Di
             raw_results = r.json().get("results", [])
             for item in raw_results:
                 amt = float(item.get("Award Amount") or 0.0)
+                gen_id = item.get("generated_internal_id")
+                award_id = item.get("Award ID")
+                award_url = f"https://www.usaspending.gov/award/{gen_id}" if gen_id else f"https://www.usaspending.gov/search/?keyword={award_id}"
                 contracts.append({
-                    "award_id": item.get("Award ID"),
+                    "award_id": award_id,
+                    "generated_internal_id": gen_id,
+                    "award_permalink_id": gen_id,
+                    "award_url": award_url,
                     "recipient": item.get("Recipient Name"),
                     "amount_usd": round(amt, 2),
                     "agency": item.get("Awarding Agency"),
@@ -167,5 +173,7 @@ def get_ticker_contract_signals(ticker: str, force_refresh: bool = False) -> Dic
         "is_defense_contract": is_defense,
         "contract_score": score,
         "top_agencies": agencies[:6],
-        "recent_contracts": contracts[:8]
+        "recent_contracts": contracts[:8],
+        "usaspending_search_url": f"https://www.usaspending.gov/search/?keyword={ticker}",
+        "usaspending_recipient_url": "https://www.usaspending.gov/recipient"
     }

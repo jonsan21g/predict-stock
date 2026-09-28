@@ -141,5 +141,8 @@ def get_insider_signals(ticker: str, days: int = 45) -> Dict[str, Any]:
         "c_suite_buyers": c_suite_buyers,
         "insider_score": score,
         "recent_buys": buys[:5],
-        "recent_transactions": recent_tx[:10]
+        "recent_transactions": recent_tx[:10],
+        "openinsider_purchases_url": f"http://openinsider.com/screener?s={ticker}&tc=P&xp=1",
+        "openinsider_all_url": f"http://openinsider.com/screener?s={ticker}",
+        "sec_edgar_url": f"https://www.sec.gov/edgar/browse/?CIK={ticker}"
     }

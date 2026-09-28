@@ -346,7 +346,7 @@ async function loadDeepDive(ticker) {
                       <span style="font-size:10px; color:#64748b;">Filed: ${t.published_date || "-"}</span>
                     </td>
                     <td>
-                      <a href="https://www.capitoltrades.com/trades?search=${encodeURIComponent(t.politician_name || t.politician)}" target="_blank" rel="noopener noreferrer" style="color:#c4b5fd; text-decoration:none; font-weight:700;" title="Click to view disclosures on CapitolTrades">
+                      <a href="${t.quiver_politician_url || ('https://www.quiverquant.com/congresstrading/politician/' + encodeURIComponent(t.politician_name || t.politician))}" target="_blank" rel="noopener noreferrer" style="color:#c4b5fd; text-decoration:none; font-weight:700;" title="Click to view disclosures on Quiver Quantitative">
                         ${t.politician_name || t.politician} <span style="font-size:10px; opacity:0.7;">↗</span>
                       </a>
                     </td>
@@ -399,7 +399,7 @@ async function loadDeepDive(ticker) {
                   <tr>
                     <td style="white-space:nowrap; font-size:11px;">${t.date || "-"}</td>
                     <td>
-                      <a href="http://openinsider.com/screener?s=${data.ticker}" target="_blank" rel="noopener noreferrer" style="color:#fbbf24; text-decoration:none; font-weight:700;" title="Click to view Form 4 filings on OpenInsider">
+                      <a href="http://openinsider.com/screener?s=${data.ticker}&tc=P&xp=1" target="_blank" rel="noopener noreferrer" style="color:#fbbf24; text-decoration:none; font-weight:700;" title="Click to view Code P Purchases on OpenInsider">
                         ${t.insider || "-"} <span style="font-size:10px; opacity:0.7;">↗</span>
                       </a>
                     </td>
@@ -440,24 +440,27 @@ async function loadDeepDive(ticker) {
               </tr>
             </thead>
             <tbody>
-              ${fedContracts.map(c => `
-                <tr>
-                  <td style="white-space:nowrap; font-size:11px;">${c.action_date || "Active"}</td>
-                  <td style="font-family:monospace; font-size:11px;">
-                    <a href="https://www.usaspending.gov/search/?keyword=${encodeURIComponent(c.award_id)}" target="_blank" rel="noopener noreferrer" style="color:#7dd3fc; text-decoration:none; font-weight:600;" title="Search Award on USAspending.gov">
-                      ${c.award_id || "-"} <span style="font-size:10px; opacity:0.7;">↗</span>
-                    </a>
-                  </td>
-                  <td style="font-size:11px;">
-                    <a href="https://www.usaspending.gov/search/?keyword=${encodeURIComponent(c.recipient || data.name || data.ticker)}" target="_blank" rel="noopener noreferrer" style="color:#f8fafc; text-decoration:none;" title="Search Recipient on USAspending.gov">
-                      ${c.recipient || "-"} <span style="font-size:10px; opacity:0.7;">↗</span>
-                    </a>
-                  </td>
-                  <td style="font-weight:700; font-family:monospace; color:#10b981;">$${(c.amount_usd || 0).toLocaleString()}</td>
-                  <td style="font-size:11px; color:#cbd5e1;">${c.agency || ""}${c.sub_agency ? ' - ' + c.sub_agency : ''}</td>
-                  <td style="font-size:11px; color:#94a3b8; max-width:220px;" title="${c.description || ''}">${(c.description || "Technology Procurement").substring(0, 75)}...</td>
-                </tr>
-              `).join("")}
+              ${fedContracts.map(c => {
+                const awardLink = c.award_url || (c.generated_internal_id ? `https://www.usaspending.gov/award/${encodeURIComponent(c.generated_internal_id)}` : `https://www.usaspending.gov/search/?keyword=${encodeURIComponent(c.award_id)}`);
+                return `
+                  <tr>
+                    <td style="white-space:nowrap; font-size:11px;">${c.action_date || "Active"}</td>
+                    <td style="font-family:monospace; font-size:11px;">
+                      <a href="${awardLink}" target="_blank" rel="noopener noreferrer" style="color:#7dd3fc; text-decoration:none; font-weight:600;" title="View official award details on USAspending.gov">
+                        ${c.award_id || "-"} <span style="font-size:10px; opacity:0.7;">↗</span>
+                      </a>
+                    </td>
+                    <td style="font-size:11px;">
+                      <a href="https://www.usaspending.gov/search/?keyword=${encodeURIComponent(c.recipient || data.name || data.ticker)}" target="_blank" rel="noopener noreferrer" style="color:#f8fafc; text-decoration:none;" title="Search Recipient on USAspending.gov">
+                        ${c.recipient || "-"} <span style="font-size:10px; opacity:0.7;">↗</span>
+                      </a>
+                    </td>
+                    <td style="font-weight:700; font-family:monospace; color:#10b981;">$${(c.amount_usd || 0).toLocaleString()}</td>
+                    <td style="font-size:11px; color:#cbd5e1;">${c.agency || ""}${c.sub_agency ? ' - ' + c.sub_agency : ''}</td>
+                    <td style="font-size:11px; color:#94a3b8; max-width:220px;" title="${c.description || ''}">${(c.description || "Technology Procurement").substring(0, 75)}...</td>
+                  </tr>
+                `;
+              }).join("")}
             </tbody>
           </table>
         </div>
@@ -472,14 +475,19 @@ async function loadDeepDive(ticker) {
 
     // Pillar 4: Pelosi Effect & Retail Stream Details
     const quotesList = pe.verbatim_quotes && pe.verbatim_quotes.length > 0
-      ? pe.verbatim_quotes.map(q => `
-        <li style="margin-bottom:8px; list-style:none;">
-          <a href="https://stocktwits.com/symbol/${data.ticker}" target="_blank" rel="noopener noreferrer" class="verbatim-quote-link" title="Open live $${data.ticker} discussion stream on StockTwits">
-            <span class="quote-text" style="color:#e2e8f0; font-style:italic;">"${q}"</span>
-            <span class="quote-link-tag">💬 Open Stream ↗</span>
-          </a>
-        </li>
-      `).join("")
+      ? pe.verbatim_quotes.map(q => {
+          const text = (typeof q === 'object' && q !== null) ? (q.text || '') : q;
+          const url = (typeof q === 'object' && q !== null && q.url) ? q.url : `https://stocktwits.com/symbol/${data.ticker}`;
+          const source = (typeof q === 'object' && q !== null && q.source) ? q.source : 'Live Stream';
+          return `
+            <li style="margin-bottom:8px; list-style:none;">
+              <a href="${url}" target="_blank" rel="noopener noreferrer" class="verbatim-quote-link" title="Open verified quote on ${source}">
+                <span class="quote-text" style="color:#e2e8f0; font-style:italic;">"${text}"</span>
+                <span class="quote-link-tag">💬 ${source} ↗</span>
+              </a>
+            </li>
+          `;
+        }).join("")
       : `<li style="color:#94a3b8; list-style:none; padding:8px 12px; background:#0f172a; border-radius:6px; border:1px solid #1e293b;">No direct copy-trading quotes captured in the evaluated window.</li>`;
 
     const buzzBadges = (sm.buzz_keywords || []).map(k => `
@@ -589,7 +597,7 @@ async function loadDeepDive(ticker) {
         <div class="pillar-kpi-card" style="border-top:3px solid #8b5cf6;">
           <div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:12px; font-weight:700; color:#c4b5fd;">🏛️ CAPITOL HILL & COMMITTEES</span>
+              <span style="font-size:12px; font-weight:700; color:#c4b5fd;">🏛️ PILLAR 1: CONGRESSIONAL STOCK ACT</span>
               <span class="badge-congress" style="font-size:12px; padding:2px 8px;">${sm.congress_score || 0} / 100</span>
             </div>
             <div style="font-size:13px; font-weight:700; margin-top:6px; color:${sm.jurisdiction_match ? '#c4b5fd' : (sm.politician_buy ? '#34d399' : (sm.congress_sell_count > 0 ? '#fb7185' : '#94a3b8'))};">
@@ -605,7 +613,7 @@ async function loadDeepDive(ticker) {
         <div class="pillar-kpi-card" style="border-top:3px solid #f59e0b;">
           <div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:12px; font-weight:700; color:#fbbf24;">👔 C-SUITE & INSIDERS</span>
+              <span style="font-size:12px; font-weight:700; color:#fbbf24;">👔 PILLAR 2: SEC FORM 4 INSIDERS</span>
               <span class="badge-insider" style="font-size:12px; padding:2px 8px;">${sm.insider_score || 0} / 100</span>
             </div>
             <div style="font-size:13px; font-weight:700; margin-top:6px; color:${sm.total_buy_value_usd > 1000000 ? '#fbbf24' : (sm.insider_cluster ? '#fef08a' : (sm.insider_buy ? '#34d399' : '#94a3b8'))};">
@@ -621,7 +629,7 @@ async function loadDeepDive(ticker) {
         <div class="pillar-kpi-card" style="border-top:3px solid #06b6d4;">
           <div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:12px; font-weight:700; color:#7dd3fc;">🛡️ FEDERAL CONTRACTS</span>
+              <span style="font-size:12px; font-weight:700; color:#7dd3fc;">🛡️ PILLAR 3: FEDERAL CONTRACTS</span>
               <span class="badge-contracts" style="font-size:12px; padding:2px 8px;">${fed.contract_score || 0} / 100</span>
             </div>
             <div style="font-size:13px; font-weight:700; margin-top:6px; color:${fed.is_defense_contract ? '#f43f5e' : (fed.has_major_contract ? '#38bdf8' : '#94a3b8')};">
@@ -637,7 +645,7 @@ async function loadDeepDive(ticker) {
         <div class="pillar-kpi-card" style="border-top:3px solid #ea580c;">
           <div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:12px; font-weight:700; color:#fed7aa;">🔥 THE PELOSI EFFECT</span>
+              <span style="font-size:12px; font-weight:700; color:#fed7aa;">🔥 PILLAR 4: THE PELOSI EFFECT</span>
               <span class="badge-pelosi" style="font-size:12px; padding:2px 8px;">${sm.retail_hype_score || 0} / 100</span>
             </div>
             <div style="font-size:13px; font-weight:700; margin-top:6px; color:${pe.is_active ? '#fed7aa' : (sm.viral_politician_buzz ? '#38bdf8' : '#94a3b8')};">
@@ -699,16 +707,20 @@ async function loadDeepDive(ticker) {
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
               <div>
                 <h3 style="margin:0; display:flex; align-items:center; gap:8px;">
-                  <span>🏛️ US Congressional Activity & Committee Oversight (STOCK Act)</span>
+                  <span class="badge-congress" style="font-size:11px; padding:2px 8px; border-radius:4px;">PILLAR 1</span>
+                  <span>🏛️ Congressional STOCK Act & Committee Oversight</span>
                 </h3>
                 <span style="font-size:12px; color:#94a3b8;">Official Periodic Transaction Reports (PTRs) from US House of Representatives and US Senate.</span>
               </div>
               <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                 <span class="badge-congress" style="font-size:12px; padding:3px 10px;">Score: ${sm.congress_score || 0}/100</span>
-                <a href="https://www.capitoltrades.com/trades?search=${data.ticker}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-congress" title="View disclosures on CapitolTrades.com">
-                  <span>🏛️ CapitolTrades.com ↗</span>
+                <a href="${sm.quiver_stock_url || ('https://www.quiverquant.com/congresstrading/stock/' + data.ticker)}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-congress" title="View $${data.ticker} Congress Trading Tracker on Quiver Quantitative">
+                  <span>📊 Quiver Quant ↗</span>
                 </a>
-                <a href="https://disclosures-clerk.house.gov/PublicDisclosure/FinancialDisclosure" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-congress" title="Official US House Financial Disclosures Database">
+                <a href="${sm.capitoltrades_url || 'https://www.capitoltrades.com/issuers'}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-congress" title="View disclosures on CapitolTrades.com">
+                  <span>🏛️ CapitolTrades ↗</span>
+                </a>
+                <a href="${sm.house_disclosure_url || 'https://disclosures-clerk.house.gov/FinancialDisclosure'}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-congress" title="Official US House Financial Disclosures Database">
                   <span>US House ↗</span>
                 </a>
               </div>
@@ -732,19 +744,23 @@ async function loadDeepDive(ticker) {
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
               <div>
                 <h3 style="margin:0; display:flex; align-items:center; gap:8px;">
-                  <span>👔 Corporate C-Suite & SEC Form 4 Insider Conviction</span>
+                  <span class="badge-insider" style="font-size:11px; padding:2px 8px; border-radius:4px;">PILLAR 2</span>
+                  <span>👔 Corporate Insiders & SEC Form 4 Conviction</span>
                 </h3>
                 <span style="font-size:12px; color:#94a3b8;">Mandatory Form 4 open-market filings by corporate officers, directors, and 10% owners.</span>
               </div>
               <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                 <span class="badge-insider" style="font-size:12px; padding:3px 10px;">Score: ${sm.insider_score || 0}/100</span>
-                <a href="https://www.sec.gov/edgar/browse/?CIK=${data.ticker}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-insider" title="View SEC EDGAR Company Filings">
-                  <span>📑 SEC EDGAR ↗</span>
+                <a href="${sm.openinsider_purchases_url || ('http://openinsider.com/screener?s=' + data.ticker + '&tc=P&xp=1')}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-insider" title="View Filtered Code P Purchases on OpenInsider">
+                  <span>👔 OpenInsider (Purchases) ↗</span>
                 </a>
-                <a href="http://openinsider.com/screener?s=${data.ticker}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-insider" title="View OpenInsider Real-Time Form 4 Screener">
-                  <span>👔 OpenInsider ↗</span>
+                <a href="${sm.sec_edgar_url || ('https://www.sec.gov/edgar/browse/?CIK=' + data.ticker)}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-insider" title="View SEC EDGAR Company Filings">
+                  <span>📑 SEC EDGAR (All) ↗</span>
                 </a>
               </div>
+            </div>
+            <div style="background:rgba(245, 158, 11, 0.08); border:1px solid rgba(245, 158, 11, 0.25); padding:8px 12px; border-radius:6px; margin-bottom:10px; font-size:11px; color:#fbbf24; display:flex; align-items:center; gap:8px;">
+              <span>🔒 <strong>Filter Active:</strong> Isolating pure open-market direct cash purchases (Code P). Routine grants/awards (Code A) and tax sales (Code F) are filtered out to eliminate noise.</span>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center; background:#0f172a; padding:10px 14px; border-radius:8px; border:1px solid #1e293b; margin-bottom:10px; font-size:12px;">
               <div>
@@ -774,14 +790,18 @@ async function loadDeepDive(ticker) {
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
               <div>
                 <h3 style="margin:0; display:flex; align-items:center; gap:8px;">
-                  <span>🛡️ US Federal Government Prime Contracts (USASpending.gov)</span>
+                  <span class="badge-contracts" style="font-size:11px; padding:2px 8px; border-radius:4px;">PILLAR 3</span>
+                  <span>🛡️ US Federal Government Contracts (USAspending.gov)</span>
                 </h3>
                 <span style="font-size:12px; color:#94a3b8;">Direct federal procurement awards and obligations from DoD, NASA, and federal departments.</span>
               </div>
               <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                 <span class="badge-contracts" style="font-size:12px; padding:3px 10px;">Score: ${fed.contract_score || 0}/100</span>
-                <a href="https://www.usaspending.gov/search/?keyword=${encodeURIComponent(data.name || data.ticker)}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-contracts" title="Search Prime Contract Awards on USASpending.gov">
-                  <span>🛡️ USASpending.gov ↗</span>
+                <a href="${fed.usaspending_search_url || ('https://www.usaspending.gov/search/?keyword=' + encodeURIComponent(data.name || data.ticker))}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-contracts" title="Search Prime Contract Awards on USASpending.gov">
+                  <span>🛡️ Search Prime Awards ↗</span>
+                </a>
+                <a href="${fed.usaspending_recipient_url || 'https://www.usaspending.gov/recipient'}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-contracts" title="Official US Government Recipient Directory">
+                  <span>🏛️ Recipient Directory ↗</span>
                 </a>
               </div>
             </div>
@@ -812,6 +832,7 @@ async function loadDeepDive(ticker) {
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
               <div>
                 <h3 style="margin:0; display:flex; align-items:center; gap:8px;">
+                  <span class="badge-pelosi" style="font-size:11px; padding:2px 8px; border-radius:4px;">PILLAR 4</span>
                   <span>🔥 The Pelosi Effect & Viral Retail Social Streams</span>
                 </h3>
                 <span style="font-size:12px; color:#94a3b8;">Real-time retail herd copy-trading velocity, Capitol Hill buzz, and FinTwit momentum tracking.</span>

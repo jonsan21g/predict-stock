@@ -92,37 +92,83 @@ def fetch_stocktwits_feed(ticker: str) -> List[Dict[str, Any]]:
                 sentiment_info = entities.get("sentiment", {})
                 user_sentiment = sentiment_info.get("basic") if sentiment_info else None
                 created_at = m.get("created_at", "")
+                msg_id = m.get("id")
+                username = m.get("user", {}).get("username", "trader") if m.get("user") else "trader"
+                msg_url = f"https://stocktwits.com/message/{msg_id}" if msg_id else f"https://stocktwits.com/symbol/{ticker}"
                 if body:
                     messages.append({
                         "body": body,
                         "sentiment": user_sentiment,
-                        "created_at": created_at
+                        "created_at": created_at,
+                        "id": msg_id,
+                        "user": username,
+                        "url": msg_url,
+                        "source": "StockTwits"
                     })
     except Exception:
         pass
     return messages
 
 
-def scan_politician_viral_buzz(text_corpus: List[str]) -> Dict[str, Any]:
+def scan_politician_viral_buzz(text_corpus: List[Any], ticker: Optional[str] = None) -> Dict[str, Any]:
     """
     Scans a combined corpus of social messages and news headlines for politician and
     insider accumulation buzz (the 'Pelosi Effect'). Computes in-depth catalyst classification,
     prominent figures mentioned, lifecycle stage, retail hype score (0-100), and narrative summary.
+    Filters out multi-ticker pump spam blasts (>= 4 cashtags) and explicit symbol mismatches.
     """
-    matched_quotes: List[str] = []
+    matched_quotes_str: List[str] = []
+    matched_quotes_obj: List[Dict[str, Any]] = []
     matched_keywords_set = set()
     total_mentions = 0
+    all_raw_texts: List[str] = []
 
-    for text in text_corpus:
+    for item in text_corpus:
+        if isinstance(item, dict):
+            text = item.get("text") or item.get("body") or item.get("title") or ""
+            item_url = item.get("url")
+            item_source = item.get("source", "Social Stream")
+            item_author = item.get("author") or item.get("user") or ""
+        else:
+            text = str(item)
+            item_url = None
+            item_source = "Social Stream"
+            item_author = ""
+
+        if not text:
+            continue
+
+        all_raw_texts.append(text)
         text_lower = text.lower()
         found_in_text = [kw for kw in POLITICIAN_VIRAL_KEYWORDS if kw in text_lower]
-        if found_in_text:
-            total_mentions += 1
-            matched_keywords_set.update(found_in_text)
-            clean_sample = text.replace("\n", " ").strip()
-            if len(clean_sample) > 120:
-                clean_sample = clean_sample[:117] + "..."
-            matched_quotes.append(clean_sample)
+        if not found_in_text:
+            continue
+
+        # Spam Filter 1: Multi-ticker cashtag spam blast (>= 4 cashtags e.g. $ADI $MPWR $MTSI $CRUS)
+        cashtags = re.findall(r'\$[A-Z]{1,5}\b', text)
+        if len(cashtags) >= 4:
+            continue
+
+        # Spam Filter 2: Explicit mismatch where post specifies another stock e.g. "Symbol MX"
+        if ticker:
+            sym_match = re.search(r'\b(symbol|ticker)\s+([A-Z]{1,5})\b', text, re.IGNORECASE)
+            if sym_match and sym_match.group(2).upper() != ticker.upper():
+                continue
+
+        total_mentions += 1
+        matched_keywords_set.update(found_in_text)
+        clean_sample = text.replace("\n", " ").strip()
+        if len(clean_sample) > 130:
+            clean_sample = clean_sample[:127] + "..."
+
+        final_url = item_url or (f"https://stocktwits.com/symbol/{ticker}" if ticker else "https://stocktwits.com")
+        matched_quotes_str.append(clean_sample)
+        matched_quotes_obj.append({
+            "text": clean_sample,
+            "url": final_url,
+            "source": item_source,
+            "author": item_author
+        })
 
     is_viral = total_mentions >= 1
     
@@ -143,7 +189,7 @@ def scan_politician_viral_buzz(text_corpus: List[str]) -> Dict[str, Any]:
 
     # 1. Identify Prominent Political & Executive Figures Mentioned
     prominent_figures = []
-    text_blob = " ".join(text_corpus).lower()
+    text_blob = " ".join(all_raw_texts).lower()
     if "pelosi" in text_blob:
         prominent_figures.append("Nancy / Paul Pelosi")
     if "rick allen" in text_blob:
@@ -214,14 +260,14 @@ def scan_politician_viral_buzz(text_corpus: List[str]) -> Dict[str, Any]:
         "narrative_summary": narrative,
         "matched_keywords": sorted(list(matched_keywords_set)),
         "mentions_count": total_mentions,
-        "verbatim_quotes": matched_quotes[:3]
+        "verbatim_quotes": matched_quotes_obj[:3]
     }
 
     return {
         "viral_politician_buzz": is_viral,
         "politician_mentions_count": total_mentions,
         "matched_buzz_keywords": sorted(list(matched_keywords_set)),
-        "sample_buzz_quotes": matched_quotes[:3],
+        "sample_buzz_quotes": matched_quotes_str[:3],
         "retail_hype_score": hype_score,
         "is_pelosi_effect_active": is_pelosi_effect,
         "pelosi_effect": pelosi_effect_details
@@ -252,6 +298,7 @@ def get_ticker_social_sentiment(ticker: str, force_refresh: bool = False) -> Dic
     headlines: List[str] = []
     social_texts: List[str] = []
     sentiment_scores: List[float] = []
+    corpus_items: List[Dict[str, Any]] = []
 
     # 1. Fetch official financial news via yfinance
     try:
@@ -261,11 +308,20 @@ def get_ticker_social_sentiment(ticker: str, force_refresh: bool = False) -> Dic
             content = item.get("content", {})
             title = content.get("title", "") or item.get("title", "")
             summary = content.get("summary", "") or ""
+            link = item.get("link") or (content.get("canonicalUrl", {}) or {}).get("url") or f"https://finance.yahoo.com/quote/{ticker}/news/"
+            pub = item.get("publisher") or (content.get("provider", {}) or {}).get("displayName") or "Yahoo Finance"
             combined = f"{title}. {summary}".strip()
             if title:
                 headlines.append(title)
                 score = score_text_sentiment(combined)
                 sentiment_scores.append(score)
+                corpus_items.append({
+                    "text": combined,
+                    "title": title,
+                    "url": link,
+                    "source": f"News ({pub})",
+                    "author": pub
+                })
     except Exception as e:
         print(f"Warning: Failed to fetch news for {ticker}: {e}")
 
@@ -274,6 +330,13 @@ def get_ticker_social_sentiment(ticker: str, force_refresh: bool = False) -> Dic
     for m in stocktwits_msgs:
         body = m["body"]
         social_texts.append(body)
+        corpus_items.append({
+            "text": body,
+            "title": body,
+            "url": m.get("url") or f"https://stocktwits.com/symbol/{ticker}",
+            "source": "StockTwits",
+            "author": m.get("user") or "trader"
+        })
         
         # User explicit sentiment or lex analysis
         if m.get("sentiment") == "Bullish":
@@ -286,8 +349,7 @@ def get_ticker_social_sentiment(ticker: str, force_refresh: bool = False) -> Dic
                 sentiment_scores.append(score)
 
     # 3. Detect Targeted Politician & Smart-Money Viral Buzz
-    combined_corpus = headlines + social_texts
-    viral_analysis = scan_politician_viral_buzz(combined_corpus)
+    viral_analysis = scan_politician_viral_buzz(corpus_items, ticker=ticker)
 
     article_count = len(headlines)
     social_count = len(social_texts)

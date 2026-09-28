@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wave Rider — Quantitative Momentum Engine</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="/static/style.css?v={{ v or '20260928_v9' }}">
+  <link rel="stylesheet" href="/static/style.css?v=7">
 </head>
 <body>
   <div class="app-container">
@@ -175,10 +175,10 @@
           <!-- Card 4: Congressional STOCK Act (Smart Money Pillar 1) -->
           <div class="legend-item">
             <div class="legend-item-head">
-              <span class="badge-congress">🏛️ Congress</span>
+              <span class="badge-congress">🏛️ Pillar 1: Congress</span>
               <span class="badge" style="background:rgba(124,58,237,0.25); border:1px solid #7c3aed; color:#c4b5fd; font-weight:700; padding:2px 7px; border-radius:9999px; font-size:11px;">🎯 High Tech Alpha</span>
             </div>
-            <h4 class="legend-item-title">Capitol Hill &amp; Committee Oversight</h4>
+            <h4 class="legend-item-title">[Pillar 1] Congressional STOCK Act (Capitol Hill)</h4>
             <p class="legend-item-desc">
               <strong>What & Why:</strong> Tracks mandatory STOCK Act filings where US Senators &amp; Representatives trade equities. Politicians possess structural foresight into legislative appropriations, regulatory subsidies, and defense contracts.<br>
               • <strong>Badges &amp; Scoring (0–100 in Deep Dive):</strong><br>
@@ -188,7 +188,7 @@
               &nbsp;&nbsp;– <em>Selling Penalty:</em> Net sales by jurisdiction members penalize score (-10 to -20 pts).
             </p>
             <div class="legend-card-meta">
-              <span>📡 <strong>Data Source:</strong> US House &amp; Senate PDR Disclosures via CapitolTrades (<code>data/cache/congress_trades.json</code>)</span>
+              <span>📡 <strong>Data Source:</strong> US House &amp; Senate Disclosures via Quiver Quant &amp; CapitolTrades (<code>data/cache/congress_trades.json</code>)</span>
               <span>⚡ <strong>API Endpoint:</strong> <code>GET /api/stock/&lt;ticker&gt;</code> &rarr; <code>smart_money.congress_score</code></span>
             </div>
           </div>
@@ -196,10 +196,10 @@
           <!-- Card 5: SEC Form 4 Insiders (Smart Money Pillar 2) -->
           <div class="legend-item">
             <div class="legend-item-head">
-              <span class="badge-insider">👔 Insider</span>
+              <span class="badge-insider">👔 Pillar 2: Insider</span>
               <span class="badge-cluster">👔 ClusterBuy</span>
             </div>
-            <h4 class="legend-item-title">C-Suite &amp; Board Insider Buys</h4>
+            <h4 class="legend-item-title">[Pillar 2] Corporate Insiders (SEC Form 4)</h4>
             <p class="legend-item-desc">
               <strong>What & Why:</strong> Tracks SEC Form 4 open-market purchases by corporate executives (CEO, CFO, COO) and Board Directors. Executives sell for many personal reasons (taxes, estate planning), but buy with their own capital for only one reason: expected appreciation.<br>
               • <strong>Badges &amp; Scoring (0–100 in Deep Dive):</strong><br>
@@ -209,7 +209,7 @@
               &nbsp;&nbsp;– <em>Whale Purchases:</em> Total capital deployed &gt; $500,000 adds +10 pts.
             </p>
             <div class="legend-card-meta">
-              <span>📡 <strong>Data Source:</strong> SEC EDGAR Form 4 Filings via yfinance (<code>data/cache/&lt;ticker&gt;_insiders.json</code>)</span>
+              <span>📡 <strong>Data Source:</strong> SEC EDGAR Form 4 Filings &amp; OpenInsider Screener (<code>data/cache/&lt;ticker&gt;_insiders.json</code>)</span>
               <span>⚡ <strong>API Endpoint:</strong> <code>GET /api/stock/&lt;ticker&gt;</code> &rarr; <code>smart_money.insider_score</code></span>
             </div>
           </div>
@@ -217,10 +217,10 @@
           <!-- Card 6: Federal Government Contracts (Smart Money Pillar 3) -->
           <div class="legend-item">
             <div class="legend-item-head">
-              <span class="badge-contracts">🛡️ Fed Contract</span>
+              <span class="badge-contracts">🛡️ Pillar 3: Contracts</span>
               <span class="badge" style="background:rgba(220,38,38,0.2); border:1px solid #dc2626; color:#fca5a5; font-weight:700; padding:2px 7px; border-radius:9999px; font-size:11px;">🛡️ DoD Strategic</span>
             </div>
-            <h4 class="legend-item-title">Federal Procurement &amp; DoD Contracts</h4>
+            <h4 class="legend-item-title">[Pillar 3] Federal Contracts (USAspending.gov)</h4>
             <p class="legend-item-desc">
               <strong>What & Why:</strong> Monitors prime procurement awards from the Department of Defense (DoD), Department of Energy (DoE), NASA, and intelligence agencies. Sovereign contracts guarantee non-dilutive multi-year revenue backlog.<br>
               • <strong>Badges &amp; Scoring (0–100 in Deep Dive):</strong><br>
@@ -258,10 +258,10 @@
           <!-- Card 8: The Pelosi Effect (Viral Catalyst) -->
           <div class="legend-item">
             <div class="legend-item-head">
-              <span class="badge-pelosi">🔥 Pelosi Effect</span>
+              <span class="badge-pelosi">🔥 Pillar 4: Pelosi Effect</span>
               <span class="legend-metric-pill" style="border-color:#ea580c; color:#fed7aa; background:rgba(234, 88, 12, 0.2);">Hype Score &ge; 60</span>
             </div>
-            <h4 class="legend-item-title">The Pelosi Effect &amp; Retail Herd Buzz</h4>
+            <h4 class="legend-item-title">[Pillar 4] The Pelosi Effect &amp; Social Velocity</h4>
             <p class="legend-item-desc">
               <strong>What & Why:</strong> Quantifies the viral copy-trading phenomenon where retail traders aggressively herd into Congressional STOCK Act or C-Suite filings across Twitter/Reddit/Discord, accelerating 3–5 day momentum expansions.<br>
               • <strong>Trigger Threshold &amp; Scoring (0–100 Hype Score):</strong><br>
@@ -637,6 +637,6 @@
     </footer>
   </div>
 
-  <script src="/static/app.js?v={{ v or '20260928_v9' }}"></script>
+  <script src="/static/app.js?v=7"></script>
 </body>
 </html>

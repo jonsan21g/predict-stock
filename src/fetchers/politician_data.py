@@ -9,6 +9,7 @@ import os
 import re
 import json
 import time
+import urllib.parse
 from datetime import datetime, timedelta, timezone
 from typing import Dict, Any, List, Optional
 import requests
@@ -229,10 +230,12 @@ def parse_trade_row(row_cells: List[str]) -> Optional[Dict[str, Any]]:
     ticker_match = re.search(r'([A-Z]{1,5}):US', issuer_raw)
     ticker = ticker_match.group(1) if ticker_match else None
     if not ticker:
-        tail_match = re.search(r'([A-Z]{1,5})$', issuer_raw)
-        ticker = tail_match.group(1) if tail_match else None
+        # Guard against private LLCs, N/A, or trailing /A
+        if not issuer_raw.endswith("N/A") and not issuer_raw.endswith("/A") and not issuer_raw.endswith("LLC"):
+            tail_match = re.search(r'(?<![A-Za-z0-9/])([A-Z]{1,5})$', issuer_raw)
+            ticker = tail_match.group(1) if tail_match else None
 
-    if not ticker:
+    if not ticker or ticker.upper() in {"N/A", "NA"}:
         return None
 
     clean_date_str = re.sub(r'(\d{1,2})\s*([A-Za-z]+)\s*(\d{4})', r'\1 \2 \3', traded_date_str)
@@ -245,10 +248,11 @@ def parse_trade_row(row_cells: List[str]) -> Optional[Dict[str, Any]]:
         traded_date_iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     comm_info = get_politician_committee_info(politician_raw)
+    norm_name = comm_info["normalized_name"] or normalize_politician_name(politician_raw)
 
     return {
         "politician": politician_raw,
-        "politician_name": comm_info["normalized_name"],
+        "politician_name": norm_name,
         "ticker": ticker.upper(),
         "issuer": issuer_raw,
         "type": "BUY" if "buy" in trade_type else "SELL",
@@ -261,7 +265,9 @@ def parse_trade_row(row_cells: List[str]) -> Optional[Dict[str, Any]]:
         "committees": comm_info["committees"],
         "jurisdiction_match": comm_info["jurisdiction_match"],
         "jurisdiction_weight": comm_info["jurisdiction_weight"],
-        "jurisdiction_notes": comm_info["jurisdiction_notes"]
+        "jurisdiction_notes": comm_info["jurisdiction_notes"],
+        "quiver_politician_url": f"https://www.quiverquant.com/congresstrading/politician/{urllib.parse.quote(norm_name)}",
+        "quiver_ticker_url": f"https://www.quiverquant.com/congresstrading/stock/{ticker.upper()}"
     }
 
 
@@ -361,17 +367,20 @@ def get_ticker_congress_signals(
         if t.get("ticker") == ticker and t.get("traded_date", "") >= cutoff_date
     ]
 
-    # Ensure committee enrichment
+    # Ensure committee enrichment and URLs
     enriched_trades = []
     for t in ticker_trades:
         trade_copy = dict(t)
-        if "jurisdiction_match" not in trade_copy:
+        if "jurisdiction_match" not in trade_copy or not trade_copy.get("politician_name"):
             c_info = get_politician_committee_info(trade_copy.get("politician", ""))
-            trade_copy["politician_name"] = c_info["normalized_name"]
+            trade_copy["politician_name"] = c_info["normalized_name"] or normalize_politician_name(trade_copy.get("politician", ""))
             trade_copy["committees"] = c_info["committees"]
             trade_copy["jurisdiction_match"] = c_info["jurisdiction_match"]
             trade_copy["jurisdiction_weight"] = c_info["jurisdiction_weight"]
             trade_copy["jurisdiction_notes"] = c_info["jurisdiction_notes"]
+        pol_name = trade_copy.get("politician_name") or trade_copy.get("politician", "")
+        trade_copy["quiver_politician_url"] = f"https://www.quiverquant.com/congresstrading/politician/{urllib.parse.quote(pol_name)}"
+        trade_copy["quiver_ticker_url"] = f"https://www.quiverquant.com/congresstrading/stock/{ticker}"
         enriched_trades.append(trade_copy)
 
     buy_trades = [t for t in enriched_trades if t.get("type") == "BUY"]
@@ -439,5 +448,9 @@ def get_ticker_congress_signals(
         "high_jurisdiction_buyers": high_jurisdiction_buyers,
         "congress_score": congress_score,
         "politicians": politicians[:5],
-        "trades": enriched_trades
+        "trades": enriched_trades,
+        "quiver_stock_url": f"https://www.quiverquant.com/congresstrading/stock/{ticker}",
+        "capitoltrades_url": "https://www.capitoltrades.com/issuers",
+        "house_disclosure_url": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+        "senate_disclosure_url": "https://efdsearch.senate.gov/search/"
     }
