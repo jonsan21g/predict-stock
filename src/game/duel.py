@@ -449,12 +449,27 @@ def bot_evaluate_turn(
                         pol_txt = "Recent Congressional BUY detected"
                     else:
                         pol_txt = "No recent Capitol trades"
+                    # Insiders Context
+                    if sm.get("insider_cluster"):
+                        ins_txt = "Executive Cluster BUY (2+ Insiders)"
+                    elif sm.get("c_suite_buyers"):
+                        ins_txt = f"C-Suite BUY ({', '.join(sm.get('c_suite_buyers', []))})"
+                    elif sm.get("insider_buy"):
+                        ins_txt = f"Corporate Insider BUY (${sm.get('total_buy_value_usd', 0):,.0f})"
+                    else:
+                        ins_txt = "No recent insider buying"
+
+                    # Social & Pelosi Effect Context
                     pe = sm.get("pelosi_effect", {})
                     if pe.get("is_active"):
                         narr = pe.get("narrative_summary", "")
                         sent_txt = f"ACTIVE PELOSI EFFECT [{pe.get('intensity', 'VIRAL')} - {pe.get('primary_catalyst', 'COPYTRADE')}] (Score: {pe.get('hype_score', 0)}/100). {narr}"
                     elif sm.get("viral_politician_buzz"):
                         sent_txt = f"Emerging politician/smart-money social buzz (Score: {sm.get('retail_hype_score', 0)}/100)"
+                    else:
+                        sent_txt = f"Sentiment is {sm.get('sentiment_label', 'NEUTRAL')}"
+
+                    # Federal Contracts Context
                     fed = sm.get("contracts", {})
                     fed_txt = ""
                     if fed.get("has_major_contract"):
