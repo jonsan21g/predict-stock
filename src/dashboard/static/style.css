@@ -1609,6 +1609,130 @@ body {
   }
 }
 
+/* ==========================================================================
+   DEEP DIVE ENHANCED FORENSIC STYLES
+   ========================================================================== */
+.deepdive-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.deepdive-hero {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.pillar-scorecard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.pillar-kpi-card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.pillar-kpi-card:hover {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+}
+
+.deepdive-main-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1.85fr;
+  gap: 20px;
+}
+
+@media (max-width: 1200px) {
+  .pillar-scorecard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .deepdive-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.forensic-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.forensic-table th {
+  background: #0f172a;
+  color: var(--text-muted);
+  padding: 8px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 1px solid #1e293b;
+  text-align: left;
+}
+
+.forensic-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #161f30;
+  color: #cbd5e1;
+}
+
+.forensic-table tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.forensic-scroll-box {
+  max-height: 280px;
+  overflow-y: auto;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+}
+
+.badge-committee {
+  background: #7c3aed;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.badge-defense {
+  background: #dc2626;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.badge-pelosi-viral {
+  background: #ea580c;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  animation: pulse-orange 2s infinite;
+}
+
+@keyframes pulse-orange {
+  0% { box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(234, 88, 12, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(234, 88, 12, 0); }
+}
+
 .footer {
   margin-top: 40px;
   text-align: center;

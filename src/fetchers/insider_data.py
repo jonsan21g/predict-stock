@@ -140,5 +140,6 @@ def get_insider_signals(ticker: str, days: int = 45) -> Dict[str, Any]:
         "has_recent_buy": len(buys) > 0,
         "c_suite_buyers": c_suite_buyers,
         "insider_score": score,
-        "recent_buys": buys[:5]
+        "recent_buys": buys[:5],
+        "recent_transactions": recent_tx[:10]
     }

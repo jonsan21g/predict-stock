@@ -119,6 +119,29 @@ def api_stock(ticker):
         ignition = detect_wave_ignition(latest_bar, enriched.iloc[:-1])
         data["checks"] = ignition.get("checks", [])
         data["history"] = history
+
+        # Add company metadata
+        watchlist = load_watchlist()
+        match = next((s for s in watchlist if s["ticker"] == ticker), None)
+        if match:
+            data["name"] = match.get("name", ticker)
+            data["category"] = match.get("category", "Tech")
+            data["role"] = match.get("role", "")
+
+        # Add latest detailed technical indicators
+        data["technicals"] = {
+            "rvol_20d": round(float(latest_bar.get("rvol_20d", 1.0)), 2),
+            "crr": round(float(latest_bar.get("crr", 0.5)), 2),
+            "bb_width": round(float(latest_bar.get("bb_width", 0.0)), 3) if "bb_width" in latest_bar else None,
+            "ema5": round(float(latest_bar.get("EMA5", 0.0)), 2) if "EMA5" in latest_bar else None,
+            "ema20": round(float(latest_bar.get("EMA20", 0.0)), 2) if "EMA20" in latest_bar else None,
+            "volume": int(latest_bar.get("Volume", 0)),
+            "vol_sma20": int(latest_bar.get("vol_sma20", 0)) if "vol_sma20" in latest_bar else None,
+            "high": round(float(latest_bar.get("High", 0.0)), 2),
+            "low": round(float(latest_bar.get("Low", 0.0)), 2),
+            "open": round(float(latest_bar.get("Open", 0.0)), 2)
+        }
+
         return jsonify(data)
     except Exception as e:
         return jsonify({"error": str(e)}), 400

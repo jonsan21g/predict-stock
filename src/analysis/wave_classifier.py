@@ -164,9 +164,9 @@ def score_single_stock(ticker: str, model_path: Optional[str] = None) -> Dict[st
     if df.empty or len(df) < 50:
         raise ValueError(f"Insufficient history for {ticker}")
 
-    # Gather live smart money and sentiment signals
-    congress = get_ticker_congress_signals(ticker)
-    insider = get_insider_signals(ticker)
+    # Gather live smart money and sentiment signals (90-day quarterly regulatory window)
+    congress = get_ticker_congress_signals(ticker, days=90)
+    insider = get_insider_signals(ticker, days=90)
     sentiment = get_ticker_social_sentiment(ticker)
     contracts = get_ticker_contract_signals(ticker)
 
@@ -223,21 +223,44 @@ def score_single_stock(ticker: str, model_path: Optional[str] = None) -> Dict[st
         "target_2": ignition["target_2"],
         "stop_loss": ignition["stop_loss"],
         "smart_money": {
+            # Congress Pillar
             "politician_buy": congress.get("has_recent_buy", False),
             "jurisdiction_match": congress.get("has_jurisdiction_match", False),
             "matched_committees": congress.get("matched_committees", []),
             "congress_score": congress.get("congress_score", 0),
             "politicians": congress.get("politicians", []),
+            "high_jurisdiction_buyers": congress.get("high_jurisdiction_buyers", []),
+            "congress_buy_count": congress.get("buy_count", 0),
+            "congress_sell_count": congress.get("sell_count", 0),
+            "congress_total_trades": congress.get("total_trades", 0),
+            "congress_trades": congress.get("trades", []),
+
+            # Corporate Insider Pillar
             "insider_buy": insider.get("has_recent_buy", False),
             "insider_cluster": insider.get("has_cluster_buy", False),
             "insider_score": insider.get("insider_score", 0),
+            "total_buy_value_usd": insider.get("total_buy_value_usd", 0.0),
+            "c_suite_buyers": insider.get("c_suite_buyers", []),
+            "insider_buy_count": insider.get("buy_count", 0),
+            "insider_sell_count": insider.get("sell_count", 0),
+            "net_shares": insider.get("net_shares", 0),
+            "unique_buyers": insider.get("unique_buyers", 0),
+            "recent_buys": insider.get("recent_buys", []),
+            "recent_transactions": insider.get("recent_transactions", []),
+
+            # Social & Pelosi Effect Pillar
             "sentiment_label": sentiment.get("sentiment_label", "NEUTRAL"),
+            "sentiment_score": sentiment.get("sentiment_score", 0.0),
+            "discussion_velocity": sentiment.get("discussion_velocity", 0.0),
             "viral_politician_buzz": sentiment.get("viral_politician_buzz", False),
             "is_pelosi_effect": sentiment.get("is_pelosi_effect_active", False),
             "retail_hype_score": sentiment.get("retail_hype_score", 0),
             "buzz_keywords": sentiment.get("matched_buzz_keywords", []),
             "social_volume": sentiment.get("total_volume", 0),
             "pelosi_effect": sentiment.get("pelosi_effect", {}),
+            "recent_headlines": sentiment.get("recent_headlines", []),
+
+            # Federal Contracts Pillar
             "contracts": {
                 "total_value_usd": contracts.get("total_contract_value_usd", 0.0),
                 "contract_count": contracts.get("contract_count", 0),
@@ -246,7 +269,7 @@ def score_single_stock(ticker: str, model_path: Optional[str] = None) -> Dict[st
                 "contract_score": contracts.get("contract_score", 0),
                 "top_agencies": contracts.get("top_agencies", []),
                 "top_award_amount_usd": contracts.get("top_award_amount_usd", 0.0),
-                "recent_contracts": contracts.get("recent_contracts", [])[:3]
+                "recent_contracts": contracts.get("recent_contracts", [])
             }
         }
     }

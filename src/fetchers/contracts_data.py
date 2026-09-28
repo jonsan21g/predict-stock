@@ -166,6 +166,6 @@ def get_ticker_contract_signals(ticker: str, force_refresh: bool = False) -> Dic
         "has_major_contract": has_major_contract,
         "is_defense_contract": is_defense,
         "contract_score": score,
-        "top_agencies": agencies[:4],
-        "recent_contracts": contracts[:5]
+        "top_agencies": agencies[:6],
+        "recent_contracts": contracts[:8]
     }

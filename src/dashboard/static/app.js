@@ -153,7 +153,7 @@ function inspectStock(ticker) {
 
 async function loadDeepDive(ticker) {
   const container = document.getElementById("deepdive-body");
-  container.innerHTML = `<div style="grid-column: 1 / -1; text-align:center; padding: 40px; color:#94a3b8;">Loading deep-dive for ${ticker}...</div>`;
+  container.innerHTML = `<div style="text-align:center; padding: 60px; color:#94a3b8; font-size:15px;">🔍 Gathering forensic smart-money, government contracts, and wave technicals for <strong>${ticker}</strong>...</div>`;
 
   try {
     const res = await fetch(`/api/stock/${ticker}`);
@@ -162,98 +162,479 @@ async function loadDeepDive(ticker) {
     const chgSign = data.change_pct >= 0 ? "+" : "";
     const chgColor = data.change_pct >= 0 ? "#10b981" : "#f43f5e";
 
+    const tech = data.technicals || {};
+    const sm = data.smart_money || {};
+    const pe = sm.pelosi_effect || {};
+    const fed = sm.contracts || {};
+
     const checks = data.checks || [];
     const checksHtml = checks.map(c => `
-      <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #1e293b; font-size:13px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #1e293b; font-size:13px;">
         <span>${c.passed ? "✅" : "❌"} <strong>${c.rule}</strong></span>
-        <span style="color:#94a3b8;">${c.detail}</span>
+        <span style="color:#94a3b8; font-family:monospace; font-size:12px;">${c.detail}</span>
       </div>
     `).join("");
 
-    const sm = data.smart_money || {};
-    const pols = sm.politicians && sm.politicians.length > 0 
-      ? sm.politicians.map(p => `<li>🏛️ ${p}</li>`).join("")
-      : `<li style="color:#94a3b8;">No recent Congress buys in last 45 days.</li>`;
+    const ignBadge = data.is_ignition
+      ? `<span class="badge badge-ignition" style="background:#059669; color:#fff; font-size:11px;">🚀 DAY-1 IGNITION (${data.ignition_type})</span>`
+      : `<span class="badge" style="background:#1e293b; color:#94a3b8; font-size:11px;">⏳ SETUP FORMING</span>`;
 
+    const scoreClass = data.composite_score >= 80 ? "score-high" : (data.composite_score >= 60 ? "score-med" : "score-low");
+
+    // Pillar 1: Congress Trades Table
+    const congressTrades = sm.congress_trades || [];
+    let congressTradesHtml = "";
+    if (congressTrades.length > 0) {
+      congressTradesHtml = `
+        <div class="forensic-scroll-box" style="margin-top:10px;">
+          <table class="forensic-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Politician</th>
+                <th>Chamber / State</th>
+                <th>Committees</th>
+                <th>Type</th>
+                <th>Trade Size</th>
+                <th>Jurisdiction</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${congressTrades.map(t => {
+                const isBuy = t.type === "BUY";
+                const typeBadge = isBuy 
+                  ? `<span class="badge" style="background:#064e3b; color:#34d399; font-weight:700;">BUY</span>` 
+                  : `<span class="badge" style="background:#881337; color:#fb7185; font-weight:700;">SELL</span>`;
+                const jurBadge = t.jurisdiction_match 
+                  ? `<span class="badge-committee">🎯 High Tech Alpha</span>` 
+                  : `<span style="color:#64748b; font-size:11px;">Standard</span>`;
+                return `
+                  <tr>
+                    <td style="white-space:nowrap;">
+                      <strong>${t.traded_date || "-"}</strong><br>
+                      <span style="font-size:10px; color:#64748b;">Filed: ${t.published_date || "-"}</span>
+                    </td>
+                    <td><strong style="color:#f8fafc;">${t.politician_name || t.politician}</strong></td>
+                    <td style="font-size:11px; color:#94a3b8;">${t.chamber || "Congress"} (${t.party || ""}-${t.state || ""})</td>
+                    <td style="font-size:11px; color:#cbd5e1; max-width:180px;">${(t.committees || []).join(", ") || "-"}</td>
+                    <td>${typeBadge}</td>
+                    <td style="font-weight:600; font-family:monospace; color:#38bdf8;">${t.size || "-"}</td>
+                    <td>${jurBadge}</td>
+                  </tr>
+                `;
+              }).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+    } else {
+      congressTradesHtml = `
+        <div style="background:#0f172a; padding:16px; border-radius:8px; border:1px solid #1e293b; color:#94a3b8; font-size:12px; margin-top:10px;">
+          No direct STOCK Act purchases or sales reported by members of the US Congress in the past 90 days.
+        </div>
+      `;
+    }
+
+    // Pillar 2: Insider Transactions Table
+    const insiderTx = sm.recent_transactions && sm.recent_transactions.length > 0 
+      ? sm.recent_transactions 
+      : (sm.recent_buys || []);
+    let insiderTxHtml = "";
+    if (insiderTx.length > 0) {
+      insiderTxHtml = `
+        <div class="forensic-scroll-box" style="margin-top:10px;">
+          <table class="forensic-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Insider</th>
+                <th>Title / Role</th>
+                <th>Type</th>
+                <th>Shares</th>
+                <th>Total Value ($)</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${insiderTx.map(t => {
+                const isBuy = t.type === "BUY";
+                const typeColor = isBuy ? "#34d399" : (t.type === "SELL" ? "#fb7185" : "#94a3b8");
+                return `
+                  <tr>
+                    <td style="white-space:nowrap; font-size:11px;">${t.date || "-"}</td>
+                    <td><strong style="color:#f8fafc;">${t.insider || "-"}</strong></td>
+                    <td style="font-size:11px; color:#94a3b8;">${t.position || "Director / Officer"}</td>
+                    <td style="font-weight:700; color:${typeColor};">${t.type}</td>
+                    <td style="font-family:monospace;">${(t.shares || 0).toLocaleString()}</td>
+                    <td style="font-weight:700; font-family:monospace; color:#38bdf8;">$${(t.value_usd || 0).toLocaleString()}</td>
+                  </tr>
+                `;
+              }).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+    } else {
+      insiderTxHtml = `
+        <div style="background:#0f172a; padding:16px; border-radius:8px; border:1px solid #1e293b; color:#94a3b8; font-size:12px; margin-top:10px;">
+          No open-market SEC Form 4 insider transactions recorded in the evaluated window.
+        </div>
+      `;
+    }
+
+    // Pillar 3: Federal Contracts Table
+    const fedContracts = fed.recent_contracts || [];
+    let fedContractsHtml = "";
+    if (fedContracts.length > 0) {
+      fedContractsHtml = `
+        <div class="forensic-scroll-box" style="margin-top:10px;">
+          <table class="forensic-table">
+            <thead>
+              <tr>
+                <th>Action Date</th>
+                <th>Award ID</th>
+                <th>Recipient Entity</th>
+                <th>Amount ($ USD)</th>
+                <th>Awarding Agency</th>
+                <th>Procurement Scope</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${fedContracts.map(c => `
+                <tr>
+                  <td style="white-space:nowrap; font-size:11px;">${c.action_date || "Active"}</td>
+                  <td style="font-family:monospace; font-size:11px; color:#38bdf8;">${c.award_id || "-"}</td>
+                  <td style="font-size:11px; color:#f8fafc;">${c.recipient || "-"}</td>
+                  <td style="font-weight:700; font-family:monospace; color:#10b981;">$${(c.amount_usd || 0).toLocaleString()}</td>
+                  <td style="font-size:11px; color:#cbd5e1;">${c.agency || ""}${c.sub_agency ? ' - ' + c.sub_agency : ''}</td>
+                  <td style="font-size:11px; color:#94a3b8; max-width:220px;" title="${c.description || ''}">${(c.description || "Technology Procurement").substring(0, 75)}...</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+    } else {
+      fedContractsHtml = `
+        <div style="background:#0f172a; padding:16px; border-radius:8px; border:1px solid #1e293b; color:#94a3b8; font-size:12px; margin-top:10px;">
+          No prime US Federal Government awards recorded on USASpending.gov in past 24 months.
+        </div>
+      `;
+    }
+
+    // Pillar 4: Pelosi Effect & Retail Stream Details
+    const quotesList = pe.verbatim_quotes && pe.verbatim_quotes.length > 0
+      ? pe.verbatim_quotes.map(q => `<li style="margin-bottom:6px; color:#cbd5e1;"><em>"${q}"</em></li>`).join("")
+      : `<li style="color:#94a3b8;">No direct copy-trading quotes captured.</li>`;
+
+    const buzzBadges = (sm.buzz_keywords || []).map(k => `
+      <span class="badge" style="background:#0f172a; border:1px solid #334155; color:#38bdf8; font-size:10px; margin-right:4px;">#${k}</span>
+    `).join("");
+
+    const headlinesList = (sm.recent_headlines || []).slice(0, 3).map(h => `
+      <li style="margin-bottom:4px; font-size:12px;">
+        <span style="color:#cbd5e1;">${h.title}</span> 
+        <span class="badge" style="font-size:9px; background:${h.sentiment === 'BULLISH' ? '#064e3b' : (h.sentiment === 'BEARISH' ? '#881337' : '#1e293b')}; color:#fff;">${h.sentiment}</span>
+      </li>
+    `).join("");
+
+    // Assemble the complete Deep-Dive HTML
     container.innerHTML = `
-      <div class="card-box">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+      <!-- 1. Hero Stock Header Banner -->
+      <div class="deepdive-hero">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:16px;">
           <div>
-            <h2 style="font-size:22px; font-weight:800; color:#38bdf8;">${data.ticker} <span style="font-size:16px; color:#fff;">$${data.current_price.toFixed(2)}</span></h2>
-            <span style="color:${chgColor}; font-weight:700;">${chgSign}${data.change_pct.toFixed(2)}%</span>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px; flex-wrap:wrap;">
+              <h2 style="font-size:28px; font-weight:800; color:#38bdf8; margin:0;">${data.ticker}</h2>
+              <span style="font-size:18px; font-weight:700; color:#f8fafc;">${data.name || data.ticker}</span>
+              <span class="badge" style="background:#1e293b; color:#94a3b8; font-size:11px;">${data.category || "Tech"}</span>
+              ${data.role ? `<span class="badge" style="background:#0f172a; border:1px solid #334155; color:#38bdf8; font-size:11px;">${data.role}</span>` : ''}
+            </div>
+            <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+              <span style="font-size:26px; font-weight:800; color:#fff;">$${data.current_price.toFixed(2)}</span>
+              <span style="font-size:16px; font-weight:700; color:${chgColor};">${chgSign}${data.change_pct.toFixed(2)}%</span>
+              <span style="font-size:12px; color:#94a3b8;">As of Bar Date: <strong>${data.date}</strong></span>
+              ${tech.high ? `<span style="font-size:12px; color:#64748b;">(Day Range: $${tech.low.toFixed(2)} - $${tech.high.toFixed(2)})</span>` : ''}
+            </div>
           </div>
-          <div style="text-align:right;">
-            <div style="font-size:12px; color:#94a3b8;">Wave Probability</div>
-            <div style="font-size:20px; font-weight:800; color:#10b981;">${data.wave_probability.toFixed(1)}%</div>
+          <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+            <div style="text-align:right;">
+              <div style="font-size:11px; color:#94a3b8; text-transform:uppercase;">Day-1 Wave Ignition</div>
+              <div style="margin-top:2px;">${ignBadge}</div>
+            </div>
+            <div style="text-align:right; background:#0f172a; padding:8px 14px; border-radius:8px; border:1px solid #1e293b;">
+              <div style="font-size:11px; color:#94a3b8; text-transform:uppercase;">P(Wave Win)</div>
+              <div style="font-size:20px; font-weight:800; color:#10b981;">${data.wave_probability.toFixed(1)}%</div>
+            </div>
+            <div style="text-align:right; background:#0f172a; padding:8px 14px; border-radius:8px; border:1px solid #1e293b;">
+              <div style="font-size:11px; color:#94a3b8; text-transform:uppercase;">Composite Score</div>
+              <div style="font-size:20px; font-weight:800; color:#38bdf8;"><span class="score-badge ${scoreClass}">${data.composite_score}</span></div>
+            </div>
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-bottom:16px; background:#0f172a; padding:12px; border-radius:8px;">
-          <div><span style="font-size:11px; color:#94a3b8;">STOP LOSS (-2.5%)</span><br><strong style="color:#f43f5e;">$${data.stop_loss.toFixed(2)}</strong></div>
-          <div><span style="font-size:11px; color:#94a3b8;">TARGET 1 (+3.5%)</span><br><strong style="color:#10b981;">$${data.target_1.toFixed(2)}</strong></div>
-          <div><span style="font-size:11px; color:#94a3b8;">TARGET 2 (+6.0%)</span><br><strong style="color:#10b981;">$${data.target_2.toFixed(2)}</strong></div>
+        <!-- Actionable Bracket Bar -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px; background:#0f172a; padding:14px; border-radius:8px; border:1px solid #1e293b;">
+          <div>
+            <span style="font-size:11px; color:#94a3b8; font-weight:600;">🛑 STOP LOSS (-2.5%)</span>
+            <div style="font-size:18px; font-weight:800; color:#f43f5e; margin-top:2px;">$${data.stop_loss.toFixed(2)}</div>
+            <span style="font-size:10px; color:#64748b;">Hard Risk Floor</span>
+          </div>
+          <div>
+            <span style="font-size:11px; color:#94a3b8; font-weight:600;">📉 5 EMA TRAIL FLOOR</span>
+            <div style="font-size:18px; font-weight:800; color:#c084fc; margin-top:2px;">$${tech.ema5 ? tech.ema5.toFixed(2) : "-"}</div>
+            <span style="font-size:10px; color:#64748b;">Trailing Protection</span>
+          </div>
+          <div>
+            <span style="font-size:11px; color:#94a3b8; font-weight:600;">🎯 TARGET 1 (+3.5%)</span>
+            <div style="font-size:18px; font-weight:800; color:#10b981; margin-top:2px;">$${data.target_1.toFixed(2)}</div>
+            <span style="font-size:10px; color:#64748b;">Scale 50% Profit</span>
+          </div>
+          <div>
+            <span style="font-size:11px; color:#94a3b8; font-weight:600;">🚀 TARGET 2 (+6.0%)</span>
+            <div style="font-size:18px; font-weight:800; color:#34d399; margin-top:2px;">$${data.target_2.toFixed(2)}</div>
+            <span style="font-size:10px; color:#64748b;">Runner Target</span>
+          </div>
+          <div>
+            <span style="font-size:11px; color:#94a3b8; font-weight:600;">⚖️ REWARD / RISK</span>
+            <div style="font-size:18px; font-weight:800; color:#38bdf8; margin-top:2px;">1.4x / 2.4x</div>
+            <span style="font-size:10px; color:#64748b;">T1 / T2 R-Multiples</span>
+          </div>
         </div>
-
-        <canvas id="deepDiveCanvas" height="150"></canvas>
       </div>
 
-      <div>
-        <div class="card-box">
-          <h3>⚡ Day-1 Wave Ignition Checklist</h3>
-          <div>${checksHtml || "No check data available."}</div>
-        </div>
-
-        <div class="card-box">
-          <h3>🏛️ US Congressional Activity (STOCK Act)</h3>
-          ${sm.jurisdiction_match ? `<div style="margin-bottom:8px; font-weight:700; color:#c084fc; font-size:12px;">🎯 High Committee Oversight: ${sm.matched_committees && sm.matched_committees.length > 0 ? sm.matched_committees.join(', ') : 'Tech & Commerce'}</div>` : ''}
-          <ul style="list-style:none; padding:0; font-size:13px; display:flex; flex-direction:column; gap:6px;">
-            ${pols}
-          </ul>
-        </div>
-
-        <div class="card-box">
-          <h3>👔 SEC Form 4 Insider Conviction</h3>
-          <div style="font-size:13px; line-height:1.6;">
-            <div>Score: <strong>${sm.insider_score || 0} / 100</strong></div>
-            <div>Cluster Buying: <strong>${sm.insider_cluster ? "YES (2+ Insiders)" : "No"}</strong></div>
-            <div>Corporate Sentiment: <strong>${sm.sentiment_label || "NEUTRAL"}</strong></div>
+      <!-- 2. The 4 Pillars Institutional Scorecard -->
+      <div class="pillar-scorecard-grid">
+        <!-- Pillar 1 -->
+        <div class="pillar-kpi-card" style="border-top:3px solid #7c3aed;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:12px; font-weight:700; color:#c084fc;">🏛️ CAPITOL HILL & COMMITTEES</span>
+              <span style="font-size:16px; font-weight:800; color:#fff;">${sm.congress_score || 0} <span style="font-size:11px; color:#94a3b8;">/100</span></span>
+            </div>
+            <div style="font-size:13px; font-weight:700; margin-top:6px; color:${sm.jurisdiction_match ? '#c084fc' : (sm.politician_buy ? '#34d399' : (sm.congress_sell_count > 0 ? '#fb7185' : '#94a3b8'))};">
+              ${sm.jurisdiction_match ? '🎯 HIGH JURISDICTION MATCH' : (sm.politician_buy ? '✅ RECENT CONGRESS BUY' : (sm.congress_sell_count > 0 ? '⚠️ NET SELLING DETECTED' : 'No Recent Activity'))}
+            </div>
+          </div>
+          <div style="font-size:11px; color:#94a3b8;">
+            ${sm.high_jurisdiction_buyers && sm.high_jurisdiction_buyers.length > 0 ? `Key Member: <strong style="color:#e2e8f0;">${sm.high_jurisdiction_buyers.join(', ')}</strong>` : `${sm.congress_buy_count || 0} Buys / ${sm.congress_sell_count || 0} Sells`}
           </div>
         </div>
 
-        <div class="card-box">
-          <h3>🔥 The Pelosi Effect & Viral Retail Buzz</h3>
-          <div style="font-size:13px; line-height:1.6;">
-            <div>Status: <strong style="color:${sm.pelosi_effect && sm.pelosi_effect.is_active ? '#f59e0b' : (sm.viral_politician_buzz ? '#38bdf8' : '#94a3b8')};">${sm.pelosi_effect && sm.pelosi_effect.is_active ? '🔥 ACTIVE (' + (sm.pelosi_effect.intensity || 'VIRAL') + ')' : (sm.viral_politician_buzz ? '⚡ Emerging Smart-Money Buzz' : 'Dormant')}</strong></div>
-            <div>Retail Hype Score: <strong>${sm.retail_hype_score || 0} / 100</strong></div>
-            ${sm.pelosi_effect && sm.pelosi_effect.primary_catalyst ? `<div style="margin-top:4px;"><span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">${sm.pelosi_effect.primary_catalyst}</span></div>` : ''}
-            ${sm.pelosi_effect && sm.pelosi_effect.prominent_figures && sm.pelosi_effect.prominent_figures.length > 0 ? `<div style="margin-top:4px; font-size:12px;">Citing: <strong style="color:#e2e8f0;">${sm.pelosi_effect.prominent_figures.join(', ')}</strong></div>` : ''}
-            ${sm.pelosi_effect && sm.pelosi_effect.narrative_summary ? `<p style="font-size:12px; color:#cbd5e1; margin-top:8px; background:#0f172a; padding:8px; border-radius:6px; border-left:3px solid #f59e0b;">${sm.pelosi_effect.narrative_summary}</p>` : ''}
-            ${sm.pelosi_effect && sm.pelosi_effect.verbatim_quotes && sm.pelosi_effect.verbatim_quotes.length > 0 ? `
-              <div style="font-size:11px; color:#94a3b8; margin-top:6px;">
-                <strong>Live Stream Quotes:</strong>
-                <ul style="padding-left:14px; margin:4px 0 0 0;">
-                  ${sm.pelosi_effect.verbatim_quotes.map(q => `<li><em>"${q}"</em></li>`).join('')}
+        <!-- Pillar 2 -->
+        <div class="pillar-kpi-card" style="border-top:3px solid #0284c7;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:12px; font-weight:700; color:#38bdf8;">👔 C-SUITE & INSIDERS</span>
+              <span style="font-size:16px; font-weight:800; color:#fff;">${sm.insider_score || 0} <span style="font-size:11px; color:#94a3b8;">/100</span></span>
+            </div>
+            <div style="font-size:13px; font-weight:700; margin-top:6px; color:${sm.total_buy_value_usd > 1000000 ? '#38bdf8' : (sm.insider_cluster ? '#34d399' : (sm.insider_buy ? '#34d399' : '#94a3b8'))};">
+              ${sm.total_buy_value_usd > 1000000 ? '🐋 WHALE C-SUITE BUY' : (sm.insider_cluster ? '👔 EXECUTIVE CLUSTER BUY' : (sm.insider_buy ? '✅ DIRECT CASH PURCHASE' : 'Routine Sales / Neutral'))}
+            </div>
+          </div>
+          <div style="font-size:11px; color:#94a3b8;">
+            ${sm.total_buy_value_usd > 0 ? `Total Cash: <strong style="color:#34d399;">$${sm.total_buy_value_usd.toLocaleString()}</strong>` : `${sm.insider_sell_count || 0} Open-Market Sells`}
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="pillar-kpi-card" style="border-top:3px solid #059669;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:12px; font-weight:700; color:#34d399;">🛡️ FEDERAL CONTRACTS</span>
+              <span style="font-size:16px; font-weight:800; color:#fff;">${fed.contract_score || 0} <span style="font-size:11px; color:#94a3b8;">/100</span></span>
+            </div>
+            <div style="font-size:13px; font-weight:700; margin-top:6px; color:${fed.is_defense_contract ? '#f43f5e' : (fed.has_major_contract ? '#34d399' : '#94a3b8')};">
+              ${fed.is_defense_contract ? '🛡️ DoD / DEFENSE STRATEGIC' : (fed.has_major_contract ? '🏛️ PRIME US CONTRACTOR' : 'Commercial / Low Fed')}
+            </div>
+          </div>
+          <div style="font-size:11px; color:#94a3b8;">
+            ${fed.total_value_usd > 0 ? `Active: <strong style="color:#34d399;">$${fed.total_value_usd >= 1000000000 ? (fed.total_value_usd / 1000000000).toFixed(2) + 'B' : (fed.total_value_usd / 1000000).toFixed(1) + 'M'} USD</strong>` : 'No direct prime contracts'}
+          </div>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="pillar-kpi-card" style="border-top:3px solid #ea580c;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:12px; font-weight:700; color:#fb923c;">🔥 THE PELOSI EFFECT</span>
+              <span style="font-size:16px; font-weight:800; color:#fff;">${sm.retail_hype_score || 0} <span style="font-size:11px; color:#94a3b8;">/100</span></span>
+            </div>
+            <div style="font-size:13px; font-weight:700; margin-top:6px; color:${pe.is_active ? '#fb923c' : (sm.viral_politician_buzz ? '#38bdf8' : '#94a3b8')};">
+              ${pe.is_active ? '🔥 ' + (pe.intensity || 'ACTIVE') : (sm.viral_politician_buzz ? '⚡ SMART-MONEY BUZZ' : 'Dormant Streams')}
+            </div>
+          </div>
+          <div style="font-size:11px; color:#94a3b8;">
+            ${pe.primary_catalyst ? `Catalyst: <strong style="color:#e2e8f0;">${pe.primary_catalyst}</strong>` : `Sentiment: <strong style="color:#34d399;">${sm.sentiment_label || 'NEUTRAL'}</strong>`}
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Main Split Grid -->
+      <div class="deepdive-main-grid">
+        <!-- LEFT COLUMN: Technical Wave Diagnostics & Chart -->
+        <div>
+          <div class="card-box">
+            <h3 style="display:flex; justify-content:space-between; align-items:center;">
+              <span>📈 60-Day Momentum Trajectory</span>
+              <span style="font-size:12px; color:#94a3b8;">Daily Closes + 5 EMA Trailing Floor</span>
+            </h3>
+            <canvas id="deepDiveCanvas" height="175"></canvas>
+          </div>
+
+          <div class="card-box">
+            <h3>⚡ Day-1 Wave Ignition Rule Checklist</h3>
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              ${checksHtml || "<div style='color:#94a3b8;'>No rule check data available.</div>"}
+            </div>
+          </div>
+
+          <div class="card-box">
+            <h3>📊 Quantitative Feature Snapshot</h3>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:13px;">
+              <div style="background:#0f172a; padding:10px; border-radius:6px; border:1px solid #1e293b;">
+                <span style="font-size:11px; color:#94a3b8;">Relative Volume (20D)</span><br>
+                <strong style="color:${tech.rvol_20d >= 1.5 ? '#10b981' : '#f8fafc'}; font-size:16px;">${tech.rvol_20d ? tech.rvol_20d.toFixed(2) + 'x' : '-'}</strong>
+              </div>
+              <div style="background:#0f172a; padding:10px; border-radius:6px; border:1px solid #1e293b;">
+                <span style="font-size:11px; color:#94a3b8;">Close Range Ratio (CRR)</span><br>
+                <strong style="color:${tech.crr >= 0.68 ? '#10b981' : '#f8fafc'}; font-size:16px;">${tech.crr ? tech.crr.toFixed(2) : '-'}</strong>
+              </div>
+              <div style="background:#0f172a; padding:10px; border-radius:6px; border:1px solid #1e293b;">
+                <span style="font-size:11px; color:#94a3b8;">Bollinger Band Width</span><br>
+                <strong style="color:#38bdf8; font-size:16px;">${tech.bb_width ? tech.bb_width.toFixed(3) : '-'}</strong>
+              </div>
+              <div style="background:#0f172a; padding:10px; border-radius:6px; border:1px solid #1e293b;">
+                <span style="font-size:11px; color:#94a3b8;">Volume vs 20D SMA</span><br>
+                <strong style="color:#f8fafc; font-size:14px;">${tech.volume ? (tech.volume / 1000000).toFixed(1) + 'M' : '-'} / ${tech.vol_sma20 ? (tech.vol_sma20 / 1000000).toFixed(1) + 'M' : '-'}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Deep Forensic Smart Money Dossiers -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <!-- Pillar 1 Dossier -->
+          <div class="card-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <h3 style="margin:0;">🏛️ US Congressional Activity & Committee Oversight (STOCK Act)</h3>
+              <span class="badge" style="background:#7c3aed; color:#fff; font-size:11px;">Score: ${sm.congress_score || 0}/100</span>
+            </div>
+            ${sm.jurisdiction_match ? `
+              <div style="background:rgba(124, 58, 237, 0.15); border:1px solid #7c3aed; padding:10px 14px; border-radius:8px; margin-bottom:12px;">
+                <strong style="color:#c084fc;">🎯 High Committee Oversight Match:</strong>
+                <span style="font-size:12px; color:#e2e8f0;">${(sm.matched_committees || []).join(', ') || 'Tech & Commerce'}. Trade receives a <strong>2.5x conviction multiplier</strong> due to direct legislative jurisdiction over semiconductors and critical tech.</span>
+              </div>
+            ` : ''}
+            <div style="display:flex; gap:16px; font-size:12px; color:#94a3b8; margin-bottom:8px;">
+              <span>Buys: <strong style="color:#34d399;">${sm.congress_buy_count || 0}</strong></span>
+              <span>Sells: <strong style="color:#fb7185;">${sm.congress_sell_count || 0}</strong></span>
+              <span>Total Filings: <strong style="color:#f8fafc;">${sm.congress_total_trades || 0}</strong></span>
+            </div>
+            ${congressTradesHtml}
+          </div>
+
+          <!-- Pillar 2 Dossier -->
+          <div class="card-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <h3 style="margin:0;">👔 Corporate C-Suite & SEC Form 4 Insider Conviction</h3>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:11px;">Score: ${sm.insider_score || 0}/100</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; background:#0f172a; padding:10px 14px; border-radius:8px; border:1px solid #1e293b; margin-bottom:10px; font-size:12px;">
+              <div>
+                <span style="color:#94a3b8;">Total Buy Value:</span> 
+                <strong style="color:#34d399; font-size:14px;">$${(sm.total_buy_value_usd || 0).toLocaleString()}</strong>
+              </div>
+              <div>
+                <span style="color:#94a3b8;">Cluster Buying:</span> 
+                <strong style="color:${sm.insider_cluster ? '#34d399' : '#94a3b8'};">${sm.insider_cluster ? "YES (2+ Insiders)" : "No"}</strong>
+              </div>
+              <div>
+                <span style="color:#94a3b8;">Unique Buyers:</span> 
+                <strong style="color:#f8fafc;">${sm.unique_buyers || 0}</strong>
+              </div>
+            </div>
+            ${sm.c_suite_buyers && sm.c_suite_buyers.length > 0 ? `
+              <div style="font-size:12px; margin-bottom:8px;">
+                <span style="color:#94a3b8;">C-Suite / Key Buyers:</span> 
+                <strong style="color:#38bdf8;">${sm.c_suite_buyers.join(' • ')}</strong>
+              </div>
+            ` : ''}
+            ${insiderTxHtml}
+          </div>
+
+          <!-- Pillar 3 Dossier -->
+          <div class="card-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <h3 style="margin:0;">🛡️ US Federal Government Prime Contracts (USASpending.gov)</h3>
+              <span class="badge" style="background:#059669; color:#fff; font-size:11px;">Score: ${fed.contract_score || 0}/100</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; background:#0f172a; padding:10px 14px; border-radius:8px; border:1px solid #1e293b; margin-bottom:10px; font-size:12px;">
+              <div>
+                <span style="color:#94a3b8;">Active Awards:</span> 
+                <strong style="color:#10b981; font-size:14px;">$${fed.total_value_usd >= 1000000000 ? (fed.total_value_usd / 1000000000).toFixed(2) + 'B' : (fed.total_value_usd / 1000000).toFixed(1) + 'M'} USD</strong>
+              </div>
+              <div>
+                <span style="color:#94a3b8;">Top Single Award:</span> 
+                <strong style="color:#38bdf8;">$${(fed.top_award_amount_usd / 1000000).toFixed(1)}M</strong>
+              </div>
+              <div>
+                ${fed.is_defense_contract ? '<span class="badge-defense">🛡️ DoD / Defense Strategic</span>' : '<span style="color:#94a3b8;">Commercial Tech</span>'}
+              </div>
+            </div>
+            ${fed.top_agencies && fed.top_agencies.length > 0 ? `
+              <div style="font-size:12px; margin-bottom:8px;">
+                <span style="color:#94a3b8;">Procuring Agencies:</span> 
+                <strong style="color:#e2e8f0;">${fed.top_agencies.join(', ')}</strong>
+              </div>
+            ` : ''}
+            ${fedContractsHtml}
+          </div>
+
+          <!-- Pillar 4 Dossier -->
+          <div class="card-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <h3 style="margin:0;">🔥 The Pelosi Effect & Viral Retail Social Streams</h3>
+              <span class="badge" style="background:#ea580c; color:#fff; font-size:11px;">Hype Score: ${sm.retail_hype_score || 0}/100</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap;">
+              ${pe.is_active ? `<span class="badge-pelosi-viral">🔥 ACTIVE (${pe.intensity || 'VIRAL'})</span>` : (sm.viral_politician_buzz ? `<span class="badge" style="background:#0284c7; color:#fff; font-size:11px;">⚡ Emerging Smart-Money Buzz</span>` : `<span class="badge" style="background:#334155; color:#94a3b8; font-size:11px;">Quiet / Dormant</span>`)}
+              ${pe.primary_catalyst ? `<span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">${pe.primary_catalyst}</span>` : ''}
+              ${pe.lifecycle_stage ? `<span class="badge" style="background:#7c3aed; color:#fff; font-size:10px;">${pe.lifecycle_stage}</span>` : ''}
+              <span class="badge" style="background:#1e293b; color:#34d399; font-size:10px;">Tape: ${sm.sentiment_label || 'NEUTRAL'}</span>
+            </div>
+            ${pe.prominent_figures && pe.prominent_figures.length > 0 ? `
+              <div style="font-size:12px; margin-bottom:6px;">
+                <span style="color:#94a3b8;">Prominent Figures Cited:</span> 
+                <strong style="color:#f8fafc;">${pe.prominent_figures.join(', ')}</strong>
+              </div>
+            ` : ''}
+            ${pe.narrative_summary ? `
+              <p style="font-size:12px; color:#cbd5e1; background:#0f172a; padding:10px 14px; border-radius:6px; border-left:3px solid #f59e0b; margin:8px 0; line-height:1.5;">
+                ${pe.narrative_summary}
+              </p>
+            ` : ''}
+            ${pe.verbatim_quotes && pe.verbatim_quotes.length > 0 ? `
+              <div style="font-size:12px; margin-top:10px;">
+                <strong style="color:#94a3b8;">Live Trader Stream Quotes:</strong>
+                <ul style="padding-left:16px; margin:6px 0 0 0; font-size:11px;">
+                  ${quotesList}
                 </ul>
               </div>
             ` : ''}
-          </div>
-        </div>
-
-        <div class="card-box">
-          <h3>🛡️ US Federal Government Contracts (USASpending.gov)</h3>
-          <div style="font-size:13px; line-height:1.6;">
-            <div>Contract Score: <strong>${sm.contracts ? sm.contracts.contract_score : 0} / 100</strong></div>
-            <div>Total Active Awards: <strong style="color:#10b981;">$${sm.contracts ? (sm.contracts.total_value_usd / 1000000).toFixed(1) : 0}M USD</strong></div>
-            ${sm.contracts && sm.contracts.is_defense_contract ? `<div style="margin-top:4px;"><span class="badge" style="background:#dc2626; color:#fff; font-size:10px;">Department of Defense (DoD)</span></div>` : ''}
-            ${sm.contracts && sm.contracts.top_agencies && sm.contracts.top_agencies.length > 0 ? `<div style="margin-top:4px; font-size:12px;">Agencies: <strong style="color:#e2e8f0;">${sm.contracts.top_agencies.join(', ')}</strong></div>` : ''}
-            ${sm.contracts && sm.contracts.recent_contracts && sm.contracts.recent_contracts.length > 0 ? `
-              <div style="font-size:11px; color:#94a3b8; margin-top:8px;">
-                <strong>Recent Prime Awards:</strong>
+            ${buzzBadges ? `
+              <div style="margin-top:10px;">
+                <span style="font-size:11px; color:#64748b; margin-right:6px;">Buzz Keywords:</span>
+                ${buzzBadges}
+              </div>
+            ` : ''}
+            ${headlinesList ? `
+              <div style="margin-top:10px; border-top:1px solid #1e293b; padding-top:8px;">
+                <span style="font-size:11px; color:#94a3b8; font-weight:700;">Analyzed Financial Headlines:</span>
                 <ul style="padding-left:14px; margin:4px 0 0 0;">
-                  ${sm.contracts.recent_contracts.slice(0, 3).map(c => `<li>$${(c.amount_usd / 1000000).toFixed(2)}M - ${c.agency}: <em>${c.description.substring(0, 45)}...</em></li>`).join('')}
+                  ${headlinesList}
                 </ul>
               </div>
-            ` : '<div style="color:#94a3b8; margin-top:4px; font-size:12px;">No major prime federal awards in 24-month window.</div>'}
+            ` : ''}
           </div>
         </div>
       </div>
@@ -261,7 +642,7 @@ async function loadDeepDive(ticker) {
 
     renderDeepDiveChart(data.history, data.target_1, data.target_2, data.stop_loss);
   } catch (err) {
-    container.innerHTML = `<div style="grid-column: 1 / -1; text-align:center; color:#f43f5e; padding: 40px;">Failed to load deep-dive: ${err}</div>`;
+    container.innerHTML = `<div style="text-align:center; color:#f43f5e; padding: 40px; font-size:15px;">Failed to load deep-dive for ${ticker}: ${err}</div>`;
   }
 }
 
@@ -272,6 +653,7 @@ function renderDeepDiveChart(history, t1, t2, sl) {
   const labels = history.map(h => h.date);
   const closes = history.map(h => h.close);
   const ema5 = history.map(h => h.ema5);
+  const ema20 = history.map(h => h.ema20);
 
   const t1Line = Array(labels.length).fill(t1);
   const t2Line = Array(labels.length).fill(t2);
@@ -286,17 +668,26 @@ function renderDeepDiveChart(history, t1, t2, sl) {
           label: "Price ($)",
           data: closes,
           borderColor: "#38bdf8",
-          backgroundColor: "rgba(56, 189, 248, 0.1)",
+          backgroundColor: "rgba(56, 189, 248, 0.08)",
           borderWidth: 2,
           fill: true,
-          tension: 0.2
+          tension: 0.15
         },
         {
           label: "5 EMA (Trailing Floor)",
           data: ema5,
-          borderColor: "#a855f7",
+          borderColor: "#c084fc",
           borderWidth: 1.5,
           borderDash: [4, 4],
+          fill: false,
+          pointRadius: 0
+        },
+        {
+          label: "20 EMA (Trend Anchor)",
+          data: ema20,
+          borderColor: "#3b82f6",
+          borderWidth: 1.2,
+          borderDash: [2, 2],
           fill: false,
           pointRadius: 0
         },
@@ -304,6 +695,15 @@ function renderDeepDiveChart(history, t1, t2, sl) {
           label: "Target 1 (+3.5%)",
           data: t1Line,
           borderColor: "#10b981",
+          borderWidth: 1.5,
+          borderDash: [6, 6],
+          fill: false,
+          pointRadius: 0
+        },
+        {
+          label: "Target 2 (+6.0%)",
+          data: t2Line,
+          borderColor: "#34d399",
           borderWidth: 1.5,
           borderDash: [6, 6],
           fill: false,
@@ -322,8 +722,12 @@ function renderDeepDiveChart(history, t1, t2, sl) {
     },
     options: {
       responsive: true,
+      interaction: {
+        mode: 'index',
+        intersect: false
+      },
       plugins: {
-        legend: { labels: { color: "#94a3b8", font: { size: 11 } } }
+        legend: { labels: { color: "#94a3b8", font: { size: 10 } } }
       },
       scales: {
         x: { ticks: { color: "#94a3b8", maxTicksLimit: 8 }, grid: { color: "#1e293b" } },
