@@ -328,10 +328,18 @@ The following matrix provides 100% bidirectional traceability between functional
       * `📜 Contracts`: Cyan/sky background (`rgba(6, 182, 212, 0.18)`), cyan border (`#06b6d4`), and light-cyan text (`#38bdf8`).
   * **Bottom Table Context Legend & Metric Glossary**:
     * A persistent glassmorphism Legend Card positioned directly beneath the radar table shall explain every column, status badge, and quantitative metric across 6 specialized cards:
-      * **Day-1 Ignition**: `⚡ IGNITION` (Violent Day-1 momentum breakout: $\text{RVOL} \ge 1.50\times$, $\text{CRR} \ge 0.68$, and breakout above 20D High or Upper BB, e.g., `BREAKOUT_20D`, `BREAKOUT_BB`, `VOLUME_EXPANSION`) vs. `Consolidating` (Asset compressing in healthy base consolidation or pullback support awaiting volume surge).
-      * **Wave Probability ($P(\text{Wave Win})$)**: Calibrated machine-learning probability that the stock will hit $+3.5\%$ upside in 3–5 trading days before triggering the $-2.5\%$ stop loss floor.
+      * **Day-1 Ignition**:
+        * `⚡ IGNITION`: Violent Day-1 momentum breakout. Encompasses Pre-Market session gap ignition (`⚡ PRE_MKT_GAP`, gap $\ge +1.0\%$ overnight on volume) and End-of-Day technical breakouts (`⚡ BREAKOUT_20D`, `⚡ BREAKOUT_BB`, `⚡ VOLUME_EXPANSION` requiring $\text{RVOL} \ge 1.50\times$ and $\text{CRR} \ge 0.68$).
+        * `Consolidating`: Asset compressing in healthy base consolidation, pullback support, or flat drift below volume ignition threshold.
+      * **Wave Probability ($P(\text{Wave Win})$)**:
+        * Calibrated machine-learning prediction ($40\% - 75\%$) that the stock reaches $+3.5\%$ upside in 3–5 trading days before triggering $-2.5\%$ stop loss.
+        * *Why 40%–75% Range*: Asymmetric target/stop ratio imposes an unguided random-walk base rate of ~40%–45%. Platt probability calibration (`CalibratedClassifierCV`) aligns outputs with empirical win rates, where financial market noise imposes a ~75% realistic ceiling. Tiers: $\ge 65\%$ (Prime edge / Bot entry trigger), $55\% - 64\%$ (Moderate edge), $< 50\%$ (Negative edge / risk).
       * **Composite Score (0–100)**: Quantitative conviction combining technical momentum with Smart Money bonuses ($\ge 85$: Whale Tier / 50% max allocation; $\ge 70$: Prime Wave Setup / 35% allocation; $\ge 65$: Autonomous Bot Auto-Trigger / 20% allocation; $<65$: Watchlist / Consolidation).
-      * **Smart Money Footprint**: Detailed definitions for 🏛️ `Congress` (STOCK Act purchases within 90 days, $2.5\times$ weight if on oversight committee), 💼 `Insider` (SEC Form 4 C-Suite whale buys or cluster purchases), 🛡️ `Fed Contract` (Major US Federal technology procurement awards on USASpending), and 💬 `Bullish` (Positive news polarity and social sentiment velocity).
+      * **Smart Money Footprint**: Detailed definitions for:
+        * 🏛️ `Congress` (STOCK Act purchases within 90 days, $+10$ pts; `Committee Match` with $2.5\times$ weight and $+16$ pts).
+        * 💼 `Insider` (SEC Form 4 C-Suite whale buys $\ge \$25\text{K}$, $+8$ pts; `ClusterBuy` $\ge 2$ executives in 30 days, $+15$ pts).
+        * 🛡️ `Fed Contract` (Prime US Federal technology awards $\ge \$25\text{M}$, $+8$ pts; Mega-awards $\ge \$500\text{M}$, $+12$ pts).
+        * 💬 `Bullish` (FinTwit/news polarity $> +0.25$ with 72h positive sentiment velocity, $+5$ pts).
       * **The Pelosi Effect & Retail Herd Momentum**: Dedicated diagnostic card detailing the self-fulfilling viral copy-trading phenomenon:
         * *Trigger Threshold*: Active when composite `Retail Hype Score >= 60/100` (combining viral catalyst, mention velocity, and Pelosi mention multiplier).
         * *Intensity Tiers*: `VIRAL_SURGE` (80–100: peak retail frenzy), `HIGH_VELOCITY` (60–79: active trigger threshold), `MODERATE_INTEREST` (35–59: emerging buzz), `QUIET / DORMANT` (<35: sub-threshold).

@@ -1909,15 +1909,15 @@ th.sortable.active-sort .sort-icon {
 
 .legend-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
 }
 
 .legend-item {
   background: rgba(30, 41, 59, 0.45);
   border: 1px solid rgba(148, 163, 184, 0.1);
   border-radius: 8px;
-  padding: 14px 16px;
+  padding: 16px 18px;
   display: flex;
   flex-direction: column;
 }
@@ -1946,6 +1946,16 @@ th.sortable.active-sort .sort-icon {
 
 .legend-item-desc strong {
   color: #f1f5f9;
+}
+
+.legend-item-desc code {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #38bdf8;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: monospace;
 }
 
 .legend-metric-pill {
