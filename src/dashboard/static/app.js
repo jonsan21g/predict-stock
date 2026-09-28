@@ -472,8 +472,15 @@ async function loadDeepDive(ticker) {
 
     // Pillar 4: Pelosi Effect & Retail Stream Details
     const quotesList = pe.verbatim_quotes && pe.verbatim_quotes.length > 0
-      ? pe.verbatim_quotes.map(q => `<li style="margin-bottom:6px; color:#cbd5e1;"><em>"${q}"</em></li>`).join("")
-      : `<li style="color:#94a3b8;">No direct copy-trading quotes captured.</li>`;
+      ? pe.verbatim_quotes.map(q => `
+        <li style="margin-bottom:8px; list-style:none;">
+          <a href="https://stocktwits.com/symbol/${data.ticker}" target="_blank" rel="noopener noreferrer" class="verbatim-quote-link" title="Open live $${data.ticker} discussion stream on StockTwits">
+            <span class="quote-text" style="color:#e2e8f0; font-style:italic;">"${q}"</span>
+            <span class="quote-link-tag">💬 Open Stream ↗</span>
+          </a>
+        </li>
+      `).join("")
+      : `<li style="color:#94a3b8; list-style:none; padding:8px 12px; background:#0f172a; border-radius:6px; border:1px solid #1e293b;">No direct copy-trading quotes captured in the evaluated window.</li>`;
 
     const buzzBadges = (sm.buzz_keywords || []).map(k => `
       <span class="badge" style="background:#0f172a; border:1px solid #334155; color:#38bdf8; font-size:10px; margin-right:4px;">#${k}</span>
@@ -486,22 +493,30 @@ async function loadDeepDive(ticker) {
       </li>
     `).join("");
 
-    // Indicator human-readable formats
+    // Indicator human-readable formats & rich tooltips
     const catInfo = getPelosiCatalystInfo(pe.primary_catalyst);
     const lifeInfo = getPelosiLifecycleInfo(pe.lifecycle_stage);
     const tapeInfo = getTapeSentimentInfo(sm.sentiment_label);
 
-    const statusBadge = pe.is_active
-      ? `<span class="badge-pelosi-viral">🔥 ACTIVE (${pe.intensity ? pe.intensity.replace(/_/g, ' ') : 'VIRAL'})</span>`
-      : (sm.viral_politician_buzz ? `<span class="badge-catalyst-tag">⚡ Emerging Smart-Money Buzz</span>` : `<span class="badge" style="background:#1e293b; border:1px solid #334155; color:#94a3b8; font-size:11px; padding:2px 8px; border-radius:9999px;">Quiet / Baseline</span>`);
+    const statusExplanation = pe.is_active
+      ? `Active Pelosi Effect (${pe.intensity ? pe.intensity.replace(/_/g, ' ') : 'VIRAL'}): Retail social streams and financial forums are actively circulating high-conviction smart-money accumulation, driving rapid momentum and copy-trading participation.`
+      : (sm.viral_politician_buzz
+        ? "Emerging Smart-Money Chatter: Traders are beginning to discuss unusual institutional or political purchases, but volume remains below the peak viral threshold."
+        : "Dormant / Baseline State: Social message volume and copy-trading discussions remain within normal baseline levels with no active viral surge.");
 
-    const catalystBadge = `<span class="badge-catalyst-tag" title="${catInfo.explanation}">📌 Catalyst: ${catInfo.label}</span>`;
-    const lifecycleBadge = `<span class="badge-lifecycle-tag" title="${lifeInfo.explanation}">⚡ Stage: ${lifeInfo.label}</span>`;
+    const statusBadge = pe.is_active
+      ? `<span class="badge-pelosi-viral" style="cursor:help;" title="${statusExplanation}">🔥 ACTIVE (${pe.intensity ? pe.intensity.replace(/_/g, ' ') : 'VIRAL'})</span>`
+      : (sm.viral_politician_buzz 
+        ? `<span class="badge-catalyst-tag" style="cursor:help;" title="${statusExplanation}">⚡ Emerging Smart-Money Buzz</span>` 
+        : `<span class="badge" style="background:#1e293b; border:1px solid #334155; color:#94a3b8; font-size:11px; padding:2px 8px; border-radius:9999px; cursor:help;" title="${statusExplanation}">Quiet / Baseline</span>`);
+
+    const catalystBadge = `<span class="badge-catalyst-tag" style="cursor:help;" title="Primary Catalyst: ${catInfo.label}&#10;&#10;${catInfo.explanation}">📌 Catalyst: ${catInfo.label}</span>`;
+    const lifecycleBadge = `<span class="badge-lifecycle-tag" style="cursor:help;" title="Lifecycle Stage: ${lifeInfo.label}&#10;&#10;${lifeInfo.explanation}">⚡ Stage: ${lifeInfo.label}</span>`;
     const tapeBadge = sm.sentiment_label === 'BULLISH'
-      ? `<span class="badge-sentiment-bullish" title="${tapeInfo.explanation}">📈 Tape: ${tapeInfo.label}</span>`
+      ? `<span class="badge-sentiment-bullish" style="cursor:help;" title="Tape Bias: ${tapeInfo.label}&#10;&#10;${tapeInfo.explanation}">📈 Tape: ${tapeInfo.label}</span>`
       : (sm.sentiment_label === 'BEARISH'
-        ? `<span class="badge-sell" title="${tapeInfo.explanation}">📉 Tape: ${tapeInfo.label}</span>`
-        : `<span class="badge" style="background:rgba(148, 163, 184, 0.15); border:1px solid #64748b; color:#cbd5e1; font-size:11px; padding:2px 8px; border-radius:9999px;" title="${tapeInfo.explanation}">⚖️ Tape: ${tapeInfo.label}</span>`);
+        ? `<span class="badge-sell" style="cursor:help;" title="Tape Bias: ${tapeInfo.label}&#10;&#10;${tapeInfo.explanation}">📉 Tape: ${tapeInfo.label}</span>`
+        : `<span class="badge" style="background:rgba(148, 163, 184, 0.15); border:1px solid #64748b; color:#cbd5e1; font-size:11px; padding:2px 8px; border-radius:9999px; cursor:help;" title="Tape Bias: ${tapeInfo.label}&#10;&#10;${tapeInfo.explanation}">⚖️ Tape: ${tapeInfo.label}</span>`);
 
     // Assemble the complete Deep-Dive HTML
     container.innerHTML = `
@@ -812,37 +827,15 @@ async function loadDeepDive(ticker) {
               </div>
             </div>
 
-            <!-- Badges Bar -->
+            <!-- Badges Bar with Rich Hover Tooltips & Helper Hint -->
             <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px; flex-wrap:wrap;">
               ${statusBadge}
               ${catalystBadge}
               ${lifecycleBadge}
               ${tapeBadge}
-            </div>
-
-            <!-- Plain English Explanation Box with Commas & Periods -->
-            <div style="background:rgba(15, 23, 42, 0.7); border:1px solid rgba(234, 88, 12, 0.25); border-radius:8px; padding:12px 14px; margin-bottom:14px;">
-              <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.05em; font-weight:700; color:#fb923c; margin-bottom:10px;">
-                📖 Indicator Breakdown & Plain English Meanings
-              </div>
-              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:10px; font-size:12px; line-height:1.5;">
-                <div style="background:#0f172a; padding:10px 12px; border-radius:6px; border:1px solid #1e293b;">
-                  <strong style="color:#38bdf8;">1. Primary Catalyst: ${catInfo.label}</strong>
-                  <p style="margin:4px 0 0 0; color:#cbd5e1; font-size:11px;">${catInfo.explanation}</p>
-                </div>
-                <div style="background:#0f172a; padding:10px 12px; border-radius:6px; border:1px solid #1e293b;">
-                  <strong style="color:#c084fc;">2. Lifecycle Stage: ${lifeInfo.label}</strong>
-                  <p style="margin:4px 0 0 0; color:#cbd5e1; font-size:11px;">${lifeInfo.explanation}</p>
-                </div>
-                <div style="background:#0f172a; padding:10px 12px; border-radius:6px; border:1px solid #1e293b;">
-                  <strong style="color:#34d399;">3. Tape Bias: ${tapeInfo.label}</strong>
-                  <p style="margin:4px 0 0 0; color:#cbd5e1; font-size:11px;">${tapeInfo.explanation}</p>
-                </div>
-                <div style="background:#0f172a; padding:10px 12px; border-radius:6px; border:1px solid #1e293b;">
-                  <strong style="color:#fb923c;">4. Retail Hype Score: ${sm.retail_hype_score || 0} / 100</strong>
-                  <p style="margin:4px 0 0 0; color:#cbd5e1; font-size:11px;">Measures real-time message volume velocity, mentions of high-profile political traders, and retail copy-trading intensity.</p>
-                </div>
-              </div>
+              <span style="font-size:11px; color:#64748b; margin-left:auto; display:inline-flex; align-items:center; gap:4px;" title="Hover over any badge to view its full plain-English explanation">
+                <span style="font-size:12px;">ℹ️</span> Hover badges for definitions
+              </span>
             </div>
 
             ${pe.prominent_figures && pe.prominent_figures.length > 0 ? `
@@ -861,12 +854,12 @@ async function loadDeepDive(ticker) {
             ` : ''}
 
             ${pe.verbatim_quotes && pe.verbatim_quotes.length > 0 ? `
-              <div style="margin-top:12px;">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <div style="margin-top:14px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                   <strong style="font-size:12px; color:#94a3b8;">Live Trader Stream Captures (Verbatim):</strong>
-                  <span style="font-size:11px; color:#64748b;">Source: Public StockTwits API Stream</span>
+                  <span style="font-size:11px; color:#64748b;">Click quote to open live discussion on StockTwits</span>
                 </div>
-                <ul style="padding-left:16px; margin:0; font-size:11px; line-height:1.6;">
+                <ul style="padding-left:0; margin:0; list-style:none;">
                   ${quotesList}
                 </ul>
               </div>

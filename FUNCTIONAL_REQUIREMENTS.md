@@ -343,16 +343,19 @@ The following matrix provides 100% bidirectional traceability between functional
     2. *C-Suite & Insiders Pillar*: Form 4 insider conviction score (0–100) styled with amber `.badge-insider` pill, cluster accumulation flags, and C-Suite whale purchase amounts.
     3. *Federal Contracts Pillar*: Federal contract score (0–100) styled with cyan `.badge-contracts` pill, total prime awarded dollars ($), and strategic DoD defense procurement indicators.
     4. *The Pelosi Effect & Retail Flow Pillar*: Retail hype score (0–100) styled with orange pulsating `.badge-pelosi` pill, viral lifecycle stage, primary catalyst classification, and tape flow sentiment.
+  * **Interactive Tooltip-Based Indicator Explanations**:
+    * Clean badge interface with multi-line hover tooltips (`title` attribute) presenting full plain-English definitions with proper grammatical sentences, commas, and periods:
+      * *Status*: Active viral herd vs. emerging buzz vs. baseline holding state.
+      * *Catalysts*: `PELOSI_CONGRESSIONAL_COPYTRADE`, `CAPITOL_HILL_DISCLOSURE`, `C_SUITE_INSIDER_WHALE_ACCUMULATION`, `RETAIL_HERD_WHALE_COPYTRADE`, `ORGANIC_MOMENTUM_DISCUSSION`.
+      * *Lifecycle Stages*: `PEAK_HERD_EXPANSION`, `IGNITION_ACCELERATION`, `EMERGING_AWARENESS`, `DORMANT`.
+      * *Tape Bias*: `BULLISH` (+80% positive tone), `BEARISH` (elevated put/distribution talk), `NEUTRAL` (balanced order flow).
+      * *Retail Hype Score*: Direct tooltip on score pills detailing velocity metrics and politician tracking.
   * **Primary Source External Verification Links**:
     * *Capitol Hill*: Direct links to `CapitolTrades.com/trades?search=<ticker>`, official U.S. House Financial Disclosures portal, and individual politician search URLs on table rows.
     * *C-Suite Insiders*: Direct links to official SEC EDGAR company browse page (`sec.gov/edgar/browse/?CIK=<ticker>`) and OpenInsider real-time Form 4 screening ledger (`openinsider.com/screener?s=<ticker>`).
     * *Federal Contracts*: Direct links to `USASpending.gov/search/?keyword=<ticker>` and individual contract award search links for every Award ID and recipient in the tabular grid.
     * *Retail Streams & Media*: Direct links to StockTwits real-time stream (`stocktwits.com/symbol/<ticker>`) and Yahoo Finance media feed.
-  * **Pelosi Effect Indicator Breakdown Guide**:
-    * Provides dedicated, plain-English educational explanations with complete sentences, commas, and periods for all classifications:
-      * *Catalysts*: `PELOSI_CONGRESSIONAL_COPYTRADE`, `CAPITOL_HILL_DISCLOSURE`, `C_SUITE_INSIDER_WHALE_ACCUMULATION`, `RETAIL_HERD_WHALE_COPYTRADE`, `ORGANIC_MOMENTUM_DISCUSSION`.
-      * *Lifecycle Stages*: `PEAK_HERD_EXPANSION`, `IGNITION_ACCELERATION`, `EMERGING_AWARENESS`, `DORMANT`.
-      * *Tape Bias*: `BULLISH` (+80% positive tone), `BEARISH` (elevated put/distribution talk), `NEUTRAL` (balanced flow).
+    * *Verbatim Trader Quotes Link-Out*: Every live stream capture is rendered as an interactive card linking directly out to the real-time discussion stream on StockTwits with a `💬 Open Stream ↗` badge.
   * **Multi-Overlay Technical Chart**: Interactive Chart.js canvas plotting 60 trading days of historical closes overlaid with:
     * 5-day Exponential Moving Average (Purple line)
     * 20-day Exponential Moving Average (Blue line)
