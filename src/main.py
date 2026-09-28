@@ -195,6 +195,86 @@ def print_duel_scoreboard():
     print("=" * 88 + "\n")
 
 
+def run_rtm_verification():
+    """Executes all 34 test cases and generates an IEEE 830 RTM compliance report."""
+    import pytest
+
+    print("\n" + "=" * 94)
+    print("  [WAVE RIDER] REQUIREMENTS TRACEABILITY MATRIX (RTM) VERIFICATION")
+    print("  Standards: IEEE 830 Requirements & IEEE 1016 Design Specification Compliance")
+    print("=" * 94 + "\n")
+
+    RTM_MAP = {
+        "tests/test_price_fetcher.py::test_watchlist_structure": ("FR-01-01", "27 Blue-Chip Universe Definition"),
+        "tests/test_price_fetcher.py::test_daily_history_fetch": ("FR-01-02", "Daily OHLCV Data & Multi-Tier Cache"),
+        "tests/test_price_fetcher.py::test_premarket_quote": ("FR-01-03", "Pre-Market Quotes & Gap Ingestion"),
+        "tests/test_smart_money.py::test_parse_trade_row": ("FR-02-01", "Congressional STOCK Act Trade Parsing"),
+        "tests/test_smart_money.py::test_congress_signals_with_mock": ("FR-02-02", "Congressional Conviction Scoring Model"),
+        "tests/test_smart_money.py::test_congress_committee_jurisdiction_matching": ("FR-02-03", "Committee Oversight & 2.5x Multiplier"),
+        "tests/test_smart_money.py::test_insider_transactions_live": ("FR-02-04", "SEC Form 4 Corporate Insider Parser"),
+        "tests/test_contracts.py::test_get_ticker_contract_signals_dell": ("FR-02-05", "US Federal Contracts Ingestion (USASpending)"),
+        "tests/test_contracts.py::test_contracts_scoring_thresholds": ("FR-02-06", "Federal Contract Scoring Thresholds"),
+        "tests/test_social_sentiment.py::test_score_text_sentiment": ("FR-03-01", "Financial News Sentiment Polarity"),
+        "tests/test_social_sentiment.py::test_scan_politician_viral_buzz_detection": ("FR-03-02", "Targeted Politician Buzz Detection"),
+        "tests/test_social_sentiment.py::test_get_ticker_social_sentiment_structure": ("FR-03-03", "The Pelosi Effect Stream Diagnostics"),
+        "tests/test_features.py::test_compute_technical_indicators": ("FR-03-04", "Point-in-Time Technical Feature Engine"),
+        "tests/test_features.py::test_create_wave_target": ("FR-03-05", "Forward Target Labeling (+3.5% in 5D)"),
+        "tests/test_features.py::test_build_feature_matrix": ("FR-03-06", "Unified Feature Matrix Assembly"),
+        "tests/test_wave_detector.py::test_wave_ignition_valid": ("FR-04-01", "Day-1 Wave Ignition Core Rules"),
+        "tests/test_wave_detector.py::test_wave_ignition_rejection_low_volume": ("FR-04-02", "Ignition Rejection on Low Volume"),
+        "tests/test_wave_detector.py::test_wave_ignition_rejection_extended": ("FR-04-03", "Anti-Exhaustion Upper BB Guard"),
+        "tests/test_backtest.py::test_wave_backtest_execution": ("FR-04-04", "Walkforward Simulation Engine"),
+        "tests/test_classifier.py::test_train_wave_model_and_inference": ("FR-05-01", "Calibrated Gradient Boosting Classifier"),
+        "tests/test_classifier.py::test_score_single_stock": ("FR-05-02", "Composite Confidence Scoring Model"),
+        "tests/test_game.py::test_initial_game_state": ("FR-06-01", "Duel Game State Initialization"),
+        "tests/test_game.py::test_player_order_buy_and_sell": ("FR-06-02", "Player Market Order Execution"),
+        "tests/test_game.py::test_player_order_insufficient_cash": ("FR-06-03", "Bankroll Overspend Guard"),
+        "tests/test_game.py::test_player_order_invalid_ticker": ("FR-06-04", "Allowed Universe Integrity Guard"),
+        "tests/test_game.py::test_player_order_oversell": ("FR-06-05", "Shorting Prevention & Oversell Guard"),
+        "tests/test_game.py::test_bot_evaluate_turn_with_disclosures": ("FR-06-06", "Autonomous Bot & Catalyst Disclosures"),
+        "tests/test_interface.py::test_dashboard_index": ("FR-06-07", "Dashboard Web UI Root Endpoint"),
+        "tests/test_interface.py::test_dashboard_health": ("FR-06-08", "Dashboard Health Probe API"),
+        "tests/test_interface.py::test_dashboard_radar_premarket": ("FR-06-09", "Radar Premarket & EOD API"),
+        "tests/test_interface.py::test_dashboard_stock_detail": ("FR-06-10", "Stock Deep-Dive Forensic API"),
+        "tests/test_interface.py::test_dashboard_backtest_api": ("FR-06-11", "Backtest Sandbox API"),
+        "tests/test_interface.py::test_cli_premarket_execution": ("FR-06-12", "CLI Runner Premarket Execution"),
+        "tests/test_interface.py::test_dashboard_game_endpoints": ("FR-06-13", "Game State & Order API Endpoints")
+    }
+
+    class RTMCollector:
+        def __init__(self):
+            self.results = {}
+
+        def pytest_runtest_logreport(self, report):
+            if report.when == "call":
+                node = report.nodeid.replace("\\", "/")
+                self.results[node] = report.outcome.upper()
+
+    collector = RTMCollector()
+    pytest.main(["-q", "tests/"], plugins=[collector])
+
+    print(f"{'REQ ID':<11} {'REQUIREMENT TITLE':<44} {'STATUS':<10} {'TEST TARGET'}")
+    print("-" * 94)
+
+    passed_count = 0
+    for node, (req_id, title) in RTM_MAP.items():
+        status = collector.results.get(node, "NOT RUN")
+        if status == "PASSED":
+            status_str = "[PASS]"
+            passed_count += 1
+        elif status == "FAILED":
+            status_str = "[FAIL]"
+        else:
+            status_str = f"[{status}]"
+        func_name = node.split("::")[-1]
+        print(f"{req_id:<11} {title:<44} {status_str:<10} {func_name}")
+
+    print("-" * 94)
+    pct = (passed_count / len(RTM_MAP)) * 100.0 if RTM_MAP else 0
+    print(f"  Requirements Compliance: {passed_count} / {len(RTM_MAP)} Verified ({pct:.1f}% PASS)")
+    print("=" * 94 + "\n")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Wave Rider Momentum Engine CLI")
     parser.add_argument("--mode", choices=["eod", "premarket"], default="eod", help="Scanning mode (eod or premarket)")
@@ -207,8 +287,13 @@ def main():
     parser.add_argument("--auto-bot", action="store_true", help="Run continuous autonomous bot loop in terminal (Ctrl+C to stop)")
     parser.add_argument("--reset-duel", action="store_true", help="Reset 5-Day Duel to starting $30,000 cash balance")
     parser.add_argument("--order", nargs=3, metavar=("ACTION", "TICKER", "SHARES"), help="Execute Player order (e.g. --order BUY NVDA 20)")
+    parser.add_argument("--verify-rtm", action="store_true", help="Execute automated verification across all functional requirements (RTM report)")
 
     args = parser.parse_args()
+
+    if args.verify_rtm:
+        run_rtm_verification()
+        return
 
     if args.auto_bot:
         from src.dashboard.app import autonomous_bot_worker

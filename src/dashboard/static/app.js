@@ -4,7 +4,6 @@ let allRadarData = [];
 let activeCategory = "ALL";
 let deepDiveChart = null;
 let backtestChart = null;
-let duelPollingInterval = null;
 
 document.addEventListener("DOMContentLoaded", () => {
   loadRadar();
@@ -25,11 +24,6 @@ function showTab(tabId) {
   document.querySelectorAll(".nav-tab").forEach(tab => tab.classList.remove("active"));
   document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
 
-  if (duelPollingInterval) {
-    clearInterval(duelPollingInterval);
-    duelPollingInterval = null;
-  }
-
   if (tabId === "radar") {
     document.querySelectorAll(".nav-tab")[0].classList.add("active");
     document.getElementById("tab-radar").classList.add("active");
@@ -48,10 +42,6 @@ function showTab(tabId) {
     document.querySelectorAll(".nav-tab")[3].classList.add("active");
     document.getElementById("tab-duel").classList.add("active");
     loadDuelState();
-    // Auto-poll game state every 15 seconds so live bot movements reflect automatically
-    duelPollingInterval = setInterval(() => {
-      loadDuelState();
-    }, 15000);
   }
 }
 
@@ -922,12 +912,6 @@ function renderDuelScoreboard(data) {
   if (botAutoSub) {
     const lastEval = b.last_evaluated_at || "Just Initialized";
     botAutoSub.textContent = `🟢 Auto-Evaluator Active • Last: ${lastEval}`;
-  }
-
-  const botPill = document.getElementById("duel-bot-status-pill");
-  if (botPill) {
-    const nextRun = data.next_bot_run || "Next ~15-30m";
-    botPill.textContent = `🟢 Bot: 100% Autonomous • Next Scan: ${nextRun}`;
   }
 }
 

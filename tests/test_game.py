@@ -10,10 +10,11 @@ from src.game.duel import (
 
 
 @pytest.fixture(autouse=True)
-def reset_game():
+def reset_game(tmp_path, monkeypatch):
+    test_game_file = str(tmp_path / "test_game_state.json")
+    monkeypatch.setenv("WAVE_RIDER_GAME_FILE", test_game_file)
     initialize_game_state(force_reset=True)
     yield
-    initialize_game_state(force_reset=True)
 
 
 def test_initial_game_state():

@@ -21,8 +21,10 @@ from src.fetchers.insider_data import get_insider_signals
 from src.fetchers.social_sentiment import get_ticker_social_sentiment
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-GAME_FILE = os.path.join(BASE_DIR, "data", "game_state.json")
 WATCHLIST_FILE = os.path.join(BASE_DIR, "data", "watchlist.json")
+
+def get_game_file() -> str:
+    return os.environ.get("WAVE_RIDER_GAME_FILE", os.path.join(BASE_DIR, "data", "game_state.json"))
 
 # Target Match Expiry: Friday Oct 2, 2026 at 23:00 CET (21:00 UTC)
 MATCH_END_ISO = "2026-10-02T21:00:00Z"
@@ -31,9 +33,10 @@ INITIAL_BANKROLL = 30000.0
 
 def initialize_game_state(force_reset: bool = False) -> Dict[str, Any]:
     """Initializes or resets the 5-day duel scenario."""
-    if not force_reset and os.path.exists(GAME_FILE):
+    game_file = get_game_file()
+    if not force_reset and os.path.exists(game_file):
         try:
-            with open(GAME_FILE, "r", encoding="utf-8") as f:
+            with open(game_file, "r", encoding="utf-8") as f:
                 state = json.load(f)
                 if state.get("game_id") == "duel_2026_10_02":
                     return state
@@ -71,13 +74,14 @@ def initialize_game_state(force_reset: bool = False) -> Dict[str, Any]:
 
 def save_game_state(state: Dict[str, Any]) -> None:
     """Persists game state to data/game_state.json atomically."""
-    os.makedirs(os.path.dirname(GAME_FILE), exist_ok=True)
-    temp_path = GAME_FILE + ".tmp"
+    game_file = get_game_file()
+    os.makedirs(os.path.dirname(game_file), exist_ok=True)
+    temp_path = game_file + ".tmp"
     with open(temp_path, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=2)
-    if os.path.exists(GAME_FILE):
-        os.remove(GAME_FILE)
-    os.rename(temp_path, GAME_FILE)
+    if os.path.exists(game_file):
+        os.remove(game_file)
+    os.rename(temp_path, game_file)
 
 
 def get_current_stock_price(ticker: str) -> float:
