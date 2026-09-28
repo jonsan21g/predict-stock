@@ -338,11 +338,21 @@ The following matrix provides 100% bidirectional traceability between functional
 #### `FR-06-10`: Tab 2 — Stock Deep-Dive 4-Pillar Forensic Suite & Multi-Overlay Chart
 * **Description**: Tab 2 shall render an exhaustive forensic diagnostic view for any of the 27 universe stocks via `GET /api/stock/<ticker>`:
   * **Interactive Ticker Selector**: Dropdown selector enabling on-demand switching or direct routing from Radar action buttons.
-  * **4-Pillar Forensic Scorecard Ribbon**:
-    1. *Technical Pillar*: RVOL ratio, Close Range Ranking (CRR), 20D High status, Upper Bollinger Band proximity, and 5/20 EMA trend alignment.
-    2. *Smart Money Pillar*: Congressional conviction score, Committee jurisdiction overlap match, and Form 4 C-Suite whale purchase indicators.
-    3. *Federal Contracts Pillar*: 90-day awarded contract value ($) and prime awardee flags from USASpending.
-    4. *Sentiment Velocity & Pelosi Effect*: Financial news polarity score, Pelosi social chatter velocity score, and live community quote feed.
+  * **4-Pillar Forensic Scorecard Ribbon & Reconciled Badges**:
+    1. *Capitol Hill & Committees Pillar*: Congressional conviction score (0–100) styled with high-contrast violet `.badge-congress` pill, committee jurisdiction match status, and active member disclosures.
+    2. *C-Suite & Insiders Pillar*: Form 4 insider conviction score (0–100) styled with amber `.badge-insider` pill, cluster accumulation flags, and C-Suite whale purchase amounts.
+    3. *Federal Contracts Pillar*: Federal contract score (0–100) styled with cyan `.badge-contracts` pill, total prime awarded dollars ($), and strategic DoD defense procurement indicators.
+    4. *The Pelosi Effect & Retail Flow Pillar*: Retail hype score (0–100) styled with orange pulsating `.badge-pelosi` pill, viral lifecycle stage, primary catalyst classification, and tape flow sentiment.
+  * **Primary Source External Verification Links**:
+    * *Capitol Hill*: Direct links to `CapitolTrades.com/trades?search=<ticker>`, official U.S. House Financial Disclosures portal, and individual politician search URLs on table rows.
+    * *C-Suite Insiders*: Direct links to official SEC EDGAR company browse page (`sec.gov/edgar/browse/?CIK=<ticker>`) and OpenInsider real-time Form 4 screening ledger (`openinsider.com/screener?s=<ticker>`).
+    * *Federal Contracts*: Direct links to `USASpending.gov/search/?keyword=<ticker>` and individual contract award search links for every Award ID and recipient in the tabular grid.
+    * *Retail Streams & Media*: Direct links to StockTwits real-time stream (`stocktwits.com/symbol/<ticker>`) and Yahoo Finance media feed.
+  * **Pelosi Effect Indicator Breakdown Guide**:
+    * Provides dedicated, plain-English educational explanations with complete sentences, commas, and periods for all classifications:
+      * *Catalysts*: `PELOSI_CONGRESSIONAL_COPYTRADE`, `CAPITOL_HILL_DISCLOSURE`, `C_SUITE_INSIDER_WHALE_ACCUMULATION`, `RETAIL_HERD_WHALE_COPYTRADE`, `ORGANIC_MOMENTUM_DISCUSSION`.
+      * *Lifecycle Stages*: `PEAK_HERD_EXPANSION`, `IGNITION_ACCELERATION`, `EMERGING_AWARENESS`, `DORMANT`.
+      * *Tape Bias*: `BULLISH` (+80% positive tone), `BEARISH` (elevated put/distribution talk), `NEUTRAL` (balanced flow).
   * **Multi-Overlay Technical Chart**: Interactive Chart.js canvas plotting 60 trading days of historical closes overlaid with:
     * 5-day Exponential Moving Average (Purple line)
     * 20-day Exponential Moving Average (Blue line)
@@ -350,10 +360,10 @@ The following matrix provides 100% bidirectional traceability between functional
     * Target 2 level $+6.0\%$ (Cyan dashed horizontal line)
     * Stop Loss level $-2.5\%$ (Red dashed horizontal line)
   * **Tabular Audit Data Grids**:
-    * *Congressional Filings Table*: Filing date, politician name, chamber (House/Senate), committee, transaction type, dollar bracket, and transaction date.
-    * *Form 4 Insider Buys Table*: Filing date, insider name, executive title, transaction type, shares purchased, execution price, and total dollar value.
-    * *USASpending Contracts Table*: Award date, recipient name, awarding agency, dollar value, and contract description.
-    * *Day-1 Ignition Checklist*: Detailed table displaying all 4 core ignition rules with individual pass/fail status and exact numeric criteria.
+    * *Congressional Filings Table*: Filing date, politician name (clickable), chamber (House/Senate), committee, transaction type (`.badge-buy` / `.badge-sell`), dollar bracket, and high-alpha jurisdiction badge (`.badge-committee`).
+    * *Form 4 Insider Buys Table*: Filing date, insider name (clickable), executive title, transaction type (`.badge-buy` / `.badge-sell`), shares purchased, and total dollar value.
+    * *USASpending Contracts Table*: Award date, award ID (clickable), recipient entity (clickable), awarding agency, dollar value, and defense strategic tag (`.badge-defense`).
+    * *Day-1 Ignition Checklist*: Detailed checklist displaying all 4 core ignition rules with individual pass/fail status and exact numeric criteria.
 * **Verification & Test**: `TC-UI-04` in [`tests/test_interface.py::test_dashboard_stock_detail`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py).
 
 #### `FR-06-11`: Tab 3 — Backtest Sandbox & Walkforward Equity Visualizer

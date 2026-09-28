@@ -203,6 +203,85 @@ function inspectStock(ticker) {
   loadDeepDive(ticker);
 }
 
+function getPelosiCatalystInfo(key) {
+  const map = {
+    "PELOSI_CONGRESSIONAL_COPYTRADE": {
+      label: "Pelosi Congressional Copy-Trade",
+      explanation: "Members of the U.S. Congress, notably Speaker Emerita Nancy Pelosi or high-ranking committee chairs, disclosed significant stock purchases, triggering aggressive retail replication."
+    },
+    "CAPITOL_HILL_DISCLOSURE": {
+      label: "Capitol Hill Disclosure",
+      explanation: "U.S. Representatives or Senators reported open-market stock transactions under the STOCK Act, sparking elevated interest across financial tracking communities."
+    },
+    "C_SUITE_INSIDER_WHALE_ACCUMULATION": {
+      label: "C-Suite & Insider Whale Accumulation",
+      explanation: "Corporate executives (such as the CEO, CFO, or Directors) filed SEC Form 4 cash purchases, signaling strong internal conviction that is now being circulated across retail trading channels."
+    },
+    "RETAIL_HERD_WHALE_COPYTRADE": {
+      label: "Retail Herd & Whale Copy-Trade",
+      explanation: "Retail momentum traders and institutional tracking accounts are actively discussing heavy options accumulation, call buying, and copy-trading strategies."
+    },
+    "ORGANIC_MOMENTUM_DISCUSSION": {
+      label: "Organic Momentum Discussion",
+      explanation: "Trading volume and social mentions are expanding organically based on price breakout dynamics, earnings momentum, or product announcements."
+    },
+    "DORMANT": {
+      label: "Dormant / Baseline Streams",
+      explanation: "Social message volume and copy-trading discussions remain within normal baseline levels with no active viral surge."
+    }
+  };
+  return map[key] || {
+    label: key ? key.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase()) : "Standard Flow",
+    explanation: "Standard market discussion flow observed across financial media and trading boards."
+  };
+}
+
+function getPelosiLifecycleInfo(key) {
+  const map = {
+    "PEAK_HERD_EXPANSION": {
+      label: "Peak Herd Expansion Phase",
+      explanation: "The viral narrative has reached peak retail saturation, message velocity is at multi-standard-deviation highs, and aggressive momentum participation is underway."
+    },
+    "IGNITION_ACCELERATION": {
+      label: "Wave Ignition & Acceleration Phase",
+      explanation: "The initial smart-money disclosure has ignited, message velocity is accelerating rapidly, and retail copy-traders are stepping in during Day 1 to Day 2 of the momentum move."
+    },
+    "EMERGING_AWARENESS": {
+      label: "Emerging Awareness Phase",
+      explanation: "Initial reports of insider or political buying are beginning to surface in retail forums, but mainstream trading flow has not yet fully mobilized."
+    },
+    "DORMANT": {
+      label: "Dormant / Baseline Phase",
+      explanation: "Social mentions are infrequent, and social velocity is neutral with no observable momentum acceleration."
+    }
+  };
+  return map[key] || {
+    label: key ? key.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase()) : "Consolidating",
+    explanation: "Stream activity remains in a normal holding pattern awaiting catalyst ignition."
+  };
+}
+
+function getTapeSentimentInfo(key) {
+  const map = {
+    "BULLISH": {
+      label: "Bullish Flow Bias",
+      explanation: "Real-time message flow and media headlines exhibit an overwhelming positive tone, dominated by terms like breakout, accumulation, calls, and price upgrades."
+    },
+    "BEARISH": {
+      label: "Bearish Flow Bias",
+      explanation: "Social feeds and headlines show elevated negative polarity, with traders referencing profit-taking, distribution, put accumulation, or headline risk."
+    },
+    "NEUTRAL": {
+      label: "Balanced Flow",
+      explanation: "Positive and negative sentiment mentions are roughly equal, indicating an evenly balanced order flow and market equilibrium."
+    }
+  };
+  return map[key] || {
+    label: "Balanced Flow",
+    explanation: "Sentiment tone is neutral with balanced commentary."
+  };
+}
+
 async function loadDeepDive(ticker) {
   const container = document.getElementById("deepdive-body");
   container.innerHTML = `<div style="text-align:center; padding: 60px; color:#94a3b8; font-size:15px;">🔍 Gathering forensic smart-money, government contracts, and wave technicals for <strong>${ticker}</strong>...</div>`;
@@ -228,8 +307,8 @@ async function loadDeepDive(ticker) {
     `).join("");
 
     const ignBadge = data.is_ignition
-      ? `<span class="badge badge-ignition" style="background:#059669; color:#fff; font-size:11px;">🚀 DAY-1 IGNITION (${data.ignition_type})</span>`
-      : `<span class="badge" style="background:#1e293b; color:#94a3b8; font-size:11px;">⏳ SETUP FORMING</span>`;
+      ? `<span class="badge-ignition active" style="font-size:12px; padding:3px 10px;">⚡ DAY-1 IGNITION (${data.ignition_type})</span>`
+      : `<span class="badge-ignition idle" style="font-size:12px; padding:3px 10px;">Consolidating (Setup Forming)</span>`;
 
     const scoreClass = data.composite_score >= 80 ? "score-high" : (data.composite_score >= 60 ? "score-med" : "score-low");
 
@@ -255,8 +334,8 @@ async function loadDeepDive(ticker) {
               ${congressTrades.map(t => {
                 const isBuy = t.type === "BUY";
                 const typeBadge = isBuy 
-                  ? `<span class="badge" style="background:#064e3b; color:#34d399; font-weight:700;">BUY</span>` 
-                  : `<span class="badge" style="background:#881337; color:#fb7185; font-weight:700;">SELL</span>`;
+                  ? `<span class="badge badge-buy">BUY</span>` 
+                  : `<span class="badge badge-sell">SELL</span>`;
                 const jurBadge = t.jurisdiction_match 
                   ? `<span class="badge-committee">🎯 High Tech Alpha</span>` 
                   : `<span style="color:#64748b; font-size:11px;">Standard</span>`;
@@ -266,7 +345,11 @@ async function loadDeepDive(ticker) {
                       <strong>${t.traded_date || "-"}</strong><br>
                       <span style="font-size:10px; color:#64748b;">Filed: ${t.published_date || "-"}</span>
                     </td>
-                    <td><strong style="color:#f8fafc;">${t.politician_name || t.politician}</strong></td>
+                    <td>
+                      <a href="https://www.capitoltrades.com/trades?search=${encodeURIComponent(t.politician_name || t.politician)}" target="_blank" rel="noopener noreferrer" style="color:#c4b5fd; text-decoration:none; font-weight:700;" title="Click to view disclosures on CapitolTrades">
+                        ${t.politician_name || t.politician} <span style="font-size:10px; opacity:0.7;">↗</span>
+                      </a>
+                    </td>
                     <td style="font-size:11px; color:#94a3b8;">${t.chamber || "Congress"} (${t.party || ""}-${t.state || ""})</td>
                     <td style="font-size:11px; color:#cbd5e1; max-width:180px;">${(t.committees || []).join(", ") || "-"}</td>
                     <td>${typeBadge}</td>
@@ -309,13 +392,19 @@ async function loadDeepDive(ticker) {
             <tbody>
               ${insiderTx.map(t => {
                 const isBuy = t.type === "BUY";
-                const typeColor = isBuy ? "#34d399" : (t.type === "SELL" ? "#fb7185" : "#94a3b8");
+                const typeBadge = isBuy 
+                  ? `<span class="badge badge-buy">BUY</span>` 
+                  : (t.type === "SELL" ? `<span class="badge badge-sell">SELL</span>` : `<span class="badge" style="background:#1e293b; color:#94a3b8; font-size:11px;">${t.type}</span>`);
                 return `
                   <tr>
                     <td style="white-space:nowrap; font-size:11px;">${t.date || "-"}</td>
-                    <td><strong style="color:#f8fafc;">${t.insider || "-"}</strong></td>
+                    <td>
+                      <a href="http://openinsider.com/screener?s=${data.ticker}" target="_blank" rel="noopener noreferrer" style="color:#fbbf24; text-decoration:none; font-weight:700;" title="Click to view Form 4 filings on OpenInsider">
+                        ${t.insider || "-"} <span style="font-size:10px; opacity:0.7;">↗</span>
+                      </a>
+                    </td>
                     <td style="font-size:11px; color:#94a3b8;">${t.position || "Director / Officer"}</td>
-                    <td style="font-weight:700; color:${typeColor};">${t.type}</td>
+                    <td>${typeBadge}</td>
                     <td style="font-family:monospace;">${(t.shares || 0).toLocaleString()}</td>
                     <td style="font-weight:700; font-family:monospace; color:#38bdf8;">$${(t.value_usd || 0).toLocaleString()}</td>
                   </tr>
@@ -354,8 +443,16 @@ async function loadDeepDive(ticker) {
               ${fedContracts.map(c => `
                 <tr>
                   <td style="white-space:nowrap; font-size:11px;">${c.action_date || "Active"}</td>
-                  <td style="font-family:monospace; font-size:11px; color:#38bdf8;">${c.award_id || "-"}</td>
-                  <td style="font-size:11px; color:#f8fafc;">${c.recipient || "-"}</td>
+                  <td style="font-family:monospace; font-size:11px;">
+                    <a href="https://www.usaspending.gov/search/?keyword=${encodeURIComponent(c.award_id)}" target="_blank" rel="noopener noreferrer" style="color:#7dd3fc; text-decoration:none; font-weight:600;" title="Search Award on USAspending.gov">
+                      ${c.award_id || "-"} <span style="font-size:10px; opacity:0.7;">↗</span>
+                    </a>
+                  </td>
+                  <td style="font-size:11px;">
+                    <a href="https://www.usaspending.gov/search/?keyword=${encodeURIComponent(c.recipient || data.name || data.ticker)}" target="_blank" rel="noopener noreferrer" style="color:#f8fafc; text-decoration:none;" title="Search Recipient on USAspending.gov">
+                      ${c.recipient || "-"} <span style="font-size:10px; opacity:0.7;">↗</span>
+                    </a>
+                  </td>
                   <td style="font-weight:700; font-family:monospace; color:#10b981;">$${(c.amount_usd || 0).toLocaleString()}</td>
                   <td style="font-size:11px; color:#cbd5e1;">${c.agency || ""}${c.sub_agency ? ' - ' + c.sub_agency : ''}</td>
                   <td style="font-size:11px; color:#94a3b8; max-width:220px;" title="${c.description || ''}">${(c.description || "Technology Procurement").substring(0, 75)}...</td>
@@ -385,9 +482,26 @@ async function loadDeepDive(ticker) {
     const headlinesList = (sm.recent_headlines || []).slice(0, 3).map(h => `
       <li style="margin-bottom:4px; font-size:12px;">
         <span style="color:#cbd5e1;">${h.title}</span> 
-        <span class="badge" style="font-size:9px; background:${h.sentiment === 'BULLISH' ? '#064e3b' : (h.sentiment === 'BEARISH' ? '#881337' : '#1e293b')}; color:#fff;">${h.sentiment}</span>
+        <span class="badge ${h.sentiment === 'BULLISH' ? 'badge-sentiment-bullish' : (h.sentiment === 'BEARISH' ? 'badge-sell' : '')}" style="font-size:10px; margin-left:6px;">${h.sentiment}</span>
       </li>
     `).join("");
+
+    // Indicator human-readable formats
+    const catInfo = getPelosiCatalystInfo(pe.primary_catalyst);
+    const lifeInfo = getPelosiLifecycleInfo(pe.lifecycle_stage);
+    const tapeInfo = getTapeSentimentInfo(sm.sentiment_label);
+
+    const statusBadge = pe.is_active
+      ? `<span class="badge-pelosi-viral">🔥 ACTIVE (${pe.intensity ? pe.intensity.replace(/_/g, ' ') : 'VIRAL'})</span>`
+      : (sm.viral_politician_buzz ? `<span class="badge-catalyst-tag">⚡ Emerging Smart-Money Buzz</span>` : `<span class="badge" style="background:#1e293b; border:1px solid #334155; color:#94a3b8; font-size:11px; padding:2px 8px; border-radius:9999px;">Quiet / Baseline</span>`);
+
+    const catalystBadge = `<span class="badge-catalyst-tag" title="${catInfo.explanation}">📌 Catalyst: ${catInfo.label}</span>`;
+    const lifecycleBadge = `<span class="badge-lifecycle-tag" title="${lifeInfo.explanation}">⚡ Stage: ${lifeInfo.label}</span>`;
+    const tapeBadge = sm.sentiment_label === 'BULLISH'
+      ? `<span class="badge-sentiment-bullish" title="${tapeInfo.explanation}">📈 Tape: ${tapeInfo.label}</span>`
+      : (sm.sentiment_label === 'BEARISH'
+        ? `<span class="badge-sell" title="${tapeInfo.explanation}">📉 Tape: ${tapeInfo.label}</span>`
+        : `<span class="badge" style="background:rgba(148, 163, 184, 0.15); border:1px solid #64748b; color:#cbd5e1; font-size:11px; padding:2px 8px; border-radius:9999px;" title="${tapeInfo.explanation}">⚖️ Tape: ${tapeInfo.label}</span>`);
 
     // Assemble the complete Deep-Dive HTML
     container.innerHTML = `
@@ -457,13 +571,13 @@ async function loadDeepDive(ticker) {
       <!-- 2. The 4 Pillars Institutional Scorecard -->
       <div class="pillar-scorecard-grid">
         <!-- Pillar 1 -->
-        <div class="pillar-kpi-card" style="border-top:3px solid #7c3aed;">
+        <div class="pillar-kpi-card" style="border-top:3px solid #8b5cf6;">
           <div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:12px; font-weight:700; color:#c084fc;">🏛️ CAPITOL HILL & COMMITTEES</span>
-              <span style="font-size:16px; font-weight:800; color:#fff;">${sm.congress_score || 0} <span style="font-size:11px; color:#94a3b8;">/100</span></span>
+              <span style="font-size:12px; font-weight:700; color:#c4b5fd;">🏛️ CAPITOL HILL & COMMITTEES</span>
+              <span class="badge-congress" style="font-size:12px; padding:2px 8px;">${sm.congress_score || 0} / 100</span>
             </div>
-            <div style="font-size:13px; font-weight:700; margin-top:6px; color:${sm.jurisdiction_match ? '#c084fc' : (sm.politician_buy ? '#34d399' : (sm.congress_sell_count > 0 ? '#fb7185' : '#94a3b8'))};">
+            <div style="font-size:13px; font-weight:700; margin-top:6px; color:${sm.jurisdiction_match ? '#c4b5fd' : (sm.politician_buy ? '#34d399' : (sm.congress_sell_count > 0 ? '#fb7185' : '#94a3b8'))};">
               ${sm.jurisdiction_match ? '🎯 HIGH JURISDICTION MATCH' : (sm.politician_buy ? '✅ RECENT CONGRESS BUY' : (sm.congress_sell_count > 0 ? '⚠️ NET SELLING DETECTED' : 'No Recent Activity'))}
             </div>
           </div>
@@ -473,13 +587,13 @@ async function loadDeepDive(ticker) {
         </div>
 
         <!-- Pillar 2 -->
-        <div class="pillar-kpi-card" style="border-top:3px solid #0284c7;">
+        <div class="pillar-kpi-card" style="border-top:3px solid #f59e0b;">
           <div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:12px; font-weight:700; color:#38bdf8;">👔 C-SUITE & INSIDERS</span>
-              <span style="font-size:16px; font-weight:800; color:#fff;">${sm.insider_score || 0} <span style="font-size:11px; color:#94a3b8;">/100</span></span>
+              <span style="font-size:12px; font-weight:700; color:#fbbf24;">👔 C-SUITE & INSIDERS</span>
+              <span class="badge-insider" style="font-size:12px; padding:2px 8px;">${sm.insider_score || 0} / 100</span>
             </div>
-            <div style="font-size:13px; font-weight:700; margin-top:6px; color:${sm.total_buy_value_usd > 1000000 ? '#38bdf8' : (sm.insider_cluster ? '#34d399' : (sm.insider_buy ? '#34d399' : '#94a3b8'))};">
+            <div style="font-size:13px; font-weight:700; margin-top:6px; color:${sm.total_buy_value_usd > 1000000 ? '#fbbf24' : (sm.insider_cluster ? '#fef08a' : (sm.insider_buy ? '#34d399' : '#94a3b8'))};">
               ${sm.total_buy_value_usd > 1000000 ? '🐋 WHALE C-SUITE BUY' : (sm.insider_cluster ? '👔 EXECUTIVE CLUSTER BUY' : (sm.insider_buy ? '✅ DIRECT CASH PURCHASE' : 'Routine Sales / Neutral'))}
             </div>
           </div>
@@ -489,13 +603,13 @@ async function loadDeepDive(ticker) {
         </div>
 
         <!-- Pillar 3 -->
-        <div class="pillar-kpi-card" style="border-top:3px solid #059669;">
+        <div class="pillar-kpi-card" style="border-top:3px solid #06b6d4;">
           <div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:12px; font-weight:700; color:#34d399;">🛡️ FEDERAL CONTRACTS</span>
-              <span style="font-size:16px; font-weight:800; color:#fff;">${fed.contract_score || 0} <span style="font-size:11px; color:#94a3b8;">/100</span></span>
+              <span style="font-size:12px; font-weight:700; color:#7dd3fc;">🛡️ FEDERAL CONTRACTS</span>
+              <span class="badge-contracts" style="font-size:12px; padding:2px 8px;">${fed.contract_score || 0} / 100</span>
             </div>
-            <div style="font-size:13px; font-weight:700; margin-top:6px; color:${fed.is_defense_contract ? '#f43f5e' : (fed.has_major_contract ? '#34d399' : '#94a3b8')};">
+            <div style="font-size:13px; font-weight:700; margin-top:6px; color:${fed.is_defense_contract ? '#f43f5e' : (fed.has_major_contract ? '#38bdf8' : '#94a3b8')};">
               ${fed.is_defense_contract ? '🛡️ DoD / DEFENSE STRATEGIC' : (fed.has_major_contract ? '🏛️ PRIME US CONTRACTOR' : 'Commercial / Low Fed')}
             </div>
           </div>
@@ -508,15 +622,15 @@ async function loadDeepDive(ticker) {
         <div class="pillar-kpi-card" style="border-top:3px solid #ea580c;">
           <div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:12px; font-weight:700; color:#fb923c;">🔥 THE PELOSI EFFECT</span>
-              <span style="font-size:16px; font-weight:800; color:#fff;">${sm.retail_hype_score || 0} <span style="font-size:11px; color:#94a3b8;">/100</span></span>
+              <span style="font-size:12px; font-weight:700; color:#fed7aa;">🔥 THE PELOSI EFFECT</span>
+              <span class="badge-pelosi" style="font-size:12px; padding:2px 8px;">${sm.retail_hype_score || 0} / 100</span>
             </div>
-            <div style="font-size:13px; font-weight:700; margin-top:6px; color:${pe.is_active ? '#fb923c' : (sm.viral_politician_buzz ? '#38bdf8' : '#94a3b8')};">
-              ${pe.is_active ? '🔥 ' + (pe.intensity || 'ACTIVE') : (sm.viral_politician_buzz ? '⚡ SMART-MONEY BUZZ' : 'Dormant Streams')}
+            <div style="font-size:13px; font-weight:700; margin-top:6px; color:${pe.is_active ? '#fed7aa' : (sm.viral_politician_buzz ? '#38bdf8' : '#94a3b8')};">
+              ${pe.is_active ? '🔥 ' + (pe.intensity ? pe.intensity.replace(/_/g, ' ') : 'ACTIVE VIRAL') : (sm.viral_politician_buzz ? '⚡ SMART-MONEY BUZZ' : 'Dormant Streams')}
             </div>
           </div>
           <div style="font-size:11px; color:#94a3b8;">
-            ${pe.primary_catalyst ? `Catalyst: <strong style="color:#e2e8f0;">${pe.primary_catalyst}</strong>` : `Sentiment: <strong style="color:#34d399;">${sm.sentiment_label || 'NEUTRAL'}</strong>`}
+            ${pe.primary_catalyst ? `Catalyst: <strong style="color:#e2e8f0;">${catInfo.label}</strong>` : `Sentiment: <strong style="color:#34d399;">${sm.sentiment_label || 'NEUTRAL'}</strong>`}
           </div>
         </div>
       </div>
@@ -567,9 +681,22 @@ async function loadDeepDive(ticker) {
         <div style="display:flex; flex-direction:column; gap:20px;">
           <!-- Pillar 1 Dossier -->
           <div class="card-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-              <h3 style="margin:0;">🏛️ US Congressional Activity & Committee Oversight (STOCK Act)</h3>
-              <span class="badge" style="background:#7c3aed; color:#fff; font-size:11px;">Score: ${sm.congress_score || 0}/100</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+              <div>
+                <h3 style="margin:0; display:flex; align-items:center; gap:8px;">
+                  <span>🏛️ US Congressional Activity & Committee Oversight (STOCK Act)</span>
+                </h3>
+                <span style="font-size:12px; color:#94a3b8;">Official Periodic Transaction Reports (PTRs) from US House of Representatives and US Senate.</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                <span class="badge-congress" style="font-size:12px; padding:3px 10px;">Score: ${sm.congress_score || 0}/100</span>
+                <a href="https://www.capitoltrades.com/trades?search=${data.ticker}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-congress" title="View disclosures on CapitolTrades.com">
+                  <span>🏛️ CapitolTrades.com ↗</span>
+                </a>
+                <a href="https://disclosures-clerk.house.gov/PublicDisclosure/FinancialDisclosure" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-congress" title="Official US House Financial Disclosures Database">
+                  <span>US House ↗</span>
+                </a>
+              </div>
             </div>
             ${sm.jurisdiction_match ? `
               <div style="background:rgba(124, 58, 237, 0.15); border:1px solid #7c3aed; padding:10px 14px; border-radius:8px; margin-bottom:12px;">
@@ -587,9 +714,22 @@ async function loadDeepDive(ticker) {
 
           <!-- Pillar 2 Dossier -->
           <div class="card-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-              <h3 style="margin:0;">👔 Corporate C-Suite & SEC Form 4 Insider Conviction</h3>
-              <span class="badge" style="background:#0284c7; color:#fff; font-size:11px;">Score: ${sm.insider_score || 0}/100</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+              <div>
+                <h3 style="margin:0; display:flex; align-items:center; gap:8px;">
+                  <span>👔 Corporate C-Suite & SEC Form 4 Insider Conviction</span>
+                </h3>
+                <span style="font-size:12px; color:#94a3b8;">Mandatory Form 4 open-market filings by corporate officers, directors, and 10% owners.</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                <span class="badge-insider" style="font-size:12px; padding:3px 10px;">Score: ${sm.insider_score || 0}/100</span>
+                <a href="https://www.sec.gov/edgar/browse/?CIK=${data.ticker}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-insider" title="View SEC EDGAR Company Filings">
+                  <span>📑 SEC EDGAR ↗</span>
+                </a>
+                <a href="http://openinsider.com/screener?s=${data.ticker}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-insider" title="View OpenInsider Real-Time Form 4 Screener">
+                  <span>👔 OpenInsider ↗</span>
+                </a>
+              </div>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center; background:#0f172a; padding:10px 14px; border-radius:8px; border:1px solid #1e293b; margin-bottom:10px; font-size:12px;">
               <div>
@@ -616,9 +756,19 @@ async function loadDeepDive(ticker) {
 
           <!-- Pillar 3 Dossier -->
           <div class="card-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-              <h3 style="margin:0;">🛡️ US Federal Government Prime Contracts (USASpending.gov)</h3>
-              <span class="badge" style="background:#059669; color:#fff; font-size:11px;">Score: ${fed.contract_score || 0}/100</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+              <div>
+                <h3 style="margin:0; display:flex; align-items:center; gap:8px;">
+                  <span>🛡️ US Federal Government Prime Contracts (USASpending.gov)</span>
+                </h3>
+                <span style="font-size:12px; color:#94a3b8;">Direct federal procurement awards and obligations from DoD, NASA, and federal departments.</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                <span class="badge-contracts" style="font-size:12px; padding:3px 10px;">Score: ${fed.contract_score || 0}/100</span>
+                <a href="https://www.usaspending.gov/search/?keyword=${encodeURIComponent(data.name || data.ticker)}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-contracts" title="Search Prime Contract Awards on USASpending.gov">
+                  <span>🛡️ USASpending.gov ↗</span>
+                </a>
+              </div>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center; background:#0f172a; padding:10px 14px; border-radius:8px; border:1px solid #1e293b; margin-bottom:10px; font-size:12px;">
               <div>
@@ -643,45 +793,98 @@ async function loadDeepDive(ticker) {
           </div>
 
           <!-- Pillar 4 Dossier -->
-          <div class="card-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-              <h3 style="margin:0;">🔥 The Pelosi Effect & Viral Retail Social Streams</h3>
-              <span class="badge" style="background:#ea580c; color:#fff; font-size:11px;">Hype Score: ${sm.retail_hype_score || 0}/100</span>
+          <div class="card-box pelosi-dossier-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+              <div>
+                <h3 style="margin:0; display:flex; align-items:center; gap:8px;">
+                  <span>🔥 The Pelosi Effect & Viral Retail Social Streams</span>
+                </h3>
+                <span style="font-size:12px; color:#94a3b8;">Real-time retail herd copy-trading velocity, Capitol Hill buzz, and FinTwit momentum tracking.</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                <span class="badge-pelosi" style="font-size:12px; padding:3px 10px;">Hype Score: ${sm.retail_hype_score || 0}/100</span>
+                <a href="https://stocktwits.com/symbol/${data.ticker}" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-pelosi" title="View Real-Time Retail Stream on StockTwits">
+                  <span>💬 StockTwits ↗</span>
+                </a>
+                <a href="https://finance.yahoo.com/quote/${data.ticker}/news/" target="_blank" rel="noopener noreferrer" class="source-link-btn btn-pelosi" title="View Financial News & Media on Yahoo Finance">
+                  <span>📰 Yahoo News ↗</span>
+                </a>
+              </div>
             </div>
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap;">
-              ${pe.is_active ? `<span class="badge-pelosi-viral">🔥 ACTIVE (${pe.intensity || 'VIRAL'})</span>` : (sm.viral_politician_buzz ? `<span class="badge" style="background:#0284c7; color:#fff; font-size:11px;">⚡ Emerging Smart-Money Buzz</span>` : `<span class="badge" style="background:#334155; color:#94a3b8; font-size:11px;">Quiet / Dormant</span>`)}
-              ${pe.primary_catalyst ? `<span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">${pe.primary_catalyst}</span>` : ''}
-              ${pe.lifecycle_stage ? `<span class="badge" style="background:#7c3aed; color:#fff; font-size:10px;">${pe.lifecycle_stage}</span>` : ''}
-              <span class="badge" style="background:#1e293b; color:#34d399; font-size:10px;">Tape: ${sm.sentiment_label || 'NEUTRAL'}</span>
+
+            <!-- Badges Bar -->
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px; flex-wrap:wrap;">
+              ${statusBadge}
+              ${catalystBadge}
+              ${lifecycleBadge}
+              ${tapeBadge}
             </div>
+
+            <!-- Plain English Explanation Box with Commas & Periods -->
+            <div style="background:rgba(15, 23, 42, 0.7); border:1px solid rgba(234, 88, 12, 0.25); border-radius:8px; padding:12px 14px; margin-bottom:14px;">
+              <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.05em; font-weight:700; color:#fb923c; margin-bottom:10px;">
+                📖 Indicator Breakdown & Plain English Meanings
+              </div>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:10px; font-size:12px; line-height:1.5;">
+                <div style="background:#0f172a; padding:10px 12px; border-radius:6px; border:1px solid #1e293b;">
+                  <strong style="color:#38bdf8;">1. Primary Catalyst: ${catInfo.label}</strong>
+                  <p style="margin:4px 0 0 0; color:#cbd5e1; font-size:11px;">${catInfo.explanation}</p>
+                </div>
+                <div style="background:#0f172a; padding:10px 12px; border-radius:6px; border:1px solid #1e293b;">
+                  <strong style="color:#c084fc;">2. Lifecycle Stage: ${lifeInfo.label}</strong>
+                  <p style="margin:4px 0 0 0; color:#cbd5e1; font-size:11px;">${lifeInfo.explanation}</p>
+                </div>
+                <div style="background:#0f172a; padding:10px 12px; border-radius:6px; border:1px solid #1e293b;">
+                  <strong style="color:#34d399;">3. Tape Bias: ${tapeInfo.label}</strong>
+                  <p style="margin:4px 0 0 0; color:#cbd5e1; font-size:11px;">${tapeInfo.explanation}</p>
+                </div>
+                <div style="background:#0f172a; padding:10px 12px; border-radius:6px; border:1px solid #1e293b;">
+                  <strong style="color:#fb923c;">4. Retail Hype Score: ${sm.retail_hype_score || 0} / 100</strong>
+                  <p style="margin:4px 0 0 0; color:#cbd5e1; font-size:11px;">Measures real-time message volume velocity, mentions of high-profile political traders, and retail copy-trading intensity.</p>
+                </div>
+              </div>
+            </div>
+
             ${pe.prominent_figures && pe.prominent_figures.length > 0 ? `
-              <div style="font-size:12px; margin-bottom:6px;">
-                <span style="color:#94a3b8;">Prominent Figures Cited:</span> 
-                <strong style="color:#f8fafc;">${pe.prominent_figures.join(', ')}</strong>
+              <div style="background:#0f172a; border:1px solid #1e293b; border-radius:8px; padding:10px 14px; margin-bottom:12px; font-size:12px;">
+                <span style="color:#94a3b8; font-weight:600;">Prominent Figures Cited in Flow:</span>
+                <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:6px;">
+                  ${pe.prominent_figures.map(f => `<span class="badge" style="background:rgba(234, 88, 12, 0.15); border:1px solid rgba(234, 88, 12, 0.4); color:#fed7aa; font-size:11px; padding:2px 8px; border-radius:9999px;">👤 ${f}</span>`).join('')}
+                </div>
               </div>
             ` : ''}
+
             ${pe.narrative_summary ? `
-              <p style="font-size:12px; color:#cbd5e1; background:#0f172a; padding:10px 14px; border-radius:6px; border-left:3px solid #f59e0b; margin:8px 0; line-height:1.5;">
-                ${pe.narrative_summary}
-              </p>
+              <div style="font-size:12px; color:#cbd5e1; background:rgba(15, 23, 42, 0.85); padding:12px 16px; border-radius:8px; border-left:3px solid #ea580c; margin-bottom:14px; line-height:1.55;">
+                <strong style="color:#fb923c;">Narrative Intelligence:</strong> ${pe.narrative_summary}
+              </div>
             ` : ''}
+
             ${pe.verbatim_quotes && pe.verbatim_quotes.length > 0 ? `
-              <div style="font-size:12px; margin-top:10px;">
-                <strong style="color:#94a3b8;">Live Trader Stream Quotes:</strong>
-                <ul style="padding-left:16px; margin:6px 0 0 0; font-size:11px;">
+              <div style="margin-top:12px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                  <strong style="font-size:12px; color:#94a3b8;">Live Trader Stream Captures (Verbatim):</strong>
+                  <span style="font-size:11px; color:#64748b;">Source: Public StockTwits API Stream</span>
+                </div>
+                <ul style="padding-left:16px; margin:0; font-size:11px; line-height:1.6;">
                   ${quotesList}
                 </ul>
               </div>
             ` : ''}
+
             ${buzzBadges ? `
-              <div style="margin-top:10px;">
-                <span style="font-size:11px; color:#64748b; margin-right:6px;">Buzz Keywords:</span>
+              <div style="margin-top:14px; padding-top:10px; border-top:1px solid #1e293b; display:flex; align-items:center; flex-wrap:wrap; gap:6px;">
+                <span style="font-size:11px; color:#64748b; margin-right:4px;">Detected Smart-Money Buzz Tags:</span>
                 ${buzzBadges}
               </div>
             ` : ''}
+
             ${headlinesList ? `
-              <div style="margin-top:10px; border-top:1px solid #1e293b; padding-top:8px;">
-                <span style="font-size:11px; color:#94a3b8; font-weight:700;">Analyzed Financial Headlines:</span>
+              <div style="margin-top:12px; border-top:1px solid #1e293b; padding-top:10px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                  <span style="font-size:11px; color:#94a3b8; font-weight:700;">Analyzed Financial Headlines:</span>
+                  <span style="font-size:10px; color:#64748b;">Source: Yahoo Finance Media Stream</span>
+                </div>
                 <ul style="padding-left:14px; margin:4px 0 0 0;">
                   ${headlinesList}
                 </ul>

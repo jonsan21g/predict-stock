@@ -1701,31 +1701,129 @@ body {
 }
 
 .badge-committee {
-  background: #7c3aed;
-  color: #fff;
-  font-size: 10px;
+  background: rgba(139, 92, 246, 0.22) !important;
+  border: 1px solid #8b5cf6 !important;
+  color: #c4b5fd !important;
+  font-size: 11px;
   font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.25);
 }
 
 .badge-defense {
-  background: #dc2626;
-  color: #fff;
-  font-size: 10px;
+  background: rgba(244, 63, 94, 0.22) !important;
+  border: 1px solid #f43f5e !important;
+  color: #fda4af !important;
+  font-size: 11px;
   font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 0 8px rgba(244, 63, 94, 0.25);
 }
 
 .badge-pelosi-viral {
-  background: #ea580c;
-  color: #fff;
-  font-size: 10px;
+  background: rgba(234, 88, 12, 0.25) !important;
+  border: 1px solid #ea580c !important;
+  color: #fed7aa !important;
+  font-size: 11px;
   font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 0 12px rgba(234, 88, 12, 0.4);
   animation: pulse-orange 2s infinite;
+}
+
+.badge-catalyst-tag {
+  background: rgba(56, 189, 248, 0.15) !important;
+  border: 1px solid #38bdf8 !important;
+  color: #bae6fd !important;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
+}
+
+.badge-lifecycle-tag {
+  background: rgba(168, 85, 247, 0.18) !important;
+  border: 1px solid #a855f7 !important;
+  color: #e9d5ff !important;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.2);
+}
+
+/* Deep Dive & Dossier Primary Source External Links */
+.source-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: #cbd5e1;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.source-link-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+}
+
+.source-link-btn.btn-congress:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: #8b5cf6;
+  color: #f1f5f9;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.35);
+}
+
+.source-link-btn.btn-insider:hover {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: #f59e0b;
+  color: #f1f5f9;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.35);
+}
+
+.source-link-btn.btn-contracts:hover {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: #06b6d4;
+  color: #f1f5f9;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.35);
+}
+
+.source-link-btn.btn-pelosi:hover {
+  background: rgba(234, 88, 12, 0.2);
+  border-color: #ea580c;
+  color: #f1f5f9;
+  box-shadow: 0 0 10px rgba(234, 88, 12, 0.35);
+}
+
+.pelosi-dossier-card {
+  border-left: 4px solid #ea580c !important;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 20, 15, 0.4)) !important;
 }
 
 @keyframes pulse-orange {
