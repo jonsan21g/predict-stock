@@ -92,7 +92,7 @@ The following matrix provides 100% bidirectional traceability between functional
 * **Description**: The system shall constrain its operational trading, scanning, and backtesting universe strictly to 50 pre-screened US liquid technology, semiconductor, AI, and cloud infrastructure leaders.
 * **Preconditions**: `data/watchlist.json` must exist, be valid JSON, and contain exactly 50 equity definitions.
 * **Universe Segregation**:
-  1. *Pure Memory & Storage (6)*: `MU`, `WDC`, `STX`, `SKHY`, `SNDK`, `PSTG`
+  1. *Pure Memory & Storage (6)*: `MU`, `WDC`, `STX`, `SKHY`, `SNDK`, `NTAP`
   2. *Capital Equipment, EDA & Advanced Packaging (9)*: `LRCX`, `AMAT`, `KLAC`, `ASML` (ADR), `TXN`, `SNPS`, `CDNS`, `TER`, `ONTO`
   3. *AI Compute, Accelerators & Data Platforms (10)*: `NVDA`, `AMD`, `SMCI`, `DELL`, `INTC`, `TSM` (ADR), `PLTR`, `CRWV`, `SNOW`, `MDB`
   4. *Datacenter Infrastructure & Power (5)*: `ANET`, `VRT`, `ETN`, `ALAB`, `MPWR`

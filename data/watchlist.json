@@ -38,11 +38,11 @@
       "role": "Flash memory storage and embedded memory"
     },
     {
-      "ticker": "PSTG",
-      "name": "Pure Storage Inc.",
+      "ticker": "NTAP",
+      "name": "NetApp Inc.",
       "category": "Pure Memory & Storage",
-      "exchange": "NYSE",
-      "role": "Enterprise all-flash storage arrays for AI datacenters"
+      "exchange": "NASDAQ",
+      "role": "Global hybrid cloud and enterprise all-flash data storage titan"
     },
     {
       "ticker": "LRCX",

@@ -34,7 +34,7 @@ All assets are actively traded with deep liquidity on major US exchanges (**NASD
 
 | Segment | Tickers | Fundamental Rationale & Wave Profile |
 | :--- | :--- | :--- |
-| **Pure Memory & Storage (6)** | `MU`, `WDC`, `STX`, `SKHY`, `SNDK`, `PSTG` | Highly cyclical; supply/demand inflection points trigger aggressive, multi-day institutional repricing runs. |
+| **Pure Memory & Storage (6)** | `MU`, `WDC`, `STX`, `SKHY`, `SNDK`, `NTAP` | Highly cyclical; supply/demand inflection points trigger aggressive, multi-day institutional repricing runs. |
 | **Capital Equipment & EDA (9)** | `LRCX`, `AMAT`, `KLAC`, `ASML` (ADR), `TXN`, `SNPS`, `CDNS`, `TER`, `ONTO` | Monopolistic/oligopolistic equipment & EDA software suppliers for fabs. High operating margins, steady buybacks. |
 | **AI Compute & Accelerators (10)** | `NVDA`, `AMD`, `SMCI`, `DELL`, `INTC`, `TSM` (ADR), `PLTR`, `CRWV`, `SNOW`, `MDB` | Core drivers of enterprise and defense AI. High institutional block volume and high beta. |
 | **Datacenter Power & Infrastructure (5)** | `ANET`, `VRT`, `ETN`, `ALAB`, `MPWR` | Physical bottlenecks of AI: Ethernet networking, liquid cooling, grid transformers, power ICs. |
