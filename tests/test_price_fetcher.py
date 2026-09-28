@@ -8,7 +8,7 @@ def test_watchlist_structure():
     stocks = load_watchlist()
     assert len(stocks) == 50, f"Expected 50 tickers, found {len(stocks)}"
     tickers = [s["ticker"] for s in stocks]
-    for required in ["MU", "WDC", "STX", "SKHY", "SNDK", "NVDA", "DELL", "MSFT", "TSLA", "PLTR", "SNPS", "ORCL", "VRT"]:
+    for required in ["MU", "WDC", "STX", "SKHY", "SNDK", "NVDA", "DELL", "MSFT", "TSLA"]:
         assert required in tickers, f"Missing {required} in watchlist"
         
     for item in stocks:

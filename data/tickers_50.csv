@@ -1,0 +1,51 @@
+ticker,name,category,exchange,role
+MU,Micron Technology Inc.,Pure Memory & Storage,NASDAQ,"US pure-play DRAM, NAND and HBM memory leader"
+WDC,Western Digital Corp.,Pure Memory & Storage,NASDAQ,"Flash memory, NAND and enterprise storage"
+STX,Seagate Technology Holdings plc,Pure Memory & Storage,NASDAQ,High-capacity data center mass storage
+SKHY,SK hynix Inc.,Pure Memory & Storage,NASDAQ,Global memory & HBM titan
+SNDK,Sandisk Corporation,Pure Memory & Storage,NASDAQ,Flash memory storage and embedded memory
+NTAP,NetApp Inc.,Pure Memory & Storage,NASDAQ,Global hybrid cloud and enterprise all-flash data storage titan
+LRCX,Lam Research Corp.,Capital Equipment & EDA,NASDAQ,Etch & deposition equipment for 3D NAND & DRAM fabs
+AMAT,Applied Materials Inc.,Capital Equipment & EDA,NASDAQ,Largest semiconductor equipment maker globally
+KLAC,KLA Corporation,Capital Equipment & EDA,NASDAQ,Process yield inspection and defect analysis equipment
+ASML,ASML Holding N.V. (ADR),Capital Equipment & EDA,NASDAQ,Global monopoly on EUV lithography machines
+TXN,Texas Instruments Inc.,Capital Equipment & EDA,NASDAQ,Analog and embedded semiconductor cash flow fortress
+SNPS,Synopsys Inc.,Capital Equipment & EDA,NASDAQ,EDA chip design software and silicon IP co-monopoly
+CDNS,Cadence Design Systems Inc.,Capital Equipment & EDA,NASDAQ,Electronic design automation software and verification systems
+TER,Teradyne Inc.,Capital Equipment & EDA,NASDAQ,Automated testing equipment for advanced semiconductor fabs
+ONTO,Onto Innovation Inc.,Capital Equipment & EDA,NYSE,Optical metrology & inspection for HBM packaging & TSMC CoWoS
+NVDA,NVIDIA Corporation,AI Compute & Systems,NASDAQ,"GPU compute, AI accelerator & CUDA software ecosystem"
+AMD,Advanced Micro Devices Inc.,AI Compute & Systems,NASDAQ,High-beta x86 CPU and MI300 AI accelerator provider
+SMCI,Super Micro Computer Inc.,AI Compute & Systems,NASDAQ,High-density modular liquid-cooled AI server racks
+DELL,Dell Technologies Inc.,AI Compute & Systems,NYSE,Enterprise AI servers and storage infrastructure
+INTC,Intel Corporation,AI Compute & Systems,NASDAQ,Leading US foundry and processor manufacturer
+TSM,Taiwan Semiconductor Manufacturing Co. (ADR),AI Compute & Systems,NYSE,Foundry fabricating >90% of global advanced AI chips
+PLTR,Palantir Technologies Inc.,AI Compute & Systems,NYSE,"Defense AI, US intelligence & enterprise data analytics"
+CRWV,CoreWeave Inc.,AI Compute & Systems,NASDAQ,Specialized high-density GPU cloud provider for AI training
+SNOW,Snowflake Inc.,AI Compute & Systems,NYSE,Enterprise AI data cloud platform and data sharing network
+MDB,MongoDB Inc.,AI Compute & Systems,NASDAQ,Modern multi-cloud document database platform for AI apps
+ANET,Arista Networks Inc.,Datacenter Infrastructure & Power,NYSE,AI datacenter Ethernet switching for cloud hyperscalers
+VRT,Vertiv Holdings Co,Datacenter Infrastructure & Power,NYSE,"Liquid cooling, thermal management & power infrastructure for AI racks"
+ETN,Eaton Corporation plc,Datacenter Infrastructure & Power,NYSE,"Electrical power management, switchgear and transformers for datacenters"
+ALAB,Astera Labs Inc.,Datacenter Infrastructure & Power,NASDAQ,"PCIe, CXL and Ethernet connectivity chips for AI server infrastructure"
+MPWR,Monolithic Power Systems Inc.,Datacenter Infrastructure & Power,NASDAQ,High-efficiency semiconductor power management ICs for AI GPUs
+AVGO,Broadcom Inc.,Connectivity & Custom Silicon,NASDAQ,Custom AI ASICs and data center networking silicon
+QCOM,Qualcomm Inc.,Connectivity & Custom Silicon,NASDAQ,"Wireless, mobile processors and edge AI silicon"
+ARM,Arm Holdings plc (ADR),Connectivity & Custom Silicon,NASDAQ,Power-efficient CPU architecture licensor
+MRVL,Marvell Technology Inc.,Connectivity & Custom Silicon,NASDAQ,High-speed electro-optics and memory interconnects
+ADI,Analog Devices Inc.,Connectivity & Custom Silicon,NASDAQ,"Precision analog, mixed-signal and edge processing chips"
+NXPI,NXP Semiconductors N.V.,Connectivity & Custom Silicon,NASDAQ,"Automotive, industrial IoT and secure connectivity processing"
+ON,ON Semiconductor Corp.,Connectivity & Custom Silicon,NASDAQ,Silicon carbide (SiC) and intelligent power semiconductors
+MSFT,Microsoft Corporation,Mega-Cap & Enterprise Cloud,NASDAQ,"AAA balance sheet, Azure Cloud and enterprise AI"
+AAPL,Apple Inc.,Mega-Cap & Enterprise Cloud,NASDAQ,Consumer silicon ecosystem with world-class cash reserves
+GOOGL,Alphabet Inc.,Mega-Cap & Enterprise Cloud,NASDAQ,"Google Cloud, search monopoly, and custom TPU silicon"
+AMZN,Amazon.com Inc.,Mega-Cap & Enterprise Cloud,NASDAQ,AWS cloud infrastructure and hyperscale server demand
+META,Meta Platforms Inc.,Mega-Cap & Enterprise Cloud,NASDAQ,Open-source AI leader and massive compute spender
+TSLA,Tesla Inc.,Mega-Cap & Enterprise Cloud,NASDAQ,"Autonomous driving, AI Dojo compute, high-beta momentum"
+SPCX,Space Exploration Technologies Corp / ETF,Mega-Cap & Enterprise Cloud,NASDAQ,"Aerospace, commercial space and advanced tech exposure"
+ORCL,Oracle Corporation,Mega-Cap & Enterprise Cloud,NYSE,OCI cloud datacenters and mission-critical enterprise databases
+NOW,ServiceNow Inc.,Mega-Cap & Enterprise Cloud,NYSE,Enterprise AI workflow automation software and digital operations
+CRM,Salesforce Inc.,Mega-Cap & Enterprise Cloud,NYSE,Autonomous enterprise AI agents (Agentforce) and cloud CRM
+PANW,Palo Alto Networks Inc.,Mega-Cap & Enterprise Cloud,NASDAQ,Premier enterprise cybersecurity platform and federal defense
+CRWD,CrowdStrike Holdings Inc.,Mega-Cap & Enterprise Cloud,NASDAQ,Cloud-native endpoint protection and threat intelligence
+NET,Cloudflare Inc.,Mega-Cap & Enterprise Cloud,NYSE,"Global cloud security, edge computing and AI inference network"

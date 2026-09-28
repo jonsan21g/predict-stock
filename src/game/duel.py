@@ -2,7 +2,7 @@
 duel.py - 5-Day "Player vs. Bot" Paper Trading Duel Engine.
 Horizon: Monday Sep 28 to Friday Oct 2, 2026, 11:00 PM CET (21:00 UTC).
 Starting Capital: $30,000 USD each.
-Playing Field: 50 US Tech, Semiconductor, AI & Cloud Leaders.
+Playing Field: 27 US Tech & Memory Leaders.
 Rules: Long only (no shorting). Market execution. Total allocation freedom.
 Bot transparency: Full rationale and outside-the-tool catalyst disclosures logged.
 """
@@ -51,7 +51,7 @@ def initialize_game_state(force_reset: bool = False) -> Dict[str, Any]:
         "initial_capital": INITIAL_BANKROLL,
         "rules": {
             "starting_cash": INITIAL_BANKROLL,
-            "allowed_universe_count": 50,
+            "allowed_universe_count": 27,
             "shorting_allowed": False,
             "allocation_limits": "None (Total Freedom)",
             "end_time_cet": "Friday Oct 2, 2026 at 23:00 CET"
@@ -216,7 +216,7 @@ def execute_player_order(
     watchlist = load_watchlist()
     valid_tickers = {s["ticker"] for s in watchlist}
     if ticker not in valid_tickers:
-        raise ValueError(f"Ticker {ticker} is not part of the {len(valid_tickers)}-stock playing field.")
+        raise ValueError(f"Ticker {ticker} is not part of the 50-stock playing field.")
 
     if shares <= 0:
         raise ValueError("Share count must be greater than 0.")
@@ -312,7 +312,7 @@ def bot_evaluate_turn(
     Autonomous decision engine for the Bot.
     1. Evaluates existing positions: checks profit targets (+3.5%/+6.0%), stop loss (-2.5%),
        or momentum stagnation, liquidating when appropriate.
-    2. Identifies emerging wave opportunities across the 50 universe.
+    2. Identifies emerging wave opportunities across the 27 universe.
     3. Factors in smart-money footprints, financial news velocity, and external catalysts.
     4. Formulates a fully transparent disclosure thesis and executes.
     """

@@ -2,6 +2,8 @@
 let currentMode = "eod";
 let allRadarData = [];
 let activeCategory = "ALL";
+let currentSortColumn = "composite_score";
+let currentSortDirection = "desc";
 let deepDiveChart = null;
 let backtestChart = null;
 
@@ -47,7 +49,7 @@ function showTab(tabId) {
 
 async function loadRadar(refresh = false) {
   const tbody = document.getElementById("radar-tbody");
-  tbody.innerHTML = `<tr><td colspan="13" class="loading-cell" style="text-align:center; padding: 24px; color:#94a3b8;">Scanning 50 US Tech, AI & Cloud Leaders for Wave Ignition...</td></tr>`;
+  tbody.innerHTML = `<tr><td colspan="13" class="loading-cell" style="text-align:center; padding: 24px; color:#94a3b8;">Scanning 50 US Tech & Momentum Leaders for Wave Ignition...</td></tr>`;
 
   try {
     const res = await fetch(`/api/radar?mode=${currentMode}&refresh=${refresh}`);
@@ -55,6 +57,7 @@ async function loadRadar(refresh = false) {
     allRadarData = data;
 
     populateDropdowns(data);
+    updateSortIndicators();
     renderRadarTable();
   } catch (err) {
     tbody.innerHTML = `<tr><td colspan="13" style="text-align:center; color:#f43f5e; padding: 20px;">Error loading radar data: ${err}</td></tr>`;
@@ -88,18 +91,66 @@ function filterCategory(cat) {
   renderRadarTable();
 }
 
+function sortRadarBy(column) {
+  if (currentSortColumn === column) {
+    currentSortDirection = currentSortDirection === "asc" ? "desc" : "asc";
+  } else {
+    currentSortColumn = column;
+    if (column === "ticker" || column === "category") {
+      currentSortDirection = "asc";
+    } else {
+      currentSortDirection = "desc";
+    }
+  }
+  updateSortIndicators();
+  renderRadarTable();
+}
+
+function updateSortIndicators() {
+  const columns = ["ticker", "category", "current_price", "change_pct", "wave_probability", "composite_score"];
+  columns.forEach(col => {
+    const icon = document.getElementById(`sort-${col}`);
+    const th = icon ? icon.closest("th") : null;
+    if (icon && th) {
+      if (col === currentSortColumn) {
+        th.classList.add("active-sort");
+        icon.textContent = currentSortDirection === "asc" ? "▲" : "▼";
+      } else {
+        th.classList.remove("active-sort");
+        icon.textContent = "↕";
+      }
+    }
+  });
+}
+
 function renderRadarTable() {
   const tbody = document.getElementById("radar-tbody");
   tbody.innerHTML = "";
 
-  const filtered = activeCategory === "ALL" 
-    ? allRadarData 
+  let filtered = activeCategory === "ALL" 
+    ? [...allRadarData] 
     : allRadarData.filter(d => d.category === activeCategory);
 
   if (filtered.length === 0) {
     tbody.innerHTML = `<tr><td colspan="13" style="text-align:center; padding: 24px; color:#94a3b8;">No stocks in this category.</td></tr>`;
     return;
   }
+
+  // Multi-column sorting
+  filtered.sort((a, b) => {
+    let valA = a[currentSortColumn];
+    let valB = b[currentSortColumn];
+
+    if (valA === undefined || valA === null) valA = (typeof valB === "number" ? 0 : "");
+    if (valB === undefined || valB === null) valB = (typeof valA === "number" ? 0 : "");
+
+    if (typeof valA === "string" || typeof valB === "string") {
+      const cmp = String(valA).localeCompare(String(valB), undefined, { numeric: true, sensitivity: "base" });
+      return currentSortDirection === "asc" ? cmp : -cmp;
+    } else {
+      return currentSortDirection === "asc" ? (valA - valB) : (valB - valA);
+    }
+  });
 
   filtered.forEach((item, idx) => {
     const tr = document.createElement("tr");
@@ -118,13 +169,13 @@ function renderRadarTable() {
 
     const sm = item.smart_money || {};
     let badges = [];
-    if (sm.jurisdiction_match) badges.push(`<span class="badge" style="background:#7c3aed; color:#fff;" title="High Congressional Committee Jurisdiction Match">🏛️ Committee Match</span>`);
-    else if (sm.politician_buy) badges.push(`<span title="Recent US Congress Buy">🏛️ Congress</span>`);
-    if (sm.insider_cluster) badges.push(`<span title="Executive Cluster Buy">👔 ClusterBuy</span>`);
-    else if (sm.insider_buy) badges.push(`<span title="Insider Buy">👔 Insider</span>`);
-    if (sm.is_pelosi_effect) badges.push(`<span class="badge" style="background:#ea580c; color:#fff;" title="Active Pelosi Effect Viral Retail Herd">🔥 Pelosi Effect</span>`);
-    else if (sm.sentiment_label === "BULLISH") badges.push(`<span title="Positive News Velocity">💬 Bullish</span>`);
-    if (sm.contracts && sm.contracts.has_major_contract) badges.push(`<span class="badge" style="background:#059669; color:#fff;" title="Prime US Federal Government Contractor ($25M+ Awards)">🛡️ Fed Contract</span>`);
+    if (sm.jurisdiction_match) badges.push(`<span class="badge-congress" title="High Congressional Committee Jurisdiction Match">🏛️ Committee Match</span>`);
+    else if (sm.politician_buy) badges.push(`<span class="badge-congress" title="Recent US Congress Buy">🏛️ Congress</span>`);
+    if (sm.insider_cluster) badges.push(`<span class="badge-cluster" title="Executive Cluster Buy">👔 ClusterBuy</span>`);
+    else if (sm.insider_buy) badges.push(`<span class="badge-insider" title="Insider Buy">👔 Insider</span>`);
+    if (sm.is_pelosi_effect) badges.push(`<span class="badge-pelosi" title="Active Pelosi Effect Viral Retail Herd">🔥 Pelosi Effect</span>`);
+    else if (sm.sentiment_label === "BULLISH") badges.push(`<span class="badge-sentiment-bullish" title="Positive News Velocity">💬 Bullish</span>`);
+    if (sm.contracts && sm.contracts.has_major_contract) badges.push(`<span class="badge-contracts" title="Prime US Federal Government Contractor ($25M+ Awards)">🛡️ Fed Contract</span>`);
 
     tr.innerHTML = `
       <td>${idx + 1}</td>

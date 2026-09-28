@@ -28,18 +28,17 @@ A sustained multi-day "wave" in a mega-cap or semiconductor leader does not occu
 
 ---
 
-## 2. Asset Universe: 50 Verified US Equities
+## 2. Asset Universe: 27 Verified US Equities
 
 All assets are actively traded with deep liquidity on major US exchanges (**NASDAQ / NYSE**):
 
 | Segment | Tickers | Fundamental Rationale & Wave Profile |
 | :--- | :--- | :--- |
-| **Pure Memory & Storage (6)** | `MU`, `WDC`, `STX`, `SKHY`, `SNDK`, `NTAP` | Highly cyclical; supply/demand inflection points trigger aggressive, multi-day institutional repricing runs. |
-| **Capital Equipment & EDA (9)** | `LRCX`, `AMAT`, `KLAC`, `ASML` (ADR), `TXN`, `SNPS`, `CDNS`, `TER`, `ONTO` | Monopolistic/oligopolistic equipment & EDA software suppliers for fabs. High operating margins, steady buybacks. |
-| **AI Compute & Accelerators (10)** | `NVDA`, `AMD`, `SMCI`, `DELL`, `INTC`, `TSM` (ADR), `PLTR`, `CRWV`, `SNOW`, `MDB` | Core drivers of enterprise and defense AI. High institutional block volume and high beta. |
-| **Datacenter Power & Infrastructure (5)** | `ANET`, `VRT`, `ETN`, `ALAB`, `MPWR` | Physical bottlenecks of AI: Ethernet networking, liquid cooling, grid transformers, power ICs. |
-| **Connectivity & Custom Silicon (7)** | `AVGO`, `QCOM`, `ARM` (ADR), `MRVL`, `ADI`, `NXPI`, `ON` | Data center interconnects, optical DSPs, high-margin analog and silicon carbide power chips. |
-| **Mega-Cap Anchors & Enterprise Cloud (13)** | `MSFT`, `AAPL`, `GOOGL`, `AMZN`, `META`, `TSLA`, `SPCX`, `ORCL`, `NOW`, `CRM`, `PANW`, `CRWD`, `NET` | Unshakable balance sheets (AAA/AA credit rating), cloud computing, and mission-critical cybersecurity. |
+| **Pure Memory & Storage** | `MU`, `WDC`, `STX`, `SKHY`, `SNDK` | Highly cyclical; supply/demand inflection points trigger aggressive, multi-day institutional repricing runs. |
+| **Capital Equipment (Picks & Shovels)** | `LRCX`, `AMAT`, `KLAC`, `ASML` (ADR), `TXN` | Monopolistic/oligopolistic equipment suppliers for 3D NAND, DRAM, and advanced nodes. High operating margins, steady buybacks. |
+| **AI Compute & Enterprise Systems** | `NVDA`, `AMD`, `SMCI`, `DELL`, `INTC`, `TSM` (ADR) | Core drivers of data center capex. High institutional block volume and high beta. |
+| **Connectivity & Custom Silicon** | `AVGO`, `QCOM`, `ARM` (ADR), `MRVL` | Data center interconnects, optical DSPs, edge AI. High correlation with Congressional trade disclosures. |
+| **Mega-Cap Anchors & High-Beta Momentum** | `MSFT`, `AAPL`, `GOOGL`, `AMZN`, `META`, `TSLA`, `SPCX` | Unshakable balance sheets (AAA/AA credit rating). Massive cash generation; provide safe ballast and liquid swing setups. |
 
 ---
 
@@ -66,7 +65,7 @@ All assets are actively traded with deep liquidity on major US exchanges (**NASD
 - **NFR-01: 100% Local & Self-Contained Execution**
   - Zero external LLM calls or cloud API subscriptions at runtime. All ML models, heuristics, and parsers must execute on the local laptop CPU.
 - **NFR-02: Performance & Latency**
-  - Full scan and classification of all 50 stocks must complete within **$< 5$ seconds**.
+  - Full scan and classification of all 27 stocks must complete within **$< 5$ seconds**.
 - **NFR-03: Zero Ongoing Cost**
   - Built entirely on free, open-source Python libraries (`yfinance`, `pandas`, `scipy`, `scikit-learn`/`lightgbm`, `requests`, `beautifulsoup4`).
 - **NFR-04: Data Caching & Offline Resilience**
@@ -105,7 +104,7 @@ All assets are actively traded with deep liquidity on major US exchanges (**NASD
   - Target calibrated 3–5 day expansions ($+3.5\%$ to $+6.0\%$) with a strict 5-day time stop.
   - Dynamically trail the 5-day EMA instead of premature break-even stops.
   - Require Smart Money (Politician / Insider) and Social Momentum confirmation.
-  - Restrict strictly to 50 market-leading US tech, semiconductor, AI, and cloud titans.
+  - Restrict strictly to 27 market-leading US tech and semiconductor titans.
 
 ---
 
@@ -177,7 +176,7 @@ $$Y_t = \begin{cases}
 
 ## 7. Phased Implementation Roadmap
 
-- **Phase 1: Ingestion Foundation**: Set up `requirements.txt`, `data/watchlist.json` (50 tickers), and `src/fetchers/price_fetcher.py` with multi-timeframe caching.
+- **Phase 1: Ingestion Foundation**: Set up `requirements.txt`, `data/watchlist.json` (27 tickers), and `src/fetchers/price_fetcher.py` with multi-timeframe caching.
 - **Phase 2: Smart Money Feeds**: Implement `src/fetchers/politician_data.py` (STOCK Act) and `src/fetchers/insider_data.py` (SEC Form 4).
 - **Phase 3: Social & Feature Engine**: Build `src/fetchers/social_sentiment.py` and `src/analysis/features.py`.
 - **Phase 4: Wave Detector & Backtester**: Implement `src/analysis/wave_detector.py` and `src/backtest/backtester.py` to validate historical edge across 2021–2026 data.
@@ -209,7 +208,7 @@ To ensure architectural integrity and prevent regressions, all components must s
 To validate and gamify the quantitative Wave Rider engine, the platform incorporates a live **5-Day "Player vs. Bot" Paper Trading Duel**:
 - **Match Horizon**: Monday Sep 28 to Friday Oct 2, 2026, at 23:00 CET (21:00 UTC).
 - **Starting Capital**: \$30,000 USD each (Player and Bot).
-- **Playing Field**: Strictly constrained to the 50 US Tech, AI & Cloud universe.
+- **Playing Field**: Strictly constrained to the 27 US Tech & Memory universe.
 - **Rule Set**: Long-only (no shorting), live market price fills, total allocation freedom (no concentration caps).
 - **Winning Metric**: Highest Total Net Equity (Liquid Cash + Mark-to-Market Stock Value) at Friday Oct 2, 23:00 CET.
 
