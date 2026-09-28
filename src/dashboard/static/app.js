@@ -47,7 +47,7 @@ function showTab(tabId) {
 
 async function loadRadar(refresh = false) {
   const tbody = document.getElementById("radar-tbody");
-  tbody.innerHTML = `<tr><td colspan="13" class="loading-cell" style="text-align:center; padding: 24px; color:#94a3b8;">Scanning 27 US Tech & Memory Leaders for Wave Ignition...</td></tr>`;
+  tbody.innerHTML = `<tr><td colspan="13" class="loading-cell" style="text-align:center; padding: 24px; color:#94a3b8;">Scanning 50 US Tech, AI & Cloud Leaders for Wave Ignition...</td></tr>`;
 
   try {
     const res = await fetch(`/api/radar?mode=${currentMode}&refresh=${refresh}`);

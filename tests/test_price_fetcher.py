@@ -6,9 +6,9 @@ from src.fetchers.price_fetcher import load_watchlist, get_daily_history, get_pr
 
 def test_watchlist_structure():
     stocks = load_watchlist()
-    assert len(stocks) == 27, f"Expected 27 tickers, found {len(stocks)}"
+    assert len(stocks) == 50, f"Expected 50 tickers, found {len(stocks)}"
     tickers = [s["ticker"] for s in stocks]
-    for required in ["MU", "WDC", "STX", "SKHY", "SNDK", "NVDA", "DELL", "MSFT", "TSLA"]:
+    for required in ["MU", "WDC", "STX", "SKHY", "SNDK", "NVDA", "DELL", "MSFT", "TSLA", "PLTR", "SNPS", "ORCL", "VRT"]:
         assert required in tickers, f"Missing {required} in watchlist"
         
     for item in stocks:

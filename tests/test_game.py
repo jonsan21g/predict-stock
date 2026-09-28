@@ -61,7 +61,7 @@ def test_player_order_insufficient_cash():
 
 
 def test_player_order_invalid_ticker():
-    with pytest.raises(ValueError, match="not part of the 27-stock playing field"):
+    with pytest.raises(ValueError, match="not part of the 50-stock playing field"):
         execute_player_order(action="BUY", ticker="RANDOM_CO", shares=10, force_price=10.0)
 
 

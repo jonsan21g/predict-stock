@@ -21,7 +21,7 @@ Wave Rider is an automated quantitative screening, pattern classification, backt
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                       WAVE RIDER SYSTEM PIPELINE                            │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│  [1. Universe Ingestion]  -->  27 US Tech & Memory Leaders (NASDAQ/NYSE)   │
+│  [1. Universe Ingestion]  -->  50 US Tech, AI & Cloud Leaders (NASDAQ/NYSE) │
 │  [2. Smart Money Ingest]  -->  STOCK Act, Form 4 Insiders, USASpending.gov  │
 │  [3. Social & Tape Buzz]  -->  StockTwits Streams & The Pelosi Effect      │
 │  [4. Wave Detector]       -->  RVOL >= 1.50x, CRR >= 0.68, Range Breakouts │
@@ -43,7 +43,7 @@ The following matrix provides 100% bidirectional traceability between functional
 
 | Req ID | Requirement Title | Epic | Implementation File | Test Case ID | Automated Test Function |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **`FR-01-01`** | Curated 27 Blue-Chip Universe | Epic 1 | `data/watchlist.json` | `TC-ING-01` | [`tests/test_price_fetcher.py::test_watchlist_structure`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_price_fetcher.py) |
+| **`FR-01-01`** | Curated 50 Blue-Chip Universe | Epic 1 | `data/watchlist.json` | `TC-ING-01` | [`tests/test_price_fetcher.py::test_watchlist_structure`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_price_fetcher.py) |
 | **`FR-01-02`** | Daily OHLCV Price Fetcher & Caching | Epic 1 | `src/fetchers/price_fetcher.py` | `TC-ING-02` | [`tests/test_price_fetcher.py::test_daily_history_fetch`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_price_fetcher.py) |
 | **`FR-01-03`** | Pre-Market Quotes & Gap Detection | Epic 1 | `src/fetchers/price_fetcher.py` | `TC-ING-03` | [`tests/test_price_fetcher.py::test_premarket_quote`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_price_fetcher.py) |
 | **`FR-02-01`** | Congressional STOCK Act Parser | Epic 2 | `src/fetchers/politician_data.py` | `TC-SM-01` | [`tests/test_smart_money.py::test_parse_trade_row`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_smart_money.py) |
@@ -88,15 +88,16 @@ The following matrix provides 100% bidirectional traceability between functional
 
 ### Epic 1: Asset Universe & Data Ingestion Foundation
 
-#### `FR-01-01`: 27 Fortress Equities Universe
-* **Description**: The system shall constrain its operational trading, scanning, and backtesting universe strictly to 27 pre-screened US liquid technology, semiconductor, and data infrastructure leaders.
-* **Preconditions**: `data/watchlist.json` must exist, be valid JSON, and contain exactly 27 equity definitions.
+#### `FR-01-01`: 50 Fortress Equities Universe
+* **Description**: The system shall constrain its operational trading, scanning, and backtesting universe strictly to 50 pre-screened US liquid technology, semiconductor, AI, and cloud infrastructure leaders.
+* **Preconditions**: `data/watchlist.json` must exist, be valid JSON, and contain exactly 50 equity definitions.
 * **Universe Segregation**:
-  1. *Pure Memory & Storage (5)*: `MU`, `WDC`, `STX`, `SKHY`, `SNDK`
-  2. *Capital Equipment / Picks & Shovels (5)*: `LRCX`, `AMAT`, `KLAC`, `ASML` (ADR), `TXN`
-  3. *AI Compute & Enterprise Systems (6)*: `NVDA`, `AMD`, `SMCI`, `DELL`, `INTC`, `TSM` (ADR)
-  4. *Connectivity & Custom Silicon (4)*: `AVGO`, `QCOM`, `ARM` (ADR), `MRVL`
-  5. *Mega-Cap Anchors & Ballast (7)*: `MSFT`, `AAPL`, `GOOGL`, `AMZN`, `META`, `TSLA`, `SPCX`
+  1. *Pure Memory & Storage (6)*: `MU`, `WDC`, `STX`, `SKHY`, `SNDK`, `PSTG`
+  2. *Capital Equipment, EDA & Advanced Packaging (9)*: `LRCX`, `AMAT`, `KLAC`, `ASML` (ADR), `TXN`, `SNPS`, `CDNS`, `TER`, `ONTO`
+  3. *AI Compute, Accelerators & Data Platforms (10)*: `NVDA`, `AMD`, `SMCI`, `DELL`, `INTC`, `TSM` (ADR), `PLTR`, `CRWV`, `SNOW`, `MDB`
+  4. *Datacenter Infrastructure & Power (5)*: `ANET`, `VRT`, `ETN`, `ALAB`, `MPWR`
+  5. *Connectivity, Analog & Edge Silicon (7)*: `AVGO`, `QCOM`, `ARM` (ADR), `MRVL`, `ADI`, `NXPI`, `ON`
+  6. *Mega-Cap Anchors & Enterprise Cloud/Cyber (13)*: `MSFT`, `AAPL`, `GOOGL`, `AMZN`, `META`, `TSLA`, `SPCX`, `ORCL`, `NOW`, `CRM`, `PANW`, `CRWD`, `NET`
 * **Verification & Test**: `TC-ING-01` in [`tests/test_price_fetcher.py::test_watchlist_structure`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_price_fetcher.py).
 
 #### `FR-01-02`: Multi-Tier Historical OHLCV Fetcher & Caching
@@ -152,7 +153,7 @@ The following matrix provides 100% bidirectional traceability between functional
 
 #### `FR-02-05`: US Federal Government Contracts Ingestion (USASpending.gov)
 * **Description**: The system shall ingest prime federal technology procurement contract awards directly from the official open US Federal API (`api.usaspending.gov/api/v2/search/spending_by_award/`) at $0 runtime cost.
-* **Mapping**: Maps 27 tickers to corporate legal entity keywords (e.g. `DELL` $\rightarrow$ `DELL MARKETING L.P.`, `INTC` $\rightarrow$ `INTEL CORP`).
+* **Mapping**: Maps 50 tickers to corporate legal entity keywords (e.g. `PLTR` $\rightarrow$ `PALANTIR USG`, `DELL` $\rightarrow$ `DELL MARKETING L.P.`, `INTC` $\rightarrow$ `INTEL CORP`).
 * **Attributes**: Award ID, Recipient Name, Amount ($ USD), Awarding Agency, Sub-Agency, Description, Action Date.
 * **Defense Flagging**: Assigns `is_defense_contract = True` if procuring agency includes DoD, DARPA, IARPA, Army, Navy, or Air Force.
 * **Verification & Test**: `TC-SM-05` in [`tests/test_contracts.py::test_get_ticker_contract_signals_dell`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_contracts.py).
@@ -279,7 +280,7 @@ The following matrix provides 100% bidirectional traceability between functional
 * **Verification & Test**: `TC-GAME-03` in [`tests/test_game.py::test_player_order_insufficient_cash`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py).
 
 #### `FR-06-04`: Allowed Universe Guard
-* **Description**: Orders for tickers outside the 27 fortress universe must be rejected with HTTP 400.
+* **Description**: Orders for tickers outside the 50 fortress universe must be rejected with HTTP 400.
 * **Verification & Test**: `TC-GAME-04` in [`tests/test_game.py::test_player_order_invalid_ticker`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py).
 
 #### `FR-06-05`: Shorting Prevention & Oversell Guard
@@ -300,7 +301,7 @@ The following matrix provides 100% bidirectional traceability between functional
 * **Description**: The system shall serve a responsive, high-performance single-page web application (`index.html`, `style.css`, `app.js`) via `GET /`:
   * **Design System**: Glassmorphic dark aesthetic utilizing semi-transparent frosted glass containers (`rgba(15, 23, 42, 0.75)` with `backdrop-filter: blur(12px)`), slate-900 background (`#090d16`), and high-contrast accent highlights (cyan `#00f2fe`, purple `#4facfe`, emerald `#10b981`, rose `#f43f5e`, gold `#fbbf24`).
   * **Header Controls**: Dynamic operational mode switcher allowing instant toggling between `🌙 End-of-Day (EOD)` and `☀️ Pre-Market (PM)` cadences, and a manual `🔄 Refresh` trigger.
-  * **Universe Overview KPI Banner**: 4 persistent metric blocks displaying Tracked Universe (27 Titans), Execution Strategy (3–5 Day Expansion $+3.5\% / +6.0\%$), Risk Floor ($-2.5\%$ Stop / 5 EMA Trail), and Safety Mandate (Zero Bankruptcy Risk).
+  * **Universe Overview KPI Banner**: 4 persistent metric blocks displaying Tracked Universe (50 Titans), Execution Strategy (3–5 Day Expansion $+3.5\% / +6.0\%$), Risk Floor ($-2.5\%$ Stop / 5 EMA Trail), and Safety Mandate (Zero Bankruptcy Risk).
   * **Navigation Tab Controller**: Top-level tab switcher seamlessly routing between 4 primary functional views without browser reload:
     1. `🌊 Wave Radar`
     2. `🎯 Stock Deep-Dive`
@@ -315,7 +316,7 @@ The following matrix provides 100% bidirectional traceability between functional
 
 #### `FR-06-09`: Tab 1 — Wave Radar Grid & Category Sector Filtering
 * **Description**: Tab 1 shall render a ranked, real-time 13-column quantitative screening table populated via `GET /api/radar?mode={eod|premarket}`:
-  * **Category Filter Pills**: Interactive pill buttons allowing instant client-side filtering: `All (27)`, `Memory & Storage (5)`, `Capital Equipment (5)`, `AI Compute (6)`, `Connectivity (4)`, and `Mega-Cap Anchors (7)`.
+  * **Category Filter Pills**: Interactive pill buttons allowing instant client-side filtering: `All (50)`, `Memory & Storage (6)`, `Capital Equipment & EDA (9)`, `AI Compute (10)`, `Power & Cooling (5)`, `Connectivity (7)`, and `Cloud & Cyber (13)`.
   * **Grid Data Columns**:
     1. `#` (Rank descending by Composite Score)
     2. `Ticker` (Symbol + Company Name)
@@ -333,7 +334,7 @@ The following matrix provides 100% bidirectional traceability between functional
 * **Verification & Test**: `TC-UI-03` in [`tests/test_interface.py::test_dashboard_radar_premarket`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py).
 
 #### `FR-06-10`: Tab 2 — Stock Deep-Dive 4-Pillar Forensic Suite & Multi-Overlay Chart
-* **Description**: Tab 2 shall render an exhaustive forensic diagnostic view for any of the 27 universe stocks via `GET /api/stock/<ticker>`:
+* **Description**: Tab 2 shall render an exhaustive forensic diagnostic view for any of the 50 universe stocks via `GET /api/stock/<ticker>`:
   * **Interactive Ticker Selector**: Dropdown selector enabling on-demand switching or direct routing from Radar action buttons.
   * **4-Pillar Forensic Scorecard Ribbon**:
     1. *Technical Pillar*: RVOL ratio, Close Range Ranking (CRR), 20D High status, Upper Bollinger Band proximity, and 5/20 EMA trend alignment.
@@ -355,7 +356,7 @@ The following matrix provides 100% bidirectional traceability between functional
 
 #### `FR-06-11`: Tab 3 — Backtest Sandbox & Walkforward Equity Visualizer
 * **Description**: Tab 3 shall provide an on-demand historical simulation laboratory powered by `GET /api/backtest`:
-  * **Parameter Form**: Ticker selector across the 27 universe stocks and Lookback Period selector (`1y`, `2y`, `3y`).
+  * **Parameter Form**: Ticker selector across the 50 universe stocks and Lookback Period selector (`1y`, `2y`, `3y`).
   * **6 KPI Metric Cards**:
     1. *Strategy Return %* (with comparative Buy & Hold benchmark)
     2. *Win Rate %* (with exact Wins / Losses tally)

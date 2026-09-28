@@ -30,7 +30,7 @@ def test_dashboard_radar_premarket(client):
     assert res.status_code == 200
     data = res.get_json()
     assert isinstance(data, list)
-    assert len(data) == 27
+    assert len(data) == 50
     assert "ticker" in data[0]
     assert "wave_probability" in data[0]
 

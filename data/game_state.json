@@ -6,7 +6,7 @@
   "initial_capital": 30000.0,
   "rules": {
     "starting_cash": 30000.0,
-    "allowed_universe_count": 27,
+    "allowed_universe_count": 50,
     "shorting_allowed": false,
     "allocation_limits": "None (Total Freedom)",
     "end_time_cet": "Friday Oct 2, 2026 at 23:00 CET"
@@ -20,6 +20,7 @@
     "cash": 30000.0,
     "positions": [],
     "history": [],
-    "decision_logs": []
+    "decision_logs": [],
+    "last_evaluated_at": "2026-09-28 15:41 UTC"
   }
 }

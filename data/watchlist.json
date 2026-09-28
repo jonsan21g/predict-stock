@@ -1,6 +1,6 @@
 {
-  "description": "Wave Rider Focused Universe: 27 Top-Tier US Tech, Semiconductor & Memory Equities",
-  "updated_at": "2026-09-27",
+  "description": "Wave Rider Focused Universe: 50 Top-Tier US Tech, Semiconductor, AI & Cloud Equities",
+  "updated_at": "2026-09-28",
   "stocks": [
     {
       "ticker": "MU",
@@ -38,53 +38,88 @@
       "role": "Flash memory storage and embedded memory"
     },
     {
+      "ticker": "PSTG",
+      "name": "Pure Storage Inc.",
+      "category": "Pure Memory & Storage",
+      "exchange": "NYSE",
+      "role": "Enterprise all-flash storage arrays for AI datacenters"
+    },
+    {
       "ticker": "LRCX",
       "name": "Lam Research Corp.",
-      "category": "Capital Equipment (Picks & Shovels)",
+      "category": "Capital Equipment & EDA",
       "exchange": "NASDAQ",
       "role": "Etch & deposition equipment for 3D NAND & DRAM fabs"
     },
     {
       "ticker": "AMAT",
       "name": "Applied Materials Inc.",
-      "category": "Capital Equipment (Picks & Shovels)",
+      "category": "Capital Equipment & EDA",
       "exchange": "NASDAQ",
       "role": "Largest semiconductor equipment maker globally"
     },
     {
       "ticker": "KLAC",
       "name": "KLA Corporation",
-      "category": "Capital Equipment (Picks & Shovels)",
+      "category": "Capital Equipment & EDA",
       "exchange": "NASDAQ",
       "role": "Process yield inspection and defect analysis equipment"
     },
     {
       "ticker": "ASML",
       "name": "ASML Holding N.V. (ADR)",
-      "category": "Capital Equipment (Picks & Shovels)",
+      "category": "Capital Equipment & EDA",
       "exchange": "NASDAQ",
       "role": "Global monopoly on EUV lithography machines"
     },
     {
       "ticker": "TXN",
       "name": "Texas Instruments Inc.",
-      "category": "Capital Equipment (Picks & Shovels)",
+      "category": "Capital Equipment & EDA",
       "exchange": "NASDAQ",
       "role": "Analog and embedded semiconductor cash flow fortress"
+    },
+    {
+      "ticker": "SNPS",
+      "name": "Synopsys Inc.",
+      "category": "Capital Equipment & EDA",
+      "exchange": "NASDAQ",
+      "role": "EDA chip design software and silicon IP co-monopoly"
+    },
+    {
+      "ticker": "CDNS",
+      "name": "Cadence Design Systems Inc.",
+      "category": "Capital Equipment & EDA",
+      "exchange": "NASDAQ",
+      "role": "Electronic design automation software and verification systems"
+    },
+    {
+      "ticker": "TER",
+      "name": "Teradyne Inc.",
+      "category": "Capital Equipment & EDA",
+      "exchange": "NASDAQ",
+      "role": "Automated testing equipment for advanced semiconductor fabs"
+    },
+    {
+      "ticker": "ONTO",
+      "name": "Onto Innovation Inc.",
+      "category": "Capital Equipment & EDA",
+      "exchange": "NYSE",
+      "role": "Optical metrology & inspection for HBM packaging & TSMC CoWoS"
     },
     {
       "ticker": "NVDA",
       "name": "NVIDIA Corporation",
       "category": "AI Compute & Systems",
       "exchange": "NASDAQ",
-      "role": "GPU compute, AI accelerator & HBM memory demand driver"
+      "role": "GPU compute, AI accelerator & CUDA software ecosystem"
     },
     {
       "ticker": "AMD",
       "name": "Advanced Micro Devices Inc.",
       "category": "AI Compute & Systems",
       "exchange": "NASDAQ",
-      "role": "High-beta x86 CPU and AI GPU accelerator provider"
+      "role": "High-beta x86 CPU and MI300 AI accelerator provider"
     },
     {
       "ticker": "SMCI",
@@ -115,6 +150,69 @@
       "role": "Foundry fabricating >90% of global advanced AI chips"
     },
     {
+      "ticker": "PLTR",
+      "name": "Palantir Technologies Inc.",
+      "category": "AI Compute & Systems",
+      "exchange": "NYSE",
+      "role": "Defense AI, US intelligence & enterprise data analytics"
+    },
+    {
+      "ticker": "CRWV",
+      "name": "CoreWeave Inc.",
+      "category": "AI Compute & Systems",
+      "exchange": "NASDAQ",
+      "role": "Specialized high-density GPU cloud provider for AI training"
+    },
+    {
+      "ticker": "SNOW",
+      "name": "Snowflake Inc.",
+      "category": "AI Compute & Systems",
+      "exchange": "NYSE",
+      "role": "Enterprise AI data cloud platform and data sharing network"
+    },
+    {
+      "ticker": "MDB",
+      "name": "MongoDB Inc.",
+      "category": "AI Compute & Systems",
+      "exchange": "NASDAQ",
+      "role": "Modern multi-cloud document database platform for AI apps"
+    },
+    {
+      "ticker": "ANET",
+      "name": "Arista Networks Inc.",
+      "category": "Datacenter Infrastructure & Power",
+      "exchange": "NYSE",
+      "role": "AI datacenter Ethernet switching for cloud hyperscalers"
+    },
+    {
+      "ticker": "VRT",
+      "name": "Vertiv Holdings Co",
+      "category": "Datacenter Infrastructure & Power",
+      "exchange": "NYSE",
+      "role": "Liquid cooling, thermal management & power infrastructure for AI racks"
+    },
+    {
+      "ticker": "ETN",
+      "name": "Eaton Corporation plc",
+      "category": "Datacenter Infrastructure & Power",
+      "exchange": "NYSE",
+      "role": "Electrical power management, switchgear and transformers for datacenters"
+    },
+    {
+      "ticker": "ALAB",
+      "name": "Astera Labs Inc.",
+      "category": "Datacenter Infrastructure & Power",
+      "exchange": "NASDAQ",
+      "role": "PCIe, CXL and Ethernet connectivity chips for AI server infrastructure"
+    },
+    {
+      "ticker": "MPWR",
+      "name": "Monolithic Power Systems Inc.",
+      "category": "Datacenter Infrastructure & Power",
+      "exchange": "NASDAQ",
+      "role": "High-efficiency semiconductor power management ICs for AI GPUs"
+    },
+    {
       "ticker": "AVGO",
       "name": "Broadcom Inc.",
       "category": "Connectivity & Custom Silicon",
@@ -143,54 +241,116 @@
       "role": "High-speed electro-optics and memory interconnects"
     },
     {
+      "ticker": "ADI",
+      "name": "Analog Devices Inc.",
+      "category": "Connectivity & Custom Silicon",
+      "exchange": "NASDAQ",
+      "role": "Precision analog, mixed-signal and edge processing chips"
+    },
+    {
+      "ticker": "NXPI",
+      "name": "NXP Semiconductors N.V.",
+      "category": "Connectivity & Custom Silicon",
+      "exchange": "NASDAQ",
+      "role": "Automotive, industrial IoT and secure connectivity processing"
+    },
+    {
+      "ticker": "ON",
+      "name": "ON Semiconductor Corp.",
+      "category": "Connectivity & Custom Silicon",
+      "exchange": "NASDAQ",
+      "role": "Silicon carbide (SiC) and intelligent power semiconductors"
+    },
+    {
       "ticker": "MSFT",
       "name": "Microsoft Corporation",
-      "category": "Mega-Cap Anchors",
+      "category": "Mega-Cap & Enterprise Cloud",
       "exchange": "NASDAQ",
       "role": "AAA balance sheet, Azure Cloud and enterprise AI"
     },
     {
       "ticker": "AAPL",
       "name": "Apple Inc.",
-      "category": "Mega-Cap Anchors",
+      "category": "Mega-Cap & Enterprise Cloud",
       "exchange": "NASDAQ",
       "role": "Consumer silicon ecosystem with world-class cash reserves"
     },
     {
       "ticker": "GOOGL",
       "name": "Alphabet Inc.",
-      "category": "Mega-Cap Anchors",
+      "category": "Mega-Cap & Enterprise Cloud",
       "exchange": "NASDAQ",
       "role": "Google Cloud, search monopoly, and custom TPU silicon"
     },
     {
       "ticker": "AMZN",
       "name": "Amazon.com Inc.",
-      "category": "Mega-Cap Anchors",
+      "category": "Mega-Cap & Enterprise Cloud",
       "exchange": "NASDAQ",
       "role": "AWS cloud infrastructure and hyperscale server demand"
     },
     {
       "ticker": "META",
       "name": "Meta Platforms Inc.",
-      "category": "Mega-Cap Anchors",
+      "category": "Mega-Cap & Enterprise Cloud",
       "exchange": "NASDAQ",
       "role": "Open-source AI leader and massive compute spender"
     },
     {
       "ticker": "TSLA",
       "name": "Tesla Inc.",
-      "category": "Mega-Cap Anchors",
+      "category": "Mega-Cap & Enterprise Cloud",
       "exchange": "NASDAQ",
       "role": "Autonomous driving, AI Dojo compute, high-beta momentum"
     },
     {
       "ticker": "SPCX",
       "name": "Space Exploration Technologies Corp / ETF",
-      "category": "Mega-Cap Anchors",
+      "category": "Mega-Cap & Enterprise Cloud",
       "exchange": "NASDAQ",
       "role": "Aerospace, commercial space and advanced tech exposure"
+    },
+    {
+      "ticker": "ORCL",
+      "name": "Oracle Corporation",
+      "category": "Mega-Cap & Enterprise Cloud",
+      "exchange": "NYSE",
+      "role": "OCI cloud datacenters and mission-critical enterprise databases"
+    },
+    {
+      "ticker": "NOW",
+      "name": "ServiceNow Inc.",
+      "category": "Mega-Cap & Enterprise Cloud",
+      "exchange": "NYSE",
+      "role": "Enterprise AI workflow automation software and digital operations"
+    },
+    {
+      "ticker": "CRM",
+      "name": "Salesforce Inc.",
+      "category": "Mega-Cap & Enterprise Cloud",
+      "exchange": "NYSE",
+      "role": "Autonomous enterprise AI agents (Agentforce) and cloud CRM"
+    },
+    {
+      "ticker": "PANW",
+      "name": "Palo Alto Networks Inc.",
+      "category": "Mega-Cap & Enterprise Cloud",
+      "exchange": "NASDAQ",
+      "role": "Premier enterprise cybersecurity platform and federal defense"
+    },
+    {
+      "ticker": "CRWD",
+      "name": "CrowdStrike Holdings Inc.",
+      "category": "Mega-Cap & Enterprise Cloud",
+      "exchange": "NASDAQ",
+      "role": "Cloud-native endpoint protection and threat intelligence"
+    },
+    {
+      "ticker": "NET",
+      "name": "Cloudflare Inc.",
+      "category": "Mega-Cap & Enterprise Cloud",
+      "exchange": "NYSE",
+      "role": "Global cloud security, edge computing and AI inference network"
     }
   ]
 }
-

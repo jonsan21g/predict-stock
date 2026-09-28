@@ -4,7 +4,7 @@ Usage:
     python -m src.main --mode eod                # Run evening End-of-Day scan
     python -m src.main --mode premarket          # Run morning Pre-Market gap check
     python -m src.main --backtest NVDA           # Run historical walkforward backtest
-    python -m src.main --train                   # Retrain ML model on all 27 stocks
+    python -m src.main --train                   # Retrain ML model on all 50 stocks
 """
 
 import os
@@ -42,7 +42,7 @@ def format_cli_table(results: List[Dict[str, Any]], mode: str = "eod", top_n: in
     """Prints a structured radar report to the terminal."""
     print("\n" + "=" * 94)
     print(f"  [WAVE RIDER] RADAR - {mode.upper()} SCAN ({datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')})")
-    print(f"  Universe: 27 Top-Tier US Tech, Semiconductor & Memory Leaders")
+    print(f"  Universe: 50 Top-Tier US Tech, Semiconductor, AI & Cloud Leaders")
     print("=" * 94)
 
     headers = f"{'#':<3} {'TICKER':<6} {'PRICE':<9} {'CHG/GAP':<9} {'IGNITION':<15} {'P(WAVE)':<9} {'SCORE':<7} {'TARGET 1':<10} {'STOP':<9} {'SMART MONEY'}"
@@ -83,7 +83,7 @@ def format_cli_table(results: List[Dict[str, Any]], mode: str = "eod", top_n: in
 
 
 def run_eod_scan(top_n: int = 10):
-    print("\nScanning 27 US Tech & Memory Leaders for Day-1 Wave Ignition...")
+    print("\nScanning 50 US Tech, AI & Cloud Leaders for Day-1 Wave Ignition...")
     results = scan_and_rank_watchlist()
     format_cli_table(results, mode="End-of-Day (EOD)", top_n=top_n)
 
@@ -205,7 +205,7 @@ def run_rtm_verification():
     print("=" * 94 + "\n")
 
     RTM_MAP = {
-        "tests/test_price_fetcher.py::test_watchlist_structure": ("FR-01-01", "27 Blue-Chip Universe Definition"),
+        "tests/test_price_fetcher.py::test_watchlist_structure": ("FR-01-01", "50 Blue-Chip Universe Definition"),
         "tests/test_price_fetcher.py::test_daily_history_fetch": ("FR-01-02", "Daily OHLCV Data & Multi-Tier Cache"),
         "tests/test_price_fetcher.py::test_premarket_quote": ("FR-01-03", "Pre-Market Quotes & Gap Ingestion"),
         "tests/test_smart_money.py::test_parse_trade_row": ("FR-02-01", "Congressional STOCK Act Trade Parsing"),

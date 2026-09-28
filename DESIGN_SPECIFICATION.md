@@ -58,7 +58,7 @@ Wave Rider is designed as a **modular, layered quantitative trading and forensic
 ```
 predict-stock/
 ├── data/
-│   ├── watchlist.json           # 27 curated US equities with roles & sectors
+│   ├── watchlist.json           # 50 curated US equities with roles & sectors
 │   ├── game_state.json          # Duel state (bankrolls, positions, audit log)
 │   └── cache/                   # Disk cache for prices, SEC filings, contracts
 ├── models/
@@ -100,7 +100,7 @@ predict-stock/
 ```json
 {
   "updated_at": "2026-09-28",
-  "universe_size": 27,
+  "universe_size": 50,
   "stocks": [
     {
       "ticker": "TSM",
@@ -123,7 +123,7 @@ predict-stock/
   "initial_capital": 30000.0,
   "rules": {
     "starting_cash": 30000.0,
-    "allowed_universe_count": 27,
+    "allowed_universe_count": 50,
     "shorting_allowed": false,
     "allocation_limits": "None (Total Freedom)",
     "end_time_cet": "Friday Oct 2, 2026 at 23:00 CET"
@@ -213,7 +213,7 @@ predict-stock/
 #### 3. `wave_classifier.py`
 * **`train_wave_model() -> Dict[str, Any]`**: Fits `HistGradientBoostingClassifier` with `TimeSeriesSplit(n_splits=3)` and `CalibratedClassifierCV(cv=3)`. Saves model to `models/wave_model.joblib`.
 * **`score_single_stock(ticker: str) -> Dict[str, Any]`**: Scores stock today, predicts $P(\text{Wave Win})$, applies Smart Money bonus schedule, and outputs unified Composite Score (0–100).
-* **`scan_and_rank_watchlist() -> List[Dict[str, Any]]`**: Evaluates all 27 stocks, sorts descending by composite score, and powers the live radar table.
+* **`scan_and_rank_watchlist() -> List[Dict[str, Any]]`**: Evaluates all 50 stocks, sorts descending by composite score, and powers the live radar table.
 
 ---
 
@@ -236,7 +236,7 @@ predict-stock/
 #### 2. Client-Side State Model (`static/app.js`)
 * **State Variables**:
   * `currentMode`: Active operational scanning mode (`eod` vs `premarket`).
-  * `radarData`: Cached array of ranked 27-stock payload objects enabling instant client-side category filtering.
+  * `radarData`: Cached array of ranked 50-stock payload objects enabling instant client-side category filtering.
   * `deepDiveChart`: Active Chart.js instance for the 60-day technical canvas.
   * `equityChart`: Active Chart.js instance for the backtest equity curve canvas.
   * `duelPollingInterval`: 15-second background polling timer (`setInterval(loadDuelState, 15000)`).

@@ -19,7 +19,7 @@ CACHE_TTL = 86400  # 24 hours (federal contract data updates daily)
 
 API_URL = "https://api.usaspending.gov/api/v2/search/spending_by_award/"
 
-# Corporate legal entities mapping for the 27 Tech & Memory universe
+# Corporate legal entities mapping for the Wave Rider 50 universe
 TICKER_CONTRACT_KEYWORDS: Dict[str, List[str]] = {
     "DELL": ["DELL MARKETING L.P.", "DELL FEDERAL SYSTEMS"],
     "INTC": ["INTEL FEDERAL LLC", "INTEL CORPORATION"],
@@ -40,7 +40,16 @@ TICKER_CONTRACT_KEYWORDS: Dict[str, List[str]] = {
     "SMCI": ["SUPER MICRO COMPUTER INC"],
     "AMD": ["ADVANCED MICRO DEVICES INC"],
     "TSM": ["TAIWAN SEMICONDUCTOR"],
-    "ASML": ["ASML US LLC", "ASML HOLDING"]
+    "ASML": ["ASML US LLC", "ASML HOLDING"],
+    "PLTR": ["PALANTIR USG", "PALANTIR TECHNOLOGIES"],
+    "ORCL": ["ORACLE AMERICA INC", "ORACLE CORPORATION"],
+    "PANW": ["PALO ALTO NETWORKS"],
+    "CRWD": ["CROWDSTRIKE INC"],
+    "ETN": ["EATON CORPORATION", "EATON AEROQUIP"],
+    "ANET": ["ARISTA NETWORKS INC"],
+    "VRT": ["VERTIV CORPORATION", "LIEBERT CORPORATION"],
+    "NOW": ["SERVICENOW INC"],
+    "CRM": ["SALESFORCE.COM INC", "SALESFORCE INC"]
 }
 
 
