@@ -14,8 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function setMode(mode) {
   currentMode = mode;
-  document.getElementById("btn-eod").classList.toggle("active", mode === "eod");
-  document.getElementById("btn-pm").classList.toggle("active", mode === "premarket");
+  if (document.getElementById("btn-eod")) document.getElementById("btn-eod").classList.toggle("active", mode === "eod");
+  if (document.getElementById("btn-pm")) document.getElementById("btn-pm").classList.toggle("active", mode === "premarket");
+  if (document.getElementById("btn-intra")) document.getElementById("btn-intra").classList.toggle("active", mode === "intraday");
   loadRadar(true);
 }
 
@@ -157,8 +158,14 @@ function renderRadarTable() {
     const tr = document.createElement("tr");
 
     const isIgnition = item.is_ignition;
+    let ignLabel = item.ignition_type || (isIgnition ? "IGNITION" : "Consolidating");
+    if (item.archetype === "REVERSAL_SNAPBACK") {
+      ignLabel = "SNAPBACK";
+    } else if (item.archetype === "MOMENTUM_ORB") {
+      ignLabel = "ORB BREAKOUT";
+    }
     const ignBadge = isIgnition
-      ? `<span class="badge-ignition active">⚡ ${item.ignition_type}</span>`
+      ? `<span class="badge-ignition active" title="${item.rationale || ''}">⚡ ${ignLabel}</span>`
       : `<span class="badge-ignition idle">Consolidating</span>`;
 
     let scoreClass = "score-low";

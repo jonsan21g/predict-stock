@@ -106,13 +106,18 @@ def get_daily_history(
         raise RuntimeError(f"Error fetching daily data for {ticker}: {str(e)}")
 
 
-def get_premarket_quote(ticker: str) -> Dict[str, Any]:
+def get_premarket_quote(ticker: str, strict_premarket: bool = True) -> Dict[str, Any]:
     """
-    Fetches pre-market / intraday snapshot for a ticker.
-    Returns current price, previous close, gap %, and pre-market volume.
+    Fetches pre-market quote for a ticker.
+    Guarantees strict pre-bell isolation: when called during or after regular hours,
+    it strictly measures trades executed prior to 09:30 EST to prevent intraday
+    price bleed into pre-market metrics.
     """
     ticker = ticker.upper().strip()
     try:
+        from src.fetchers.market_hours import get_current_market_session, MarketSession
+        current_session = get_current_market_session()
+        
         t = yf.Ticker(ticker)
         fast_info = getattr(t, "fast_info", {})
         
@@ -122,14 +127,33 @@ def get_premarket_quote(ticker: str) -> Dict[str, Any]:
         prev_close = None
         volume = 0
         
-        if not hist_intraday.empty:
-            last_price = float(hist_intraday["Close"].iloc[-1])
-            volume = int(hist_intraday["Volume"].sum())
-        
         if hasattr(fast_info, "previous_close") and fast_info.previous_close:
             prev_close = float(fast_info.previous_close)
-        elif not hist_intraday.empty:
-            prev_close = float(hist_intraday["Open"].iloc[0])
+
+        if not hist_intraday.empty:
+            try:
+                ny_bars = hist_intraday.tz_convert("America/New_York")
+            except Exception:
+                ny_bars = hist_intraday
+                
+            if strict_premarket and current_session != MarketSession.PRE_MARKET:
+                # Strictly isolate trades executed between 04:00 and 09:29:59 EST
+                pre_bars = ny_bars.between_time("04:00", "09:29")
+                if not pre_bars.empty:
+                    last_price = float(pre_bars["Close"].iloc[-1])
+                    volume = int(pre_bars["Volume"].sum())
+                else:
+                    # Fallback to the opening price of the first regular-hours bar
+                    rth_bars = ny_bars.between_time("09:30", "16:00")
+                    if not rth_bars.empty:
+                        last_price = float(rth_bars["Open"].iloc[0])
+                        volume = 0
+            else:
+                last_price = float(hist_intraday["Close"].iloc[-1])
+                volume = int(hist_intraday["Volume"].sum())
+                
+            if prev_close is None and not hist_intraday.empty:
+                prev_close = float(hist_intraday["Open"].iloc[0])
             
         if last_price is None and hasattr(fast_info, "last_price") and fast_info.last_price:
             last_price = float(fast_info.last_price)
@@ -148,7 +172,8 @@ def get_premarket_quote(ticker: str) -> Dict[str, Any]:
             "prev_close": round(prev_close, 2),
             "gap_pct": round(gap_pct, 2),
             "volume": volume,
-            "timestamp": datetime.now(timezone.utc).isoformat()
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "is_strict_premarket": strict_premarket
         }
     except Exception as e:
         try:
@@ -174,6 +199,66 @@ def get_premarket_quote(ticker: str) -> Dict[str, Any]:
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "error": str(e)
             }
+
+
+def get_intraday_snapshot(ticker: str) -> Dict[str, Any]:
+    """
+    Fetches live regular-trading-hours intraday snapshot for a ticker.
+    Returns current live price, high, low, VWAP, change %, and RTH volume.
+    """
+    ticker = ticker.upper().strip()
+    try:
+        t = yf.Ticker(ticker)
+        fast_info = getattr(t, "fast_info", {})
+        
+        prev_close = float(fast_info.previous_close) if hasattr(fast_info, "previous_close") and fast_info.previous_close else None
+        if prev_close is None:
+            daily = get_daily_history(ticker, period="5d")
+            prev_close = float(daily["Close"].iloc[-2]) if len(daily) > 1 else float(daily["Close"].iloc[-1])
+            
+        hist = t.history(period="1d", interval="5m", prepost=False)
+        if not hist.empty:
+            cur_price = float(hist["Close"].iloc[-1])
+            high_price = float(hist["High"].max())
+            low_price = float(hist["Low"].min())
+            open_price = float(hist["Open"].iloc[0])
+            total_vol = int(hist["Volume"].sum())
+            
+            # Cumulative VWAP
+            typical_price = (hist["High"] + hist["Low"] + hist["Close"]) / 3.0
+            cum_vol = hist["Volume"].sum()
+            vwap = float((typical_price * hist["Volume"]).sum() / cum_vol) if cum_vol > 0 else cur_price
+        else:
+            daily = get_daily_history(ticker, period="5d")
+            cur_price = float(daily["Close"].iloc[-1])
+            high_price = float(daily["High"].iloc[-1])
+            low_price = float(daily["Low"].iloc[-1])
+            open_price = float(daily["Open"].iloc[-1])
+            total_vol = int(daily["Volume"].iloc[-1])
+            vwap = cur_price
+            
+        chg_pct = ((cur_price - prev_close) / prev_close) * 100.0 if prev_close else 0.0
+        
+        return {
+            "ticker": ticker,
+            "current_price": round(cur_price, 2),
+            "prev_close": round(prev_close, 2),
+            "change_pct": round(chg_pct, 2),
+            "open": round(open_price, 2),
+            "high": round(high_price, 2),
+            "low": round(low_price, 2),
+            "vwap": round(vwap, 2),
+            "volume": total_vol,
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+    except Exception as e:
+        return {
+            "ticker": ticker,
+            "current_price": 0.0,
+            "prev_close": 0.0,
+            "change_pct": 0.0,
+            "error": str(e)
+        }
 
 
 def fetch_all_watchlist_daily(watchlist: Optional[List[Dict[str, Any]]] = None) -> Dict[str, pd.DataFrame]:

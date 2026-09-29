@@ -76,6 +76,15 @@ def compute_technical_indicators(df: pd.DataFrame) -> pd.DataFrame:
     # 7. Momentum Return over last 3 days
     df["ret_3d"] = close.pct_change(3)
 
+    # 8. RSI 14 (Relative Strength Index)
+    delta = close.diff()
+    gain = (delta.where(delta > 0, 0.0)).rolling(window=14).mean()
+    loss = (-delta.where(delta < 0, 0.0)).rolling(window=14).mean()
+    rs = gain / loss.replace(0, np.nan)
+    df["RSI14"] = np.where(loss == 0, 100.0, np.where(gain == 0, 0.0, 100.0 - (100.0 / (1.0 + rs))))
+    df["lower_bb"] = lower_bb
+    df["upper_bb"] = upper_bb
+
     return df
 
 

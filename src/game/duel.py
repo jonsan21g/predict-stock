@@ -383,12 +383,32 @@ def bot_evaluate_turn(
     if available_cash >= 1000.0:
         watchlist = load_watchlist()
         candidate_scores = []
-
-        # Find best candidate not already in bot portfolio
         already_held = {p["ticker"] for p in state["bot"]["positions"]}
+
+        # -----------------------------------------------------------------
+        # Step 2a: Scout Intraday Ignitions (ORB & Capitulation Snapbacks)
+        # -----------------------------------------------------------------
+        from src.fetchers.market_hours import is_regular_trading_hours
+        from src.analysis.intraday_engine import evaluate_intraday_stock
+
+        if is_regular_trading_hours():
+            for s in watchlist:
+                ticker = s["ticker"]
+                if ticker in already_held:
+                    continue
+                try:
+                    intra_sig = evaluate_intraday_stock(ticker)
+                    if intra_sig.get("is_ignition"):
+                        candidate_scores.append(intra_sig)
+                except Exception:
+                    pass
+
+        # -----------------------------------------------------------------
+        # Step 2b: Standard EOD / Composite Scouting
+        # -----------------------------------------------------------------
         for s in watchlist:
             ticker = s["ticker"]
-            if ticker in already_held:
+            if ticker in already_held or any(c["ticker"] == ticker for c in candidate_scores):
                 continue
             try:
                 score_data = score_single_stock(ticker)

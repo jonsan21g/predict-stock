@@ -88,19 +88,34 @@ def run_eod_scan(top_n: int = 10):
     format_cli_table(results, mode="End-of-Day (EOD)", top_n=top_n)
 
 
+def run_intraday_scan(top_n: int = 10):
+    print("\nScanning 50 Universe Equities for Intraday Ignitions (ORB & Capitulation Snapbacks)...")
+    from src.analysis.intraday_engine import scan_intraday_watchlist
+    results = scan_intraday_watchlist()
+    format_cli_table(results, mode="Intraday (ORB / Snapback)", top_n=top_n)
+
+
 def run_premarket_scan(top_n: int = 10):
-    print("\nChecking Pre-Market Gap and Follow-Through Momentum...")
+    print("\nChecking Pre-Market Gap and Follow-Through Momentum (Strict Pre-09:30 EST Data)...")
     stocks = load_watchlist()
     pm_results = []
 
     for s in stocks:
         sym = s["ticker"]
-        quote = get_premarket_quote(sym)
+        quote = get_premarket_quote(sym, strict_premarket=True)
         gap = quote.get("gap_pct", 0.0)
         price = quote.get("current_price", 0.0)
+        vol = quote.get("volume", 0)
 
         # Flag gap-and-go candidate
         is_gap_and_go = gap >= 1.0
+
+        if is_gap_and_go:
+            prob = round(min(90.0, max(55.0, 55.0 + gap * 5.0)), 1)
+            score = int(min(98, max(50, 60 + int(gap * 6))))
+        else:
+            prob = round(max(35.0, min(50.0, 48.0 + gap * 2.0)), 1)
+            score = int(max(20, min(50, 45 + int(gap * 3))))
 
         pm_results.append({
             "ticker": sym,
@@ -108,8 +123,8 @@ def run_premarket_scan(top_n: int = 10):
             "change_pct": gap,
             "is_ignition": is_gap_and_go,
             "ignition_type": "PRE_MKT_GAP" if is_gap_and_go else "FLAT",
-            "wave_probability": min(95.0, max(40.0, 50.0 + gap * 8.0)),
-            "composite_score": int(min(100, max(20, 50 + int(gap * 10)))),
+            "wave_probability": prob,
+            "composite_score": score,
             "target_1": round(price * 1.035, 2),
             "target_2": round(price * 1.060, 2),
             "stop_loss": round(price * 0.975, 2),
@@ -238,7 +253,14 @@ def run_rtm_verification():
         "tests/test_interface.py::test_dashboard_stock_detail": ("FR-06-10", "Stock Deep-Dive Forensic API"),
         "tests/test_interface.py::test_dashboard_backtest_api": ("FR-06-11", "Backtest Sandbox API"),
         "tests/test_interface.py::test_cli_premarket_execution": ("FR-06-12", "CLI Runner Premarket Execution"),
-        "tests/test_interface.py::test_dashboard_game_endpoints": ("FR-06-13", "Game State & Order API Endpoints")
+        "tests/test_interface.py::test_dashboard_game_endpoints": ("FR-06-13", "Game State & Order API Endpoints"),
+        "tests/test_intraday_engine.py::test_market_session_clock": ("FR-07-01", "Session-Aware Market Clock"),
+        "tests/test_intraday_engine.py::test_premarket_quote_isolation": ("FR-07-02", "Pre-Market Quote Isolation & Purity"),
+        "tests/test_intraday_engine.py::test_premarket_snapshot_persistence": ("FR-07-03", "Pre-Market Snapshot Persistence"),
+        "tests/test_intraday_engine.py::test_volume_pacing_model": ("FR-08-01", "Time-of-Day Cumulative Volume Pacing"),
+        "tests/test_intraday_engine.py::test_intraday_orcl_snapback_regression": ("FR-08-02", "Capitulation Snapback (ORCL Regression)"),
+        "tests/test_intraday_engine.py::test_intraday_momentum_orb": ("FR-08-03", "Intraday Momentum ORB Breakout"),
+        "tests/test_intraday_engine.py::test_dashboard_intraday_route": ("FR-08-04", "Intraday REST API Route (/api/radar)")
     }
 
     class RTMCollector:
@@ -277,7 +299,7 @@ def run_rtm_verification():
 
 def main():
     parser = argparse.ArgumentParser(description="Wave Rider Momentum Engine CLI")
-    parser.add_argument("--mode", choices=["eod", "premarket"], default="eod", help="Scanning mode (eod or premarket)")
+    parser.add_argument("--mode", choices=["eod", "premarket", "intraday"], default="eod", help="Scanning mode (eod, premarket, or intraday)")
     parser.add_argument("--top", type=int, default=10, help="Number of top candidates to display")
     parser.add_argument("--backtest", type=str, default="", help="Run backtest on a specific ticker (e.g. NVDA, MU)")
     parser.add_argument("--period", type=str, default="2y", help="Historical backtest period (e.g. 1y, 2y, 3y)")
@@ -344,7 +366,9 @@ def main():
         run_single_backtest(args.backtest, period=args.period)
         return
 
-    if args.mode == "premarket":
+    if args.mode == "intraday":
+        run_intraday_scan(top_n=args.top)
+    elif args.mode == "premarket":
         run_premarket_scan(top_n=args.top)
     else:
         run_eod_scan(top_n=args.top)

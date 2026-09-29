@@ -39,7 +39,7 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 
 # In-memory scan cache to make dashboard super snappy
-RADAR_CACHE = {"eod": None, "premarket": None}
+RADAR_CACHE = {"eod": None, "premarket": None, "intraday": None}
 
 
 @app.route("/")
@@ -60,15 +60,37 @@ def api_radar():
     if not refresh and RADAR_CACHE.get(mode):
         return jsonify(RADAR_CACHE[mode])
 
-    if mode == "premarket":
+    if mode == "intraday":
+        from src.analysis.intraday_engine import scan_intraday_watchlist
+        results = scan_intraday_watchlist()
+    elif mode == "premarket":
+        from src.fetchers.premarket_snapshot import load_premarket_snapshot, save_premarket_snapshot
+        from src.fetchers.market_hours import is_premarket_session, get_ny_now
+        
+        # If regular hours or closed, try to load frozen snapshot first
+        if not refresh and not is_premarket_session():
+            snapshot = load_premarket_snapshot()
+            if snapshot:
+                RADAR_CACHE[mode] = snapshot
+                return jsonify(snapshot)
+
         stocks = load_watchlist()
         results = []
         for s in stocks:
             sym = s["ticker"]
-            q = get_premarket_quote(sym)
+            q = get_premarket_quote(sym, strict_premarket=True)
             gap = q.get("gap_pct", 0.0)
             price = q.get("current_price", 0.0)
+            vol = q.get("volume", 0)
             is_gap = gap >= 1.0
+
+            # Realistic scoring: reward confirmed gap, bound risk
+            if is_gap:
+                prob = round(min(90.0, max(55.0, 55.0 + gap * 5.0)), 1)
+                score = int(min(98, max(50, 60 + int(gap * 6))))
+            else:
+                prob = round(max(35.0, min(50.0, 48.0 + gap * 2.0)), 1)
+                score = int(max(20, min(50, 45 + int(gap * 3))))
 
             results.append({
                 "ticker": sym,
@@ -78,14 +100,21 @@ def api_radar():
                 "change_pct": gap,
                 "is_ignition": is_gap,
                 "ignition_type": "PRE_MKT_GAP" if is_gap else "FLAT",
-                "wave_probability": round(min(95.0, max(40.0, 50.0 + gap * 8.0)), 1),
-                "composite_score": int(min(100, max(20, 50 + int(gap * 10)))),
+                "wave_probability": prob,
+                "composite_score": score,
+                "volume": vol,
                 "target_1": round(price * 1.035, 2),
                 "target_2": round(price * 1.060, 2),
                 "stop_loss": round(price * 0.975, 2),
                 "smart_money": {}
             })
         results.sort(key=lambda x: x["composite_score"], reverse=True)
+        # Save snapshot if market has opened
+        if not is_premarket_session():
+            try:
+                save_premarket_snapshot(results)
+            except Exception:
+                pass
     else:
         results = scan_and_rank_watchlist()
 
