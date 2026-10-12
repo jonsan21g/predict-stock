@@ -1,15 +1,22 @@
 {
-  "game_id": "duel_2026_10_02",
-  "title": "5-Day Live Wave Rider Duel: Player vs. Bot",
-  "created_at": "2026-09-28T15:07:10.841644+00:00",
-  "end_time": "2026-10-02T21:00:00Z",
+  "game_id": "duel_2026_10_16",
+  "title": "5-Day Live Wave Rider Duel: Player vs. Bot (Week 3 - Profit Realization Engine)",
+  "created_at": "2026-10-11T18:54:23.647823+00:00",
+  "end_time": "2026-10-16T21:00:00Z",
   "initial_capital": 30000.0,
   "rules": {
     "starting_cash": 30000.0,
-    "allowed_universe_count": 27,
+    "allowed_universe_count": 50,
     "shorting_allowed": false,
-    "allocation_limits": "None (Total Freedom)",
-    "end_time_cet": "Friday Oct 2, 2026 at 23:00 CET"
+    "max_active_positions": 4,
+    "max_sector_positions": 2,
+    "allocation_limits": "Tiered Conviction (45-50% Sniper / 20-25% Standard)",
+    "target_1_harvest": "+3.0% (Sell 50% & Breakeven Stop on Runner)",
+    "target_2_runner": "+6.0% (Full Exit)",
+    "hard_stop_loss": "-2.5%",
+    "end_time_cet": "Friday Oct 16, 2026 at 23:00 CEST",
+    "min_cash_threshold": 3000.0,
+    "quarantine_hours": 48
   },
   "player": {
     "cash": 30000.0,
@@ -17,42 +24,58 @@
     "history": []
   },
   "bot": {
-    "cash": 24123.09,
-    "positions": [
-      {
-        "ticker": "TSM",
-        "shares": 13,
-        "avg_price": 452.07,
-        "cost_basis": 5876.91,
-        "opened_at": "2026-09-28 17:08 UTC"
-      }
-    ],
+    "cash": 29813.1,
+    "positions": [],
     "history": [
       {
         "id": "tx_b_1",
-        "time": "2026-09-28 17:08 UTC",
+        "time": "2026-10-12 13:39 UTC",
         "participant": "BOT",
         "action": "BUY",
-        "ticker": "TSM",
-        "shares": 13,
-        "price": 452.07,
-        "total_usd": 5876.91,
+        "ticker": "PLTR",
+        "shares": 35,
+        "price": 212.55,
+        "total_usd": 7439.25,
         "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_2",
+        "time": "2026-10-12 14:10 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "PLTR",
+        "shares": 35,
+        "price": 207.21,
+        "total_usd": 7252.35,
+        "realized_pnl": -186.9
       }
     ],
     "decision_logs": [
       {
-        "time": "2026-09-28 17:08 UTC",
+        "time": "2026-10-12 13:39 UTC",
         "action": "BUY",
-        "ticker": "TSM",
-        "shares": 13,
-        "price": 452.07,
-        "total_usd": 5876.91,
-        "rationale": "Day-1 Wave Ignition: NONE with RVOL 0.45x and P(Wave) of 40.8%. External catalysts factored: Congressional Committee Oversight BUY (Energy and Commerce), Corporate Insider BUY ($9,900), ACTIVE PELOSI EFFECT [HIGH_VELOCITY - C_SUITE_INSIDER_WHALE_ACCUMULATION] (Score: 70/100). Active Pelosi Effect (HIGH_VELOCITY - Hype Score: 70/100): Retail social streams are actively circulating C Suite Insider Whale Accumulation citing Corporate CEO / C-Suite. Discussion demonstrates rapid copy-trading accumulation with strong bullish bias.. Allocating $5,876.91 (20% of cash) on high conviction.",
-        "composite_score": 65,
-        "wave_probability": 40.8
+        "ticker": "PLTR",
+        "shares": 35,
+        "price": 212.55,
+        "total_usd": 7439.25,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 95.0%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $7,439.25 (25% of cash) on high conviction.",
+        "composite_score": 100,
+        "wave_probability": 95.0
+      },
+      {
+        "time": "2026-10-12 14:10 UTC",
+        "action": "SELL",
+        "ticker": "PLTR",
+        "shares": 35,
+        "price": 207.21,
+        "rationale": "Stop Loss Triggered (-2.5% loss). Cut loss early and quarantined ticker for 48 hours.",
+        "realized_pnl": -186.9,
+        "pnl_pct": -2.51
       }
     ],
-    "last_evaluated_at": "2026-09-28 22:19 UTC"
+    "quarantine": {
+      "PLTR": "2026-10-14T14:10:06.669982+00:00"
+    },
+    "last_evaluated_at": "2026-10-12 16:12 UTC"
   }
 }

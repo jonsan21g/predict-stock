@@ -206,38 +206,44 @@ To ensure architectural integrity and prevent regressions, all components must s
 
 ### 9.1 Concept & Objectives
 To validate and gamify the quantitative Wave Rider engine, the platform incorporates a live **5-Day "Player vs. Bot" Paper Trading Duel**:
-- **Match Horizon**: Monday Sep 28 to Friday Oct 2, 2026, at 23:00 CET (21:00 UTC).
+- **Match Horizon**: Monday Oct 5 to Friday Oct 9, 2026, at 23:00 CET (21:00 UTC) (Week 2 Duel).
 - **Starting Capital**: \$30,000 USD each (Player and Bot).
 - **Playing Field**: Strictly constrained to the 27 US Tech & Memory universe.
-- **Rule Set**: Long-only (no shorting), live market price fills, total allocation freedom (no concentration caps).
-- **Winning Metric**: Highest Total Net Equity (Liquid Cash + Mark-to-Market Stock Value) at Friday Oct 2, 23:00 CET.
+- **Rule Set**: Long-only (no shorting), live market price fills, total allocation freedom.
+- **Week 2 Enhancements**:
+  1. **48-Hour Quarantine**: Stopped-out tickers enter a 48-hour quarantine to prevent revenge churn loops.
+  2. **Scraps Rule**: Minimum cash threshold of \$3,000 (10%) below which no new trades are permitted.
+  3. **Macro Regime Gatekeeper**: Long entries restricted to periods when QQQ >= 20 EMA.
+  4. **Conviction-Weighted Sizing**: Tier 1 Sniper (45%-50%), Tier 2 (20%-25%), Tier 3 (0%).
+- **Winning Metric**: Highest Total Net Equity (Liquid Cash + Mark-to-Market Stock Value) at Friday Oct 9, 23:00 CET.
 
 ### 9.2 Bot Autonomous Decision Architecture
 The autonomous bot evaluates market opportunities across three cadences:
 1. **Pre-Market Confirmation (~15:00 CET)**: Identifies overnight gap expansions and catalyst announcements.
-2. **End-of-Day Allocation (~21:45 CET)**: Detects Day-1 Wave Ignition across daily closing candles.
-3. **Hourly Intraday Polling**: Monitors stop-loss ($-2.5\%$), profit targets ($+3.5\% / +6.0\%$), and trailing 5 EMA exit conditions.
+2. **Opening-Range Breakout (09:45–10:00 EST / 15:45–16:00 CET)**: Detects early 15-minute ORB volume ignitions.
+3. **End-of-Day Allocation (~21:45 CET)**: Detects Day-1 Wave Ignition across daily closing candles.
+4. **Intraday Risk Engine**: Enforces bar-close stop-loss ($-2.5\%$), profit targets ($+3.5\% / +6.0\%$), and 48-hour quarantine.
 
 ### 9.3 Mandatory Transparent Rationale & Catalyst Disclosures
 In accordance with Rule 7, the Bot is strictly prohibited from executing "black-box" trades. For every action taken, the engine compiles a structured disclosure log:
-- **Technical Wave Trigger**: Ignition type (`MOMENTUM_ALIGN`, `BB_EXPANSION`, `RVOL_BREAKOUT`), RVOL multiplier, and calibrated $P(\text{Wave Win})$.
+- **Technical Wave Trigger**: Ignition type (`MOMENTUM_ORB`, `MOMENTUM_ALIGN`, `BB_EXPANSION`), RVOL multiplier, and calibrated $P(\text{Wave Win})$.
 - **Outside-the-Tool Catalysts**:
   - Congressional STOCK Act purchase filings within the 45-day window.
   - SEC Form 4 insider cluster buys and open-market officer accumulation.
   - Financial news and retail sentiment velocity (Reddit/social buzz).
-- **Position Sizing Thesis**: Percentage of cash deployed ($15\%$ to $30\%$ per wave setup) based on composite score conviction.
+- **Position Sizing Thesis**: Percentage of cash deployed based on Tiered Conviction Kelly Sizing.
 
 ### 9.4 Data Persistence & State Schema (`data/game_state.json`)
 The duel state is persisted atomically via temporary file swapping (`.tmp` to `.json`) to prevent corruption:
 ```json
 {
-  "game_id": "duel_2026_10_02",
-  "title": "5-Day Live Wave Rider Duel: Player vs. Bot",
-  "created_at": "2026-09-27T21:30:00Z",
-  "end_time": "2026-10-02T21:00:00Z",
+  "game_id": "duel_2026_10_09",
+  "title": "5-Day Live Wave Rider Duel: Player vs. Bot (Week 2)",
+  "created_at": "2026-10-05T05:00:00Z",
+  "end_time": "2026-10-09T21:00:00Z",
   "initial_capital": 30000.0,
   "player": { "cash": 30000.0, "positions": [], "history": [] },
-  "bot": { "cash": 30000.0, "positions": [], "history": [], "decision_logs": [] }
+  "bot": { "cash": 30000.0, "positions": [], "history": [], "decision_logs": [], "quarantine": {} }
 }
 ```
 

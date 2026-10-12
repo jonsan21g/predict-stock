@@ -536,3 +536,66 @@ When transitioning from local execution to 24/7 cloud hosting:
 
 1. **State Persistence**: The local file I/O operations (`load_game_state`, `save_game_state`) will be augmented with a database driver fallback that synchronizes to Supabase PostgreSQL whenever database environment variables are set.
 2. **Preventing Spin-Down**: A free external uptime pinger (e.g. Cron-Job.org or UptimeRobot) pings `GET /api/health` every 14 minutes, keeping the free-tier container active throughout the 5-day duel.
+
+---
+
+## 10. Week 2 Strategic Upgrades Design & Specification (`FR-08`)
+
+Based on empirical learnings from Week 1 (Oct 2), Week 2 introduces architectural circuit breakers to transition the autonomous bot from an overactive micro-churner into a disciplined momentum sniper.
+
+### 10.1 Week 2 Match Configuration
+* **Target Expiration**: `MATCH_END_ISO = "2026-10-09T21:00:00Z"` (Friday Oct 9, 2026, 23:00 CET).
+* **Game Session Identifier**: `duel_2026_10_09`.
+* **Capital**: $30,000.00 USD each, zero open positions, 100% cash.
+
+### 10.2 Component Architecture & Method Contracts
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    WEEK 2 AUTONOMOUS SNIPER PIPELINE                        │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 1. Macro Regime Check  --> QQQ >= EMA20 (Gatekeeper: If False -> Freeze)    │
+│ 2. Scraps Rule Filter  --> Available Cash >= $3,000 (If False -> Lock Cash) │
+│ 3. 48h Quarantine Check--> Skip tickers stopped out within last 48 hours     │
+│ 4. Early Wave Detector --> 15-Min ORB + Volume Pacing >= 2.50x              │
+│ 5. Conviction Sizer    --> Tier 1 Sniper (45-50%) vs Tier 2 Standard (20-25%)│
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+#### 1. `QuarantineManager` (`duel.py`)
+```python
+def is_ticker_quarantined(ticker: str, quarantine: Dict[str, str], current_time: datetime) -> bool:
+    """Returns True if ticker is locked under the 48-hour post-stop cooldown."""
+
+def add_ticker_to_quarantine(ticker: str, quarantine: Dict[str, str], current_time: datetime, hours: int = 48) -> Dict[str, str]:
+    """Records ticker with ISO expiration timestamp 48 hours into the future."""
+```
+
+#### 2. `MacroRegimeGatekeeper` (`duel.py` / `price_fetcher.py`)
+```python
+def is_macro_regime_bullish(custom_benchmark: Optional[str] = "QQQ") -> bool:
+    """
+    Evaluates whether benchmark equity (QQQ) is trading >= 20-day EMA.
+    If False, returns False to prevent opening new long positions in a deteriorating tape.
+    """
+```
+
+#### 3. `The Scraps Rule` (`duel.py`)
+```python
+MINIMUM_BOT_TRADE_CASH_THRESHOLD = 3000.0  # 10% of $30,000
+
+def has_sufficient_trade_capital(available_cash: float) -> bool:
+    """Returns False if available cash is below $3,000, preserving cash buffer."""
+```
+
+#### 4. `ConvictionWeightedSizer` (`duel.py`)
+```python
+def calculate_conviction_allocation(candidate: Dict[str, Any], available_cash: float) -> float:
+    """
+    Computes dollar size based on conviction tier:
+      - Tier 1 (Score >= 90 & RVOL >= 2.0 & Catalyst): 45% - 50% of available cash
+      - Tier 2 (Score 80 - 89): 20% - 25% of available cash
+      - Tier 3 (Score < 80): 0.0 (Do Not Trade)
+    """
+```
+

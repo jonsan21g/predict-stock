@@ -9,7 +9,22 @@ let backtestChart = null;
 
 document.addEventListener("DOMContentLoaded", () => {
   updateSortIndicators();
-  loadRadar();
+  const initialTab = (window.location.hash ? window.location.hash.replace("#", "") : localStorage.getItem("active_tab")) || "radar";
+  if (initialTab && initialTab !== "radar") {
+    showTab(initialTab);
+  } else {
+    loadRadar();
+  }
+  // Always pre-load duel state in background so data is ready immediately
+  loadDuelState();
+
+  // Auto-refresh duel state every 10 seconds if user is viewing duel tab
+  setInterval(() => {
+    const duelTab = document.getElementById("tab-duel");
+    if (duelTab && duelTab.classList.contains("active")) {
+      loadDuelState();
+    }
+  }, 10000);
 });
 
 function setMode(mode) {
@@ -25,6 +40,13 @@ function refreshRadar() {
 }
 
 function showTab(tabId) {
+  try {
+    localStorage.setItem("active_tab", tabId);
+    if (window.location.hash !== `#${tabId}`) {
+      history.replaceState(null, "", `#${tabId}`);
+    }
+  } catch (e) {}
+
   document.querySelectorAll(".nav-tab").forEach(tab => tab.classList.remove("active"));
   document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
 
@@ -1119,7 +1141,7 @@ let watchlistCache = [];
 
 async function loadDuelState() {
   try {
-    const res = await fetch("/api/game");
+    const res = await fetch(`/api/game?_t=${Date.now()}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     duelState = data;
@@ -1152,7 +1174,7 @@ async function loadDuelState() {
 function renderDuelScoreboard(data) {
   // Countdown and Lead badge
   const countdownEl = document.getElementById("duel-countdown");
-  if (countdownEl) countdownEl.textContent = `${data.countdown} • Target: Friday Oct 2, 2026 at 23:00 CET`;
+  if (countdownEl) countdownEl.textContent = `${data.countdown} • Target: Friday Oct 16, 2026 at 23:00 CEST`;
 
   const leadBadge = document.getElementById("duel-lead-badge");
   if (leadBadge) {
@@ -1360,8 +1382,23 @@ function renderPlayerHoldings(positions) {
 
 function renderBotHoldings(positions) {
   const tbody = document.getElementById("bot-holdings-tbody");
+  const capacityBadge = document.getElementById("bot-capacity-badge");
+
+  const count = positions ? positions.length : 0;
+  const semisCount = positions ? positions.filter(p => (p.sector || "").toUpperCase().includes("SEMI")).length : 0;
+  if (capacityBadge) {
+    capacityBadge.innerHTML = `🎯 Capacity: ${count}/4 Active | Semis: ${semisCount}/2`;
+    if (count >= 4) {
+      capacityBadge.style.borderColor = "#f59e0b";
+      capacityBadge.style.color = "#fbbf24";
+    } else {
+      capacityBadge.style.borderColor = "#38bdf8";
+      capacityBadge.style.color = "#38bdf8";
+    }
+  }
+
   if (!positions || positions.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" class="loading-cell" style="text-align:center; padding: 20px; color:#94a3b8;">Bot currently holding $30,000 cash. Scanning for Day-1 Ignition.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="9" class="loading-cell" style="text-align:center; padding: 20px; color:#94a3b8;">Bot currently holding $30,000 cash. Scanning for Day-1 Ignition.</td></tr>`;
     return;
   }
 
@@ -1371,15 +1408,44 @@ function renderBotHoldings(positions) {
     const pnlSign = p.unrealized_pnl >= 0 ? "+" : "";
     const pnlColor = p.unrealized_pnl >= 0 ? "#10b981" : "#f43f5e";
 
+    // Sector badge formatting
+    let sectorShort = p.sector || "TECH";
+    let sectorColor = "#94a3b8";
+    if (sectorShort.includes("SEMI")) { sectorShort = "SEMIS"; sectorColor = "#818cf8"; }
+    else if (sectorShort.includes("AI")) { sectorShort = "AI COMPUTE"; sectorColor = "#38bdf8"; }
+    else if (sectorShort.includes("CLOUD")) { sectorShort = "CLOUD"; sectorColor = "#34d399"; }
+    else if (sectorShort.includes("INFRA")) { sectorShort = "INFRA"; sectorColor = "#f59e0b"; }
+
+    const sectorBadge = `<span class="badge" style="background:rgba(255,255,255,0.06); border:1px solid ${sectorColor}; color:${sectorColor}; font-size:10px; padding:2px 6px; border-radius:9999px;">${sectorShort}</span>`;
+
+    // Trailing stop formatting
+    const isProtected = p.trailing_stop && p.avg_price && p.trailing_stop >= p.avg_price;
+    const stopHtml = p.trailing_stop 
+      ? `<span style="color:${isProtected ? '#10b981' : '#f43f5e'}; font-weight:700;">${isProtected ? '🛡️ ' : ''}$${p.trailing_stop.toFixed(2)}</span>`
+      : "-";
+
+    // Peak gain formatting
+    const peakHtml = p.peak_gain_pct !== undefined
+      ? `<span style="color:#38bdf8; font-weight:600;">+${p.peak_gain_pct.toFixed(1)}%</span>`
+      : "-";
+
+    // Harvest status pill
+    const statusPill = p.partial_harvested
+      ? `<span class="badge" style="background:rgba(16,185,129,0.2); border:1px solid #10b981; color:#34d399; font-size:10px; padding:2px 7px; border-radius:9999px; font-weight:700;">🟢 50% Harvested</span>`
+      : `<span class="badge" style="background:rgba(148,163,184,0.15); border:1px solid #475569; color:#94a3b8; font-size:10px; padding:2px 7px; border-radius:9999px;">⏳ Full Pos</span>`;
+
     tr.innerHTML = `
       <td><strong>${p.ticker}</strong></td>
+      <td>${sectorBadge}</td>
       <td>${p.shares}</td>
       <td>$${p.avg_price.toFixed(2)}</td>
       <td>$${p.current_price.toFixed(2)}</td>
-      <td>$${p.market_value.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+      <td>${stopHtml}</td>
+      <td>${peakHtml}</td>
       <td style="color:${pnlColor}; font-weight:700;">
         ${pnlSign}$${p.unrealized_pnl.toFixed(2)} (${pnlSign}${p.unrealized_pnl_pct.toFixed(2)}%)
       </td>
+      <td>${statusPill}</td>
     `;
     tbody.appendChild(tr);
   });

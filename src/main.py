@@ -197,14 +197,18 @@ def print_duel_scoreboard():
     if b["positions"]:
         for pos in b["positions"]:
             pnl_sign = "+" if pos["unrealized_pnl"] >= 0 else ""
-            print(f"    • {pos['ticker']:<5} {pos['shares']:>4} shs @ ${pos['avg_price']:.2f} (Live: ${pos['current_price']:.2f}) | Val: ${pos['market_value']:,.2f} | PnL: {pnl_sign}${pos['unrealized_pnl']:.2f} ({pnl_sign}{pos['unrealized_pnl_pct']}%)")
+            h_tag = " [50% HARVESTED]" if pos.get("partial_harvested") else ""
+            sec = pos.get("sector", "TECH")
+            t_stop = f"${pos.get('trailing_stop', 0.0):.2f}"
+            print(f"    • {pos['ticker']:<5} ({sec}) {pos['shares']:>3} shs @ ${pos['avg_price']:.2f} (Live: ${pos['current_price']:.2f}) | Stop: {t_stop} | Peak: +{pos.get('peak_gain_pct', 0.0):.1f}% | PnL: {pnl_sign}${pos['unrealized_pnl']:.2f} ({pnl_sign}{pos['unrealized_pnl_pct']}CP%){h_tag}".replace("CP%", "%"))
     else:
         print("    (No open positions. 100% Cash)")
 
     if b.get("decision_logs"):
         print("\n  [BOT TRANSPARENT RATIONALE & CATALYST FEED (Recent)]")
         for log in reversed(b["decision_logs"][-3:]):
-            print(f"    • [{log['time']}] {log['action']} {log['shares']} {log['ticker']} @ ${log['price']:.2f} (Val: ${log['total_usd']:,.2f})")
+            val = log.get("total_usd", round(log.get("shares", 0) * log.get("price", 0.0), 2))
+            print(f"    • [{log['time']}] {log['action']} {log.get('shares', 0)} {log.get('ticker', '')} @ ${log.get('price', 0.0):.2f} (Val: ${val:,.2f})")
             print(f"      Thesis: \"{log['rationale']}\"")
 
     print("=" * 88 + "\n")

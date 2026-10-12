@@ -2,7 +2,7 @@
 duel.py - 5-Day "Player vs. Bot" Paper Trading Duel Engine.
 Horizon: Monday Sep 28 to Friday Oct 2, 2026, 11:00 PM CET (21:00 UTC).
 Starting Capital: $30,000 USD each.
-Playing Field: 27 US Tech & Memory Leaders.
+Playing Field: 50 US Tech, Semiconductor, AI & Cloud Titans.
 Rules: Long only (no shorting). Market execution. Total allocation freedom.
 Bot transparency: Full rationale and outside-the-tool catalyst disclosures logged.
 """
@@ -26,35 +26,193 @@ WATCHLIST_FILE = os.path.join(BASE_DIR, "data", "watchlist.json")
 def get_game_file() -> str:
     return os.environ.get("WAVE_RIDER_GAME_FILE", os.path.join(BASE_DIR, "data", "game_state.json"))
 
-# Target Match Expiry: Friday Oct 2, 2026 at 23:00 CET (21:00 UTC)
-MATCH_END_ISO = "2026-10-02T21:00:00Z"
+# Target Match Expiry: Friday Oct 16, 2026 at 23:00 CEST (21:00 UTC)
+MATCH_END_ISO = "2026-10-16T21:00:00Z"
+GAME_ID = "duel_2026_10_16"
 INITIAL_BANKROLL = 30000.0
+MINIMUM_BOT_TRADE_CASH_THRESHOLD = 3000.0  # The Scraps Rule: minimum cash reserve ($3,000 / 10%)
+QUARANTINE_HOURS = 48
+MAX_ACTIVE_POSITIONS = 4                    # Sniper Focus: Max 4 concurrent holdings
+MAX_SECTOR_POSITIONS = 2                    # Correlated Risk Guard: Max 2 positions per sector
+TARGET_1_HARVEST_PCT = 3.0                  # Harvest 50% profit at +3.0%
+TARGET_2_FULL_PCT = 6.0                     # Full exit on remaining runner at +6.0%
+HARD_STOP_LOSS_PCT = -2.5                   # Hard stop floor at -2.5%
+
+# Macro Sector Clusters across the 50 Curated US Equities
+SECTOR_MAP = {
+    # SEMICONDUCTORS & HARDWARE SILICON (24)
+    "MU": "SEMICONDUCTORS", "WDC": "SEMICONDUCTORS", "STX": "SEMICONDUCTORS",
+    "SKHY": "SEMICONDUCTORS", "SNDK": "SEMICONDUCTORS", "NTAP": "SEMICONDUCTORS",
+    "LRCX": "SEMICONDUCTORS", "AMAT": "SEMICONDUCTORS", "KLAC": "SEMICONDUCTORS",
+    "ASML": "SEMICONDUCTORS", "TXN": "SEMICONDUCTORS", "SNPS": "SEMICONDUCTORS",
+    "CDNS": "SEMICONDUCTORS", "TER": "SEMICONDUCTORS", "ONTO": "SEMICONDUCTORS",
+    "AVGO": "SEMICONDUCTORS", "QCOM": "SEMICONDUCTORS", "ARM": "SEMICONDUCTORS",
+    "MRVL": "SEMICONDUCTORS", "ADI": "SEMICONDUCTORS", "NXPI": "SEMICONDUCTORS",
+    "ON": "SEMICONDUCTORS", "TSM": "SEMICONDUCTORS", "INTC": "SEMICONDUCTORS",
+
+    # AI COMPUTE SYSTEMS & PLATFORMS (6)
+    "NVDA": "AI_COMPUTE_SYSTEMS", "AMD": "AI_COMPUTE_SYSTEMS", "SMCI": "AI_COMPUTE_SYSTEMS",
+    "DELL": "AI_COMPUTE_SYSTEMS", "PLTR": "AI_COMPUTE_SYSTEMS", "CRWV": "AI_COMPUTE_SYSTEMS",
+
+    # CLOUD SOFTWARE & CYBERSECURITY (7)
+    "SNOW": "CLOUD_SOFTWARE", "MDB": "CLOUD_SOFTWARE", "NOW": "CLOUD_SOFTWARE",
+    "CRM": "CLOUD_SOFTWARE", "PANW": "CLOUD_SOFTWARE", "CRWD": "CLOUD_SOFTWARE",
+    "NET": "CLOUD_SOFTWARE",
+
+    # MEGA-CAP ANCHORS & POWER INFRASTRUCTURE (13)
+    "MSFT": "MEGACAP_INFRASTRUCTURE", "AAPL": "MEGACAP_INFRASTRUCTURE",
+    "GOOGL": "MEGACAP_INFRASTRUCTURE", "AMZN": "MEGACAP_INFRASTRUCTURE",
+    "META": "MEGACAP_INFRASTRUCTURE", "TSLA": "MEGACAP_INFRASTRUCTURE",
+    "SPCX": "MEGACAP_INFRASTRUCTURE", "ORCL": "MEGACAP_INFRASTRUCTURE",
+    "ANET": "MEGACAP_INFRASTRUCTURE", "VRT": "MEGACAP_INFRASTRUCTURE",
+    "ETN": "MEGACAP_INFRASTRUCTURE", "ALAB": "MEGACAP_INFRASTRUCTURE",
+    "MPWR": "MEGACAP_INFRASTRUCTURE"
+}
+
+
+def get_ticker_sector(ticker: str) -> str:
+    """Returns the macro sector cluster for any ticker in the 50 universe."""
+    return SECTOR_MAP.get(ticker.upper().strip(), "GENERAL_TECH")
+
+
+def compute_dynamic_trailing_stop(pos: Dict[str, Any], curr_price: Optional[float] = None) -> float:
+    """
+    Computes High-Water Mark Profit Ratchet trailing floor:
+      - Peak >= +5.5% -> Stop locked at Entry +4.0%
+      - Peak >= +4.5% -> Stop locked at Entry +2.5%
+      - Peak >= +3.5% -> Stop locked at Entry +1.5%
+      - Peak >= +2.5% or Partial Harvested -> Stop locked at Breakeven (0.0% Risk)
+      - Default -> Hard stop at Entry -2.5%
+    Trailing stop ratchets strictly upwards; never drops.
+    """
+    avg_price = float(pos.get("avg_price", 0.0))
+    if avg_price <= 0:
+        return 0.0
+
+    peak_price = float(pos.get("peak_price", avg_price))
+    if curr_price is not None:
+        peak_price = max(peak_price, curr_price)
+
+    peak_gain_pct = ((peak_price - avg_price) / avg_price) * 100.0
+    partial_harvested = bool(pos.get("partial_harvested", False))
+
+    if peak_gain_pct >= 5.5:
+        ratchet_stop = avg_price * 1.040  # +4.0%
+    elif peak_gain_pct >= 4.5:
+        ratchet_stop = avg_price * 1.025  # +2.5%
+    elif peak_gain_pct >= 3.5:
+        ratchet_stop = avg_price * 1.015  # +1.5%
+    elif peak_gain_pct >= 2.5 or partial_harvested:
+        ratchet_stop = avg_price * 1.000  # Breakeven
+    else:
+        ratchet_stop = avg_price * (1.0 + HARD_STOP_LOSS_PCT / 100.0)  # -2.5% Hard Stop
+
+    existing_stop = float(pos.get("trailing_stop", 0.0))
+    return round(max(existing_stop, ratchet_stop), 2)
+
+
+def is_ticker_quarantined(ticker: str, quarantine: Optional[Dict[str, str]], current_time: Optional[datetime] = None) -> bool:
+    """Returns True if ticker is currently under 48-hour stop-loss quarantine."""
+    if not quarantine or ticker not in quarantine:
+        return False
+    expiry_str = quarantine.get(ticker)
+    if not expiry_str:
+        return False
+    try:
+        exp_dt = datetime.fromisoformat(expiry_str.replace("Z", "+00:00"))
+        now_dt = current_time or datetime.now(timezone.utc)
+        return now_dt < exp_dt
+    except Exception:
+        return False
+
+
+def add_ticker_to_quarantine(ticker: str, quarantine: Dict[str, str], current_time: Optional[datetime] = None, hours: int = QUARANTINE_HOURS) -> Dict[str, str]:
+    """Adds a ticker to the quarantine dictionary with an expiration timestamp."""
+    from datetime import timedelta
+    now_dt = current_time or datetime.now(timezone.utc)
+    exp_dt = now_dt + timedelta(hours=hours)
+    quarantine[ticker] = exp_dt.isoformat()
+    return quarantine
+
+
+def is_macro_regime_bullish(custom_benchmark: Optional[str] = "QQQ") -> bool:
+    """
+    Evaluates whether benchmark equity (QQQ) is trading >= 20-day EMA.
+    If False, returns False to prevent opening new long positions in a deteriorating tape.
+    """
+    try:
+        df = get_daily_history(custom_benchmark, period="3mo")
+        if df is not None and len(df) >= 20:
+            ema20 = float(df["Close"].ewm(span=20, adjust=False).mean().iloc[-1])
+            curr_close = float(df["Close"].iloc[-1])
+            return curr_close >= ema20
+    except Exception:
+        pass
+    return True  # Fallback gracefully if benchmark fetch fails
+
+
+def calculate_conviction_allocation(top_candidate: Dict[str, Any], available_cash: float) -> float:
+    """
+    Tiered Kelly Allocation:
+      - Tier 1 (Sniper): Score >= 90 & RVOL >= 2.0 (or confirmed catalyst) -> 45% - 50%
+      - Tier 2 (Standard): Score 80 - 89 -> 20% - 25%
+      - Tier 3 (Sub-threshold): Score < 80 -> 0.0 (Do Not Trade)
+    """
+    score = top_candidate.get("composite_score", 0)
+    rvol = top_candidate.get("rvol", 1.0)
+    has_catalyst = bool(top_candidate.get("smart_money", {}).get("politician_buy") or 
+                        top_candidate.get("smart_money", {}).get("insider_buy") or 
+                        top_candidate.get("smart_money", {}).get("contracts", {}).get("has_major_contract"))
+    
+    if score >= 90 and (rvol >= 2.0 or has_catalyst):
+        return 0.50  # 50% Sniper allocation
+    elif score >= 80:
+        return 0.25  # 25% Standard allocation
+    return 0.0      # Reject sub-80 trades
 
 
 def initialize_game_state(force_reset: bool = False) -> Dict[str, Any]:
-    """Initializes or resets the 5-day duel scenario."""
+    """Initializes or resets the 5-day duel scenario for Week 3."""
     game_file = get_game_file()
     if not force_reset and os.path.exists(game_file):
         try:
             with open(game_file, "r", encoding="utf-8") as f:
                 state = json.load(f)
-                if state.get("game_id") == "duel_2026_10_02":
+                if state.get("game_id") == GAME_ID:
+                    if "quarantine" not in state.get("bot", {}):
+                        state["bot"]["quarantine"] = {}
                     return state
+                else:
+                    # Archive previous week's state safely before initializing Week 3
+                    old_game_id = state.get("game_id", "previous_week")
+                    archive_dir = os.path.join(BASE_DIR, "data", "history")
+                    os.makedirs(archive_dir, exist_ok=True)
+                    archive_path = os.path.join(archive_dir, f"game_state_{old_game_id}.json")
+                    if not os.path.exists(archive_path):
+                        with open(archive_path, "w", encoding="utf-8") as af:
+                            json.dump(state, af, indent=2)
         except Exception:
             pass
 
     state = {
-        "game_id": "duel_2026_10_02",
-        "title": "5-Day Live Wave Rider Duel: Player vs. Bot",
+        "game_id": GAME_ID,
+        "title": "5-Day Live Wave Rider Duel: Player vs. Bot (Week 3 - Profit Realization Engine)",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "end_time": MATCH_END_ISO,
         "initial_capital": INITIAL_BANKROLL,
         "rules": {
             "starting_cash": INITIAL_BANKROLL,
-            "allowed_universe_count": 27,
+            "allowed_universe_count": 50,
             "shorting_allowed": False,
-            "allocation_limits": "None (Total Freedom)",
-            "end_time_cet": "Friday Oct 2, 2026 at 23:00 CET"
+            "max_active_positions": MAX_ACTIVE_POSITIONS,
+            "max_sector_positions": MAX_SECTOR_POSITIONS,
+            "allocation_limits": "Tiered Conviction (45-50% Sniper / 20-25% Standard)",
+            "target_1_harvest": f"+{TARGET_1_HARVEST_PCT:.1f}% (Sell 50% & Breakeven Stop on Runner)",
+            "target_2_runner": f"+{TARGET_2_FULL_PCT:.1f}% (Full Exit)",
+            "hard_stop_loss": f"{HARD_STOP_LOSS_PCT:.1f}%",
+            "end_time_cet": "Friday Oct 16, 2026 at 23:00 CEST",
+            "min_cash_threshold": MINIMUM_BOT_TRADE_CASH_THRESHOLD,
+            "quarantine_hours": QUARANTINE_HOURS
         },
         "player": {
             "cash": INITIAL_BANKROLL,
@@ -65,7 +223,8 @@ def initialize_game_state(force_reset: bool = False) -> Dict[str, Any]:
             "cash": INITIAL_BANKROLL,
             "positions": [],
             "history": [],
-            "decision_logs": []
+            "decision_logs": [],
+            "quarantine": {}
         }
     }
     save_game_state(state)
@@ -85,15 +244,30 @@ def save_game_state(state: Dict[str, Any]) -> None:
 
 
 def get_current_stock_price(ticker: str) -> float:
-    """Gets real-time price snapshot for a ticker with daily fallback."""
+    """Gets real-time price snapshot for a ticker with session awareness and daily fallback."""
+    from src.fetchers.market_hours import is_premarket_session
+    from src.fetchers.price_fetcher import get_intraday_snapshot, get_premarket_quote
+
+    # 1. If actively in pre-market session (04:00 - 09:30 EST), check pre-market quotes first
+    if is_premarket_session():
+        try:
+            quote = get_premarket_quote(ticker, strict_premarket=True)
+            price = float(quote.get("current_price", 0.0))
+            if price > 0:
+                return price
+        except Exception:
+            pass
+
+    # 2. For regular hours, after-hours, and overnight/closed, get the latest regular-session snapshot
     try:
-        quote = get_premarket_quote(ticker)
-        price = float(quote.get("current_price", 0.0))
+        snap = get_intraday_snapshot(ticker)
+        price = float(snap.get("current_price", 0.0))
         if price > 0:
             return price
     except Exception:
         pass
 
+    # 3. Fallback to daily history close
     try:
         df = get_daily_history(ticker, period="5d")
         return float(df["Close"].iloc[-1])
@@ -125,6 +299,15 @@ def calculate_portfolio_valuation(portfolio: Dict[str, Any], live_prices: Option
         updated_pos["market_value"] = round(market_val, 2)
         updated_pos["unrealized_pnl"] = round(unrealized_pnl, 2)
         updated_pos["unrealized_pnl_pct"] = round(unrealized_pnl_pct, 2)
+
+        # Week 3 Dynamic Trailing & Harvest Fields
+        peak_val = max(float(pos.get("peak_price", avg_price)), curr_price)
+        updated_pos["peak_price"] = round(peak_val, 2)
+        updated_pos["peak_gain_pct"] = round(((peak_val - avg_price) / avg_price) * 100.0, 2) if avg_price > 0 else 0.0
+        updated_pos["partial_harvested"] = bool(pos.get("partial_harvested", False))
+        updated_pos["sector"] = pos.get("sector") or get_ticker_sector(ticker)
+        updated_pos["trailing_stop"] = round(compute_dynamic_trailing_stop(pos, curr_price), 2)
+
         updated_positions.append(updated_pos)
 
     net_equity = cash + stock_value
@@ -312,7 +495,7 @@ def bot_evaluate_turn(
     Autonomous decision engine for the Bot.
     1. Evaluates existing positions: checks profit targets (+3.5%/+6.0%), stop loss (-2.5%),
        or momentum stagnation, liquidating when appropriate.
-    2. Identifies emerging wave opportunities across the 27 universe.
+    2. Identifies emerging wave opportunities across the 50 universe.
     3. Factors in smart-money footprints, financial news velocity, and external catalysts.
     4. Formulates a fully transparent disclosure thesis and executes.
     """
@@ -329,18 +512,110 @@ def bot_evaluate_turn(
         shares = int(pos["shares"])
         avg_price = float(pos["avg_price"])
         curr_price = custom_price_map.get(ticker) if custom_price_map and ticker in custom_price_map else get_current_stock_price(ticker)
-        gain_pct = ((curr_price - avg_price) / avg_price) * 100.0
 
+        # Track high-water mark peak price
+        peak_val = max(float(pos.get("peak_price", avg_price)), curr_price)
+        pos["peak_price"] = round(peak_val, 2)
+        pos["sector"] = pos.get("sector") or get_ticker_sector(ticker)
+
+        # Update dynamic profit ratchet trailing stop
+        dyn_stop = compute_dynamic_trailing_stop(pos, curr_price)
+        pos["trailing_stop"] = round(dyn_stop, 2)
+
+        gain_pct = ((curr_price - avg_price) / avg_price) * 100.0
+        peak_gain_pct = ((peak_val - avg_price) / avg_price) * 100.0
+
+        from src.fetchers.market_hours import is_regular_trading_hours
+        can_execute_orders = is_regular_trading_hours() or force or (custom_price_map is not None)
+
+        # -------------------------------------------------------------
+        # Step 1a: Target 1 Partial Profit Scaling (50% Harvest at +3.0%)
+        # -------------------------------------------------------------
+        if can_execute_orders and gain_pct >= TARGET_1_HARVEST_PCT and not pos.get("partial_harvested", False) and shares >= 2:
+            shares_to_sell = shares // 2
+            proceeds = round(shares_to_sell * curr_price, 2)
+            cost_basis_sold = round(shares_to_sell * avg_price, 2)
+            realized_pnl = round(proceeds - cost_basis_sold, 2)
+
+            state["bot"]["cash"] += proceeds
+            pos["shares"] -= shares_to_sell
+            pos["cost_basis"] = round(pos["shares"] * avg_price, 2)
+            pos["partial_harvested"] = True
+            # Raise trailing stop on runner to at least Breakeven (0.0% Risk)
+            pos["trailing_stop"] = round(max(pos.get("trailing_stop", 0.0), avg_price), 2)
+
+            tx = {
+                "id": f"tx_b_{len(state['bot']['history']) + 1}",
+                "time": now_str,
+                "participant": "BOT",
+                "action": "SELL (PARTIAL)",
+                "ticker": ticker,
+                "shares": shares_to_sell,
+                "price": round(curr_price, 2),
+                "total_usd": proceeds,
+                "realized_pnl": realized_pnl
+            }
+            state["bot"]["history"].append(tx)
+
+            disclosure = {
+                "time": now_str,
+                "action": "SELL_PARTIAL",
+                "ticker": ticker,
+                "shares": shares_to_sell,
+                "price": round(curr_price, 2),
+                "rationale": (
+                    f"Target 1 Harvest (+{gain_pct:.1f}% gain). Sold 50% ({shares_to_sell} sh) to lock profit into bankroll. "
+                    f"Trailing stop on remaining {pos['shares']} runner shares elevated to Breakeven (${avg_price:.2f})."
+                ),
+                "realized_pnl": realized_pnl,
+                "pnl_pct": round(gain_pct, 2)
+            }
+            state["bot"]["decision_logs"].append(disclosure)
+            actions_taken.append(f"BOT HARVESTED 50% ({shares_to_sell} sh) {ticker} @ ${curr_price:.2f} (Realized: +${realized_pnl:.2f})")
+            shares = pos["shares"]  # Updated share count for subsequent checks
+
+        # -------------------------------------------------------------
+        # Step 1b: Full Position Exit Checks (Target 2, Ratchet, Stop, Stagnation)
+        # -------------------------------------------------------------
         should_sell = False
         sell_reason = ""
 
-        # Take Profit Target (+3.5% partial / +6.0% full)
-        if gain_pct >= 6.0:
-            should_sell = True
-            sell_reason = f"Full Target 2 Hit (+{gain_pct:.1f}% gain). Locked in profit to recycle capital."
-        elif gain_pct <= -2.5:
-            should_sell = True
-            sell_reason = f"Stop Loss Triggered ({gain_pct:.1f}% loss). Cut loss early to protect bankroll."
+        if can_execute_orders:
+            # 1. Full Target 2 Hit (+6.0%)
+            if gain_pct >= TARGET_2_FULL_PCT:
+                should_sell = True
+                sell_reason = f"Full Target 2 Hit (+{gain_pct:.1f}% gain). Locked in profit on remaining runner to recycle capital."
+
+            # 2. Dynamic Trailing Profit Ratchet Exit (Guarantees locked profits before pullback)
+            elif curr_price <= pos["trailing_stop"] and pos["trailing_stop"] >= avg_price:
+                should_sell = True
+                locked_gain = ((curr_price - avg_price) / avg_price) * 100.0
+                sell_reason = (
+                    f"Dynamic Profit Ratchet Exit triggered @ ${curr_price:.2f} (Floor was ${pos['trailing_stop']:.2f}, "
+                    f"peak was ${pos['peak_price']:.2f}). Locked in +{locked_gain:.1f}% gain before pullback."
+                )
+
+            # 3. Hard Stop Loss (-2.5%)
+            elif gain_pct <= HARD_STOP_LOSS_PCT:
+                should_sell = True
+                if "quarantine" not in state["bot"]:
+                    state["bot"]["quarantine"] = {}
+                add_ticker_to_quarantine(ticker, state["bot"]["quarantine"])
+                sell_reason = f"Stop Loss Triggered ({gain_pct:.1f}% loss). Cut loss early and quarantined ticker for {QUARANTINE_HOURS} hours."
+
+            # 4. 48-Hour Stagnation Harvest
+            elif gain_pct >= 1.5:
+                opened_at_str = pos.get("opened_at", "")
+                if opened_at_str:
+                    try:
+                        opened_dt = datetime.strptime(opened_at_str.replace(" UTC", ""), "%Y-%m-%d %H:%M").replace(tzinfo=timezone.utc)
+                        now_dt = datetime.now(timezone.utc)
+                        hours_held = (now_dt - opened_dt).total_seconds() / 3600.0
+                        if hours_held >= 48.0 and curr_price < pos.get("peak_price", curr_price):
+                            should_sell = True
+                            sell_reason = f"48-Hour Momentum Stagnation Harvest (+{gain_pct:.1f}% gain after {int(hours_held)}h). Recycled capital for fresh Day-1 wave ignition."
+                    except Exception:
+                        pass
 
         if should_sell:
             proceeds = round(shares * curr_price, 2)
@@ -377,78 +652,121 @@ def bot_evaluate_turn(
             actions_taken.append(f"BOT SOLD {shares} {ticker} @ ${curr_price:.2f} ({sell_reason})")
 
     # -----------------------------------------------------------------
-    # Step 2: Scout New Opportunities (if cash is available)
+    # Step 2: Scout New Opportunities (if portfolio capacity & cash allow)
     # -----------------------------------------------------------------
     available_cash = state["bot"]["cash"]
-    if available_cash >= 1000.0:
-        watchlist = load_watchlist()
-        candidate_scores = []
-        already_held = {p["ticker"] for p in state["bot"]["positions"]}
+    bot_quarantine = state["bot"].get("quarantine", {})
 
-        # -----------------------------------------------------------------
-        # Step 2a: Scout Intraday Ignitions (ORB & Capitulation Snapbacks)
-        # -----------------------------------------------------------------
-        from src.fetchers.market_hours import is_regular_trading_hours
-        from src.analysis.intraday_engine import evaluate_intraday_stock
+    # Capacity Check 1: Max 4 Active Holdings Cap
+    if len(state["bot"]["positions"]) >= MAX_ACTIVE_POSITIONS:
+        disclosure = {
+            "time": now_str,
+            "action": "CAPACITY_HOLD",
+            "ticker": "PORTFOLIO",
+            "shares": 0,
+            "price": 0.0,
+            "rationale": f"Max Active Holdings Cap Reached ({len(state['bot']['positions'])}/{MAX_ACTIVE_POSITIONS} positions). Preserving cash reserve to maintain sniper focus.",
+            "composite_score": 0,
+            "wave_probability": 0.0
+        }
+        state["bot"]["decision_logs"].append(disclosure)
+        actions_taken.append(f"PORTFOLIO FULL: {len(state['bot']['positions'])}/{MAX_ACTIVE_POSITIONS} active holdings (Sniper discipline)")
 
-        if is_regular_trading_hours():
+    # The Scraps Rule: Do not trade if available cash < $3,000 (10% of $30k bankroll)
+    elif available_cash >= MINIMUM_BOT_TRADE_CASH_THRESHOLD:
+        # Macro Regime Gatekeeper: QQQ >= 20 EMA
+        if not is_macro_regime_bullish("QQQ"):
+            disclosure = {
+                "time": now_str,
+                "action": "MACRO_HOLD",
+                "ticker": "QQQ",
+                "shares": 0,
+                "price": 0.0,
+                "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+                "composite_score": 0,
+                "wave_probability": 0.0
+            }
+            state["bot"]["decision_logs"].append(disclosure)
+            actions_taken.append("MACRO REGIME FROZEN: QQQ < 20 EMA (Capital preserved in cash)")
+        else:
+            watchlist = load_watchlist()
+            candidate_scores = []
+            already_held = {p["ticker"] for p in state["bot"]["positions"]}
+
+            # Step 2a: Scout Intraday Ignitions (ORB & Capitulation Snapbacks)
+            from src.fetchers.market_hours import is_regular_trading_hours
+            from src.analysis.intraday_engine import evaluate_intraday_stock
+
+            if is_regular_trading_hours():
+                for s in watchlist:
+                    ticker = s["ticker"]
+                    if ticker in already_held or is_ticker_quarantined(ticker, bot_quarantine):
+                        continue
+                    try:
+                        intra_sig = evaluate_intraday_stock(ticker)
+                        if intra_sig.get("is_ignition"):
+                            candidate_scores.append(intra_sig)
+                    except Exception:
+                        pass
+
+            # Step 2b: Standard EOD / Composite Scouting
             for s in watchlist:
                 ticker = s["ticker"]
-                if ticker in already_held:
+                if ticker in already_held or is_ticker_quarantined(ticker, bot_quarantine) or any(c["ticker"] == ticker for c in candidate_scores):
                     continue
                 try:
-                    intra_sig = evaluate_intraday_stock(ticker)
-                    if intra_sig.get("is_ignition"):
-                        candidate_scores.append(intra_sig)
+                    score_data = score_single_stock(ticker)
+                    candidate_scores.append(score_data)
                 except Exception:
                     pass
 
-        # -----------------------------------------------------------------
-        # Step 2b: Standard EOD / Composite Scouting
-        # -----------------------------------------------------------------
-        for s in watchlist:
-            ticker = s["ticker"]
-            if ticker in already_held or any(c["ticker"] == ticker for c in candidate_scores):
-                continue
-            try:
-                score_data = score_single_stock(ticker)
-                candidate_scores.append(score_data)
-            except Exception:
-                pass
+            candidate_scores.sort(key=lambda x: x["composite_score"], reverse=True)
 
-        candidate_scores.sort(key=lambda x: x["composite_score"], reverse=True)
+            # Filter candidates by Sector Concentration Cap (Max 2 per Sector)
+            chosen_candidate = None
+            skipped_sector_details = []
 
-        if candidate_scores:
-            top = candidate_scores[0]
-            ticker = top["ticker"]
-            comp_score = top["composite_score"]
-            prob = top["wave_probability"]
-            is_ign = top["is_ignition"]
-            curr_price = custom_price_map.get(ticker) if custom_price_map and ticker in custom_price_map else top["current_price"]
+            for cand in candidate_scores:
+                c_ticker = cand["ticker"]
+                c_sector = get_ticker_sector(c_ticker)
+                current_sector_count = sum(1 for p in state["bot"]["positions"] if get_ticker_sector(p["ticker"]) == c_sector)
+                if current_sector_count >= MAX_SECTOR_POSITIONS:
+                    skipped_sector_details.append(f"{c_ticker} ({c_sector} already at {current_sector_count}/{MAX_SECTOR_POSITIONS})")
+                    continue
+                chosen_candidate = cand
+                break
 
-            # Bot conviction threshold
-            if (is_ign or comp_score >= 65 or prob >= 65.0) and curr_price > 0:
-                # Calculate conviction-weighted allocation (Total Freedom)
-                if comp_score >= 85:
-                    alloc_pct = 0.50  # 50% of cash on high conviction
-                elif comp_score >= 70:
-                    alloc_pct = 0.35  # 35%
-                else:
-                    alloc_pct = 0.20  # 20%
+            if chosen_candidate:
+                top = chosen_candidate
+                ticker = top["ticker"]
+                comp_score = top["composite_score"]
+                prob = top["wave_probability"]
+                is_ign = top["is_ignition"]
+                curr_price = custom_price_map.get(ticker) if custom_price_map and ticker in custom_price_map else top["current_price"]
 
-                invest_amount = available_cash * alloc_pct
-                shares_to_buy = int(invest_amount // curr_price)
+                # Conviction-Weighted Tiered Sizing (Kelly Allocation)
+                alloc_pct = calculate_conviction_allocation(top, available_cash)
+                shares_to_buy = 0
+
+                if alloc_pct > 0.0 and curr_price > 0:
+                    invest_amount = available_cash * alloc_pct
+                    shares_to_buy = int(invest_amount // curr_price)
 
                 if shares_to_buy > 0:
                     total_cost = round(shares_to_buy * curr_price, 2)
                     state["bot"]["cash"] -= total_cost
 
+                    ticker_sector = get_ticker_sector(ticker)
                     state["bot"]["positions"].append({
                         "ticker": ticker,
                         "shares": shares_to_buy,
                         "avg_price": round(curr_price, 2),
                         "cost_basis": total_cost,
-                        "opened_at": now_str
+                        "opened_at": now_str,
+                        "peak_price": round(curr_price, 2),
+                        "partial_harvested": False,
+                        "trailing_stop": round(curr_price * (1.0 + HARD_STOP_LOSS_PCT / 100.0), 2),
+                        "sector": ticker_sector
                     })
 
                     tx = {

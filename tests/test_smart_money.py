@@ -43,27 +43,32 @@ def test_parse_trade_row():
 
 
 def test_congress_signals_with_mock():
+    from datetime import datetime, timezone, timedelta
+    d5 = (datetime.now(timezone.utc) - timedelta(days=5)).strftime("%Y-%m-%d")
+    d10 = (datetime.now(timezone.utc) - timedelta(days=10)).strftime("%Y-%m-%d")
+    d15 = (datetime.now(timezone.utc) - timedelta(days=15)).strftime("%Y-%m-%d")
+
     mock_trades = [
         {
             "politician": "Nancy Pelosi",
             "ticker": "NVDA",
             "type": "BUY",
             "size": "1M-5M",
-            "traded_date": "2026-09-10"
+            "traded_date": d5
         },
         {
             "politician": "Michael McCaul",
             "ticker": "NVDA",
             "type": "BUY",
             "size": "250K-500K",
-            "traded_date": "2026-09-15"
+            "traded_date": d10
         },
         {
             "politician": "Josh Gottheimer",
             "ticker": "MSFT",
             "type": "SELL",
             "size": "15K-50K",
-            "traded_date": "2026-09-20"
+            "traded_date": d15
         }
     ]
 

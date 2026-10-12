@@ -81,6 +81,9 @@ A key architectural distinction is drawn between **Primary Capital Footprints** 
 | `DET-01` | **Day-1 Wave Ignition Rules** | ✅ **Done** | Enforces $\text{RVOL} \ge 1.50\times$, $\text{CRR} \ge 0.68$, range breakouts, and anti-exhaustion guard. | `src/analysis/wave_detector.py` |
 | `DET-02` | **Walkforward Simulation Engine** | ✅ **Done** | Multi-year historical backtest with +3.5% scale 50%, +6.0% runner, -2.5% stop, 5 EMA trail, and 5-day time stop. | `src/backtest/backtester.py` |
 | `DET-03` | **Dynamic Volatility Stops (ATR-Based Stops)** | 💡 Proposed | Option to set stop loss dynamically at $1.5 \times \text{ATR}_{14}$ instead of a fixed $-2.5\%$ stop. | Low effort |
+| `DET-05` | **Break-Even Trailing Stop at +3.0% (The SPCX Rule)** | ✅ **Done** | Lock stop-loss at entry + 0.1% once a position reaches +3.0% gain to eliminate round-trip losses on runners. | [`WEEK_2_LEARNINGS.md`](file:///c:/Users/jonsa/LLM/predict-stock/WEEK_2_LEARNINGS.md) |
+| `DET-06` | **Portfolio Risk Concentration Limits (Max 4 Positions, Max 2 Semis)** | ✅ **Done** | Limit concurrent holdings to 4 fortress positions and cap semiconductor exposure to prevent correlated basket drawdowns. | [`src/game/duel.py`](file:///c:/Users/jonsa/LLM/predict-stock/src/game/duel.py) |
+| `DET-07` | **Multi-Tranche Partial Scaling (50% at +3.0%) & Ratchet Exit** | ✅ **Done** | Automatically harvest 50% profits at +3.0% and dynamic trailing ratchet floor locks gains before market pullbacks occur. | [`src/game/duel.py`](file:///c:/Users/jonsa/LLM/predict-stock/src/game/duel.py) |
 
 ---
 

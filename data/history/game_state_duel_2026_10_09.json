@@ -1,0 +1,681 @@
+{
+  "game_id": "duel_2026_10_09",
+  "title": "5-Day Live Wave Rider Duel: Player vs. Bot (Week 2)",
+  "created_at": "2026-10-05T05:26:57.283819+00:00",
+  "end_time": "2026-10-09T21:00:00Z",
+  "initial_capital": 30000.0,
+  "rules": {
+    "starting_cash": 30000.0,
+    "allowed_universe_count": 50,
+    "shorting_allowed": false,
+    "allocation_limits": "Tiered Conviction (45-50% Sniper / 20-25% Standard)",
+    "end_time_cet": "Friday Oct 9, 2026 at 23:00 CET",
+    "min_cash_threshold": 3000.0,
+    "quarantine_hours": 48
+  },
+  "player": {
+    "cash": 30000.0,
+    "positions": [],
+    "history": []
+  },
+  "bot": {
+    "cash": 8872.669999999998,
+    "positions": [
+      {
+        "ticker": "TSLA",
+        "shares": 19,
+        "avg_price": 375.67,
+        "cost_basis": 7137.73,
+        "opened_at": "2026-10-05 14:32 UTC"
+      },
+      {
+        "ticker": "ANET",
+        "shares": 11,
+        "avg_price": 212.54,
+        "cost_basis": 2337.94,
+        "opened_at": "2026-10-06 15:14 UTC"
+      },
+      {
+        "ticker": "MSFT",
+        "shares": 9,
+        "avg_price": 530.61,
+        "cost_basis": 4775.49,
+        "opened_at": "2026-10-09 13:33 UTC"
+      },
+      {
+        "ticker": "SNOW",
+        "shares": 10,
+        "avg_price": 352.9,
+        "cost_basis": 3529.0,
+        "opened_at": "2026-10-09 14:03 UTC"
+      },
+      {
+        "ticker": "PLTR",
+        "shares": 14,
+        "avg_price": 204.97,
+        "cost_basis": 2869.58,
+        "opened_at": "2026-10-09 15:35 UTC"
+      }
+    ],
+    "history": [
+      {
+        "id": "tx_b_1",
+        "time": "2026-10-05 14:01 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "SPCX",
+        "shares": 45,
+        "price": 164.65,
+        "total_usd": 7409.25,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_2",
+        "time": "2026-10-05 14:32 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "SPCX",
+        "shares": 45,
+        "price": 159.03,
+        "total_usd": 7156.35,
+        "realized_pnl": -252.9
+      },
+      {
+        "id": "tx_b_3",
+        "time": "2026-10-05 14:32 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "TSLA",
+        "shares": 19,
+        "price": 375.67,
+        "total_usd": 7137.73,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_4",
+        "time": "2026-10-05 15:33 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "SPCX",
+        "shares": 33,
+        "price": 166.57,
+        "total_usd": 5496.81,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_5",
+        "time": "2026-10-05 15:51 UTC",
+        "participant": "BOT",
+        "action": "REFUND",
+        "ticker": "SPCX",
+        "shares": 0,
+        "price": 252.9,
+        "total_usd": 252.9,
+        "realized_pnl": 252.9,
+        "note": "Bug refund: Reversed synthetic stop-out loss caused by pre-market pricing bug"
+      },
+      {
+        "id": "tx_b_6",
+        "time": "2026-10-06 14:13 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "CRWV",
+        "shares": 47,
+        "price": 90.8,
+        "total_usd": 4267.6,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_7",
+        "time": "2026-10-06 14:44 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "AMD",
+        "shares": 5,
+        "price": 649.96,
+        "total_usd": 3249.8,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_8",
+        "time": "2026-10-06 15:14 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "ANET",
+        "shares": 11,
+        "price": 212.54,
+        "total_usd": 2337.94,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_9",
+        "time": "2026-10-06 15:45 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "AVGO",
+        "shares": 4,
+        "price": 377.68,
+        "total_usd": 1510.72,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_10",
+        "time": "2026-10-07 13:36 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "NVDA",
+        "shares": 6,
+        "price": 238.49,
+        "total_usd": 1430.94,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_11",
+        "time": "2026-10-07 14:36 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "MRVL",
+        "shares": 4,
+        "price": 283.54,
+        "total_usd": 1134.16,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_12",
+        "time": "2026-10-07 15:07 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "CRWV",
+        "shares": 47,
+        "price": 88.34,
+        "total_usd": 4151.98,
+        "realized_pnl": -115.62
+      },
+      {
+        "id": "tx_b_13",
+        "time": "2026-10-07 15:07 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "MU",
+        "shares": 1,
+        "price": 1066.41,
+        "total_usd": 1066.41,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_14",
+        "time": "2026-10-08 13:41 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "AMD",
+        "shares": 5,
+        "price": 633.27,
+        "total_usd": 3166.35,
+        "realized_pnl": -83.45
+      },
+      {
+        "id": "tx_b_15",
+        "time": "2026-10-08 14:12 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "AVGO",
+        "shares": 4,
+        "price": 367.84,
+        "total_usd": 1471.36,
+        "realized_pnl": -39.36
+      },
+      {
+        "id": "tx_b_16",
+        "time": "2026-10-08 15:13 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "MRVL",
+        "shares": 4,
+        "price": 276.15,
+        "total_usd": 1104.6,
+        "realized_pnl": -29.56
+      },
+      {
+        "id": "tx_b_17",
+        "time": "2026-10-08 17:16 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "SPCX",
+        "shares": 33,
+        "price": 162.3,
+        "total_usd": 5355.9,
+        "realized_pnl": -140.91
+      },
+      {
+        "id": "tx_b_18",
+        "time": "2026-10-08 17:16 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "NVDA",
+        "shares": 6,
+        "price": 231.86,
+        "total_usd": 1391.16,
+        "realized_pnl": -39.78
+      },
+      {
+        "id": "tx_b_19",
+        "time": "2026-10-08 17:46 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "MU",
+        "shares": 1,
+        "price": 1037.5,
+        "total_usd": 1037.5,
+        "realized_pnl": -28.91
+      },
+      {
+        "id": "tx_b_20",
+        "time": "2026-10-09 13:33 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "MSFT",
+        "shares": 9,
+        "price": 530.61,
+        "total_usd": 4775.49,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_21",
+        "time": "2026-10-09 14:03 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "SNOW",
+        "shares": 10,
+        "price": 352.9,
+        "total_usd": 3529.0,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_22",
+        "time": "2026-10-09 15:35 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "PLTR",
+        "shares": 14,
+        "price": 204.97,
+        "total_usd": 2869.58,
+        "realized_pnl": 0.0
+      }
+    ],
+    "decision_logs": [
+      {
+        "time": "2026-10-05 14:01 UTC",
+        "action": "BUY",
+        "ticker": "SPCX",
+        "shares": 45,
+        "price": 164.65,
+        "total_usd": 7409.25,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 84.7%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $7,409.25 (25% of cash) on high conviction.",
+        "composite_score": 92,
+        "wave_probability": 84.7
+      },
+      {
+        "time": "2026-10-05 14:32 UTC",
+        "action": "SELL",
+        "ticker": "SPCX",
+        "shares": 45,
+        "price": 159.03,
+        "rationale": "Stop Loss Triggered (-3.4% loss). Cut loss early and quarantined ticker for 48 hours.",
+        "realized_pnl": -252.9,
+        "pnl_pct": -3.41
+      },
+      {
+        "time": "2026-10-05 14:32 UTC",
+        "action": "BUY",
+        "ticker": "TSLA",
+        "shares": 19,
+        "price": 375.67,
+        "total_usd": 7137.73,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 83.7%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $7,137.73 (25% of cash) on high conviction.",
+        "composite_score": 90,
+        "wave_probability": 83.7
+      },
+      {
+        "time": "2026-10-05 15:33 UTC",
+        "action": "BUY",
+        "ticker": "SPCX",
+        "shares": 33,
+        "price": 166.57,
+        "total_usd": 5496.81,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 84.9%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $5,496.81 (25% of cash) on high conviction.",
+        "composite_score": 92,
+        "wave_probability": 84.9
+      },
+      {
+        "time": "2026-10-05 15:51 UTC",
+        "action": "REFUND",
+        "ticker": "SPCX",
+        "shares": 0,
+        "price": 252.9,
+        "total_usd": 252.9,
+        "realized_pnl": 252.9,
+        "rationale": "Admin Adjustment: Refunded .90 synthetic stop-out loss on SPCX due to pre-market pricing bug."
+      },
+      {
+        "time": "2026-10-06 00:29 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-06 00:59 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-06 01:29 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-06 14:13 UTC",
+        "action": "BUY",
+        "ticker": "CRWV",
+        "shares": 47,
+        "price": 90.8,
+        "total_usd": 4267.6,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 83.1%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $4,267.60 (25% of cash) on high conviction.",
+        "composite_score": 90,
+        "wave_probability": 83.1
+      },
+      {
+        "time": "2026-10-06 14:44 UTC",
+        "action": "BUY",
+        "ticker": "AMD",
+        "shares": 5,
+        "price": 649.96,
+        "total_usd": 3249.8,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 84.6%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $3,249.80 (25% of cash) on high conviction.",
+        "composite_score": 91,
+        "wave_probability": 84.6
+      },
+      {
+        "time": "2026-10-06 15:14 UTC",
+        "action": "BUY",
+        "ticker": "ANET",
+        "shares": 11,
+        "price": 212.54,
+        "total_usd": 2337.94,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 83.7%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $2,337.94 (25% of cash) on high conviction.",
+        "composite_score": 90,
+        "wave_probability": 83.7
+      },
+      {
+        "time": "2026-10-06 15:45 UTC",
+        "action": "BUY",
+        "ticker": "AVGO",
+        "shares": 4,
+        "price": 377.68,
+        "total_usd": 1510.72,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 82.4%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $1,510.72 (25% of cash) on high conviction.",
+        "composite_score": 89,
+        "wave_probability": 82.4
+      },
+      {
+        "time": "2026-10-07 00:25 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-07 13:36 UTC",
+        "action": "BUY",
+        "ticker": "NVDA",
+        "shares": 6,
+        "price": 238.49,
+        "total_usd": 1430.94,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 95.0%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $1,430.94 (25% of cash) on high conviction.",
+        "composite_score": 100,
+        "wave_probability": 95.0
+      },
+      {
+        "time": "2026-10-07 14:36 UTC",
+        "action": "BUY",
+        "ticker": "MRVL",
+        "shares": 4,
+        "price": 283.54,
+        "total_usd": 1134.16,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 90.4%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $1,134.16 (25% of cash) on high conviction.",
+        "composite_score": 98,
+        "wave_probability": 90.4
+      },
+      {
+        "time": "2026-10-07 15:07 UTC",
+        "action": "SELL",
+        "ticker": "CRWV",
+        "shares": 47,
+        "price": 88.34,
+        "rationale": "Stop Loss Triggered (-2.7% loss). Cut loss early and quarantined ticker for 48 hours.",
+        "realized_pnl": -115.62,
+        "pnl_pct": -2.71
+      },
+      {
+        "time": "2026-10-07 15:07 UTC",
+        "action": "BUY",
+        "ticker": "MU",
+        "shares": 1,
+        "price": 1066.41,
+        "total_usd": 1066.41,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 83.3%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $1,066.41 (25% of cash) on high conviction.",
+        "composite_score": 90,
+        "wave_probability": 83.3
+      },
+      {
+        "time": "2026-10-08 00:02 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-08 00:32 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-08 01:02 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-08 01:32 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-08 13:41 UTC",
+        "action": "SELL",
+        "ticker": "AMD",
+        "shares": 5,
+        "price": 633.27,
+        "rationale": "Stop Loss Triggered (-2.6% loss). Cut loss early and quarantined ticker for 48 hours.",
+        "realized_pnl": -83.45,
+        "pnl_pct": -2.57
+      },
+      {
+        "time": "2026-10-08 14:12 UTC",
+        "action": "SELL",
+        "ticker": "AVGO",
+        "shares": 4,
+        "price": 367.84,
+        "rationale": "Stop Loss Triggered (-2.6% loss). Cut loss early and quarantined ticker for 48 hours.",
+        "realized_pnl": -39.36,
+        "pnl_pct": -2.61
+      },
+      {
+        "time": "2026-10-08 15:13 UTC",
+        "action": "SELL",
+        "ticker": "MRVL",
+        "shares": 4,
+        "price": 276.15,
+        "rationale": "Stop Loss Triggered (-2.6% loss). Cut loss early and quarantined ticker for 48 hours.",
+        "realized_pnl": -29.56,
+        "pnl_pct": -2.61
+      },
+      {
+        "time": "2026-10-08 17:16 UTC",
+        "action": "SELL",
+        "ticker": "SPCX",
+        "shares": 33,
+        "price": 162.3,
+        "rationale": "Stop Loss Triggered (-2.6% loss). Cut loss early and quarantined ticker for 48 hours.",
+        "realized_pnl": -140.91,
+        "pnl_pct": -2.56
+      },
+      {
+        "time": "2026-10-08 17:16 UTC",
+        "action": "SELL",
+        "ticker": "NVDA",
+        "shares": 6,
+        "price": 231.86,
+        "rationale": "Stop Loss Triggered (-2.8% loss). Cut loss early and quarantined ticker for 48 hours.",
+        "realized_pnl": -39.78,
+        "pnl_pct": -2.78
+      },
+      {
+        "time": "2026-10-08 17:46 UTC",
+        "action": "SELL",
+        "ticker": "MU",
+        "shares": 1,
+        "price": 1037.5,
+        "rationale": "Stop Loss Triggered (-2.7% loss). Cut loss early and quarantined ticker for 48 hours.",
+        "realized_pnl": -28.91,
+        "pnl_pct": -2.71
+      },
+      {
+        "time": "2026-10-09 00:21 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-09 00:51 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-09 01:21 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-09 13:33 UTC",
+        "action": "BUY",
+        "ticker": "MSFT",
+        "shares": 9,
+        "price": 530.61,
+        "total_usd": 4775.49,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 95.0%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $4,775.49 (25% of cash) on high conviction.",
+        "composite_score": 100,
+        "wave_probability": 95.0
+      },
+      {
+        "time": "2026-10-09 14:03 UTC",
+        "action": "BUY",
+        "ticker": "SNOW",
+        "shares": 10,
+        "price": 352.9,
+        "total_usd": 3529.0,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 93.0%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $3,529.00 (25% of cash) on high conviction.",
+        "composite_score": 100,
+        "wave_probability": 93.0
+      },
+      {
+        "time": "2026-10-09 15:35 UTC",
+        "action": "BUY",
+        "ticker": "PLTR",
+        "shares": 14,
+        "price": 204.97,
+        "total_usd": 2869.58,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 86.6%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $2,869.58 (25% of cash) on high conviction.",
+        "composite_score": 94,
+        "wave_probability": 86.6
+      },
+      {
+        "time": "2026-10-10 00:12 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-10 01:12 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      }
+    ],
+    "quarantine": {
+      "CRWV": "2026-10-09T15:07:20.438401+00:00",
+      "AMD": "2026-10-10T13:41:44.927067+00:00",
+      "AVGO": "2026-10-10T14:12:08.220174+00:00",
+      "MRVL": "2026-10-10T15:13:46.859436+00:00",
+      "SPCX": "2026-10-10T17:16:19.009834+00:00",
+      "NVDA": "2026-10-10T17:16:19.447959+00:00",
+      "MU": "2026-10-10T17:46:39.827426+00:00"
+    },
+    "last_evaluated_at": "2026-10-10 20:24 UTC"
+  }
+}

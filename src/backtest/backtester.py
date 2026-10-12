@@ -18,7 +18,7 @@ def run_wave_backtest(
     ticker: str = "ASSET",
     initial_capital: float = 10000.0,
     risk_per_trade_pct: float = 1.5,
-    target_1_pct: float = 0.035,
+    target_1_pct: float = 0.030,
     target_2_pct: float = 0.060,
     stop_loss_pct: float = 0.025,
     max_hold_days: int = 5

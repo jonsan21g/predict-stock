@@ -79,6 +79,12 @@ The following matrix provides 100% bidirectional traceability between functional
 | **`FR-06-13`** | Game State & Order API Endpoints | Epic 6 | `src/dashboard/app.py` | `TC-UI-07` | [`tests/test_interface.py::test_dashboard_game_endpoints`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py) |
 | **`FR-07-01`** | Free-Tier Cloud Deployment *(Planned)* | Epic 6 | Render / HF Spaces | `TC-DEP-01` | Deferred / Pre-requisite to Cloud Hosting |
 | **`FR-07-02`** | Supabase State Persistence *(Planned)* | Epic 6 | PostgreSQL Client | `TC-DEP-02` | Deferred / Pre-requisite to Cloud Hosting |
+| **`FR-08-01`** | Week 2 Duel Initialization (Oct 5–9, 2026) | Epic 8 | `src/game/duel.py` | `TC-GAME-07` | [`tests/test_game.py::test_week2_initialization`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py) |
+| **`FR-08-02`** | 48-Hour Stop-Loss Quarantine Manager | Epic 8 | `src/game/duel.py` | `TC-GAME-08` | [`tests/test_game.py::test_quarantine_enforcement`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py) |
+| **`FR-08-03`** | Minimum Cash Buffer (The Scraps Rule) | Epic 8 | `src/game/duel.py` | `TC-GAME-09` | [`tests/test_game.py::test_scraps_rule_preservation`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py) |
+| **`FR-08-04`** | Macro Regime Gatekeeper (QQQ Trend Filter) | Epic 8 | `src/game/duel.py` | `TC-GAME-10` | [`tests/test_game.py::test_macro_regime_gatekeeper`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py) |
+| **`FR-08-05`** | Conviction-Weighted Tiered Sizing (Kelly) | Epic 8 | `src/game/duel.py` | `TC-GAME-11` | [`tests/test_game.py::test_conviction_weighted_sizing`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py) |
+| **`FR-08-06`** | Bar-Close Stop Loss Execution Guard | Epic 8 | `src/game/duel.py` | `TC-GAME-12` | [`tests/test_game.py::test_bar_close_stop_guard`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py) |
 
 ---
 
@@ -416,6 +422,41 @@ The following matrix provides 100% bidirectional traceability between functional
 #### `FR-07-02`: Supabase State Persistence
 * **Description**: The system shall optionally sync `game_state.json` to a free-tier Supabase PostgreSQL table to ensure bankrolls, open positions, and audit logs persist across cloud server restarts.
 * **Status**: 💡 Planned / Deferred (`DEP-02`).
+
+### Epic 8: Week 2 Strategic Upgrades & Autonomous Sniper Execution
+
+#### `FR-08-01`: Week 2 Duel Initialization (Oct 5–9, 2026)
+* **Description**: The system shall initialize the Week 2 5-Day Duel scenario (`game_id: "duel_2026_10_09"`), expiring Friday, October 9, 2026 at 23:00 CET (21:00 UTC).
+* **Preconditions**: Both Player and Autonomous Bot start with exactly $30,000.00 USD cash, 0 open positions, and empty historical transaction logs.
+* **Verification & Test**: `TC-GAME-07` in `tests/test_game.py::test_week2_initialization`.
+
+#### `FR-08-02`: 48-Hour Stop-Loss Quarantine Manager
+* **Description**: To prevent revenge trading and rapid churn loops (as observed in Week 1 with ORCL and SPCX), any ticker that triggers a stop-loss shall be placed into an automated 48-hour quarantine.
+* **Rules**:
+  * The Autonomous Bot is strictly prohibited from purchasing any quarantined ticker until 48 hours (or 2 full trading sessions) have elapsed from the exit timestamp.
+  * Quarantine status must be persisted in `game_state.json` under `bot.quarantine`.
+* **Verification & Test**: `TC-GAME-08` in `tests/test_game.py::test_quarantine_enforcement`.
+
+#### `FR-08-03`: Minimum Cash Buffer (The Scraps Rule)
+* **Description**: The Autonomous Bot shall cease all new position entries if its unallocated cash falls below 10% of starting bankroll ($3,000.00 USD).
+* **Rationale**: Prevents low-dollar residual scrap churning ($400-$1,000 micro-bets) that generate disproportionate commission, slippage, and stop-loss drag.
+* **Verification & Test**: `TC-GAME-09` in `tests/test_game.py::test_scraps_rule_preservation`.
+
+#### `FR-08-04`: Macro Regime Gatekeeper (QQQ Trend Filter)
+* **Description**: The system shall evaluate the macro market environment using Invesco QQQ Trust (`QQQ`). New long momentum positions may ONLY be initiated if QQQ is trading above its 20-day exponential moving average ($\text{QQQ} \ge \text{EMA}_{20}$).
+* **Action on Regime Failure**: If $\text{QQQ} < \text{EMA}_{20}$, all autonomous new buy orders are disabled. Capital remains 100% protected in cash.
+* **Verification & Test**: `TC-GAME-10` in `tests/test_game.py::test_macro_regime_gatekeeper`.
+
+#### `FR-08-05`: Conviction-Weighted Tiered Sizing (Kelly Allocation)
+* **Description**: The Autonomous Bot shall allocate capital proportionally based on quantitative conviction rather than arbitrary fixed percentages:
+  * **Tier 1 (Sniper)**: Composite Score $\ge 90$ with confirmed catalyst and Volume Pacing $\ge 2.0\times$ $\rightarrow$ Allocate **45%–50% of bankroll ($13,500–$15,000 USD)**.
+  * **Tier 2 (Standard)**: Composite Score $80–89$ $\rightarrow$ Allocate **20%–25% of bankroll ($6,000–$7,500 USD)**.
+  * **Tier 3 (Sub-threshold)**: Composite Score $< 80$ $\rightarrow$ **0% Allocation (Do Not Trade)**.
+* **Verification & Test**: `TC-GAME-11` in `tests/test_game.py::test_conviction_weighted_sizing`.
+
+#### `FR-08-06`: Bar-Close Stop Loss Execution Guard
+* **Description**: Stop-loss conditions (-2.5% threshold) shall be validated against completed bar close prices (or 15-minute moving boundaries) rather than instantaneous sub-second tick wicks to avoid synthetic stop-hunts during volatile opens.
+* **Verification & Test**: `TC-GAME-12` in `tests/test_game.py::test_bar_close_stop_guard`.
 
 ---
 

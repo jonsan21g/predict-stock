@@ -38,6 +38,16 @@ app = Flask(__name__, template_folder=TEMPLATES_DIR, static_folder=STATIC_DIR)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 
+
+@app.after_request
+def add_header(response):
+    """Ensure dynamic API responses are never cached by browsers."""
+    if request.path.startswith("/api/"):
+        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+    return response
+
 # In-memory scan cache to make dashboard super snappy
 RADAR_CACHE = {"eod": None, "premarket": None, "intraday": None}
 
@@ -269,7 +279,9 @@ def api_game():
         status = get_live_duel_status()
         status["bot_auto_active"] = True
         status["next_bot_run"] = NEXT_BOT_EVAL_TIME or "Scheduled (Next ~30-60m)"
-        return jsonify(status)
+        resp = jsonify(status)
+        resp.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0"
+        return resp
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 

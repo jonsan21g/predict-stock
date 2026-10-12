@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wave Rider — Quantitative Momentum Engine</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="/static/style.css?v=7">
+  <link rel="stylesheet" href="/static/style.css?v=9">
 </head>
 <body>
   <div class="app-container">
@@ -495,7 +495,7 @@
           <!-- Player Order Execution Ticket -->
           <div class="duel-box order-desk-box">
             <h3 class="box-title">⚡ Player Order Execution Desk</h3>
-            <p class="box-sub">Trade at live market prices across all 27 US Tech & Memory stocks.</p>
+            <p class="box-sub">Trade at live market prices across all 50 US Tech & AI titans.</p>
 
             <div class="order-type-toggle">
               <button id="order-type-buy" class="order-type-btn active" onclick="setOrderAction('BUY')">BUY</button>
@@ -570,21 +570,29 @@
         <div class="workspace-col">
           <!-- Bot Open Positions -->
           <div class="duel-box">
-            <h3 class="box-title">🤖 Bot Open Holdings</h3>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+              <h3 class="box-title" style="margin:0;">🤖 Bot Open Holdings</h3>
+              <div id="bot-capacity-badge" style="font-size:11px; font-weight:700; padding:3px 9px; border-radius:9999px; background:rgba(56,189,248,0.15); border:1px solid #38bdf8; color:#38bdf8;">
+                🎯 Capacity: 0/4 Active | Semis: 0/2
+              </div>
+            </div>
             <div class="table-container">
               <table class="duel-table">
                 <thead>
                   <tr>
                     <th>Ticker</th>
+                    <th>Sector</th>
                     <th>Shares</th>
                     <th>Avg Price</th>
                     <th>Live Price</th>
-                    <th>Market Value</th>
+                    <th>Trailing Stop</th>
+                    <th>Peak</th>
                     <th>Unrealized P&L</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody id="bot-holdings-tbody">
-                  <tr><td colspan="6" class="loading-cell">Bot holding $30,000 cash. Awaiting next ignition check.</td></tr>
+                  <tr><td colspan="9" class="loading-cell">Bot holding $30,000 cash. Scanning for Day-1 Ignition.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -638,6 +646,6 @@
     </footer>
   </div>
 
-  <script src="/static/app.js?v=7"></script>
+  <script src="/static/app.js?v=9"></script>
 </body>
 </html>
