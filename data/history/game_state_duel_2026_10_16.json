@@ -1,0 +1,743 @@
+{
+  "game_id": "duel_2026_10_16",
+  "title": "5-Day Live Wave Rider Duel: Player vs. Bot (Week 3 - Profit Realization Engine)",
+  "created_at": "2026-10-11T18:54:23.647823+00:00",
+  "end_time": "2026-10-16T21:00:00Z",
+  "initial_capital": 30000.0,
+  "rules": {
+    "starting_cash": 30000.0,
+    "allowed_universe_count": 50,
+    "shorting_allowed": false,
+    "max_active_positions": 4,
+    "max_sector_positions": 2,
+    "allocation_limits": "Tiered Conviction (45-50% Sniper / 20-25% Standard)",
+    "target_1_harvest": "+3.0% (Sell 50% & Breakeven Stop on Runner)",
+    "target_2_runner": "+6.0% (Full Exit)",
+    "hard_stop_loss": "-2.5%",
+    "end_time_cet": "Friday Oct 16, 2026 at 23:00 CEST",
+    "min_cash_threshold": 3000.0,
+    "quarantine_hours": 48
+  },
+  "player": {
+    "cash": 30000.0,
+    "positions": [],
+    "history": []
+  },
+  "bot": {
+    "cash": 29719.609999999997,
+    "positions": [],
+    "history": [
+      {
+        "id": "tx_b_1",
+        "time": "2026-10-12 13:39 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "PLTR",
+        "shares": 35,
+        "price": 212.55,
+        "total_usd": 7439.25,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_2",
+        "time": "2026-10-12 14:10 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "PLTR",
+        "shares": 35,
+        "price": 207.21,
+        "total_usd": 7252.35,
+        "realized_pnl": -186.9
+      },
+      {
+        "id": "tx_b_3",
+        "time": "2026-10-13 14:02 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "STX",
+        "shares": 10,
+        "price": 718.05,
+        "total_usd": 7180.5,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_4",
+        "time": "2026-10-13 14:33 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "SKHY",
+        "shares": 36,
+        "price": 155.56,
+        "total_usd": 5600.16,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_5",
+        "time": "2026-10-13 15:05 UTC",
+        "participant": "BOT",
+        "action": "BUY",
+        "ticker": "META",
+        "shares": 5,
+        "price": 766.77,
+        "total_usd": 3833.85,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_6",
+        "time": "2026-10-13 16:27 UTC",
+        "participant": "BOT",
+        "action": "SELL (PARTIAL)",
+        "ticker": "STX",
+        "shares": 5,
+        "price": 740.66,
+        "total_usd": 3703.3,
+        "realized_pnl": 113.05
+      },
+      {
+        "id": "tx_b_7",
+        "time": "2026-10-14 13:32 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "SKHY",
+        "shares": 36,
+        "price": 151.47,
+        "total_usd": 5452.92,
+        "realized_pnl": -147.24
+      },
+      {
+        "id": "tx_b_8",
+        "time": "2026-10-14 14:32 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "META",
+        "shares": 5,
+        "price": 744.69,
+        "total_usd": 3723.45,
+        "realized_pnl": -110.4
+      },
+      {
+        "id": "tx_b_9",
+        "time": "2026-10-14 16:02 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "STX",
+        "shares": 5,
+        "price": 728.27,
+        "total_usd": 3641.35,
+        "realized_pnl": 51.1
+      }
+    ],
+    "decision_logs": [
+      {
+        "time": "2026-10-12 13:39 UTC",
+        "action": "BUY",
+        "ticker": "PLTR",
+        "shares": 35,
+        "price": 212.55,
+        "total_usd": 7439.25,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 95.0%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $7,439.25 (25% of cash) on high conviction.",
+        "composite_score": 100,
+        "wave_probability": 95.0
+      },
+      {
+        "time": "2026-10-12 14:10 UTC",
+        "action": "SELL",
+        "ticker": "PLTR",
+        "shares": 35,
+        "price": 207.21,
+        "rationale": "Stop Loss Triggered (-2.5% loss). Cut loss early and quarantined ticker for 48 hours.",
+        "realized_pnl": -186.9,
+        "pnl_pct": -2.51
+      },
+      {
+        "time": "2026-10-13 00:23 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-13 13:32 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-13 14:02 UTC",
+        "action": "BUY",
+        "ticker": "STX",
+        "shares": 10,
+        "price": 718.05,
+        "total_usd": 7180.5,
+        "rationale": "Day-1 Wave Ignition: REVERSAL_SNAPBACK with RVOL 1.00x and P(Wave) of 90.6%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $7,180.50 (25% of cash) on high conviction.",
+        "composite_score": 100,
+        "wave_probability": 90.6
+      },
+      {
+        "time": "2026-10-13 14:33 UTC",
+        "action": "BUY",
+        "ticker": "SKHY",
+        "shares": 36,
+        "price": 155.56,
+        "total_usd": 5600.16,
+        "rationale": "Day-1 Wave Ignition: REVERSAL_SNAPBACK with RVOL 1.00x and P(Wave) of 93.4%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $5,600.16 (25% of cash) on high conviction.",
+        "composite_score": 100,
+        "wave_probability": 93.4
+      },
+      {
+        "time": "2026-10-13 15:05 UTC",
+        "action": "BUY",
+        "ticker": "META",
+        "shares": 5,
+        "price": 766.77,
+        "total_usd": 3833.85,
+        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 85.0%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $3,833.85 (25% of cash) on high conviction.",
+        "composite_score": 92,
+        "wave_probability": 85.0
+      },
+      {
+        "time": "2026-10-13 15:35 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-13 16:27 UTC",
+        "action": "SELL_PARTIAL",
+        "ticker": "STX",
+        "shares": 5,
+        "price": 740.66,
+        "rationale": "Target 1 Harvest (+3.1% gain). Sold 50% (5 sh) to lock profit into bankroll. Trailing stop on remaining 5 runner shares elevated to Breakeven ($718.05).",
+        "realized_pnl": 113.05,
+        "pnl_pct": 3.15
+      },
+      {
+        "time": "2026-10-14 00:22 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 00:52 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 01:22 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 01:52 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 13:32 UTC",
+        "action": "SELL",
+        "ticker": "SKHY",
+        "shares": 36,
+        "price": 151.47,
+        "rationale": "Stop Loss Triggered (-2.6% loss). Cut loss early and quarantined ticker for 48 hours.",
+        "realized_pnl": -147.24,
+        "pnl_pct": -2.63
+      },
+      {
+        "time": "2026-10-14 13:32 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 14:02 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 14:32 UTC",
+        "action": "SELL",
+        "ticker": "META",
+        "shares": 5,
+        "price": 744.69,
+        "rationale": "Stop Loss Triggered (-2.9% loss). Cut loss early and quarantined ticker for 48 hours.",
+        "realized_pnl": -110.4,
+        "pnl_pct": -2.88
+      },
+      {
+        "time": "2026-10-14 14:32 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 15:02 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 15:32 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 16:02 UTC",
+        "action": "SELL",
+        "ticker": "STX",
+        "shares": 5,
+        "price": 728.27,
+        "rationale": "Dynamic Profit Ratchet Exit triggered @ $728.27 (Floor was $728.82, peak was $747.21). Locked in +1.4% gain before pullback.",
+        "realized_pnl": 51.1,
+        "pnl_pct": 1.42
+      },
+      {
+        "time": "2026-10-14 16:02 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 16:32 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 17:02 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 17:32 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 18:02 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 18:32 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 19:02 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 19:32 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 20:02 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 20:32 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 21:02 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 21:32 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 22:02 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 22:32 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 23:02 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-14 23:32 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-15 00:02 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-15 20:03 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-15 20:33 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-15 21:03 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-15 21:33 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-15 22:03 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-15 22:33 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-15 23:03 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-15 23:33 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-16 00:03 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-16 00:33 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-16 01:03 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-16 01:33 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-16 02:03 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-16 02:33 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-16 03:03 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-16 03:33 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-16 04:03 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-16 04:33 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-16 05:03 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-16 05:33 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-16 06:03 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-10-16 06:33 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      }
+    ],
+    "quarantine": {
+      "PLTR": "2026-10-14T14:10:06.669982+00:00",
+      "SKHY": "2026-10-16T13:32:17.851766+00:00",
+      "META": "2026-10-16T14:32:19.868670+00:00"
+    },
+    "last_evaluated_at": "2026-10-16 06:33 UTC"
+  }
+}

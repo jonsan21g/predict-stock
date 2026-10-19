@@ -26,9 +26,9 @@ WATCHLIST_FILE = os.path.join(BASE_DIR, "data", "watchlist.json")
 def get_game_file() -> str:
     return os.environ.get("WAVE_RIDER_GAME_FILE", os.path.join(BASE_DIR, "data", "game_state.json"))
 
-# Target Match Expiry: Friday Oct 16, 2026 at 23:00 CEST (21:00 UTC)
-MATCH_END_ISO = "2026-10-16T21:00:00Z"
-GAME_ID = "duel_2026_10_16"
+# Target Match Expiry: Friday Oct 23, 2026 at 23:00 CEST (21:00 UTC)
+MATCH_END_ISO = "2026-10-23T21:00:00Z"
+GAME_ID = "duel_2026_10_23"
 INITIAL_BANKROLL = 30000.0
 MINIMUM_BOT_TRADE_CASH_THRESHOLD = 3000.0  # The Scraps Rule: minimum cash reserve ($3,000 / 10%)
 QUARANTINE_HOURS = 48
@@ -196,7 +196,7 @@ def initialize_game_state(force_reset: bool = False) -> Dict[str, Any]:
 
     state = {
         "game_id": GAME_ID,
-        "title": "5-Day Live Wave Rider Duel: Player vs. Bot (Week 3 - Profit Realization Engine)",
+        "title": "5-Day Live Wave Rider Duel: Player vs. Bot (Week 4 - Momentum & Realization Engine)",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "end_time": MATCH_END_ISO,
         "initial_capital": INITIAL_BANKROLL,
@@ -210,7 +210,7 @@ def initialize_game_state(force_reset: bool = False) -> Dict[str, Any]:
             "target_1_harvest": f"+{TARGET_1_HARVEST_PCT:.1f}% (Sell 50% & Breakeven Stop on Runner)",
             "target_2_runner": f"+{TARGET_2_FULL_PCT:.1f}% (Full Exit)",
             "hard_stop_loss": f"{HARD_STOP_LOSS_PCT:.1f}%",
-            "end_time_cet": "Friday Oct 16, 2026 at 23:00 CEST",
+            "end_time_cet": "Friday Oct 23, 2026 at 23:00 CEST",
             "min_cash_threshold": MINIMUM_BOT_TRADE_CASH_THRESHOLD,
             "quarantine_hours": QUARANTINE_HOURS
         },
@@ -489,7 +489,8 @@ def execute_player_order(
 
 def bot_evaluate_turn(
     force: bool = False,
-    custom_price_map: Optional[Dict[str, float]] = None
+    custom_price_map: Optional[Dict[str, float]] = None,
+    skip_scouting: bool = False
 ) -> Dict[str, Any]:
     """
     Autonomous decision engine for the Bot.
@@ -654,6 +655,16 @@ def bot_evaluate_turn(
     # -----------------------------------------------------------------
     # Step 2: Scout New Opportunities (if portfolio capacity & cash allow)
     # -----------------------------------------------------------------
+    if skip_scouting:
+        state["bot"]["last_evaluated_at"] = now_str
+        save_game_state(state)
+        return {
+            "status": "SUCCESS",
+            "time": now_str,
+            "actions_taken": actions_taken,
+            "actions_count": len(actions_taken)
+        }
+
     available_cash = state["bot"]["cash"]
     bot_quarantine = state["bot"].get("quarantine", {})
 

@@ -132,7 +132,7 @@ def test_target_1_partial_harvest():
     save_game_state(state)
 
     # Price rises to $103.50 (+3.5% gain)
-    result = bot_evaluate_turn(force=True, custom_price_map={"NVDA": 103.50})
+    result = bot_evaluate_turn(force=True, custom_price_map={"NVDA": 103.50}, skip_scouting=True)
     assert result["status"] == "SUCCESS"
 
     updated_state = initialize_game_state()
@@ -178,7 +178,7 @@ def test_profit_ratchet_exit_prevents_spcx_roundtrip():
     save_game_state(state)
 
     # 1. Tuesday: SPCX hits $104.45 (+4.45% peak) -> Partial Harvest occurs
-    bot_evaluate_turn(force=True, custom_price_map={"SPCX": 104.45})
+    bot_evaluate_turn(force=True, custom_price_map={"SPCX": 104.45}, skip_scouting=True)
     
     mid_state = initialize_game_state()
     assert len(mid_state["bot"]["positions"]) == 1
@@ -189,7 +189,7 @@ def test_profit_ratchet_exit_prevents_spcx_roundtrip():
     assert pos["trailing_stop"] >= 101.50
 
     # 2. Thursday: Pullback drops price to $101.00 (below ratcheted floor)
-    bot_evaluate_turn(force=True, custom_price_map={"SPCX": 101.00})
+    bot_evaluate_turn(force=True, custom_price_map={"SPCX": 101.00}, skip_scouting=True)
 
     final_state = initialize_game_state()
     # Entire position exited cleanly before crash!
@@ -286,7 +286,7 @@ def test_stagnation_exit_after_48_hours():
     save_game_state(state)
 
     # Current price is $203.60 (+1.8% green, but below $205 peak after 50h)
-    bot_evaluate_turn(force=True, custom_price_map={"AAPL": 203.60})
+    bot_evaluate_turn(force=True, custom_price_map={"AAPL": 203.60}, skip_scouting=True)
 
     after_state = initialize_game_state()
     # Position harvested and closed to recycle capital

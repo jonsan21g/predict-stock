@@ -1,8 +1,8 @@
 {
-  "game_id": "duel_2026_10_16",
-  "title": "5-Day Live Wave Rider Duel: Player vs. Bot (Week 3 - Profit Realization Engine)",
-  "created_at": "2026-10-11T18:54:23.647823+00:00",
-  "end_time": "2026-10-16T21:00:00Z",
+  "game_id": "duel_2026_10_23",
+  "title": "5-Day Live Wave Rider Duel: Player vs. Bot (Week 4 - Momentum & Realization Engine)",
+  "created_at": "2026-10-19T15:48:02.548601+00:00",
+  "end_time": "2026-10-23T21:00:00Z",
   "initial_capital": 30000.0,
   "rules": {
     "starting_cash": 30000.0,
@@ -14,7 +14,7 @@
     "target_1_harvest": "+3.0% (Sell 50% & Breakeven Stop on Runner)",
     "target_2_runner": "+6.0% (Full Exit)",
     "hard_stop_loss": "-2.5%",
-    "end_time_cet": "Friday Oct 16, 2026 at 23:00 CEST",
+    "end_time_cet": "Friday Oct 23, 2026 at 23:00 CEST",
     "min_cash_threshold": 3000.0,
     "quarantine_hours": 48
   },
@@ -24,58 +24,22 @@
     "history": []
   },
   "bot": {
-    "cash": 29813.1,
+    "cash": 30000.0,
     "positions": [],
-    "history": [
-      {
-        "id": "tx_b_1",
-        "time": "2026-10-12 13:39 UTC",
-        "participant": "BOT",
-        "action": "BUY",
-        "ticker": "PLTR",
-        "shares": 35,
-        "price": 212.55,
-        "total_usd": 7439.25,
-        "realized_pnl": 0.0
-      },
-      {
-        "id": "tx_b_2",
-        "time": "2026-10-12 14:10 UTC",
-        "participant": "BOT",
-        "action": "SELL",
-        "ticker": "PLTR",
-        "shares": 35,
-        "price": 207.21,
-        "total_usd": 7252.35,
-        "realized_pnl": -186.9
-      }
-    ],
+    "history": [],
     "decision_logs": [
       {
-        "time": "2026-10-12 13:39 UTC",
-        "action": "BUY",
-        "ticker": "PLTR",
-        "shares": 35,
-        "price": 212.55,
-        "total_usd": 7439.25,
-        "rationale": "Day-1 Wave Ignition: MOMENTUM_ORB with RVOL 1.00x and P(Wave) of 95.0%. External catalysts factored: No recent Capitol trades, No recent insider buying, Sentiment is NEUTRAL. Allocating $7,439.25 (25% of cash) on high conviction.",
-        "composite_score": 100,
-        "wave_probability": 95.0
-      },
-      {
-        "time": "2026-10-12 14:10 UTC",
-        "action": "SELL",
-        "ticker": "PLTR",
-        "shares": 35,
-        "price": 207.21,
-        "rationale": "Stop Loss Triggered (-2.5% loss). Cut loss early and quarantined ticker for 48 hours.",
-        "realized_pnl": -186.9,
-        "pnl_pct": -2.51
+        "time": "2026-10-19 15:48 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
       }
     ],
-    "quarantine": {
-      "PLTR": "2026-10-14T14:10:06.669982+00:00"
-    },
-    "last_evaluated_at": "2026-10-12 16:12 UTC"
+    "quarantine": {},
+    "last_evaluated_at": "2026-10-19 15:48 UTC"
   }
 }
