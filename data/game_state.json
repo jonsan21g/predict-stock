@@ -1,8 +1,8 @@
 {
-  "game_id": "duel_2026_10_23",
-  "title": "5-Day Live Wave Rider Duel: Player vs. Bot (Week 4 - Momentum & Realization Engine)",
-  "created_at": "2026-10-19T15:48:02.548601+00:00",
-  "end_time": "2026-10-23T21:00:00Z",
+  "game_id": "duel_2026_11_06",
+  "title": "5-Day Live Wave Rider Duel: Player vs. Bot (Week 5 - Momentum & Realization Engine)",
+  "created_at": "2026-11-01T19:51:19.718382+00:00",
+  "end_time": "2026-11-06T22:00:00Z",
   "initial_capital": 30000.0,
   "rules": {
     "starting_cash": 30000.0,
@@ -14,7 +14,7 @@
     "target_1_harvest": "+3.0% (Sell 50% & Breakeven Stop on Runner)",
     "target_2_runner": "+6.0% (Full Exit)",
     "hard_stop_loss": "-2.5%",
-    "end_time_cet": "Friday Oct 23, 2026 at 23:00 CEST",
+    "end_time_cet": "Friday Nov 6, 2026 at 23:00 CET",
     "min_cash_threshold": 3000.0,
     "quarantine_hours": 48
   },
@@ -27,19 +27,7 @@
     "cash": 30000.0,
     "positions": [],
     "history": [],
-    "decision_logs": [
-      {
-        "time": "2026-10-19 15:48 UTC",
-        "action": "MACRO_HOLD",
-        "ticker": "QQQ",
-        "shares": 0,
-        "price": 0.0,
-        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
-        "composite_score": 0,
-        "wave_probability": 0.0
-      }
-    ],
-    "quarantine": {},
-    "last_evaluated_at": "2026-10-19 15:48 UTC"
+    "decision_logs": [],
+    "quarantine": {}
   }
 }
