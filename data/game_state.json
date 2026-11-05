@@ -19,13 +19,13 @@
     "quarantine_hours": 48
   },
   "player": {
-    "cash": 19902.809999999998,
+    "cash": 9942.759999999998,
     "positions": [
       {
         "ticker": "TSLA",
-        "shares": 27,
-        "avg_price": 373.97,
-        "cost_basis": 10097.19,
+        "shares": 56,
+        "avg_price": 358.16,
+        "cost_basis": 20057.24,
         "opened_at": "2026-11-05 14:30 UTC"
       }
     ],
@@ -39,6 +39,17 @@
         "shares": 27,
         "price": 373.97,
         "total_usd": 10097.19,
+        "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_p_2",
+        "time": "2026-11-05 21:00 UTC",
+        "participant": "PLAYER",
+        "action": "BUY",
+        "ticker": "TSLA",
+        "shares": 29,
+        "price": 343.45,
+        "total_usd": 9960.05,
         "realized_pnl": 0.0
       }
     ]
@@ -1797,10 +1808,40 @@
         "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
         "composite_score": 0,
         "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-05 19:53 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-05 20:23 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-05 20:53 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
       }
     ],
     "quarantine": {},
-    "last_evaluated_at": "2026-11-05 19:23 UTC"
+    "last_evaluated_at": "2026-11-05 20:53 UTC"
   },
   "scheduled_orders": [
     {
@@ -1827,7 +1868,11 @@
       "condition": "MARKET_CLOSE",
       "target_time_est": "16:00:05 EST (22:00:05 CET)",
       "created_at": "2026-11-05 19:24 UTC",
-      "status": "QUEUED"
+      "status": "FILLED",
+      "filled_at": "2026-11-05 21:00 UTC",
+      "shares": 29,
+      "price": 343.45,
+      "total_usd": 9960.05
     }
   ]
 }
