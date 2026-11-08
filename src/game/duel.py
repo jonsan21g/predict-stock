@@ -105,7 +105,11 @@ def compute_dynamic_trailing_stop(pos: Dict[str, Any], curr_price: Optional[floa
     elif peak_gain_pct >= 2.5 or partial_harvested:
         ratchet_stop = avg_price * 1.000  # Breakeven
     else:
-        ratchet_stop = avg_price * (1.0 + HARD_STOP_LOSS_PCT / 100.0)  # -2.5% Hard Stop
+        structural_stop = float(pos.get("structural_stop", 0.0))
+        if structural_stop > 0:
+            ratchet_stop = structural_stop
+        else:
+            ratchet_stop = avg_price * (1.0 + HARD_STOP_LOSS_PCT / 100.0)  # -2.5% Hard Stop
 
     existing_stop = float(pos.get("trailing_stop", 0.0))
     return round(max(existing_stop, ratchet_stop), 2)
@@ -487,10 +491,70 @@ def execute_player_order(
         return {"status": "SUCCESS", "action": "SELL", "ticker": ticker, "shares": shares, "price": price, "tx": tx}
 
 
+
+
+def scout_capitulation_carveout(
+    watchlist: List[Dict[str, Any]],
+    already_held: set,
+    bot_quarantine: Dict[str, str],
+    custom_history_map: Optional[Dict[str, Any]] = None
+) -> Optional[Dict[str, Any]]:
+    """
+    Evaluates whether any 50-universe stock qualifies for the Capitulation Reversal Carve-Out:
+    1. Day T-1 (prior day) suffered extreme crash: return <= -8.0%.
+    2. Day T (today) confirmed green: Close > Open and Close > Prior Close.
+    3. Returns top candidate with structural stop at Low of Day T-1 (* 0.995).
+    """
+    candidates = []
+    for s in watchlist:
+        ticker = s["ticker"]
+        if ticker in already_held or is_ticker_quarantined(ticker, bot_quarantine):
+            continue
+        try:
+            if custom_history_map and ticker in custom_history_map:
+                df = custom_history_map[ticker]
+            else:
+                df = get_daily_history(ticker, period="1mo")
+            if df is None or len(df) < 3:
+                continue
+
+            c_prior = float(df["Close"].iloc[-2])
+            c_two_ago = float(df["Close"].iloc[-3])
+            prior_ret = (c_prior / c_two_ago) - 1.0
+
+            # Crash condition: <= -8.0%
+            if prior_ret <= -0.08:
+                c_today = float(df["Close"].iloc[-1])
+                o_today = float(df["Open"].iloc[-1])
+                low_prior = float(df["Low"].iloc[-2])
+
+                # Green confirmation: Close > Open and Close > Prior Close
+                if c_today > o_today and c_today > c_prior:
+                    candidates.append({
+                        "ticker": ticker,
+                        "current_price": c_today,
+                        "prior_drop_pct": round(prior_ret * 100.0, 2),
+                        "low_prior": low_prior,
+                        "structural_stop": round(low_prior * 0.995, 2),
+                        "composite_score": 90,
+                        "wave_probability": 66.9,
+                        "strategy": "CAPITULATION_CARVE_OUT"
+                    })
+        except Exception:
+            pass
+
+    if not candidates:
+        return None
+
+    # Pick the deepest capitulation (largest prior drop)
+    candidates.sort(key=lambda x: x["prior_drop_pct"])
+    return candidates[0]
+
 def bot_evaluate_turn(
     force: bool = False,
     custom_price_map: Optional[Dict[str, float]] = None,
-    skip_scouting: bool = False
+    skip_scouting: bool = False,
+    custom_history_map: Optional[Dict[str, Any]] = None
 ) -> Dict[str, Any]:
     """
     Autonomous decision engine for the Bot.
@@ -687,18 +751,87 @@ def bot_evaluate_turn(
     elif available_cash >= MINIMUM_BOT_TRADE_CASH_THRESHOLD:
         # Macro Regime Gatekeeper: QQQ >= 20 EMA
         if not is_macro_regime_bullish("QQQ"):
-            disclosure = {
-                "time": now_str,
-                "action": "MACRO_HOLD",
-                "ticker": "QQQ",
-                "shares": 0,
-                "price": 0.0,
-                "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
-                "composite_score": 0,
-                "wave_probability": 0.0
-            }
-            state["bot"]["decision_logs"].append(disclosure)
-            actions_taken.append("MACRO REGIME FROZEN: QQQ < 20 EMA (Capital preserved in cash)")
+            # Check for Capitulation Reversal Carve-Out (Empirical Edge: PF 1.37, 66.9% Win Rate)
+            watchlist = load_watchlist()
+            already_held = {p["ticker"] for p in state["bot"]["positions"]}
+            has_active_carveout = any(p.get("strategy") == "CAPITULATION_CARVE_OUT" for p in state["bot"]["positions"])
+
+            carveout_candidate = None
+            if not has_active_carveout and len(state["bot"]["positions"]) < MAX_ACTIVE_POSITIONS:
+                carveout_candidate = scout_capitulation_carveout(
+                    watchlist, already_held, bot_quarantine, custom_history_map=custom_history_map
+                )
+
+            if carveout_candidate:
+                top = carveout_candidate
+                ticker = top["ticker"]
+                curr_price = custom_price_map.get(ticker) if custom_price_map and ticker in custom_price_map else top["current_price"]
+                alloc_pct = 0.20  # 20% Tactical Allocation
+                shares_to_buy = int((available_cash * alloc_pct) // curr_price) if curr_price > 0 else 0
+
+                if shares_to_buy > 0:
+                    total_cost = round(shares_to_buy * curr_price, 2)
+                    state["bot"]["cash"] -= total_cost
+                    ticker_sector = get_ticker_sector(ticker)
+
+                    state["bot"]["positions"].append({
+                        "ticker": ticker,
+                        "shares": shares_to_buy,
+                        "avg_price": round(curr_price, 2),
+                        "cost_basis": total_cost,
+                        "opened_at": now_str,
+                        "peak_price": round(curr_price, 2),
+                        "partial_harvested": False,
+                        "trailing_stop": top["structural_stop"],
+                        "structural_stop": top["structural_stop"],
+                        "sector": ticker_sector,
+                        "strategy": "CAPITULATION_CARVE_OUT"
+                    })
+
+                    tx = {
+                        "id": f"tx_b_{len(state['bot']['history']) + 1}",
+                        "time": now_str,
+                        "participant": "BOT",
+                        "action": "BUY (CAPITULATION CARVE-OUT)",
+                        "ticker": ticker,
+                        "shares": shares_to_buy,
+                        "price": round(curr_price, 2),
+                        "total_usd": total_cost,
+                        "realized_pnl": 0.0
+                    }
+                    state["bot"]["history"].append(tx)
+
+                    rationale = (
+                        f"Capitulation Reversal Carve-Out: Benchmark QQQ < 20 EMA, but {ticker} suffered extreme {top['prior_drop_pct']}% "
+                        f"washout on Day T-1 and confirmed green reversal today. Tactical 20% entry (${total_cost:,.2f}) with structural LOD stop "
+                        f"at ${top['structural_stop']:.2f}."
+                    )
+                    disclosure = {
+                        "time": now_str,
+                        "action": "CAPITULATION_BUY",
+                        "ticker": ticker,
+                        "shares": shares_to_buy,
+                        "price": round(curr_price, 2),
+                        "total_usd": total_cost,
+                        "rationale": rationale,
+                        "composite_score": top["composite_score"],
+                        "wave_probability": top["wave_probability"]
+                    }
+                    state["bot"]["decision_logs"].append(disclosure)
+                    actions_taken.append(f"BOT BOUGHT (CARVE-OUT) {shares_to_buy} {ticker} @ ${curr_price:.2f} ({rationale})")
+            else:
+                disclosure = {
+                    "time": now_str,
+                    "action": "MACRO_HOLD",
+                    "ticker": "QQQ",
+                    "shares": 0,
+                    "price": 0.0,
+                    "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
+                    "composite_score": 0,
+                    "wave_probability": 0.0
+                }
+                state["bot"]["decision_logs"].append(disclosure)
+                actions_taken.append("MACRO REGIME FROZEN: QQQ < 20 EMA (No capitulation washouts confirmed, capital in cash)")
         else:
             watchlist = load_watchlist()
             candidate_scores = []

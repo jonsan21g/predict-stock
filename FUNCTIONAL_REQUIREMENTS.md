@@ -5,7 +5,7 @@
 - **Standard**: IEEE 830 / ISO/IEC/IEEE 29148 Software Requirements Specification
 - **Classification**: Proprietary Quantitative System Specification
 - **Target Runtime**: Local Execution (Windows / Python 3.12 / Zero Cloud API Fees)
-- **Traceability Status**: 100% Traceable (All 34 Automated Test Cases Mapped)
+- **Traceability Status**: 100% Traceable (All 50 Automated Test Cases Mapped across 10 Epics)
 
 ---
 
@@ -77,14 +77,22 @@ The following matrix provides 100% bidirectional traceability between functional
 | **`FR-06-11`** | Backtest Sandbox API | Epic 6 | `src/dashboard/app.py` | `TC-UI-05` | [`tests/test_interface.py::test_dashboard_backtest_api`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py) |
 | **`FR-06-12`** | CLI Runner Premarket Execution | Epic 6 | `src/main.py` | `TC-UI-06` | [`tests/test_interface.py::test_cli_premarket_execution`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py) |
 | **`FR-06-13`** | Game State & Order API Endpoints | Epic 6 | `src/dashboard/app.py` | `TC-UI-07` | [`tests/test_interface.py::test_dashboard_game_endpoints`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_interface.py) |
-| **`FR-07-01`** | Free-Tier Cloud Deployment *(Planned)* | Epic 6 | Render / HF Spaces | `TC-DEP-01` | Deferred / Pre-requisite to Cloud Hosting |
-| **`FR-07-02`** | Supabase State Persistence *(Planned)* | Epic 6 | PostgreSQL Client | `TC-DEP-02` | Deferred / Pre-requisite to Cloud Hosting |
-| **`FR-08-01`** | Week 2 Duel Initialization (Oct 5–9, 2026) | Epic 8 | `src/game/duel.py` | `TC-GAME-07` | [`tests/test_game.py::test_week2_initialization`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py) |
-| **`FR-08-02`** | 48-Hour Stop-Loss Quarantine Manager | Epic 8 | `src/game/duel.py` | `TC-GAME-08` | [`tests/test_game.py::test_quarantine_enforcement`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py) |
-| **`FR-08-03`** | Minimum Cash Buffer (The Scraps Rule) | Epic 8 | `src/game/duel.py` | `TC-GAME-09` | [`tests/test_game.py::test_scraps_rule_preservation`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py) |
-| **`FR-08-04`** | Macro Regime Gatekeeper (QQQ Trend Filter) | Epic 8 | `src/game/duel.py` | `TC-GAME-10` | [`tests/test_game.py::test_macro_regime_gatekeeper`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py) |
-| **`FR-08-05`** | Conviction-Weighted Tiered Sizing (Kelly) | Epic 8 | `src/game/duel.py` | `TC-GAME-11` | [`tests/test_game.py::test_conviction_weighted_sizing`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py) |
-| **`FR-08-06`** | Bar-Close Stop Loss Execution Guard | Epic 8 | `src/game/duel.py` | `TC-GAME-12` | [`tests/test_game.py::test_bar_close_stop_guard`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_game.py) |
+| **`FR-07-01`** | Session-Aware Market Clock | Epic 7 | `src/analysis/intraday_engine.py` | `TC-INTRA-01` | [`tests/test_intraday_engine.py::test_market_session_clock`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_intraday_engine.py) |
+| **`FR-07-02`** | Pre-Market Quote Isolation & Purity | Epic 7 | `src/analysis/intraday_engine.py` | `TC-INTRA-02` | [`tests/test_intraday_engine.py::test_premarket_quote_isolation`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_intraday_engine.py) |
+| **`FR-07-03`** | Pre-Market Snapshot Persistence | Epic 7 | `src/analysis/intraday_engine.py` | `TC-INTRA-03` | [`tests/test_intraday_engine.py::test_premarket_snapshot_persistence`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_intraday_engine.py) |
+| **`FR-08-01`** | Time-of-Day Cumulative Volume Pacing | Epic 8 | `src/analysis/intraday_engine.py` | `TC-INTRA-04` | [`tests/test_intraday_engine.py::test_volume_pacing_model`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_intraday_engine.py) |
+| **`FR-08-02`** | Capitulation Snapback (ORCL Regression) | Epic 8 | `src/analysis/intraday_engine.py` | `TC-INTRA-05` | [`tests/test_intraday_engine.py::test_intraday_orcl_snapback_regression`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_intraday_engine.py) |
+| **`FR-08-03`** | Intraday Momentum ORB Breakout | Epic 8 | `src/analysis/intraday_engine.py` | `TC-INTRA-06` | [`tests/test_intraday_engine.py::test_intraday_momentum_orb`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_intraday_engine.py) |
+| **`FR-08-04`** | Intraday REST API Route (/api/radar) | Epic 8 | `src/dashboard/app.py` | `TC-INTRA-07` | [`tests/test_intraday_engine.py::test_dashboard_intraday_route`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_intraday_engine.py) |
+| **`FR-09-01`** | 50-Universe Macro Sector Taxonomy | Epic 9 | `src/game/duel.py` | `TC-SECT-01` | [`tests/test_week3_rules.py::test_sector_taxonomy_covers_entire_50_universe`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_week3_rules.py) |
+| **`FR-09-02`** | Max 4 Active Positions Risk Ceiling | Epic 9 | `src/game/duel.py` | `TC-RISK-01` | [`tests/test_week3_rules.py::test_max_four_positions_cap`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_week3_rules.py) |
+| **`FR-09-03`** | Max 2 Sector Correlated Risk Cap | Epic 9 | `src/game/duel.py` | `TC-RISK-02` | [`tests/test_week3_rules.py::test_max_two_sector_positions_cap`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_week3_rules.py) |
+| **`FR-09-04`** | Multi-Tranche 50% Profit Harvest at +3% | Epic 9 | `src/game/duel.py` | `TC-EXIT-01` | [`tests/test_week3_rules.py::test_target_1_partial_harvest`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_week3_rules.py) |
+| **`FR-09-05`** | Dynamic High-Water Mark Trailing Ratchet | Epic 9 | `src/game/duel.py` | `TC-EXIT-02` | [`tests/test_week3_rules.py::test_dynamic_trailing_ratchet_floors`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_week3_rules.py) |
+| **`FR-09-06`** | Macro Capitulation Reversal Carve-Out | Epic 9 | `src/game/duel.py` | `TC-CARVE-01` | [`tests/test_cloud_deployment.py::test_capitulation_carveout_execution`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_cloud_deployment.py) |
+| **`FR-09-07`** | Capitulation Falling Knife Rejection Guard | Epic 9 | `src/game/duel.py` | `TC-CARVE-02` | [`tests/test_cloud_deployment.py::test_capitulation_rejection_unconfirmed`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_cloud_deployment.py) |
+| **`FR-10-01`** | Static Cloud Snapshot Engine | Epic 10 | `src/cloud/static_exporter.py` | `TC-DEP-01` | [`tests/test_cloud_deployment.py::test_static_exporter_fast_bundle`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_cloud_deployment.py) |
+| **`FR-10-02`** | Dual-Cadence CLI Static Exporter | Epic 10 | `src/main.py` | `TC-DEP-02` | [`tests/test_cloud_deployment.py::test_cli_export_static_flag`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_cloud_deployment.py) |
 
 ---
 
@@ -457,6 +465,67 @@ The following matrix provides 100% bidirectional traceability between functional
 #### `FR-08-06`: Bar-Close Stop Loss Execution Guard
 * **Description**: Stop-loss conditions (-2.5% threshold) shall be validated against completed bar close prices (or 15-minute moving boundaries) rather than instantaneous sub-second tick wicks to avoid synthetic stop-hunts during volatile opens.
 * **Verification & Test**: `TC-GAME-12` in `tests/test_game.py::test_bar_close_stop_guard`.
+
+---
+
+### Epic 9: Week 3 Strategic Risk Engine & Capitulation Reversal Carve-Out
+
+#### `FR-09-01`: 50-Universe Macro Sector Taxonomy
+* **Description**: All 50 equities in the expanded watchlist shall map deterministically to one of 4 approved macro sectors: `SEMICONDUCTORS`, `AI_INFRASTRUCTURE`, `SOFTWARE_CLOUD`, or `MEGA_CAP_ANCHORS`.
+* **Verification & Test**: `TC-SECT-01` in [`tests/test_week3_rules.py::test_sector_taxonomy_covers_entire_50_universe`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_week3_rules.py).
+
+#### `FR-09-02`: Portfolio Concentration Ceiling (Max 4 Active Positions)
+* **Description**: The Autonomous Bot shall never hold more than 4 concurrent active positions. If 4 positions are open, all new entry signals must be rejected regardless of composite score.
+* **Verification & Test**: `TC-RISK-01` in [`tests/test_week3_rules.py::test_max_four_positions_cap`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_week3_rules.py).
+
+#### `FR-09-03`: Correlated Sector Exposure Limit (Max 2 per Sector)
+* **Description**: To prevent catastrophic portfolio drawdowns during sector-specific pullbacks (e.g. semiconductor cyclical corrections), the Bot is capped at holding at most 2 stocks in any single macro sector.
+* **Verification & Test**: `TC-RISK-02` in [`tests/test_week3_rules.py::test_max_two_sector_positions_cap`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_week3_rules.py).
+
+#### `FR-09-04`: Multi-Tranche Partial Scaling (50% Harvest at +3.0%)
+* **Description**: When an open position reaches or exceeds a gain of $+3.0\%$ from average cost basis, the system shall automatically execute a market sell order for exactly 50% of the position shares to lock in gains.
+* **Verification & Test**: `TC-EXIT-01` in [`tests/test_week3_rules.py::test_target_1_partial_harvest`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_week3_rules.py).
+
+#### `FR-09-05`: Dynamic High-Water Mark Trailing Ratchet
+* **Description**: The Bot shall implement a progressive trailing ratchet floor that tightens stop-loss levels as gains expand:
+  * Gain $< +3.0\%$: Initial stop at entry $-2.5\%$.
+  * Gain $\ge +3.0\%$: Breakeven runner armor locks stop at entry $+0.1\%$.
+  * Gain $\ge +4.5\%$: Ratchet locks stop at entry $+2.0\%$.
+  * Gain $\ge +6.0\%$: Final target realized with full exit.
+* **Verification & Test**: `TC-EXIT-02` in [`tests/test_week3_rules.py::test_dynamic_trailing_ratchet_floors`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_week3_rules.py).
+
+#### `FR-09-06`: Macro Downtrend Capitulation Reversal Carve-Out Execution
+* **Description**: When the macro benchmark is bearish ($\text{QQQ} < \text{EMA}_{20}$), standard momentum breakouts are suppressed. However, the Bot shall evaluate an empirical Capitulation Reversal Carve-Out with the following mandatory gating criteria:
+  1. **Extreme Crash Filter**: Prior-day (Day $T-1$) drop must be $\le -8.0\%$.
+  2. **Next-Day Green Confirmation**: Day $T$ daily candle must be strictly green ($\text{Close}_T > \text{Open}_T$ and $\text{Close}_T > \text{Close}_{T-1}$).
+  3. **Structural Low-of-Day Stop**: Trailing stop is anchored structurally to $0.995 \times \text{Low}_{T-1}$ rather than an arbitrary percentage.
+  4. **Allocation Limit**: Position sizing is capped at 20% of bankroll (tactical knife carve-out), and concurrent active carve-outs are strictly capped at 1.
+* **Verification & Test**: `TC-CARVE-01` in [`tests/test_cloud_deployment.py::test_capitulation_carveout_execution`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_cloud_deployment.py).
+
+#### `FR-09-07`: Capitulation Falling Knife Rejection Guard
+* **Description**: Any stock that suffered a crash on Day $T-1$ but fails to confirm green on Day $T$ (e.g. Day $T$ is red or continues bleeding below open) shall be strictly rejected by the Bot, preserving capital 100% in cash.
+* **Verification & Test**: `TC-CARVE-02` in [`tests/test_cloud_deployment.py::test_capitulation_rejection_unconfirmed`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_cloud_deployment.py).
+
+---
+
+### Epic 10: Zero-Cost Static Cloud Deployment & Dual-Mode Hosting
+
+#### `FR-10-01`: Static Cloud Snapshot Engine
+* **Description**: The system shall compile the entire dashboard application and all dynamic REST payloads into a standalone, self-contained `dist/` directory that can be served directly from GitHub Pages or any static web server without Python or Flask backend runtime requirements.
+* **Payloads Generated**: `dist/index.html`, `dist/static/` (CSS/JS with relative paths), `dist/api/health.json`, `dist/api/game.json`, `dist/api/radar_eod.json`, `dist/api/radar_premarket.json`, `dist/api/radar_intraday.json`, `dist/api/stock/*.json`, and `dist/api/backtest/*.json`.
+* **Performance Requirement**: Fast export mode must complete compilation in $<20$ seconds.
+* **Verification & Test**: `TC-DEP-01` in [`tests/test_cloud_deployment.py::test_static_exporter_fast_bundle`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_cloud_deployment.py).
+
+#### `FR-10-02`: Dual-Cadence CLI Static Exporter
+* **Description**: The CLI entrypoint (`src/main.py`) shall expose `--export-static`, `--export-mode {fast|full}`, and `--export-dir <path>` flags to trigger static asset export headlessly from scheduled terminal scripts or GitHub Actions workflows.
+* **Verification & Test**: `TC-DEP-02` in [`tests/test_cloud_deployment.py::test_cli_export_static_flag`](file:///c:/Users/jonsa/LLM/predict-stock/tests/test_cloud_deployment.py).
+
+#### `FR-10-03`: Dual-Mode Client Adapter & Runtime Detection
+* **Description**: The frontend client script (`app.js`) shall implement an `apiFetch` adapter that dynamically senses the execution environment:
+  * When running on local Flask (`http://localhost:5050`), standard REST API calls (`/api/...`) are routed natively to the Flask backend.
+  * When running in static cloud mode (`http://localhost:5055`, GitHub Pages `*.github.io`, or `file://`), REST endpoints are mapped to relative static JSON assets (`./api/...`).
+  * Any state-mutating requests (`POST /api/game/order`, `/api/game/bot-turn`, `/api/game/reset`) in cloud static mode display a user-friendly read-only notice directing the user to the local Flask runner.
+* **Verification**: Visual verification on `http://localhost:5055/` and unit test assertions.
 
 ---
 

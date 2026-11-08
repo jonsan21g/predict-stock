@@ -599,3 +599,88 @@ def calculate_conviction_allocation(candidate: Dict[str, Any], available_cash: f
     """
 ```
 
+
+
+---
+
+## 11. Static Cloud Architecture & Dual-Mode Hosting Engine
+
+### 11.1 Static Cloud Snapshot Exporter (`src/cloud/static_exporter.py`)
+
+The **Static Cloud Snapshot Exporter** enables complete decoupling of the frontend user experience from a continuously running Python/Flask server. It transforms the dynamic application into a static Single Page Application (SPA) backed by pre-rendered JSON payloads:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                       STATIC BUNDLE COMPILER PIPELINE                       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 1. Frontend Ingestion  --> Ingest index.html, style.css, app.js             │
+│ 2. URL Normalization   --> Rewrite /static/ to relative ./static/ paths     │
+│ 3. Core API Generation --> Export /api/health.json and /api/game.json       │
+│ 4. Radar Compilations  --> Export radar_eod.json, premarket, intraday       │
+│ 5. Forensic Bundles    --> Pre-calculate stock dossiers & multi-horizon BTs │
+│ 6. Output Generation   --> Emit unified self-contained dist/ directory      │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+#### Performance Profiles
+* **Fast Mode (`--export-mode fast`)**: Compiles core HTML/CSS/JS, system health, live duel state, all 3 radar lists, and top-tier stocks in **under 20 seconds**. Reuses pre-existing radar cache if present.
+* **Full Mode (`--export-mode full`)**: Performs an exhaustive scrape, computing deep-dive forensic dossiers and multi-horizon backtest curves (`1y`, `2y`, `3y`) for all 50 universe equities.
+
+### 11.2 Dual-Mode Client Adapter Architecture (`src/dashboard/static/app.js`)
+
+The client application incorporates an adaptive network proxy (`apiFetch`) that senses runtime topography:
+```javascript
+function isStaticMode() {
+  if (typeof window !== "undefined" && window.WAVE_RIDER_FORCE_STATIC) return true;
+  if (window.location.protocol === "file:") return true;
+  if (window.location.hostname.endsWith("github.io")) return true;
+  if (window.location.port === "5055") return true;
+  return window.location.port !== "5050";
+}
+```
+
+#### Request Routing Matrix
+| Endpoint Pattern | Local Flask Mode (`:5050`) | Static Cloud Mode (`:5055` / GitHub Pages) |
+| :--- | :--- | :--- |
+| `GET /api/health` | `/api/health` (live Flask probe) | `./api/health.json` |
+| `GET /api/game` | `/api/game` (disk read & mark-to-market) | `./api/game.json` |
+| `GET /api/radar?mode=X` | `/api/radar?mode=X` (live calculation) | `./api/radar_${mode}.json` |
+| `GET /api/stock/<TICKER>` | `/api/stock/<TICKER>` (on-demand compute)| `./api/stock/<TICKER>.json` |
+| `GET /api/backtest?ticker=X&period=Y` | `/api/backtest` (walkforward engine) | `./api/backtest/<TICKER>.json` (unpacks `data[period]`) |
+| `POST /api/game/order` | Real-time order fill & balance update | Friendly read-only cloud modal notice |
+| `POST /api/game/bot-turn` | Trigger bot execution cycle | Friendly read-only cloud modal notice |
+
+---
+
+## 12. Week 3 Risk Architecture & Capitulation Reversal Carve-Out
+
+### 12.1 Multi-Tranche Scaling & High-Water Mark Trailing Ratchet
+
+Week 3 duel operations introduce disciplined asymmetric profit realization rules to prevent round-trip drawdowns on winning runners (such as the Week 2 SPCX reversal):
+1. **Target 1 Partial Harvest (+3.0%)**: Exactly 50% of the active position is sold at market.
+2. **Breakeven Runner Armor (The SPCX Rule)**: The moment Target 1 is hit, the trailing stop on remaining shares ratchets from $-2.5\%$ to Entry Price $+0.1\%$, eliminating any possibility of a winning trade turning into a loss.
+3. **High-Water Mark Ratchet (+4.5%)**: If the runner reaches $+4.5\%$, the stop ratchets to Entry Price $+2.0\%$.
+4. **Target 2 Full Exit (+6.0%)**: Remaining 50% is harvested in full.
+5. **Portfolio Risk Caps**: Maximum 4 concurrent active positions; maximum 2 positions per macro sector; 48-hour stagnation exit for stagnant runners.
+
+### 12.2 Capitulation Reversal Carve-Out Specification (`src/game/duel.py`)
+
+Empirical 3-year backtesting across 18 market washout scenarios demonstrated that unconfirmed knife-catching in macro bear markets has negative expected value (PF 0.67–0.82). Conversely, requiring next-day green confirmation yields a statistically validated edge (**156/157 trades, 66.9% Win Rate, 1.37 Profit Factor**).
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    CAPITULATION REVERSAL DECISION FLOW                      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Macro Check: QQQ < 20 EMA                                                   │
+│   ├── Standard Breakouts: REJECTED (Preserve cash)                          │
+│   └── Capitulation Scout:                                                   │
+│         1. Prior Day (T-1) Crash <= -8.0%?                                  │
+│         2. Today (T) Confirmed Green? (Close > Open and Close > Close[T-1]) │
+│         ├── If YES:                                                         │
+│         │     • Initiate Tactical Carve-Out (20% Allocation Cap)            │
+│         │     • Anchor Structural Stop to Low[T-1] * 0.995                  │
+│         │     • Disclose Rationale & Outside Catalysts                      │
+│         └── If NO:                                                          │
+│               • REJECT (Falling Knife Trap) -> Preserve 100% Cash           │
+└─────────────────────────────────────────────────────────────────────────────┘
+```

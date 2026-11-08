@@ -7,7 +7,78 @@ let currentSortDirection = "desc";
 let deepDiveChart = null;
 let backtestChart = null;
 
+// Dual-Mode Client Adapter: Automatically adapts between local Flask runtime (port 5050)
+// and zero-cost Static Cloud Hosting (GitHub Pages / port 5055 / file://).
+function isStaticMode() {
+  if (typeof window !== "undefined" && window.WAVE_RIDER_FORCE_STATIC) return true;
+  if (window.location.protocol === "file:") return true;
+  if (window.location.hostname.endsWith("github.io")) return true;
+  if (window.location.port === "5055") return true;
+  return window.location.port !== "5050";
+}
+
+function updateRuntimeBadge() {
+  const badge = document.getElementById("runtime-badge");
+  if (!badge) return;
+  if (isStaticMode()) {
+    badge.textContent = "Cloud Static Mode";
+    badge.className = "runtime-badge badge-cloud";
+    badge.title = "Running in Zero-Cost Cloud Static Mode. Data snapshots updated via GitHub Actions.";
+  } else {
+    badge.textContent = "Local Flask Mode";
+    badge.className = "runtime-badge badge-local";
+    badge.title = "Connected to live local Flask daemon on port 5050.";
+  }
+}
+
+async function apiFetch(endpoint, options = {}) {
+  if (!isStaticMode()) {
+    return fetch(endpoint, options);
+  }
+
+  // Handle mutations in static cloud mode gracefully
+  if (options.method && options.method.toUpperCase() === "POST") {
+    const errorMsg = "⚠️ Cloud Static Mode: Interactive order submission and manual Bot execution require the local Flask runtime (python -m src.dashboard.app). In Cloud Static mode, portfolio and radar data are updated automatically via GitHub Actions.";
+    console.warn(errorMsg);
+    return new Response(JSON.stringify({ error: errorMsg, cloud_mode: true }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" }
+    });
+  }
+
+  // Map GET endpoints to static JSON asset paths
+  try {
+    const dummyOrigin = window.location.origin && window.location.origin !== "null" ? window.location.origin : "http://localhost";
+    const url = new URL(endpoint, dummyOrigin);
+    const path = url.pathname;
+    const searchParams = url.searchParams;
+
+    let targetPath = endpoint;
+    if (path.startsWith("/api/radar")) {
+      const mode = searchParams.get("mode") || "eod";
+      targetPath = `./api/radar_${mode}.json`;
+    } else if (path.startsWith("/api/stock/")) {
+      const ticker = path.split("/").pop();
+      targetPath = `./api/stock/${ticker}.json`;
+    } else if (path.startsWith("/api/backtest")) {
+      const ticker = searchParams.get("ticker") || "NVDA";
+      targetPath = `./api/backtest/${ticker}.json`;
+    } else if (path.startsWith("/api/game")) {
+      targetPath = `./api/game.json`;
+    } else if (path.startsWith("/api/health")) {
+      targetPath = `./api/health.json`;
+    }
+
+    return fetch(targetPath, options);
+  } catch (e) {
+    console.error("apiFetch static rewrite error:", e);
+    return fetch(endpoint, options);
+  }
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
+  updateRuntimeBadge();
   updateSortIndicators();
   const initialTab = (window.location.hash ? window.location.hash.replace("#", "") : localStorage.getItem("active_tab")) || "radar";
   if (initialTab && initialTab !== "radar") {
@@ -76,7 +147,7 @@ async function loadRadar(refresh = false) {
   tbody.innerHTML = `<tr><td colspan="13" class="loading-cell" style="text-align:center; padding: 24px; color:#94a3b8;">Scanning 50 US Tech & Momentum Leaders for Wave Ignition...</td></tr>`;
 
   try {
-    const res = await fetch(`/api/radar?mode=${currentMode}&refresh=${refresh}`);
+    const res = await apiFetch(`/api/radar?mode=${currentMode}&refresh=${refresh}`);
     const data = await res.json();
     allRadarData = data;
 
@@ -316,7 +387,7 @@ async function loadDeepDive(ticker) {
   container.innerHTML = `<div style="text-align:center; padding: 60px; color:#94a3b8; font-size:15px;">🔍 Gathering forensic smart-money, government contracts, and wave technicals for <strong>${ticker}</strong>...</div>`;
 
   try {
-    const res = await fetch(`/api/stock/${ticker}`);
+    const res = await apiFetch(`/api/stock/${ticker}`);
     const data = await res.json();
 
     const chgSign = data.change_pct >= 0 ? "+" : "";
@@ -1043,8 +1114,11 @@ async function executeBacktest() {
   container.style.display = "block";
 
   try {
-    const res = await fetch(`/api/backtest?ticker=${ticker}&period=${period}`);
-    const data = await res.json();
+    const res = await apiFetch(`/api/backtest?ticker=${ticker}&period=${period}`);
+    let data = await res.json();
+    if (data && data[period] && typeof data[period] === "object" && data[period].strategy_return_pct !== undefined) {
+      data = data[period];
+    }
 
     document.getElementById("kpi-return").textContent = `${data.strategy_return_pct >= 0 ? "+" : ""}${data.strategy_return_pct.toFixed(2)}%`;
     document.getElementById("kpi-return").style.color = data.strategy_return_pct >= 0 ? "#10b981" : "#f43f5e";
@@ -1141,7 +1215,7 @@ let watchlistCache = [];
 
 async function loadDuelState() {
   try {
-    const res = await fetch(`/api/game?_t=${Date.now()}`);
+    const res = await apiFetch(`/api/game?_t=${Date.now()}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     duelState = data;
@@ -1157,7 +1231,7 @@ async function loadDuelState() {
         watchlistCache = allRadarData.map(d => ({ ticker: d.ticker, price: d.current_price, name: d.name }));
         populateOrderTickerSelect();
       } else {
-        fetch("/api/radar?mode=eod").then(r => r.json()).then(radar => {
+        apiFetch("/api/radar?mode=eod").then(r => r.json()).then(radar => {
           allRadarData = radar;
           watchlistCache = radar.map(d => ({ ticker: d.ticker, price: d.current_price, name: d.name }));
           populateOrderTickerSelect();
@@ -1317,7 +1391,7 @@ async function submitPlayerOrder() {
   btn.textContent = "Processing Order...";
 
   try {
-    const res = await fetch("/api/game/order", {
+    const res = await apiFetch("/api/game/order", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: currentOrderAction, ticker: ticker, shares: shares })
@@ -1531,7 +1605,7 @@ async function triggerBotTurn() {
   }
 
   try {
-    const res = await fetch("/api/game/bot-turn", { method: "POST" });
+    const res = await apiFetch("/api/game/bot-turn", { method: "POST" });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "Bot turn failed");
 
@@ -1557,7 +1631,7 @@ async function resetDuel() {
   }
 
   try {
-    const res = await fetch("/api/game/reset", { method: "POST" });
+    const res = await apiFetch("/api/game/reset", { method: "POST" });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "Reset failed");
     await loadDuelState();

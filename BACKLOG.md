@@ -102,7 +102,9 @@ A key architectural distinction is drawn between **Primary Capital Footprints** 
 | ID | Feature | Status | Description | Notes / Effort |
 | :--- | :--- | :--- | :--- | :--- |
 | `UI-01` | **Interactive Glassmorphism Web App** | ✅ **Done** | Single-page UI at `localhost:5050` with live radar, candlestick charts, and backtest sandbox. | `src/dashboard/app.py` |
-| `UI-02` | **5-Day Live "Player vs. Bot" Duel** | ✅ **Done** | \$30k starting bankroll, live order execution desk, transparent bot disclosures, countdown to Oct 2. | `src/game/duel.py` |
-| `UI-03` | **Dual Execution Bot (Autonomous + Manual)** | ✅ **Done** | Background daemon thread (30m market, 60m off-hours) + 4 manual trigger mechanisms. | Dashboard + CLI + `.bat` |
-| `DEP-01` | **Cloud Web Server Deployment (Render / Hugging Face)** | 💬 **In Discussion** | Deploying app 24/7 on free cloud tier (Render.com with pinger vs. Hugging Face Spaces 16GB RAM). | Zero ongoing cost |
-| `DEP-02` | **State Persistence across Reboots (Supabase)** | 💬 **In Discussion** | Syncing `game_state.json` to a free Supabase PostgreSQL database to ensure state survives cloud reboots. | Permanent persistence |
+| `UI-02` | **5-Day Live "Player vs. Bot" Duel** | ✅ **Done** | \$30k starting bankroll, live order execution desk, transparent bot disclosures, mark-to-market valuations. | `src/game/duel.py` |
+| `UI-03` | **Dual Execution Bot (Autonomous + Manual)** | ✅ **Done** | Background daemon thread (30m market, 60m off-hours) + CLI and API manual triggers. | Dashboard + CLI + `.bat` |
+| `DEP-01` | **Static Cloud Bundle Exporter & SPA Compiler** | ✅ **Done** | Compiles dynamic app and REST endpoints into standalone `dist/` directory (<20s fast mode). | `src/cloud/static_exporter.py` |
+| `DEP-02` | **Dual-Mode Client Adapter & Local Static Server** | ✅ **Done** | `apiFetch` in `app.js` auto-adapting between Flask (`:5050`) and static (`:5055` / Pages) with read-only safeguards. | `src/dashboard/static/app.js` |
+| `ENG-05` | **Capitulation Reversal Carve-Out Engine** | ✅ **Done** | Washout entry (Drop $\le -8.0\%$, green confirmation, structural stop) during bear regimes ($QQQ < 20\text{ EMA}$). | `src/game/duel.py` |
+| `DEP-03` | **GitHub Pages Automation & Actions Cron** | 🚀 **Step 2** | Automated twice-daily static export and git-commit workflow for 24/7 zero-cost cloud hosting. | Step 2 Milestone |

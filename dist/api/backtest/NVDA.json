@@ -1,0 +1,176 @@
+{
+  "ticker": "NVDA",
+  "1y": {
+    "ticker": "NVDA",
+    "initial_capital": 10000.0,
+    "final_balance": 9851.98,
+    "net_profit": -148.02,
+    "strategy_return_pct": -1.48,
+    "buy_and_hold_return_pct": 1.21,
+    "total_trades": 1,
+    "wins": 0,
+    "losses": 1,
+    "win_rate_pct": 0.0,
+    "profit_factor": 0.0,
+    "expectancy_dollar": -148.02,
+    "max_drawdown_pct": 1.48,
+    "avg_bars_held": 1.0,
+    "avg_win": 0.0,
+    "avg_loss": 148.02,
+    "equity_curve": [
+      {
+        "date": "2026-01-22",
+        "balance": 10000.0
+      },
+      {
+        "date": "2026-08-28",
+        "balance": 9851.98
+      }
+    ],
+    "trades": [
+      {
+        "id": 1,
+        "ticker": "NVDA",
+        "entry_date": "2026-08-27",
+        "exit_date": "2026-08-28",
+        "entry_price": 227.73,
+        "exit_price": 222.03,
+        "shares": 26,
+        "pnl": -148.02,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "2y": {
+    "ticker": "NVDA",
+    "initial_capital": 10000.0,
+    "final_balance": 9851.98,
+    "net_profit": -148.02,
+    "strategy_return_pct": -1.48,
+    "buy_and_hold_return_pct": 1.21,
+    "total_trades": 1,
+    "wins": 0,
+    "losses": 1,
+    "win_rate_pct": 0.0,
+    "profit_factor": 0.0,
+    "expectancy_dollar": -148.02,
+    "max_drawdown_pct": 1.48,
+    "avg_bars_held": 1.0,
+    "avg_win": 0.0,
+    "avg_loss": 148.02,
+    "equity_curve": [
+      {
+        "date": "2026-01-22",
+        "balance": 10000.0
+      },
+      {
+        "date": "2026-08-28",
+        "balance": 9851.98
+      }
+    ],
+    "trades": [
+      {
+        "id": 1,
+        "ticker": "NVDA",
+        "entry_date": "2026-08-27",
+        "exit_date": "2026-08-28",
+        "entry_price": 227.73,
+        "exit_price": 222.03,
+        "shares": 26,
+        "pnl": -148.02,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "3y": {
+    "ticker": "NVDA",
+    "initial_capital": 10000.0,
+    "final_balance": 9851.98,
+    "net_profit": -148.02,
+    "strategy_return_pct": -1.48,
+    "buy_and_hold_return_pct": 1.21,
+    "total_trades": 1,
+    "wins": 0,
+    "losses": 1,
+    "win_rate_pct": 0.0,
+    "profit_factor": 0.0,
+    "expectancy_dollar": -148.02,
+    "max_drawdown_pct": 1.48,
+    "avg_bars_held": 1.0,
+    "avg_win": 0.0,
+    "avg_loss": 148.02,
+    "equity_curve": [
+      {
+        "date": "2026-01-22",
+        "balance": 10000.0
+      },
+      {
+        "date": "2026-08-28",
+        "balance": 9851.98
+      }
+    ],
+    "trades": [
+      {
+        "id": 1,
+        "ticker": "NVDA",
+        "entry_date": "2026-08-27",
+        "exit_date": "2026-08-28",
+        "entry_price": 227.73,
+        "exit_price": 222.03,
+        "shares": 26,
+        "pnl": -148.02,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "initial_capital": 10000.0,
+  "final_balance": 9851.98,
+  "net_profit": -148.02,
+  "strategy_return_pct": -1.48,
+  "buy_and_hold_return_pct": 1.21,
+  "total_trades": 1,
+  "wins": 0,
+  "losses": 1,
+  "win_rate_pct": 0.0,
+  "profit_factor": 0.0,
+  "expectancy_dollar": -148.02,
+  "max_drawdown_pct": 1.48,
+  "avg_bars_held": 1.0,
+  "avg_win": 0.0,
+  "avg_loss": 148.02,
+  "equity_curve": [
+    {
+      "date": "2026-01-22",
+      "balance": 10000.0
+    },
+    {
+      "date": "2026-08-28",
+      "balance": 9851.98
+    }
+  ],
+  "trades": [
+    {
+      "id": 1,
+      "ticker": "NVDA",
+      "entry_date": "2026-08-27",
+      "exit_date": "2026-08-28",
+      "entry_price": 227.73,
+      "exit_price": 222.03,
+      "shares": 26,
+      "pnl": -148.02,
+      "return_pct": -2.5,
+      "bars_held": 1,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    }
+  ]
+}

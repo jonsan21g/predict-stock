@@ -12,3 +12,5 @@ data/cache/
 # Environments
 venv/
 .env/
+scratch/
+

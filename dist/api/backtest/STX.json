@@ -1,0 +1,100 @@
+{
+  "ticker": "STX",
+  "1y": {
+    "ticker": "STX",
+    "initial_capital": 10000.0,
+    "final_balance": 10000.0,
+    "net_profit": 0.0,
+    "strategy_return_pct": 0.0,
+    "buy_and_hold_return_pct": 33.46,
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate_pct": 0.0,
+    "profit_factor": 1.0,
+    "expectancy_dollar": 0.0,
+    "max_drawdown_pct": 0.0,
+    "avg_bars_held": 0.0,
+    "avg_win": 0.0,
+    "avg_loss": 0.0,
+    "equity_curve": [
+      {
+        "date": "2026-01-22",
+        "balance": 10000.0
+      }
+    ],
+    "trades": []
+  },
+  "2y": {
+    "ticker": "STX",
+    "initial_capital": 10000.0,
+    "final_balance": 10000.0,
+    "net_profit": 0.0,
+    "strategy_return_pct": 0.0,
+    "buy_and_hold_return_pct": 33.46,
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate_pct": 0.0,
+    "profit_factor": 1.0,
+    "expectancy_dollar": 0.0,
+    "max_drawdown_pct": 0.0,
+    "avg_bars_held": 0.0,
+    "avg_win": 0.0,
+    "avg_loss": 0.0,
+    "equity_curve": [
+      {
+        "date": "2026-01-22",
+        "balance": 10000.0
+      }
+    ],
+    "trades": []
+  },
+  "3y": {
+    "ticker": "STX",
+    "initial_capital": 10000.0,
+    "final_balance": 10000.0,
+    "net_profit": 0.0,
+    "strategy_return_pct": 0.0,
+    "buy_and_hold_return_pct": 33.46,
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate_pct": 0.0,
+    "profit_factor": 1.0,
+    "expectancy_dollar": 0.0,
+    "max_drawdown_pct": 0.0,
+    "avg_bars_held": 0.0,
+    "avg_win": 0.0,
+    "avg_loss": 0.0,
+    "equity_curve": [
+      {
+        "date": "2026-01-22",
+        "balance": 10000.0
+      }
+    ],
+    "trades": []
+  },
+  "initial_capital": 10000.0,
+  "final_balance": 10000.0,
+  "net_profit": 0.0,
+  "strategy_return_pct": 0.0,
+  "buy_and_hold_return_pct": 33.46,
+  "total_trades": 0,
+  "wins": 0,
+  "losses": 0,
+  "win_rate_pct": 0.0,
+  "profit_factor": 1.0,
+  "expectancy_dollar": 0.0,
+  "max_drawdown_pct": 0.0,
+  "avg_bars_held": 0.0,
+  "avg_win": 0.0,
+  "avg_loss": 0.0,
+  "equity_curve": [
+    {
+      "date": "2026-01-22",
+      "balance": 10000.0
+    }
+  ],
+  "trades": []
+}

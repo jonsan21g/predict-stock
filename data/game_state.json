@@ -2328,10 +2328,20 @@
         "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
         "composite_score": 0,
         "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-08 08:36 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
       }
     ],
     "quarantine": {},
-    "last_evaluated_at": "2026-11-06 21:23 UTC"
+    "last_evaluated_at": "2026-11-08 08:36 UTC"
   },
   "scheduled_orders": [
     {

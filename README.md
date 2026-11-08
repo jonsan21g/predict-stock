@@ -6,7 +6,7 @@ An automated quantitative scanning, classification, and backtesting system desig
 
 ## 🌟 Key Pillars & Architectural Advantages
 
-1. **Zero Bankruptcy Risk Universe**: Focused strictly on **27 market-leading US equities** (Nvidia, Micron, Western Digital, TSMC, ASML, Microsoft, Dell, Apple, etc.) with fortress balance sheets.
+1. **Zero Bankruptcy Risk Universe**: Focused strictly on **50 market-leading US tech, semiconductor, and data infrastructure equities** (Nvidia, Micron, Western Digital, TSMC, ASML, Microsoft, Dell, Apple, etc.) with fortress balance sheets.
 2. **Smart Money Accumulation Footprints**: Integrates official **US Congressional STOCK Act disclosures** and **SEC Form 4 Corporate Insider cluster buys**.
 3. **Social & Financial News Velocity**: Measures headline acceleration and domain-specific sentiment polarity.
 4. **Day-1 Ignition Timing**: Solves the core flaw of legacy trend-following systems by requiring high Relative Volume ($\text{RVOL} \ge 1.50\times$) and structural range expansion, eliminating late-trend top-chasing.
@@ -20,7 +20,7 @@ An automated quantitative scanning, classification, and backtesting system desig
 ```
 predict-stock/
 ├── data/
-│   ├── watchlist.json              # 27 verified US tech & memory titans
+│   ├── watchlist.json              # 50 verified US tech, semiconductor & cloud titans across 4 macro sectors
 │   └── cache/                      # Multi-tier local cache (parquet & json)
 ├── src/
 │   ├── fetchers/
@@ -98,10 +98,28 @@ python -m src.main --reset-duel
 ```
 Or use the **`⚔️ 5-Day Duel`** tab directly inside the Web Dashboard at `http://localhost:5050`.
 
-### 7. Run the Automated Test Suite
-Executes all 28 unit and integration tests across data fetchers, feature pipeline, ignition rules, ML classifier, duel game engine, and dashboard APIs:
+### 7. Static Cloud Exporter & Local Port 5055 Review
+Compile the dynamic application into a zero-cost, self-contained static Single Page Application (SPA) with pre-rendered REST JSON payloads:
 ```bash
-python -m pytest tests/ -v
+# 1. Export static bundle in fast mode (<20s)
+python -m src.main --export-static --export-mode fast
+
+# 2. Or export full 50-stock dossiers and multi-horizon backtests
+python -m src.main --export-static --export-mode full
+
+# 3. Serve and review locally without Flask on port 5055
+python -m http.server 5055 --directory dist
+```
+Then open your browser at 👉 **`http://localhost:5055`** to preview the exact static cloud experience.
+
+### 8. Requirements Traceability Matrix (RTM) & Test Suite
+Executes all 61 automated unit and integration tests across data fetchers, smart money, feature pipeline, ignition rules, ML classifier, duel game engine, capitulation carve-out, and cloud deployment:
+```bash
+# Run complete test suite (61 of 61 tests passing)
+pytest
+
+# Run IEEE 830 / 1016 Requirements Traceability Matrix compliance report (50 / 50 verified)
+python -m src.main --verify-rtm
 ```
 
 ---

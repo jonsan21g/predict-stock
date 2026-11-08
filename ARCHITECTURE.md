@@ -104,7 +104,25 @@ All assets are actively traded with deep liquidity on major US exchanges (**NASD
   - Target calibrated 3–5 day expansions ($+3.5\%$ to $+6.0\%$) with a strict 5-day time stop.
   - Dynamically trail the 5-day EMA instead of premature break-even stops.
   - Require Smart Money (Politician / Insider) and Social Momentum confirmation.
-  - Restrict strictly to 27 market-leading US tech and semiconductor titans.
+  - Restrict strictly to 27 market-leading US tech and semiconductor titans (expanded to 50 in Week 3 across 4 macro sectors).
+
+### ADR-06: Decoupled Static Asset Architecture & Dual-Mode Client-Side Routing
+- **Context**: Migrating the application to zero-cost cloud hosting on GitHub Pages while retaining the option for full local execution with interactive paper-trading order execution.
+- **Decision**: Decouple the system into a static compiler (`src/cloud/static_exporter.py`) that exports pre-calculated JSON assets and a Dual-Mode frontend adapter (`apiFetch` in `app.js`).
+- **Rationale**:
+  1. *Zero Subscription or Server Fees*: Eliminates monthly hosting fees for full-time cloud instances. GitHub Pages serves static bundles globally via high-speed CDN at \$0 cost.
+  2. *Graceful Dual-Mode Degradation*: In local Flask mode (`:5050`), interactive paper trading and manual Bot turns work in real time. In cloud static mode (`:5055` / `github.io`), the UI dynamically falls back to pre-rendered JSON snapshots with friendly guidance for state-mutating actions.
+  3. *Atomic Immutability*: Static bundles are versioned and can be served locally (`python -m http.server 5055 --directory dist`) for offline forensics and validation.
+
+### ADR-07: Macro Capitulation Reversal Carve-Out During Bear Regimes
+- **Context**: In Week 5, benchmark QQQ traded below its 20-day EMA, triggering the Macro Regime Gatekeeper (`FR-08-04`), which froze the Bot 100% in cash. Concurrently, TSLA suffered an extreme -9.5% crash on Day T-1 and rebounded +2.8% on Day T. A quantitative 3-year backtest across all 50 stocks revealed that unconfirmed knife-catching is a losing strategy (PF 0.67–0.82), but confirmed green reversals after an extreme crash (<= -8.0%) possess an empirical winning edge (66.9% Win Rate, 1.37 Profit Factor).
+- **Decision**: Implement a strictly controlled Capitulation Reversal Carve-Out in `src/game/duel.py`.
+- **Rules**:
+  1. *Prior Day Washout*: Return <= -8.0%.
+  2. *Day T Green Confirmation*: Close > Open and Close > Prior Close.
+  3. *Structural Stop*: Anchored to Low of Day T-1 * 0.995.
+  4. *Risk Boundaries*: Max 1 active carve-out position; max 20% bankroll allocation.
+- **Consequences**: Enables the Bot to capture high-probability asymmetric mean-reversion bounces during macro bear regimes without compromising the capital protection benefits of the QQQ trend filter.
 
 ---
 

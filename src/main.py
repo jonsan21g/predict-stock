@@ -264,7 +264,16 @@ def run_rtm_verification():
         "tests/test_intraday_engine.py::test_volume_pacing_model": ("FR-08-01", "Time-of-Day Cumulative Volume Pacing"),
         "tests/test_intraday_engine.py::test_intraday_orcl_snapback_regression": ("FR-08-02", "Capitulation Snapback (ORCL Regression)"),
         "tests/test_intraday_engine.py::test_intraday_momentum_orb": ("FR-08-03", "Intraday Momentum ORB Breakout"),
-        "tests/test_intraday_engine.py::test_dashboard_intraday_route": ("FR-08-04", "Intraday REST API Route (/api/radar)")
+        "tests/test_intraday_engine.py::test_dashboard_intraday_route": ("FR-08-04", "Intraday REST API Route (/api/radar)"),
+        "tests/test_week3_rules.py::test_sector_taxonomy_covers_entire_50_universe": ("FR-09-01", "50-Universe Macro Sector Taxonomy"),
+        "tests/test_week3_rules.py::test_max_four_positions_cap": ("FR-09-02", "Max 4 Active Positions Risk Ceiling"),
+        "tests/test_week3_rules.py::test_max_two_sector_positions_cap": ("FR-09-03", "Max 2 Sector Correlated Risk Cap"),
+        "tests/test_week3_rules.py::test_target_1_partial_harvest": ("FR-09-04", "Multi-Tranche 50% Profit Harvest at +3%"),
+        "tests/test_week3_rules.py::test_dynamic_trailing_ratchet_floors": ("FR-09-05", "Dynamic High-Water Mark Trailing Ratchet"),
+        "tests/test_cloud_deployment.py::test_capitulation_carveout_execution": ("FR-09-06", "Macro Capitulation Reversal Carve-Out"),
+        "tests/test_cloud_deployment.py::test_capitulation_rejection_unconfirmed": ("FR-09-07", "Capitulation Falling Knife Guard"),
+        "tests/test_cloud_deployment.py::test_static_exporter_fast_bundle": ("FR-10-01", "Static Cloud Snapshot Engine"),
+        "tests/test_cloud_deployment.py::test_cli_export_static_flag": ("FR-10-02", "Dual-Cadence CLI Static Exporter")
     }
 
     class RTMCollector:
@@ -314,8 +323,18 @@ def main():
     parser.add_argument("--reset-duel", action="store_true", help="Reset 5-Day Duel to starting $30,000 cash balance")
     parser.add_argument("--order", nargs=3, metavar=("ACTION", "TICKER", "SHARES"), help="Execute Player order (e.g. --order BUY NVDA 20)")
     parser.add_argument("--verify-rtm", action="store_true", help="Execute automated verification across all functional requirements (RTM report)")
+    parser.add_argument("--export-static", action="store_true", help="Compile and export static cloud bundle to dist/")
+    parser.add_argument("--export-mode", choices=["fast", "full"], default="fast", help="Static export mode: fast (<20s) or full (all 50 dossiers and backtests)")
+    parser.add_argument("--export-dir", type=str, default="dist", help="Target directory for static assets (default: dist)")
 
     args = parser.parse_args()
+
+    if args.export_static:
+        from src.cloud.static_exporter import export_cloud_bundle
+        print(f"\n[WAVE RIDER] Exporting Static Cloud Bundle (Mode: {args.export_mode.upper()}, Output: {args.export_dir})...")
+        res = export_cloud_bundle(output_dir=args.export_dir, mode=args.export_mode)
+        print(f"Export finished successfully. Summary: {res['files_exported']} files in {res['elapsed_seconds']}s.\n")
+        return
 
     if args.verify_rtm:
         run_rtm_verification()

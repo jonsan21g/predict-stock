@@ -1,0 +1,810 @@
+{
+  "ticker": "MU",
+  "date": "2026-11-06",
+  "current_price": 690.0,
+  "change_pct": 5.12,
+  "is_ignition": false,
+  "ignition_type": "NONE",
+  "wave_probability": 41.7,
+  "composite_score": 44,
+  "rvol": 1.4654964982356136,
+  "crr": 0.28688531766430403,
+  "target_1": 714.15,
+  "target_2": 731.4,
+  "stop_loss": 672.75,
+  "smart_money": {
+    "politician_buy": true,
+    "jurisdiction_match": false,
+    "matched_committees": [],
+    "congress_score": 30,
+    "politicians": [
+      "John McGuire"
+    ],
+    "high_jurisdiction_buyers": [],
+    "congress_buy_count": 3,
+    "congress_sell_count": 0,
+    "congress_total_trades": 3,
+    "congress_trades": [
+      {
+        "politician": "John McGuireRepublicanHouseVA",
+        "politician_name": "John McGuire",
+        "ticker": "MU",
+        "issuer": "Micron Technology IncMU:US",
+        "type": "BUY",
+        "size": "1K\u201315K",
+        "traded_date": "2026-09-24",
+        "published_date": "2 Nov2026",
+        "chamber": "",
+        "state": "",
+        "party": "",
+        "committees": [],
+        "jurisdiction_match": false,
+        "jurisdiction_weight": 1.0,
+        "jurisdiction_notes": "",
+        "quiver_politician_url": "https://www.quiverquant.com/congresstrading/politician/John%20McGuire",
+        "quiver_ticker_url": "https://www.quiverquant.com/congresstrading/stock/MU"
+      },
+      {
+        "politician": "John McGuireRepublicanHouseVA",
+        "politician_name": "John McGuire",
+        "ticker": "MU",
+        "issuer": "Micron Technology IncMU:US",
+        "type": "BUY",
+        "size": "1K\u201315K",
+        "traded_date": "2026-09-25",
+        "published_date": "2 Nov2026",
+        "chamber": "",
+        "state": "",
+        "party": "",
+        "committees": [],
+        "jurisdiction_match": false,
+        "jurisdiction_weight": 1.0,
+        "jurisdiction_notes": "",
+        "quiver_politician_url": "https://www.quiverquant.com/congresstrading/politician/John%20McGuire",
+        "quiver_ticker_url": "https://www.quiverquant.com/congresstrading/stock/MU"
+      },
+      {
+        "politician": "John McGuireRepublicanHouseVA",
+        "politician_name": "John McGuire",
+        "ticker": "MU",
+        "issuer": "Micron Technology IncMU:US",
+        "type": "BUY",
+        "size": "1K\u201315K",
+        "traded_date": "2026-10-01",
+        "published_date": "2 Nov2026",
+        "chamber": "",
+        "state": "",
+        "party": "",
+        "committees": [],
+        "jurisdiction_match": false,
+        "jurisdiction_weight": 1.0,
+        "jurisdiction_notes": "",
+        "quiver_politician_url": "https://www.quiverquant.com/congresstrading/politician/John%20McGuire",
+        "quiver_ticker_url": "https://www.quiverquant.com/congresstrading/stock/MU"
+      }
+    ],
+    "quiver_stock_url": "https://www.quiverquant.com/congresstrading/stock/MU",
+    "capitoltrades_url": "https://www.capitoltrades.com/issuers",
+    "house_disclosure_url": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+    "senate_disclosure_url": "https://efdsearch.senate.gov/search/",
+    "insider_buy": false,
+    "insider_cluster": false,
+    "insider_score": 0,
+    "total_buy_value_usd": 0,
+    "c_suite_buyers": [],
+    "insider_buy_count": 0,
+    "insider_sell_count": 3,
+    "net_shares": -83544,
+    "unique_buyers": 0,
+    "recent_buys": [],
+    "recent_transactions": [
+      {
+        "date": "2026-10-16",
+        "insider": "DEBOER SCOTT J.",
+        "position": "President",
+        "type": "SELL",
+        "shares": 28544,
+        "value_usd": 25690216.0,
+        "text": "Sale at price 900.00 - 902.01 per share."
+      },
+      {
+        "date": "2026-08-21",
+        "insider": "MEHROTRA SANJAY",
+        "position": "Chief Executive Officer",
+        "type": "SELL",
+        "shares": 40000,
+        "value_usd": 38756162.0,
+        "text": "Sale at price 959.14 - 989.59 per share."
+      },
+      {
+        "date": "2026-08-18",
+        "insider": "SADANA SUMIT",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 15000,
+        "value_usd": 14014350.0,
+        "text": "Sale at price 934.29 per share."
+      }
+    ],
+    "openinsider_purchases_url": "http://openinsider.com/screener?s=MU&tc=P&xp=1",
+    "openinsider_all_url": "http://openinsider.com/screener?s=MU",
+    "sec_edgar_url": "https://www.sec.gov/edgar/browse/?CIK=MU",
+    "sentiment_label": "BULLISH",
+    "sentiment_score": 0.53,
+    "discussion_velocity": 0.0,
+    "viral_politician_buzz": false,
+    "is_pelosi_effect": false,
+    "retail_hype_score": 0,
+    "buzz_keywords": [],
+    "social_volume": 30,
+    "pelosi_effect": {
+      "is_active": false,
+      "intensity": "QUIET / DORMANT",
+      "hype_score": 0,
+      "primary_catalyst": "DORMANT",
+      "prominent_figures": [],
+      "lifecycle_stage": "DORMANT",
+      "narrative_summary": "No active politician copy-trading or viral smart-money chatter detected on social streams.",
+      "matched_keywords": [],
+      "mentions_count": 0,
+      "verbatim_quotes": []
+    },
+    "recent_headlines": [],
+    "contracts": {
+      "total_value_usd": 0,
+      "contract_count": 0,
+      "has_major_contract": false,
+      "is_defense_contract": false,
+      "contract_score": 0,
+      "top_agencies": [],
+      "top_award_amount_usd": 0.0,
+      "recent_contracts": [],
+      "usaspending_search_url": "https://www.usaspending.gov/search/?keyword=MU",
+      "usaspending_recipient_url": "https://www.usaspending.gov/recipient"
+    }
+  },
+  "checks": [
+    {
+      "rule": "Institutional Volume Surge",
+      "passed": false,
+      "detail": "RVOL is 1.47x (required >= 1.50x or >= 1.30x on squeeze)"
+    },
+    {
+      "rule": "Closing Range Strength",
+      "passed": false,
+      "detail": "Finished at 28.7% of daily range (required >= 68%)"
+    },
+    {
+      "rule": "Structural Range Expansion",
+      "passed": false,
+      "detail": "Inside existing range"
+    },
+    {
+      "rule": "Fast EMA Trend Stack",
+      "passed": false,
+      "detail": "Price ($690.00) > 5 EMA ($753.71) >= 20 EMA ($869.21)"
+    },
+    {
+      "rule": "Anti-Exhaustion Safe Zone",
+      "passed": true,
+      "detail": "Price is -20.6% from 20 EMA (max safe limit +8.5%)"
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-08-14",
+      "open": 979.17,
+      "high": 983.85,
+      "low": 956.05,
+      "close": 971.51,
+      "volume": 27881100,
+      "ema5": 927.44,
+      "ema20": 904.24
+    },
+    {
+      "date": "2026-08-17",
+      "open": 999.39,
+      "high": 1035.97,
+      "low": 995.1,
+      "close": 1011.59,
+      "volume": 33430500,
+      "ema5": 955.49,
+      "ema20": 914.46
+    },
+    {
+      "date": "2026-08-18",
+      "open": 956.95,
+      "high": 978.52,
+      "low": 926.49,
+      "close": 940.61,
+      "volume": 37306000,
+      "ema5": 950.53,
+      "ema20": 916.95
+    },
+    {
+      "date": "2026-08-19",
+      "open": 959.21,
+      "high": 959.85,
+      "low": 915.04,
+      "close": 936.96,
+      "volume": 26901900,
+      "ema5": 946.01,
+      "ema20": 918.86
+    },
+    {
+      "date": "2026-08-20",
+      "open": 934.86,
+      "high": 977.13,
+      "low": 928.92,
+      "close": 974.18,
+      "volume": 25212200,
+      "ema5": 955.4,
+      "ema20": 924.13
+    },
+    {
+      "date": "2026-08-21",
+      "open": 989.52,
+      "high": 989.8,
+      "low": 958.11,
+      "close": 966.63,
+      "volume": 21823400,
+      "ema5": 959.14,
+      "ema20": 928.17
+    },
+    {
+      "date": "2026-08-24",
+      "open": 934.63,
+      "high": 936.3,
+      "low": 887.47,
+      "close": 910.29,
+      "volume": 30012600,
+      "ema5": 942.86,
+      "ema20": 926.47
+    },
+    {
+      "date": "2026-08-25",
+      "open": 928.83,
+      "high": 946.52,
+      "low": 916.16,
+      "close": 932.82,
+      "volume": 19163200,
+      "ema5": 939.51,
+      "ema20": 927.07
+    },
+    {
+      "date": "2026-08-26",
+      "open": 925.59,
+      "high": 945.6,
+      "low": 924.45,
+      "close": 938.25,
+      "volume": 18721700,
+      "ema5": 939.09,
+      "ema20": 928.14
+    },
+    {
+      "date": "2026-08-27",
+      "open": 966.86,
+      "high": 968.56,
+      "low": 906.75,
+      "close": 935.24,
+      "volume": 28838500,
+      "ema5": 937.81,
+      "ema20": 928.82
+    },
+    {
+      "date": "2026-08-28",
+      "open": 919.15,
+      "high": 946.65,
+      "low": 908.95,
+      "close": 932.71,
+      "volume": 22890100,
+      "ema5": 936.11,
+      "ema20": 929.19
+    },
+    {
+      "date": "2026-08-31",
+      "open": 931.24,
+      "high": 959.82,
+      "low": 930.64,
+      "close": 958.58,
+      "volume": 22569500,
+      "ema5": 943.6,
+      "ema20": 931.99
+    },
+    {
+      "date": "2026-09-01",
+      "open": 940.98,
+      "high": 969.29,
+      "low": 922.24,
+      "close": 933.29,
+      "volume": 27762200,
+      "ema5": 940.16,
+      "ema20": 932.11
+    },
+    {
+      "date": "2026-09-02",
+      "open": 930.68,
+      "high": 957.85,
+      "low": 927.01,
+      "close": 955.93,
+      "volume": 21440500,
+      "ema5": 945.42,
+      "ema20": 934.38
+    },
+    {
+      "date": "2026-09-03",
+      "open": 956.76,
+      "high": 959.61,
+      "low": 918.74,
+      "close": 958.01,
+      "volume": 24175900,
+      "ema5": 949.62,
+      "ema20": 936.63
+    },
+    {
+      "date": "2026-09-04",
+      "open": 971.19,
+      "high": 1017.61,
+      "low": 968.85,
+      "close": 1016.43,
+      "volume": 35249500,
+      "ema5": 971.89,
+      "ema20": 944.23
+    },
+    {
+      "date": "2026-09-08",
+      "open": 1036.24,
+      "high": 1040.91,
+      "low": 997.46,
+      "close": 1000.1,
+      "volume": 26604900,
+      "ema5": 981.29,
+      "ema20": 949.55
+    },
+    {
+      "date": "2026-09-09",
+      "open": 998.65,
+      "high": 1042.24,
+      "low": 992.13,
+      "close": 1027.61,
+      "volume": 23812000,
+      "ema5": 996.73,
+      "ema20": 956.98
+    },
+    {
+      "date": "2026-09-10",
+      "open": 996.84,
+      "high": 998.84,
+      "low": 973.35,
+      "close": 977.26,
+      "volume": 26230400,
+      "ema5": 990.24,
+      "ema20": 958.92
+    },
+    {
+      "date": "2026-09-11",
+      "open": 993.04,
+      "high": 993.83,
+      "low": 967.23,
+      "close": 975.11,
+      "volume": 21740300,
+      "ema5": 985.2,
+      "ema20": 960.46
+    },
+    {
+      "date": "2026-09-14",
+      "open": 905.89,
+      "high": 932.06,
+      "low": 902.46,
+      "close": 923.88,
+      "volume": 27141900,
+      "ema5": 964.76,
+      "ema20": 956.97
+    },
+    {
+      "date": "2026-09-15",
+      "open": 937.35,
+      "high": 944.79,
+      "low": 919.99,
+      "close": 927.45,
+      "volume": 20434700,
+      "ema5": 952.32,
+      "ema20": 954.16
+    },
+    {
+      "date": "2026-09-16",
+      "open": 934.08,
+      "high": 941.05,
+      "low": 917.5,
+      "close": 926.4,
+      "volume": 20213000,
+      "ema5": 943.68,
+      "ema20": 951.52
+    },
+    {
+      "date": "2026-09-17",
+      "open": 954.42,
+      "high": 986.04,
+      "low": 953.35,
+      "close": 977.35,
+      "volume": 22091600,
+      "ema5": 954.9,
+      "ema20": 953.98
+    },
+    {
+      "date": "2026-09-18",
+      "open": 984.57,
+      "high": 1016.28,
+      "low": 977.68,
+      "close": 1015.64,
+      "volume": 35803500,
+      "ema5": 975.15,
+      "ema20": 959.85
+    },
+    {
+      "date": "2026-09-21",
+      "open": 1044.83,
+      "high": 1064.32,
+      "low": 1030.52,
+      "close": 1043.8,
+      "volume": 28174400,
+      "ema5": 998.03,
+      "ema20": 967.85
+    },
+    {
+      "date": "2026-09-22",
+      "open": 1032.69,
+      "high": 1097.08,
+      "low": 1029.86,
+      "close": 1095.99,
+      "volume": 29189700,
+      "ema5": 1030.68,
+      "ema20": 980.05
+    },
+    {
+      "date": "2026-09-23",
+      "open": 1099.9,
+      "high": 1105.33,
+      "low": 1064.08,
+      "close": 1071.71,
+      "volume": 21572800,
+      "ema5": 1044.36,
+      "ema20": 988.78
+    },
+    {
+      "date": "2026-09-24",
+      "open": 1049.58,
+      "high": 1080.87,
+      "low": 1043.84,
+      "close": 1080.36,
+      "volume": 22069900,
+      "ema5": 1056.36,
+      "ema20": 997.5
+    },
+    {
+      "date": "2026-09-25",
+      "open": 1095.66,
+      "high": 1108.55,
+      "low": 1072.83,
+      "close": 1082.11,
+      "volume": 20947900,
+      "ema5": 1064.94,
+      "ema20": 1005.56
+    },
+    {
+      "date": "2026-09-28",
+      "open": 1075.81,
+      "high": 1084.64,
+      "low": 1031.84,
+      "close": 1053.81,
+      "volume": 22227200,
+      "ema5": 1061.23,
+      "ema20": 1010.16
+    },
+    {
+      "date": "2026-09-29",
+      "open": 1076.52,
+      "high": 1082.49,
+      "low": 1057.53,
+      "close": 1064.91,
+      "volume": 19723100,
+      "ema5": 1062.46,
+      "ema20": 1015.37
+    },
+    {
+      "date": "2026-09-30",
+      "open": 1076.59,
+      "high": 1083.33,
+      "low": 1062.19,
+      "close": 1064.94,
+      "volume": 31103200,
+      "ema5": 1063.29,
+      "ema20": 1020.09
+    },
+    {
+      "date": "2026-10-01",
+      "open": 1053.91,
+      "high": 1098.73,
+      "low": 1022.74,
+      "close": 1097.22,
+      "volume": 45735400,
+      "ema5": 1074.6,
+      "ema20": 1027.44
+    },
+    {
+      "date": "2026-10-02",
+      "open": 1107.18,
+      "high": 1107.83,
+      "low": 1071.84,
+      "close": 1074.72,
+      "volume": 27337500,
+      "ema5": 1074.64,
+      "ema20": 1031.94
+    },
+    {
+      "date": "2026-10-05",
+      "open": 1069.51,
+      "high": 1074.71,
+      "low": 1055.39,
+      "close": 1063.79,
+      "volume": 18261700,
+      "ema5": 1071.02,
+      "ema20": 1034.97
+    },
+    {
+      "date": "2026-10-06",
+      "open": 1064.31,
+      "high": 1074.14,
+      "low": 1045.1,
+      "close": 1045.4,
+      "volume": 21781200,
+      "ema5": 1062.48,
+      "ema20": 1035.97
+    },
+    {
+      "date": "2026-10-07",
+      "open": 1017.21,
+      "high": 1089.05,
+      "low": 1011.26,
+      "close": 1087.83,
+      "volume": 30859500,
+      "ema5": 1070.93,
+      "ema20": 1040.91
+    },
+    {
+      "date": "2026-10-08",
+      "open": 1077.33,
+      "high": 1088.33,
+      "low": 1031.94,
+      "close": 1035.68,
+      "volume": 29910700,
+      "ema5": 1059.18,
+      "ema20": 1040.41
+    },
+    {
+      "date": "2026-10-09",
+      "open": 1054.0,
+      "high": 1054.0,
+      "low": 1016.84,
+      "close": 1028.84,
+      "volume": 19918900,
+      "ema5": 1049.07,
+      "ema20": 1039.31
+    },
+    {
+      "date": "2026-10-12",
+      "open": 1002.29,
+      "high": 1002.51,
+      "low": 978.35,
+      "close": 988.88,
+      "volume": 23983800,
+      "ema5": 1029.01,
+      "ema20": 1034.5
+    },
+    {
+      "date": "2026-10-13",
+      "open": 933.92,
+      "high": 953.45,
+      "low": 928.88,
+      "close": 953.04,
+      "volume": 29227200,
+      "ema5": 1003.68,
+      "ema20": 1026.75
+    },
+    {
+      "date": "2026-10-14",
+      "open": 934.56,
+      "high": 949.42,
+      "low": 913.56,
+      "close": 914.13,
+      "volume": 27843700,
+      "ema5": 973.83,
+      "ema20": 1016.02
+    },
+    {
+      "date": "2026-10-15",
+      "open": 871.58,
+      "high": 931.65,
+      "low": 858.0,
+      "close": 931.24,
+      "volume": 39095100,
+      "ema5": 959.63,
+      "ema20": 1007.95
+    },
+    {
+      "date": "2026-10-16",
+      "open": 905.49,
+      "high": 907.5,
+      "low": 875.0,
+      "close": 878.84,
+      "volume": 30514600,
+      "ema5": 932.7,
+      "ema20": 995.65
+    },
+    {
+      "date": "2026-10-19",
+      "open": 913.55,
+      "high": 926.81,
+      "low": 900.57,
+      "close": 904.9,
+      "volume": 25740500,
+      "ema5": 923.44,
+      "ema20": 987.01
+    },
+    {
+      "date": "2026-10-20",
+      "open": 884.13,
+      "high": 918.89,
+      "low": 881.52,
+      "close": 896.07,
+      "volume": 20304200,
+      "ema5": 914.31,
+      "ema20": 978.35
+    },
+    {
+      "date": "2026-10-21",
+      "open": 923.74,
+      "high": 928.45,
+      "low": 889.45,
+      "close": 913.67,
+      "volume": 21035000,
+      "ema5": 914.1,
+      "ema20": 972.19
+    },
+    {
+      "date": "2026-10-22",
+      "open": 879.66,
+      "high": 908.3,
+      "low": 849.25,
+      "close": 856.49,
+      "volume": 32176000,
+      "ema5": 894.9,
+      "ema20": 961.17
+    },
+    {
+      "date": "2026-10-23",
+      "open": 862.29,
+      "high": 891.89,
+      "low": 858.34,
+      "close": 877.55,
+      "volume": 21249900,
+      "ema5": 889.11,
+      "ema20": 953.2
+    },
+    {
+      "date": "2026-10-26",
+      "open": 889.88,
+      "high": 915.75,
+      "low": 882.77,
+      "close": 903.7,
+      "volume": 22848900,
+      "ema5": 893.98,
+      "ema20": 948.49
+    },
+    {
+      "date": "2026-10-27",
+      "open": 920.99,
+      "high": 935.87,
+      "low": 910.67,
+      "close": 928.76,
+      "volume": 23194900,
+      "ema5": 905.57,
+      "ema20": 946.61
+    },
+    {
+      "date": "2026-10-28",
+      "open": 961.71,
+      "high": 990.0,
+      "low": 959.34,
+      "close": 983.23,
+      "volume": 30711300,
+      "ema5": 931.46,
+      "ema20": 950.1
+    },
+    {
+      "date": "2026-10-29",
+      "open": 967.94,
+      "high": 971.01,
+      "low": 927.24,
+      "close": 934.27,
+      "volume": 22390300,
+      "ema5": 932.39,
+      "ema20": 948.59
+    },
+    {
+      "date": "2026-10-30",
+      "open": 884.0,
+      "high": 906.54,
+      "low": 861.59,
+      "close": 884.74,
+      "volume": 30872700,
+      "ema5": 916.51,
+      "ema20": 942.51
+    },
+    {
+      "date": "2026-11-02",
+      "open": 890.54,
+      "high": 892.08,
+      "low": 829.24,
+      "close": 833.59,
+      "volume": 29902100,
+      "ema5": 888.87,
+      "ema20": 932.14
+    },
+    {
+      "date": "2026-11-03",
+      "open": 859.93,
+      "high": 871.49,
+      "low": 845.25,
+      "close": 855.1,
+      "volume": 21286500,
+      "ema5": 877.61,
+      "ema20": 924.8
+    },
+    {
+      "date": "2026-11-04",
+      "open": 823.0,
+      "high": 853.34,
+      "low": 782.0,
+      "close": 795.23,
+      "volume": 35906100,
+      "ema5": 850.15,
+      "ema20": 912.46
+    },
+    {
+      "date": "2026-11-05",
+      "open": 752.69,
+      "high": 761.81,
+      "low": 650.0,
+      "close": 656.39,
+      "volume": 77872700,
+      "ema5": 785.56,
+      "ema20": 888.07
+    },
+    {
+      "date": "2026-11-06",
+      "open": 708.35,
+      "high": 724.8,
+      "low": 676.0,
+      "close": 690.0,
+      "volume": 44765100,
+      "ema5": 753.71,
+      "ema20": 869.21
+    }
+  ],
+  "name": "Micron Technology Inc.",
+  "category": "Pure Memory & Storage",
+  "role": "US pure-play DRAM, NAND and HBM memory leader",
+  "technicals": {
+    "rvol_20d": 1.47,
+    "crr": 0.29,
+    "bb_width": 0.385,
+    "ema5": 753.71,
+    "ema20": 869.21,
+    "volume": 44765100,
+    "vol_sma20": 30546030,
+    "high": 724.8,
+    "low": 676.0,
+    "open": 708.35
+  }
+}
