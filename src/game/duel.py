@@ -26,9 +26,9 @@ WATCHLIST_FILE = os.path.join(BASE_DIR, "data", "watchlist.json")
 def get_game_file() -> str:
     return os.environ.get("WAVE_RIDER_GAME_FILE", os.path.join(BASE_DIR, "data", "game_state.json"))
 
-# Target Match Expiry: Friday Nov 6, 2026 at 23:00 CET (22:00 UTC)
-MATCH_END_ISO = "2026-11-06T22:00:00Z"
-GAME_ID = "duel_2026_11_06"
+# Target Match Expiry: Friday Nov 13, 2026 at 23:00 CET (22:00 UTC)
+MATCH_END_ISO = "2026-11-13T22:00:00Z"
+GAME_ID = "duel_2026_11_13"
 INITIAL_BANKROLL = 30000.0
 MINIMUM_BOT_TRADE_CASH_THRESHOLD = 3000.0  # The Scraps Rule: minimum cash reserve ($3,000 / 10%)
 QUARANTINE_HOURS = 48
@@ -200,7 +200,7 @@ def initialize_game_state(force_reset: bool = False) -> Dict[str, Any]:
 
     state = {
         "game_id": GAME_ID,
-        "title": "5-Day Live Wave Rider Duel: Player vs. Bot (Week 5 - Momentum & Realization Engine)",
+        "title": "5-Day Live Wave Rider Duel: Player vs. Bot (Week 6 - Nov 9 to Nov 13, 2026)",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "end_time": MATCH_END_ISO,
         "initial_capital": INITIAL_BANKROLL,
@@ -214,7 +214,7 @@ def initialize_game_state(force_reset: bool = False) -> Dict[str, Any]:
             "target_1_harvest": f"+{TARGET_1_HARVEST_PCT:.1f}% (Sell 50% & Breakeven Stop on Runner)",
             "target_2_runner": f"+{TARGET_2_FULL_PCT:.1f}% (Full Exit)",
             "hard_stop_loss": f"{HARD_STOP_LOSS_PCT:.1f}%",
-            "end_time_cet": "Friday Nov 6, 2026 at 23:00 CET",
+            "end_time_cet": "Friday Nov 13, 2026 at 23:00 CET",
             "min_cash_threshold": MINIMUM_BOT_TRADE_CASH_THRESHOLD,
             "quarantine_hours": QUARANTINE_HOURS
         },
