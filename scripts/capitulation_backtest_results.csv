@@ -1,0 +1,19 @@
+Scenario,Trades,Win Rate (%),Profit Factor,Avg Return (%),T1 Hit (%),Gross Profit (%),Gross Loss (%)
+Drop <= -6% | Unconfirmed Knife Catch | Stop -2.5%,785,41.0,0.74,-0.52,41.5,1135.9,1544.7
+Drop <= -6% | Unconfirmed Knife Catch | Stop -5.0%,785,58.1,0.89,-0.23,59.0,1550.3,1734.2
+Drop <= -6% | Unconfirmed Knife Catch | Stop at LOD,785,38.3,0.76,-0.44,39.2,1088.0,1434.5
+Drop <= -6% | Next-Day Green Confirm   | Stop -2.5%,346,47.4,1.09,0.14,48.6,587.6,538.2
+Drop <= -6% | Next-Day Green Confirm   | Stop -5.0%,346,61.3,1.13,0.25,62.7,730.9,645.9
+Drop <= -6% | Next-Day Green Confirm   | Stop at LOD,342,61.4,1.21,0.38,62.3,750.9,622.5
+Drop <= -8% | Unconfirmed Knife Catch | Stop -2.5%,371,39.1,0.69,-0.64,40.2,532.0,768.0
+Drop <= -8% | Unconfirmed Knife Catch | Stop -5.0%,371,54.7,0.82,-0.42,57.1,714.4,869.3
+Drop <= -8% | Unconfirmed Knife Catch | Stop at LOD,371,35.8,0.67,-0.66,37.2,492.8,738.9
+Drop <= -8% | Next-Day Green Confirm   | Stop -2.5%,157,47.1,1.14,0.21,49.0,270.6,238.2
+Drop <= -8% | Next-Day Green Confirm   | Stop -5.0%,157,62.4,1.16,0.3,63.7,340.0,292.1
+Drop <= -8% | Next-Day Green Confirm   | Stop at LOD,156,66.7,1.37,0.65,67.9,380.4,278.5
+RSI<=30/BB  | Unconfirmed Knife Catch | Stop -2.5%,1209,49.5,1.04,0.07,49.7,2080.0,1991.3
+RSI<=30/BB  | Unconfirmed Knife Catch | Stop -5.0%,1009,63.2,1.16,0.29,63.5,2171.4,1874.4
+RSI<=30/BB  | Unconfirmed Knife Catch | Stop at LOD,1200,48.6,1.05,0.07,49.7,2028.9,1939.3
+RSI<=30/BB  | Next-Day Green Confirm   | Stop -2.5%,592,46.5,0.93,-0.12,45.6,929.7,997.9
+RSI<=30/BB  | Next-Day Green Confirm   | Stop -5.0%,552,61.4,1.06,0.11,60.5,1086.5,1026.8
+RSI<=30/BB  | Next-Day Green Confirm   | Stop at LOD,566,58.8,0.98,-0.04,58.8,1101.6,1124.6
