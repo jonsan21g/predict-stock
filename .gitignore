@@ -14,4 +14,7 @@ venv/
 .env/
 scratch/
 dist/
+cronapi.txt
+*.key
+*.token
 

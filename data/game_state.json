@@ -65,7 +65,7 @@
         "opened_at": "2026-11-08 10:04 UTC",
         "peak_price": 449.04,
         "partial_harvested": false,
-        "trailing_stop": 400.09,
+        "trailing_stop": 437.81,
         "structural_stop": 400.09,
         "sector": "AI_COMPUTE_SYSTEMS",
         "strategy": "CAPITULATION_CARVE_OUT"
@@ -2385,10 +2385,20 @@
         "rationale": "Capitulation Reversal Carve-Out: Benchmark QQQ < 20 EMA, but AMD suffered extreme -17.26% washout on Day T-1 and confirmed green reversal today. Tactical 20% entry ($5,837.52) with structural LOD stop at $400.09.",
         "composite_score": 90,
         "wave_probability": 66.9
+      },
+      {
+        "time": "2026-11-08 10:36 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. All new long entries frozen to protect capital in cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
       }
     ],
     "quarantine": {},
-    "last_evaluated_at": "2026-11-08 10:04 UTC"
+    "last_evaluated_at": "2026-11-08 10:36 UTC"
   },
   "scheduled_orders": [
     {
