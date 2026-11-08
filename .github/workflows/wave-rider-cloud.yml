@@ -1,6 +1,9 @@
 name: Wave Rider Cloud Automation
 
 on:
+  push:
+    paths:
+      - '.github/workflows/**'
   schedule:
     # 1. Market Open Scan: Monday-Friday at 14:35 UTC (15:35 CET / 09:35 EST)
     - cron: '35 14 * * 1-5'
