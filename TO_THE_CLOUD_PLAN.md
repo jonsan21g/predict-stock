@@ -37,11 +37,11 @@
 
 ---
 
-## ⚙️ STEP 1: REVISE & DOCUMENT LOCALLY (Engineering & Full RTM Sync)
+## ⚙️ STEP 1: REVISE & DOCUMENT LOCALLY (Engineering & Full RTM Sync) — ✅ COMPLETED
 
 Before touching remote GitHub Actions or external schedulers, all code, static data pipelines, UI routing, automated tests, and engineering specifications are implemented, verified, and synchronized directly on your local machine.
 
-### 1.1 Integrate Capitulation Reversal Carve-Out in `src/game/duel.py`
+### 1.1 Integrate Capitulation Reversal Carve-Out in `src/game/duel.py` — ✅ DONE
 * **Problem**: In Week 5, the bot was completely blind to Thursday's extreme sell-off because the Macro Gatekeeper ($QQQ < \text{20-day EMA}$) acted as a blanket curfew, freezing all long entries.
 * **Empirical Validation**: Our 3-year 50-stock walkforward backtest proved that **Next-Day Green Confirmation after an $\le -8\%$ crash with a Stop at the crash day's Low (LOD)** generates a **66.9% Win Rate** and a **1.37 Profit Factor** across 157 historical instances during macro downtrends (outperforming unconfirmed knife-catching which lost money with a 0.67–0.82 PF).
 * **Implementation**:
@@ -51,7 +51,7 @@ Before touching remote GitHub Actions or external schedulers, all code, static d
     3. If confirmed, allow a tactical entry with **half allocation** (20–25%) and a structural stop loss set at $\text{Low}_{T-1} \times 0.995$.
     4. If no stock qualifies, fall back to standard `MACRO_HOLD`.
 
-### 1.2 Build Static Cloud Exporter in `src/cloud/static_exporter.py`
+### 1.2 Build Static Cloud Exporter in `src/cloud/static_exporter.py` — ✅ DONE
 * **Create `src/cloud/static_exporter.py`**:
   - `export_cloud_bundle(output_dir="dist", mode="fast") -> Dict[str, Any]`:
     - Copies HTML/CSS/JS frontend assets into `dist/`.
@@ -60,7 +60,7 @@ Before touching remote GitHub Actions or external schedulers, all code, static d
 * **Update `src/main.py` CLI**:
   - Add `--export-static` and `--export-mode {fast|full}` CLI arguments.
 
-### 1.3 Upgrade Frontend to Dual-Mode Architecture
+### 1.3 Upgrade Frontend to Dual-Mode Architecture — ✅ DONE
 * **File**: `src/dashboard/static/app.js` & `src/dashboard/templates/index.html`
 * **Dual-Mode API Routing**:
   - Detects if running on Flask (`/api/...`) versus Static Cloud (`./api/...json`).
@@ -70,7 +70,7 @@ Before touching remote GitHub Actions or external schedulers, all code, static d
     3. *Tier 3*: Static snapshot fallback with timestamp indicator.
   - Live recomputation in browser: Mark-to-Market Net Equity, Unrealized P&L, High-Water Mark Trailing Stops, and Duel Leaderboard.
 
-### 1.4 Local Static Server Validation (Zero-Flask Proof)
+### 1.4 Local Static Server Validation (Zero-Flask Proof) — ✅ DONE (8/8 Endpoints HTTP 200)
 * Run a local static file server directly on the exported `dist/` bundle:
   ```powershell
   python -m http.server 5055 --directory dist
@@ -81,7 +81,7 @@ Before touching remote GitHub Actions or external schedulers, all code, static d
   - Tab 3 (Backtest Sandbox): Multi-horizon switches (`1y`, `2y`, `3y`) update metrics instantly.
   - Tab 4 (Duel Trading Desk): Scoreboard, active positions, and trade history display correctly.
 
-### 1.5 Local Automated Test Suite Verification
+### 1.5 Local Automated Test Suite Verification — ✅ DONE (61/61 Tests Passing, 50/50 RTM 100%)
 * Create `tests/test_cloud_deployment.py`:
   - `test_static_exporter_fast_and_full_bundles` (`TC-DEP-01`): Verifies all required JSON keys and directory structures.
   - `test_capitulation_carveout_execution` (`TC-CARVE-01`): Verifies bot triggers carve-out only when confirmation criteria are met.
@@ -91,7 +91,7 @@ Before touching remote GitHub Actions or external schedulers, all code, static d
   ```
 * Guarantee: **100% of unit and integration tests must pass before proceeding to Step 1.6.**
 
-### 1.6 Local IEEE Documentation & RTM Synchronization
+### 1.6 Local IEEE Documentation & RTM Synchronization — ✅ DONE (All 6 Docs Synced)
 Synchronize the full specification suite to reflect Step 1 local engineering:
 1. **[`FUNCTIONAL_REQUIREMENTS.md`](file:///c:/Users/jonsa/LLM/predict-stock/FUNCTIONAL_REQUIREMENTS.md)**:
    - Add **`FR-07-01`**: *Static Cloud Exporter & Decoupled SPA Bundle* (mapped to `TC-DEP-01`).
