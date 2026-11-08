@@ -1,167 +1,145 @@
-# Wave Rider: "To-The-Cloud" Engineering & Migration Plan (`to-the-cloud`)
-## Zero-Cost Hybrid Cloud Architecture (GitHub Pages + Precision GitHub Actions + Live Browser Feed)
+# Wave Rider: "To-The-Cloud" Two-Step Migration Plan (`to-the-cloud`)
+## Zero-Cost Hybrid Cloud Architecture (GitHub Pages + Precision Actions + Live Browser Feed)
 
-- **Plan Identifier**: `to-the-cloud`
+- **Plan Identifier**: `to-the-cloud` (v2.0 - Two-Step Structure)
 - **Project**: `predict-stock` (Wave Rider Quantitative Momentum & Smart-Money Engine)
-- **Target Execution Window**: End of Week 5 (Post Friday, Nov 6, 2026, 23:00 CET)
-- **Cost Mandate**: **\$0.00 / month Forever** (No credit card required, no sleeping containers, no VM maintenance)
+- **Architecture Mandate**: **\$0.00 / month Forever** (Zero subscriptions, zero sleeping containers, zero ongoing cloud costs)
+- **Execution Strategy**: **Step 1: Revise Locally** $\longrightarrow$ **Step 2: Bring to the Cloud**
 - **Traceability Scope**: Updates `FUNCTIONAL_REQUIREMENTS.md` (`FR-07`, `FR-09`), `DESIGN_SPECIFICATION.md`, `ARCHITECTURE.md` (`ADR-06`), `BACKLOG.md`, `SYSTEM_VERIFICATION_REPORT.md`, and `README.md`.
 
 ---
 
-## 🔍 Part 1: Self-Critique of the Initial Plan (7 Flaws Identified & Fixed)
-
-Before finalizing this blueprint, the initial draft was audited against real-world cloud failure modes and the project's IEEE specification standards. Seven critical weaknesses were identified and engineered out:
-
-| # | Flaw in Initial Draft | Why It Would Have Failed or Degraded UX | Engineered Solution in Improved Plan |
-|:---:|:---|:---|:---|
-| **1** | **Relying on public CORS proxies for live browser prices** | Public CORS proxies (`allorigins`, `corsproxy`) are rate-limited by Yahoo Finance (HTTP 429) and unreliable when polling 50 tickers. | **3-Tier Live Price Waterfall**:<br>1. **Finnhub Free Official API/WebSocket** (native CORS, 60 req/min + live WebSocket, \$0 forever).<br>2. **15-Line Cloudflare Worker Proxy** (100k free req/day, batches all 50 quotes in 1 Yahoo request).<br>3. **GitHub Raw Snapshot Fallback** with timestamp indicator. |
-| **2** | **Exporting 50 stock dossiers + 50 backtests every 30 mins** | Running 50 backtests and 50 Smart Money scrapes every 30 mins would take **4–6 mins/run**, burning ~1,800 Action mins/month and risking IP blocks. | **Split Fast vs. Full Export Cadence**:<br>• **Fast Path (Every 30m, <20s)**: Single vectorized `yf.download()` batch call for 50 tickers + `bot_evaluate_turn()` + updates `game.json` & intraday radar.<br>• **Full Path (1x Daily EOD)**: Exports all 50 deep-dive dossiers and backtest bundles. Cuts Action usage by **85%**. |
-| **3** | **GitHub Pages CDN Lag (60s) on Player BUY/SELL Orders** | After `workflow_dispatch` commits a trade (~15s), GitHub Pages CDN takes another 45–60s to rebuild. The player would think the trade failed or double-click. | **Optimistic UI Lock + GitHub API Direct State Read**:<br>• Lock order button with a live *"⏳ Executing in Cloud (~15s)..."* progress stepper.<br>• Poll `api.github.com/repos/.../contents/data/game_state.json` directly (bypassing CDN caching) so the scoreboard updates the instant the Action finishes. |
-| **4** | **Git Commit Bloat on `main` (350+ commits/month)** | Committing 100+ static JSON files to `main` every 30 minutes pollutes `git log` and bloats the `.git` folder size. | **Orphan `gh-pages` Branch for Static Bundles**:<br>• Keep `main` clean: only commit `data/game_state.json` to `main` when a material action (`BUY`, `SELL`, `MACRO_HOLD`) or state change occurs.<br>• Deploy static UI + heavy JSON snapshots to an orphan `gh-pages` branch (`force_orphan: true`, 1 commit history). |
-| **5** | **Split-Brain Conflict (Local PC Daemon vs. Cloud Bot)** | Running `localhost:5050` with the background bot daemon active while GitHub Actions also trades in the cloud causes conflicting `game_state.json` states. | **Execution Authority Guard (`WAVE_RIDER_MODE`)**:<br>• Add `--cloud-sync` / `BOT_EXECUTION_AUTHORITY=cloud` mode so when running locally on your PC, `app.py` can pull live state from GitHub without running a duplicate background trading thread. |
-| **6** | **Missing `1y` and `3y` Backtest Lookback Periods** | Initial draft only mentioned exporting `_2y.json`, violating `FR-06-11` which requires `1y`, `2y`, and `3y` lookback options in Tab 3. | **Multi-Horizon Backtest Bundle**:<br>• Export `data/cloud/backtests/<TICKER>.json` containing pre-computed `{"1y": {...}, "2y": {...}, "3y": {...}}` payloads (~12 KB per ticker), preserving 100% `FR-06-11` compliance. |
-| **7** | **Broad GitHub PAT Security in Browser `localStorage`** | Using a classic `repo`-scoped token in browser storage grants overly broad access across all user repositories. | **Fine-Grained Single-Repo Token Specification**:<br>• Restrict token strictly to 1 repository (`predict-stock`) with only `Actions: Read/Write` and `Contents: Read`. |
-
----
-
-## 🏗️ Part 2: Improved Target Architecture ("To-The-Cloud")
+## 🎯 Architecture Strategy: Two Distinct Steps
 
 ```text
-┌───────────────────────────────────────────────────────────────────────────────────┐
-│                    1. PRECISION SCHEDULER & TRIGGER LAYER                         │
-│  • cron-job.org (Free): Fires POST /dispatches every 30m (Mon-Fri 14:00-22:00 CET)│
-│  • Bypasses GitHub's delayed `on: schedule` queue (Starts runner in ~5-10s)       │
-└─────────────────────────────────────────┬─────────────────────────────────────────┘
-                                          │ HTTPS POST (workflow_dispatch)
-                                          ▼
-┌───────────────────────────────────────────────────────────────────────────────────┐
-│                    2. CLOUD EXECUTION LAYER (GitHub Actions)                      │
-│  • Concurrency Lock: `group: wave-rider-state` (Zero merge collisions)            │
-│  • Fast Intraday Mode (30m, <20s):                                                │
-│      - Vectorized 50-stock quote fetch -> `bot_evaluate_turn()`                   │
-│      - Updates `data/game_state.json` on `main` (if state changed)                │
-│      - Publishes `game.json` & `radar_*.json` to `gh-pages`                       │
-│  • Full EOD Mode (Daily 22:15 CET, ~60s):                                         │
-│      - Refreshes Congress, Form 4, USASpending, StockTwits caches                 │
-│      - Compiles 50 `stocks/<TICKER>.json` + 50 `backtests/<TICKER>.json`          │
-└───────────────────┬───────────────────────────────────────────┬───────────────────┘
-                    │ Atomic State (`main`)                     │ Static Bundle (`gh-pages`)
-                    ▼                                           ▼
-┌─────────────────────────────────────────┐ ┌───────────────────────────────────────┐
-│   `raw.githubusercontent.com/.../main`  │ │   GitHub Pages CDN (`*.github.io`)    │
-│   • `data/game_state.json` (Zero cache) │ │   • Glassmorphism SPA (`index.html`)  │
-└───────────────────┬─────────────────────┘ │   • 50 Stock Dossiers & Backtests     │
-                    │                       └───────────────────┬───────────────────┘
-                    └─────────────────────┬─────────────────────┘
-                                          ▼
-┌───────────────────────────────────────────────────────────────────────────────────┐
-│               3. HYBRID LIVE CLIENT LAYER (Browser `app.js`)                      │
-│  • Environment Auto-Detector: `LOCAL_FLASK` (`localhost:5050`) vs `CLOUD_PAGES`   │
-│  • 15-Second Live Price Overlay:                                                  │
-│      - Tier 1: Finnhub Free Real-Time REST/WebSocket (or Cloudflare Worker Proxy) │
-│      - Recalculates live Mark-to-Market Equity, P&L, Peaks & Trailing Stops       │
-│  • 1-Click Cloud Trading Desk:                                                    │
-│      - Dispatches Player `BUY`/`SELL` & `Force Bot Turn` via `workflow_dispatch`  │
-└───────────────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                      STEP 1: REVISE LOCALLY (Engineering & Validation)                │
+│                                                                                        │
+│  1.1 Capitulation Carve-Out Engine (Integrate verified Drop <= -8% + Green Reversal)   │
+│  1.2 Static Cloud Exporter (`src/cloud/static_exporter.py` with fast/full modes)       │
+│  1.3 Dual-Mode Frontend (`app.js` runs seamlessly on Flask and Static file bundles)   │
+│  1.4 Local Static Server Validation (Test complete SPA on localhost:5055 with NO Flask)│
+│  1.5 Local Test Suite Expansion (`pytest` regression + new cloud export tests)         │
+└───────────────────────────────────────────┬────────────────────────────────────────────┘
+                                            │ Step 1 Verified 100% Locally
+                                            ▼
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                      STEP 2: BRING TO THE CLOUD (Deployment & Automation)              │
+│                                                                                        │
+│  2.1 GitHub Actions Workflow (`.github/workflows/wave-rider-cloud.yml` on gh-pages)    │
+│  2.2 Precision External Scheduler (`cron-job.org` triggering workflow_dispatch)        │
+│  2.3 GitHub Pages CDN Activation (Point repo to orphan `gh-pages` branch)             │
+│  2.4 Browser Cloud Trading Desk (Single-repo PAT + Finnhub Live Price Stream)          │
+│  2.5 Full IEEE Specification Synchronization (RTM, Design Spec, Architecture ADR-06)   │
+└────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🛠️ Part 3: Phased Implementation Work Packages
+## ⚙️ STEP 1: REVISE LOCALLY (Local Engineering & Validation)
 
-### Phase 1: Cloud Snapshot Exporter & CLI Extensions
-**Files**: `src/cloud/static_exporter.py` *(new)*, `src/main.py` *(update)*
+Before any cloud infrastructure or remote repositories are touched, the entire engine is upgraded, integrated, and verified directly on your local machine.
 
-1. **Create `src/cloud/static_exporter.py`**:
-   - `export_cloud_bundle(output_dir: str = "dist", mode: str = "fast") -> Dict[str, Any]`:
-     - Copies `src/dashboard/templates/index.html` and `src/dashboard/static/{style.css, app.js}` into `dist/`.
-     - Exports `dist/api/health.json`, `dist/api/game.json`, `dist/api/radar_eod.json`, `dist/api/radar_premarket.json`, `dist/api/radar_intraday.json`.
-     - When `mode == "full"` (or if missing), exports `dist/api/stock/<TICKER>.json` (all 50 tickers) and `dist/api/backtest/<TICKER>.json` (containing `1y`, `2y`, `3y` results for all 50 tickers).
-2. **Extend `src/main.py` CLI**:
-   - Add `--export-static` and `--export-mode {fast|full}` flags so GitHub Actions can execute:
-     ```bash
-     python -m src.main --bot-turn --export-static --export-mode fast
-     ```
+### 1.1 Integrate Capitulation Reversal Carve-Out in `src/game/duel.py`
+* **Problem**: In Week 5, the bot was completely blind to Thursday's extreme sell-off because the Macro Gatekeeper ($QQQ < \text{20-day EMA}$) acted as a blanket curfew, freezing all long entries.
+* **Empirical Validation**: Our 3-year 50-stock backtest proved that **Next-Day Green Confirmation after an $\le -8\%$ crash with a Stop at the crash day's Low (LOD)** generates a **66.9% Win Rate** and a **1.37 Profit Factor** across 157 historical instances during macro downtrends.
+* **Implementation**:
+  - In `src/game/duel.py`: Inside `bot_evaluate_turn()`, if $QQQ < \text{20-day EMA}$, do *not* immediately exit. Instead, evaluate the **Capitulation Carve-Out**:
+    1. Scan for any universe stock that dropped $\le -8.0\%$ on Day $T-1$.
+    2. Check if Day $T$ confirms green ($\text{Close}_T > \text{Open}_T$ and $\text{Close}_T > \text{Close}_{T-1}$).
+    3. If confirmed, allow a tactical entry with **half allocation** (20–25%) and a structural stop loss set at $\text{Low}_{T-1} \times 0.995$.
+    4. If no stock qualifies, fall back to standard `MACRO_HOLD`.
 
----
+### 1.2 Build Static Cloud Exporter in `src/cloud/static_exporter.py`
+* **Create `src/cloud/static_exporter.py`**:
+  - `export_cloud_bundle(output_dir="dist", mode="fast") -> Dict[str, Any]`:
+    - Copies HTML/CSS/JS frontend assets into `dist/`.
+    - Generates `dist/api/health.json`, `dist/api/game.json`, `dist/api/radar_eod.json`, `dist/api/radar_premarket.json`, `dist/api/radar_intraday.json`.
+    - When `mode == "full"` (or if missing), compiles all 50 stock dossiers (`dist/api/stock/<TICKER>.json`) and multi-horizon backtest bundles (`dist/api/backtest/<TICKER>.json` containing `1y`, `2y`, and `3y` pre-computed results).
+* **Update `src/main.py` CLI**:
+  - Add `--export-static` and `--export-mode {fast|full}` CLI arguments.
 
-### Phase 2: Dual-Mode Frontend & Real-Time Browser Price Engine
-**Files**: `src/dashboard/static/app.js`, `src/dashboard/templates/index.html`, `src/dashboard/static/style.css`, `src/cloud/cloudflare_worker_proxy.js` *(optional helper)*
+### 1.3 Upgrade Frontend to Dual-Mode Architecture
+* **File**: `src/dashboard/static/app.js` & `src/dashboard/templates/index.html`
+* **Dual-Mode API Routing**:
+  - Detects if running on Flask (`/api/...`) versus Static Cloud (`./api/...json`).
+  - Implements the **3-Tier Live Browser Price Waterfall**:
+    1. *Tier 1*: Finnhub Free Official WebSocket/REST API (native CORS, 60 req/min, free forever).
+    2. *Tier 2*: Batch Yahoo proxy via Cloudflare Worker (`?symbols=NVDA,STX,TSLA,...`).
+    3. *Tier 3*: Static snapshot fallback with timestamp indicator.
+  - Live recomputation in browser: Mark-to-Market Net Equity, Unrealized P&L, High-Water Mark Trailing Stops, and Duel Leaderboard.
 
-1. **Dual-Mode API Router (`apiFetch(endpoint, options)` in `app.js`)**:
-   - Automatically detects if running on Flask (`/api/...`) vs. Static Cloud (`./api/...json`).
-   - For `game_state.json`, fetches directly from GitHub API / Raw URL with `?t=${Date.now()}` to bypass GitHub Pages CDN caching.
-2. **Live Browser Price Stream (`livePriceEngine` in `app.js`)**:
-   - Polls live prices every 15 seconds for all held tickers (Player + Bot) and visible radar rows.
-   - Supports **Finnhub API Key** (entered once in UI settings, stored in `localStorage`) OR **Cloudflare Worker Yahoo Finance Batch Proxy** (`?symbols=NVDA,STX,META,...`).
-   - Recomputes in real time inside the browser:
-     - `current_price`, `market_value`, `unrealized_pnl`, `unrealized_pnl_pct`
-     - `peak_price` and dynamic ratcheted `trailing_stop`
-     - Player & Bot `net_equity`, `total_pnl`, and `lead_label`
-   - Displays a live status badge in the top bar: `🟢 Live Market Feed (Updated 2s ago)`.
-3. **Cloud Order & Action Dispatcher (`cloudDispatch(action, payload)` in `app.js`)**:
-   - Adds a **"☁️ Cloud Settings"** button in the header where you configure:
-     - GitHub Repo (`jonsan21g/predict-stock`)
-     - Fine-Grained GitHub PAT (`Actions: Read & Write`)
-     - Optional Finnhub Free API Key (for live browser quotes)
-   - Routes `submitOrder()`, `triggerBotTurn()`, and `resetDuel()` in Cloud Mode to:
-     `POST https://api.github.com/repos/{owner}/{repo}/actions/workflows/wave-rider-cloud.yml/dispatches`
-   - Shows a live 15-second progress indicator and automatically refreshes the scoreboard once the workflow completes.
+### 1.4 Local Static Server Validation (Zero-Flask Proof)
+* Run a local static file server directly on the exported `dist/` bundle:
+  ```powershell
+  python -m http.server 5055 --directory dist
+  ```
+* Verify in the browser at `http://localhost:5055`:
+  - Tab 1 (Live Wave Radar): All 50 stocks load from static JSON.
+  - Tab 2 (Deep Dive): Candlestick charts, technical indicators, and checklist badges render cleanly.
+  - Tab 3 (Backtest Sandbox): Multi-horizon switches (`1y`, `2y`, `3y`) update metrics instantly.
+  - Tab 4 (Duel Trading Desk): Scoreboard, active positions, and trade history display correctly.
 
----
-
-### Phase 3: GitHub Actions Workflow & `cron-job.org` Integration
-**File**: `.github/workflows/wave-rider-cloud.yml` *(new)*
-
-1. **Workflow Inputs (`workflow_dispatch`)**:
-   - `command`: `bot_turn` (default) | `player_order` | `full_eod_export` | `reset_duel`
-   - `order_action`: `BUY` | `SELL`
-   - `ticker`: e.g. `NVDA`
-   - `shares`: e.g. `10`
-2. **Concurrency & Caching**:
-   - `concurrency: { group: "wave-rider-cloud-lock", cancel-in-progress: false }`
-   - `actions/cache@v4` for pip virtualenv and `data/cache/` (keeps intraday runs under 25 seconds).
-3. **Two-Target Deployment**:
-   - Commits updated `data/game_state.json` and `data/history/*.json` back to `main` **only when modified**.
-   - Deploys the compiled `dist/` static dashboard bundle to the `gh-pages` branch using `peaceiris/actions-gh-pages@v4` with `force_orphan: true`.
+### 1.5 Local Automated Test Suite Verification
+* Create `tests/test_cloud_deployment.py`:
+  - `test_static_exporter_fast_and_full_bundles` (`TC-DEP-01`): Verifies all required JSON keys and directory structures.
+  - `test_capitulation_carveout_execution` (`TC-CARVE-01`): Verifies bot triggers carve-out only when confirmation criteria are met.
+* Run full test suite:
+  ```powershell
+  pytest
+  ```
+* Guarantee: **100% of unit and integration tests must pass before proceeding to Step 2.**
 
 ---
 
-### Phase 4: Automated Test Suite & RTM Verification
-**File**: `tests/test_cloud_deployment.py` *(new)*
+## ☁️ STEP 2: BRING TO THE CLOUD (Cloud Deployment & Automation)
 
-1. **`test_static_exporter_fast_and_full_bundles` (`TC-DEP-01`)**:
-   - Verifies `export_cloud_bundle()` creates `index.html`, `app.js`, `style.css`, `api/game.json`, `api/radar_*.json`, `api/stock/<TICKER>.json`, and `api/backtest/<TICKER>.json` with all required schema keys.
-2. **`test_cli_export_and_cloud_order_execution` (`TC-DEP-02`)**:
-   - Verifies CLI execution of `--order`, `--bot-turn`, and `--export-static` maintains atomic state integrity in `game_state.json`.
-3. **Full Regression**:
-   - Verify all existing tests + new cloud deployment tests pass 100% (`pytest`).
+Once the local implementation is 100% verified and tested, we deploy it to GitHub Pages and automate it via precision external schedules.
+
+### 2.1 GitHub Actions Workflow (`.github/workflows/wave-rider-cloud.yml`)
+* **Triggers**:
+  - `workflow_dispatch`: Accepts inputs (`command`, `ticker`, `shares`, `action`).
+* **Execution Paths**:
+  - **Fast Intraday Mode** (runs in <20s): Fetches 50-stock quotes, runs `bot_evaluate_turn()`, exports fast bundle, commits state changes to `main` only if state changed.
+  - **Full EOD Mode** (runs 1x daily at 22:15 CET, ~60s): Refreshes all 50 stock dossiers and backtests.
+* **Orphan `gh-pages` Branch**:
+  - The compiled `dist/` dashboard is pushed to `gh-pages` with `force_orphan: true`, keeping git history on `main` completely clean.
+* **Concurrency Lock**:
+  - `concurrency: { group: "wave-rider-cloud-lock", cancel-in-progress: false }` prevents any race conditions or split-brain states.
+
+### 2.2 Precision External Scheduler Setup (`cron-job.org`)
+* Configure free jobs on `cron-job.org` calling `workflow_dispatch` via GitHub REST API:
+  1. *Market Open Ignition Scan*: Monday–Friday at 15:35 CET (09:35 EST).
+  2. *Intraday Surveillance*: Monday–Friday every 30 minutes between 16:00 and 21:30 CET.
+  3. *Market Close Session*: Monday–Friday at 22:00 CET (16:00 EST).
+  4. *Daily Full EOD Refresh*: Monday–Friday at 22:15 CET (16:15 EST).
+* *Advantage*: Starts GitHub Actions within 5–10 seconds, eliminating the 15–45 minute delays of native `on: schedule`.
+
+### 2.3 Activate GitHub Pages CDN
+* In GitHub Repository Settings:
+  - Source: Deploy from branch `gh-pages` / `/ (root)`.
+  - Your cloud dashboard becomes instantly available at:
+    `https://jonsan21g.github.io/predict-stock/`
+
+### 2.4 Browser Cloud Trading Desk & Fine-Grained PAT
+* Add the **"☁️ Cloud Settings"** modal in `index.html`:
+  - Fine-Grained GitHub PAT (scoped strictly to `predict-stock` with `Actions: Read/Write` and `Contents: Read`).
+  - Optional free Finnhub API Key for real-time WebSocket/REST price streaming.
+* Enables 1-click player trading directly from your phone or browser while your PC is completely turned off.
+
+### 2.5 Master IEEE Specification & RTM Synchronization
+Update all repository governance documents to reflect the completed cloud deployment and Week 5 learnings:
+1. [`FUNCTIONAL_REQUIREMENTS.md`](file:///c:/Users/jonsa/LLM/predict-stock/FUNCTIONAL_REQUIREMENTS.md): `FR-07-01` (Cloud Deployment), `FR-07-02` (State Persistence), `FR-09` (Capitulation Carve-Out & Realization Engine).
+2. [`DESIGN_SPECIFICATION.md`](file:///c:/Users/jonsa/LLM/predict-stock/DESIGN_SPECIFICATION.md): Production cloud architecture diagrams, sequence flows, and updated schemas.
+3. [`ARCHITECTURE.md`](file:///c:/Users/jonsa/LLM/predict-stock/ARCHITECTURE.md): Add `ADR-06` (*Hybrid Serverless Cloud Topology*).
+4. [`BACKLOG.md`](file:///c:/Users/jonsa/LLM/predict-stock/BACKLOG.md): Close out Epic 6 cloud deployment stories.
+5. [`SYSTEM_VERIFICATION_REPORT.md`](file:///c:/Users/jonsa/LLM/predict-stock/SYSTEM_VERIFICATION_REPORT.md): Record final test results and cloud audit.
+6. [`README.md`](file:///c:/Users/jonsa/LLM/predict-stock/README.md): 5-minute setup and access instructions.
 
 ---
 
-### Phase 5: Specification & Documentation Synchronization
-Every engineering document in the repository will be updated simultaneously so the specification suite remains 100% consistent:
+## 🚀 Execution Command
 
-1. **[`FUNCTIONAL_REQUIREMENTS.md`](file:///c:/Users/jonsa/LLM/predict-stock/FUNCTIONAL_REQUIREMENTS.md)**:
-   - Update Master RTM table and detailed specs for **`FR-07-01`** (*Hybrid GitHub Pages & Actions Cloud Deployment*) and **`FR-07-02`** (*Git-Backed Atomic State Persistence & Browser Live Price Overlay*).
-   - Add **Epic 9 (`FR-09-01` to `FR-09-05`)** documenting the 50-stock universe expansion and Week 3–5 Profit Realization & Ratchet rules in the RTM.
-2. **[`DESIGN_SPECIFICATION.md`](file:///c:/Users/jonsa/LLM/predict-stock/DESIGN_SPECIFICATION.md)**:
-   - Replace Section 9 (*Future Cloud Architecture Blueprint*) with the production **Hybrid GitHub Pages + Precision `workflow_dispatch` + Live Browser Price Waterfall** design and sequence diagrams.
-   - Synchronize universe counts (50 equities) and Week 3–5 game state schemas.
-3. **[`ARCHITECTURE.md`](file:///c:/Users/jonsa/LLM/predict-stock/ARCHITECTURE.md)**:
-   - Add **`ADR-06`**: *Hybrid Serverless Cloud Topology vs. Sleeping PaaS & IaaS Micro-VMs*.
-4. **[`BACKLOG.md`](file:///c:/Users/jonsa/LLM/predict-stock/BACKLOG.md)**:
-   - Mark `DEP-01` and `DEP-02` as **✅ Done** under Epic 6.
-5. **[`SYSTEM_VERIFICATION_REPORT.md`](file:///c:/Users/jonsa/LLM/predict-stock/SYSTEM_VERIFICATION_REPORT.md)**:
-   - Record the updated test suite pass rate and cloud bundle verification audit.
-6. **[`README.md`](file:///c:/Users/jonsa/LLM/predict-stock/README.md)**:
-   - Add the 5-minute step-by-step setup guide for GitHub Pages, `cron-job.org`, and the Fine-Grained PAT.
-
----
-
-## 📌 How to Trigger Execution at the End of the Week
-Once Week 5 concludes on **Friday, November 6, 2026**, simply say:
-> *"Execute plan `to-the-cloud`"*
-
-We will archive Week 5, implement all 5 phases above, run the full verification suite, and get your cloud dashboard live!
+Whenever you want to start, tell me:
+- **"Execute Step 1"** (Build, integrate, and verify everything locally first)
+- Or **"Execute both steps"** (Proceed through Step 1 local validation directly into Step 2 cloud deployment)
