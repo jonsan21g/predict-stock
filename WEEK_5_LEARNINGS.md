@@ -133,16 +133,19 @@ The human player demonstrated extraordinary tactical agility by executing a two-
 ```text
 ========================================================================================
                        WAVE RIDER DUEL: 5-WEEK ALL-TIME TALLY
+          (figures from WEEK_1..WEEK_5 learnings files; Week 5 from game_state.json)
 ========================================================================================
- Week      Dates               Player Result        Bot Result           Winner
+ Week      Player Equity   Bot Equity     Winner (margin)
 ----------------------------------------------------------------------------------------
- Week 1    Sep 29 – Oct 03     $30,420.00 (+1.4%)   $30,810.00 (+2.7%)   🤖 BOT
- Week 2    Oct 05 – Oct 09     $29,650.00 (-1.2%)   $30,120.00 (+0.4%)   🤖 BOT
- Week 3    Oct 12 – Oct 16     $30,180.00 (+0.6%)   $30,040.00 (+0.1%)   👤 PLAYER
- Week 4    Oct 19 – Oct 23     $30,000.00 (0.0%)    $30,000.00 (0.0%)    🤝 TIE (Both Cash)
- Week 5    Nov 02 – Nov 06     $30,001.96 (+0.01%)  $30,000.00 (0.0%)    👤 PLAYER
+ Week 1    $30,000.00      $29,386.43     PLAYER (+$613.57)
+ Week 2    $30,000.00      $29,960.16     PLAYER (+$39.84)
+ Week 3    $30,000.00      $29,719.61     PLAYER (+$280.39)
+ Week 4    $30,000.00      $30,000.00     TIE
+ Week 5    $30,001.96      $30,000.00     PLAYER (+$1.96)
 ========================================================================================
- All-Time Tally: 🤖 BOT: 2 Wins | 👤 PLAYER: 2 Wins | 🤝 TIE: 1 Match
+ All-Time Tally: PLAYER 4 wins | BOT 0 wins | 1 tie
+ Caveat: in Weeks 1-4 the player's "win" was mostly sitting in cash; Week 5 is the
+ first week the player held a risk position at the end.
 ========================================================================================
 ```
 
@@ -150,7 +153,7 @@ The human player demonstrated extraordinary tactical agility by executing a two-
 
 ## 7. Next Step: Cloud Migration ("to-the-cloud")
 
-With Week 5 concluded, the local paper duel season stands at an even **2–2–1 standoff**. The pre-designed and self-critiqued zero-cost cloud migration plan [`TO_THE_CLOUD_PLAN.md`](file:///c:/Users/jonsa/LLM/predict-stock/TO_THE_CLOUD_PLAN.md) is ready for execution.
+With Week 5 concluded, the player leads the paper duel season **4–0–1** (but see the caveat in section 6). The pre-designed and self-critiqued zero-cost cloud migration plan [`TO_THE_CLOUD_PLAN.md`](file:///c:/Users/jonsa/LLM/predict-stock/TO_THE_CLOUD_PLAN.md) is ready for execution.
 
 Whenever you are ready, say:
 > **"Execute plan `to-the-cloud`"**
