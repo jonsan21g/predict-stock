@@ -242,12 +242,18 @@ def export_cloud_bundle(
     if max_tickers is not None:
         tickers = tickers[:max_tickers]
 
-    # In fast mode, if stock/ or backtest/ are empty, export top 5 so tabs never break
+    # In fast mode, ensure core popular anchors + leading watchlist tickers are always exported if missing
+    core_anchors = ["NVDA", "AAPL", "MSFT", "AMD", "TSLA", "GOOGL", "AMZN", "META", "MU", "PLTR"]
     should_export_stocks = (mode == "full")
     if not should_export_stocks:
-        existing_stocks = [f for f in os.listdir(stock_dst) if f.endswith(".json")]
-        if len(existing_stocks) < 5:
-            tickers_to_export = tickers[:5]
+        existing_stocks = [f.replace(".json", "") for f in os.listdir(stock_dst) if f.endswith(".json")]
+        needed = [t for t in core_anchors if t not in existing_stocks and t in tickers]
+        if len(existing_stocks) < 10:
+            for t in tickers[:5]:
+                if t not in needed and t not in existing_stocks:
+                    needed.append(t)
+        if needed:
+            tickers_to_export = needed
             should_export_stocks = True
         else:
             tickers_to_export = []
