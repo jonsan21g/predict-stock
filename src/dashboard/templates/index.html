@@ -26,6 +26,7 @@
           <button id="btn-intra" class="mode-btn" onclick="setMode('intraday')">⚡ Intraday ORB</button>
           <button id="btn-eod" class="mode-btn active" onclick="setMode('eod')">🌙 End-of-Day</button>
         </div>
+        <button id="btn-cloud-settings" class="btn-refresh" style="background:#1e293b; border-color:#38bdf8; color:#38bdf8;" onclick="openCloudSettingsModal()" title="Configure GitHub token for mobile/remote cloud execution">☁️ Cloud</button>
         <button class="btn-refresh" onclick="refreshRadar()">🔄 Refresh</button>
       </div>
     </header>
@@ -647,5 +648,50 @@
   </div>
 
   <script src="./static/app.js?v=10"></script>
+
+    <!-- Cloud Settings Modal -->
+    <div id="cloud-settings-modal" class="modal-overlay" style="display:none;">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:20px;">☁️</span>
+            <div>
+              <div style="font-weight:700; font-size:15px; color:#f8fafc;">Wave Rider Cloud Automation</div>
+              <div style="font-size:12px; color:#94a3b8;">Zero-Cost Remote Trading Desk & Automation</div>
+            </div>
+          </div>
+          <button class="modal-close-btn" onclick="closeCloudSettingsModal()">✕</button>
+        </div>
+        <div class="modal-body">
+          <p style="font-size:13px; color:#cbd5e1; line-height:1.5; margin-bottom:12px;">
+            When browsing this dashboard from <strong>GitHub Pages</strong> with your computer powered off, you can trigger trades or run the Bot remotely using a free GitHub Personal Access Token (PAT).
+          </p>
+          <div class="cloud-instruction-box">
+            <div style="font-weight:600; color:#38bdf8; font-size:12px; margin-bottom:4px;">🔑 How to create your PAT in 30 seconds:</div>
+            <ol style="margin:0; padding-left:18px; font-size:11px; color:#94a3b8; line-height:1.6;">
+              <li>Go to <strong>GitHub.com &gt; Settings &gt; Developer settings &gt; Personal access tokens &gt; Fine-grained tokens</strong>.</li>
+              <li>Repository access: Select <strong>predict-stock</strong>.</li>
+              <li>Repository permissions: Grant <strong>Actions: Read and write</strong> and <strong>Contents: Read and write</strong>.</li>
+              <li>Paste token below. It is stored exclusively in your browser's private localStorage.</li>
+            </ol>
+          </div>
+          <div style="margin-top:14px;">
+            <label style="display:block; font-size:12px; font-weight:600; margin-bottom:4px; color:#f1f5f9;">GitHub Fine-Grained Personal Access Token (PAT)</label>
+            <input type="password" id="cloud-pat-input" placeholder="github_pat_..." class="modal-input" />
+          </div>
+          <div style="margin-top:12px;">
+            <label style="display:block; font-size:12px; font-weight:600; margin-bottom:4px; color:#f1f5f9;">Finnhub API Key (Optional for Live Quotes)</label>
+            <input type="password" id="cloud-finnhub-input" placeholder="Optional (e.g. c12345...)" class="modal-input" />
+          </div>
+          <div id="cloud-token-status" style="margin-top:10px; font-size:12px; min-height:18px;"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" style="font-size:12px; padding:6px 12px;" onclick="testCloudTokenConnection()">🔍 Test Token</button>
+          <button class="btn-secondary" style="font-size:12px; padding:6px 12px; color:#f43f5e; border-color:#f43f5e;" onclick="clearCloudToken()">🗑️ Clear</button>
+          <button class="btn-primary" style="font-size:12px; padding:6px 14px;" onclick="saveCloudSettings()">💾 Save</button>
+        </div>
+      </div>
+    </div>
+
 </body>
 </html>

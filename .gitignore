@@ -13,4 +13,5 @@ data/cache/
 venv/
 .env/
 scratch/
+dist/
 

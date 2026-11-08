@@ -36,9 +36,58 @@ async function apiFetch(endpoint, options = {}) {
     return fetch(endpoint, options);
   }
 
-  // Handle mutations in static cloud mode gracefully
+  // Handle mutations in static cloud mode via GitHub Actions workflow dispatch
   if (options.method && options.method.toUpperCase() === "POST") {
-    const errorMsg = "⚠️ Cloud Static Mode: Interactive order submission and manual Bot execution require the local Flask runtime (python -m src.dashboard.app). In Cloud Static mode, portfolio and radar data are updated automatically via GitHub Actions.";
+    try {
+      if (endpoint.includes("/api/game/order")) {
+        const body = options.body ? JSON.parse(options.body) : {};
+        await dispatchGitHubAction("order", {
+          action: body.action || "BUY",
+          ticker: body.ticker || "",
+          shares: String(body.shares || 0)
+        });
+        return new Response(JSON.stringify({
+          status: "queued",
+          message: "Order dispatched to GitHub Actions Cloud Runner",
+          cloud_dispatch: true,
+          price: 0
+        }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
+
+      if (endpoint.includes("/api/game/bot-turn")) {
+        await dispatchGitHubAction("bot-turn");
+        return new Response(JSON.stringify({
+          status: "queued",
+          message: "Bot turn dispatched to GitHub Actions Cloud Runner",
+          cloud_dispatch: true
+        }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
+
+      if (endpoint.includes("/api/game/reset")) {
+        await dispatchGitHubAction("reset-duel");
+        return new Response(JSON.stringify({
+          status: "queued",
+          message: "Duel reset dispatched to GitHub Actions Cloud Runner",
+          cloud_dispatch: true
+        }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
+    } catch (cloudErr) {
+      return new Response(JSON.stringify({ error: cloudErr.message, cloud_mode: true }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" }
+      });
+    }
+
+    const errorMsg = "⚠️ Cloud Static Mode: This mutation is not supported via cloud dispatch.";
     console.warn(errorMsg);
     return new Response(JSON.stringify({ error: errorMsg, cloud_mode: true }), {
       status: 400,
@@ -1399,8 +1448,13 @@ async function submitPlayerOrder() {
     const result = await res.json();
     if (!res.ok) throw new Error(result.error || "Order execution failed");
 
-    await loadDuelState();
-    alert(`Order Filled: ${currentOrderAction} ${shares} ${ticker} @ $${result.price.toFixed(2)}`);
+    if (result.cloud_dispatch) {
+      alert(`🚀 Cloud Order Dispatched!\n\nGitHub Actions is executing ${currentOrderAction} ${shares} ${ticker} in the cloud and deploying updated portfolio to GitHub Pages.\n\nLive data will auto-refresh in ~25 seconds.`);
+      setTimeout(() => loadDuelState(), 25000);
+    } else {
+      await loadDuelState();
+      alert(`Order Filled: ${currentOrderAction} ${shares} ${ticker} @ $${result.price.toFixed(2)}`);
+    }
   } catch (err) {
     alert("Order Error: " + err.message);
   } finally {
@@ -1641,3 +1695,112 @@ async function resetDuel() {
   }
 }
 
+
+// --- Cloud Remote Trading Desk & GitHub Actions Integration ---
+function openCloudSettingsModal() {
+  const modal = document.getElementById("cloud-settings-modal");
+  if (!modal) return;
+  const patInput = document.getElementById("cloud-pat-input");
+  const finnhubInput = document.getElementById("cloud-finnhub-input");
+  const statusEl = document.getElementById("cloud-token-status");
+  if (patInput) patInput.value = localStorage.getItem("wave_rider_github_pat") || "";
+  if (finnhubInput) finnhubInput.value = localStorage.getItem("wave_rider_finnhub_key") || "";
+  if (statusEl) statusEl.innerHTML = "";
+  modal.style.display = "flex";
+}
+
+function closeCloudSettingsModal() {
+  const modal = document.getElementById("cloud-settings-modal");
+  if (modal) modal.style.display = "none";
+}
+
+function saveCloudSettings() {
+  const pat = document.getElementById("cloud-pat-input")?.value?.trim() || "";
+  const finnhub = document.getElementById("cloud-finnhub-input")?.value?.trim() || "";
+  if (pat) {
+    localStorage.setItem("wave_rider_github_pat", pat);
+  } else {
+    localStorage.removeItem("wave_rider_github_pat");
+  }
+  if (finnhub) {
+    localStorage.setItem("wave_rider_finnhub_key", finnhub);
+  } else {
+    localStorage.removeItem("wave_rider_finnhub_key");
+  }
+  alert("Cloud settings saved successfully to browser storage!");
+  closeCloudSettingsModal();
+}
+
+function clearCloudToken() {
+  if (confirm("Remove saved GitHub token and Finnhub key from this browser?")) {
+    localStorage.removeItem("wave_rider_github_pat");
+    localStorage.removeItem("wave_rider_finnhub_key");
+    const patInput = document.getElementById("cloud-pat-input");
+    const finnhubInput = document.getElementById("cloud-finnhub-input");
+    if (patInput) patInput.value = "";
+    if (finnhubInput) finnhubInput.value = "";
+    const statusEl = document.getElementById("cloud-token-status");
+    if (statusEl) statusEl.innerHTML = '<span style="color:#94a3b8;">Credentials cleared.</span>';
+  }
+}
+
+async function testCloudTokenConnection() {
+  const pat = document.getElementById("cloud-pat-input")?.value?.trim();
+  const statusEl = document.getElementById("cloud-token-status");
+  if (!pat) {
+    if (statusEl) statusEl.innerHTML = '<span style="color:#f43f5e;">❌ Please enter a token first.</span>';
+    return;
+  }
+  if (statusEl) statusEl.innerHTML = '<span style="color:#38bdf8;">⏳ Verifying token with GitHub API...</span>';
+  try {
+    const res = await fetch("https://api.github.com/repos/jonsan21g/predict-stock", {
+      headers: {
+        "Authorization": `Bearer ${pat}`,
+        "Accept": "application/vnd.github+json"
+      }
+    });
+    if (res.ok) {
+      const data = await res.json();
+      const pushAllowed = data.permissions?.push || data.permissions?.admin;
+      if (pushAllowed) {
+        if (statusEl) statusEl.innerHTML = `<span style="color:#10b981;">✅ Verified! Connected to <strong>${data.full_name}</strong> with Write access.</span>`;
+      } else {
+        if (statusEl) statusEl.innerHTML = `<span style="color:#fbbf24;">⚠️ Token has Read access but missing Actions Write permission.</span>`;
+      }
+    } else {
+      if (statusEl) statusEl.innerHTML = `<span style="color:#f43f5e;">❌ Error: HTTP ${res.status} - Invalid or unauthorized token.</span>`;
+    }
+  } catch (e) {
+    if (statusEl) statusEl.innerHTML = `<span style="color:#f43f5e;">❌ Connection error: ${e.message}</span>`;
+  }
+}
+
+async function dispatchGitHubAction(command, extraInputs = {}) {
+  const pat = localStorage.getItem("wave_rider_github_pat");
+  if (!pat) {
+    openCloudSettingsModal();
+    throw new Error("GitHub Fine-Grained PAT is required for remote Cloud execution. Please configure your token in Cloud Settings.");
+  }
+  const payload = {
+    ref: "master",
+    inputs: {
+      command: command,
+      mode: "fast",
+      ...extraInputs
+    }
+  };
+  const res = await fetch("https://api.github.com/repos/jonsan21g/predict-stock/actions/workflows/wave-rider-cloud.yml/dispatches", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${pat}`,
+      "Accept": "application/vnd.github+json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.message || `GitHub Actions dispatch returned HTTP ${res.status}`);
+  }
+  return true;
+}
