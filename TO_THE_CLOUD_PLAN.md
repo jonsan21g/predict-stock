@@ -1,11 +1,11 @@
 # Wave Rider: "To-The-Cloud" Two-Step Migration Plan (`to-the-cloud`)
 ## Zero-Cost Hybrid Cloud Architecture (GitHub Pages + Precision Actions + Live Browser Feed)
 
-- **Plan Identifier**: `to-the-cloud` (v2.0 - Two-Step Structure)
+- **Plan Identifier**: `to-the-cloud` (v2.1 - Two-Step Structure with Integrated Local Documentation)
 - **Project**: `predict-stock` (Wave Rider Quantitative Momentum & Smart-Money Engine)
 - **Architecture Mandate**: **\$0.00 / month Forever** (Zero subscriptions, zero sleeping containers, zero ongoing cloud costs)
-- **Execution Strategy**: **Step 1: Revise Locally** $\longrightarrow$ **Step 2: Bring to the Cloud**
-- **Traceability Scope**: Updates `FUNCTIONAL_REQUIREMENTS.md` (`FR-07`, `FR-09`), `DESIGN_SPECIFICATION.md`, `ARCHITECTURE.md` (`ADR-06`), `BACKLOG.md`, `SYSTEM_VERIFICATION_REPORT.md`, and `README.md`.
+- **Execution Strategy**: **Step 1: Revise & Document Locally** $\longrightarrow$ **Step 2: Bring to the Cloud & Automate**
+- **Traceability Scope**: Full IEEE 830 / ISO 29148 synchronization across `FUNCTIONAL_REQUIREMENTS.md`, `DESIGN_SPECIFICATION.md`, `ARCHITECTURE.md`, `BACKLOG.md`, `SYSTEM_VERIFICATION_REPORT.md`, and `README.md`.
 
 ---
 
@@ -13,36 +13,37 @@
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                      STEP 1: REVISE LOCALLY (Engineering & Validation)                │
+│               STEP 1: REVISE & DOCUMENT LOCALLY (Engineering & Full RTM Sync)          │
 │                                                                                        │
 │  1.1 Capitulation Carve-Out Engine (Integrate verified Drop <= -8% + Green Reversal)   │
 │  1.2 Static Cloud Exporter (`src/cloud/static_exporter.py` with fast/full modes)       │
 │  1.3 Dual-Mode Frontend (`app.js` runs seamlessly on Flask and Static file bundles)   │
 │  1.4 Local Static Server Validation (Test complete SPA on localhost:5055 with NO Flask)│
-│  1.5 Local Test Suite Expansion (`pytest` regression + new cloud export tests)         │
+│  1.5 Local Automated Test Suite (`pytest` regression + new cloud export tests)         │
+│  1.6 Local IEEE Documentation Sync (Update FRS/RTM, Design Spec, Architecture ADR-06)  │
 └───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │ Step 1 Verified 100% Locally
+                                            │ Step 1 Verified 100% Locally (Code & Docs)
                                             ▼
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                      STEP 2: BRING TO THE CLOUD (Deployment & Automation)              │
+│               STEP 2: BRING TO THE CLOUD & AUTOMATE (Deployment & Live Infrastructure) │
 │                                                                                        │
 │  2.1 GitHub Actions Workflow (`.github/workflows/wave-rider-cloud.yml` on gh-pages)    │
 │  2.2 Precision External Scheduler (`cron-job.org` triggering workflow_dispatch)        │
 │  2.3 GitHub Pages CDN Activation (Point repo to orphan `gh-pages` branch)             │
 │  2.4 Browser Cloud Trading Desk (Single-repo PAT + Finnhub Live Price Stream)          │
-│  2.5 Full IEEE Specification Synchronization (RTM, Design Spec, Architecture ADR-06)   │
+│  2.5 Cloud Deployment Audit & Live URL Verification                                   │
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## ⚙️ STEP 1: REVISE LOCALLY (Local Engineering & Validation)
+## ⚙️ STEP 1: REVISE & DOCUMENT LOCALLY (Engineering & Full RTM Sync)
 
-Before any cloud infrastructure or remote repositories are touched, the entire engine is upgraded, integrated, and verified directly on your local machine.
+Before touching remote GitHub Actions or external schedulers, all code, static data pipelines, UI routing, automated tests, and engineering specifications are implemented, verified, and synchronized directly on your local machine.
 
 ### 1.1 Integrate Capitulation Reversal Carve-Out in `src/game/duel.py`
 * **Problem**: In Week 5, the bot was completely blind to Thursday's extreme sell-off because the Macro Gatekeeper ($QQQ < \text{20-day EMA}$) acted as a blanket curfew, freezing all long entries.
-* **Empirical Validation**: Our 3-year 50-stock backtest proved that **Next-Day Green Confirmation after an $\le -8\%$ crash with a Stop at the crash day's Low (LOD)** generates a **66.9% Win Rate** and a **1.37 Profit Factor** across 157 historical instances during macro downtrends.
+* **Empirical Validation**: Our 3-year 50-stock walkforward backtest proved that **Next-Day Green Confirmation after an $\le -8\%$ crash with a Stop at the crash day's Low (LOD)** generates a **66.9% Win Rate** and a **1.37 Profit Factor** across 157 historical instances during macro downtrends (outperforming unconfirmed knife-catching which lost money with a 0.67–0.82 PF).
 * **Implementation**:
   - In `src/game/duel.py`: Inside `bot_evaluate_turn()`, if $QQQ < \text{20-day EMA}$, do *not* immediately exit. Instead, evaluate the **Capitulation Carve-Out**:
     1. Scan for any universe stock that dropped $\le -8.0\%$ on Day $T-1$.
@@ -88,13 +89,33 @@ Before any cloud infrastructure or remote repositories are touched, the entire e
   ```powershell
   pytest
   ```
-* Guarantee: **100% of unit and integration tests must pass before proceeding to Step 2.**
+* Guarantee: **100% of unit and integration tests must pass before proceeding to Step 1.6.**
+
+### 1.6 Local IEEE Documentation & RTM Synchronization
+Synchronize the full specification suite to reflect Step 1 local engineering:
+1. **[`FUNCTIONAL_REQUIREMENTS.md`](file:///c:/Users/jonsa/LLM/predict-stock/FUNCTIONAL_REQUIREMENTS.md)**:
+   - Add **`FR-07-01`**: *Static Cloud Exporter & Decoupled SPA Bundle* (mapped to `TC-DEP-01`).
+   - Add **`FR-07-02`**: *Dual-Mode API Routing & Local Static Serving* (mapped to `TC-DEP-02`).
+   - Add **`FR-09-06`**: *Capitulation Reversal Carve-Out Rule* (mapped to `TC-CARVE-01`).
+   - Update Master RTM Table and traceability matrices.
+2. **[`DESIGN_SPECIFICATION.md`](file:///c:/Users/jonsa/LLM/predict-stock/DESIGN_SPECIFICATION.md)**:
+   - Document the Static Exporter schema, fast vs full export payloads, directory tree in `dist/`.
+   - Document the Dual-Mode client API router sequence diagram and fallback waterfall.
+   - Document the Capitulation Carve-Out decision logic flow chart.
+3. **[`ARCHITECTURE.md`](file:///c:/Users/jonsa/LLM/predict-stock/ARCHITECTURE.md)**:
+   - Add **`ADR-06`**: *Decoupled Static Asset Architecture & Client-Side Data Routing* (documenting why the SPA is decoupled from Flask and how it runs without a backend server).
+4. **[`BACKLOG.md`](file:///c:/Users/jonsa/LLM/predict-stock/BACKLOG.md)**:
+   - Track `DEP-01` (Static Exporter), `DEP-02` (Dual-Mode Frontend), and `ENG-05` (Capitulation Carve-Out) as **✅ Completed**.
+5. **[`SYSTEM_VERIFICATION_REPORT.md`](file:///c:/Users/jonsa/LLM/predict-stock/SYSTEM_VERIFICATION_REPORT.md)**:
+   - Record the updated test suite pass rate and local static server verification audit.
+6. **[`README.md`](file:///c:/Users/jonsa/LLM/predict-stock/README.md)**:
+   - Document the `--export-static` command and local static review on `http://localhost:5055`.
 
 ---
 
-## ☁️ STEP 2: BRING TO THE CLOUD (Cloud Deployment & Automation)
+## ☁️ STEP 2: BRING TO THE CLOUD & AUTOMATE (Deployment & Live Infrastructure)
 
-Once the local implementation is 100% verified and tested, we deploy it to GitHub Pages and automate it via precision external schedules.
+Once Step 1 code, tests, and documentation are 100% complete and committed locally, Step 2 brings the system into full cloud automation.
 
 ### 2.1 GitHub Actions Workflow (`.github/workflows/wave-rider-cloud.yml`)
 * **Triggers**:
@@ -127,19 +148,13 @@ Once the local implementation is 100% verified and tested, we deploy it to GitHu
   - Optional free Finnhub API Key for real-time WebSocket/REST price streaming.
 * Enables 1-click player trading directly from your phone or browser while your PC is completely turned off.
 
-### 2.5 Master IEEE Specification & RTM Synchronization
-Update all repository governance documents to reflect the completed cloud deployment and Week 5 learnings:
-1. [`FUNCTIONAL_REQUIREMENTS.md`](file:///c:/Users/jonsa/LLM/predict-stock/FUNCTIONAL_REQUIREMENTS.md): `FR-07-01` (Cloud Deployment), `FR-07-02` (State Persistence), `FR-09` (Capitulation Carve-Out & Realization Engine).
-2. [`DESIGN_SPECIFICATION.md`](file:///c:/Users/jonsa/LLM/predict-stock/DESIGN_SPECIFICATION.md): Production cloud architecture diagrams, sequence flows, and updated schemas.
-3. [`ARCHITECTURE.md`](file:///c:/Users/jonsa/LLM/predict-stock/ARCHITECTURE.md): Add `ADR-06` (*Hybrid Serverless Cloud Topology*).
-4. [`BACKLOG.md`](file:///c:/Users/jonsa/LLM/predict-stock/BACKLOG.md): Close out Epic 6 cloud deployment stories.
-5. [`SYSTEM_VERIFICATION_REPORT.md`](file:///c:/Users/jonsa/LLM/predict-stock/SYSTEM_VERIFICATION_REPORT.md): Record final test results and cloud audit.
-6. [`README.md`](file:///c:/Users/jonsa/LLM/predict-stock/README.md): 5-minute setup and access instructions.
+### 2.5 Cloud Deployment Audit & Live URL Verification
+* Trigger test `workflow_dispatch` run in GitHub Actions.
+* Verify live URL loads from CDN, shows real-time price feeds, and allows executing paper duel trades remotely.
 
 ---
 
-## 🚀 Execution Command
+## 🚀 Execution Choice
 
-Whenever you want to start, tell me:
-- **"Execute Step 1"** (Build, integrate, and verify everything locally first)
-- Or **"Execute both steps"** (Proceed through Step 1 local validation directly into Step 2 cloud deployment)
+1. **"Execute Step 1"**: Completes all local engineering (Capitulation Carve-Out, Static Exporter, Dual-Mode UI, local static server validation) AND updates all 6 documentation files locally.
+2. **"Execute both steps"**: Proceeds through Step 1 local engineering and documentation, then deploys directly to GitHub Pages and configures the cloud scheduler.
