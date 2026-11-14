@@ -1,0 +1,919 @@
+{
+  "ticker": "AMZN",
+  "date": "2026-11-12",
+  "current_price": 267.44,
+  "change_pct": 0.48,
+  "is_ignition": false,
+  "ignition_type": "NONE",
+  "wave_probability": 41.8,
+  "composite_score": 46,
+  "rvol": 0.6831787419859935,
+  "crr": 0.03749850988245953,
+  "target_1": 276.8,
+  "target_2": 283.49,
+  "stop_loss": 260.75,
+  "smart_money": {
+    "politician_buy": false,
+    "jurisdiction_match": false,
+    "matched_committees": [],
+    "congress_score": 0,
+    "politicians": [],
+    "high_jurisdiction_buyers": [],
+    "congress_buy_count": 0,
+    "congress_sell_count": 0,
+    "congress_total_trades": 0,
+    "congress_trades": [],
+    "quiver_stock_url": "https://www.quiverquant.com/congresstrading/stock/AMZN",
+    "capitoltrades_url": "https://www.capitoltrades.com/issuers",
+    "house_disclosure_url": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+    "senate_disclosure_url": "https://efdsearch.senate.gov/search/",
+    "insider_buy": false,
+    "insider_cluster": false,
+    "insider_score": 0,
+    "total_buy_value_usd": 0,
+    "c_suite_buyers": [],
+    "insider_buy_count": 0,
+    "insider_sell_count": 10,
+    "net_shares": -71589,
+    "unique_buyers": 0,
+    "recent_buys": [],
+    "recent_transactions": [
+      {
+        "date": "2026-11-02",
+        "insider": "HERRINGTON DOUGLAS J",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 1000,
+        "value_usd": 243470.0,
+        "text": "Sale at price 243.47 per share."
+      },
+      {
+        "date": "2026-10-01",
+        "insider": "HERRINGTON DOUGLAS J",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 1000,
+        "value_usd": 251500.0,
+        "text": "Sale at price 251.50 per share."
+      },
+      {
+        "date": "2026-09-01",
+        "insider": "HERRINGTON DOUGLAS J",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 1000,
+        "value_usd": 254770.0,
+        "text": "Sale at price 254.77 per share."
+      },
+      {
+        "date": "2026-08-26",
+        "insider": "BEZOS JEFFREY P",
+        "position": "Officer and Director",
+        "type": "OTHER",
+        "shares": 415580,
+        "value_usd": 0.0,
+        "text": "Stock Gift at price 0.00 per share."
+      },
+      {
+        "date": "2026-08-24",
+        "insider": "ZAPOLSKY DAVID A.",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 15430,
+        "value_usd": 4004345.0,
+        "text": "Sale at price 257.70 - 260.45 per share."
+      },
+      {
+        "date": "2026-08-21",
+        "insider": "HERRINGTON DOUGLAS J",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 6362,
+        "value_usd": 1647810.0,
+        "text": "Sale at price 257.77 - 260.33 per share."
+      },
+      {
+        "date": "2026-08-21",
+        "insider": "HERRINGTON DOUGLAS J",
+        "position": "Officer",
+        "type": "OTHER",
+        "shares": 15905,
+        "value_usd": 0.0,
+        "text": ""
+      },
+      {
+        "date": "2026-08-21",
+        "insider": "GARMAN MATTHEW S",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 14541,
+        "value_usd": 3766920.0,
+        "text": "Sale at price 257.60 - 260.34 per share."
+      },
+      {
+        "date": "2026-08-21",
+        "insider": "GARMAN MATTHEW S",
+        "position": "Officer",
+        "type": "OTHER",
+        "shares": 18176,
+        "value_usd": 0.0,
+        "text": ""
+      },
+      {
+        "date": "2026-08-21",
+        "insider": "REYNOLDS SHELLEY L",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 2343,
+        "value_usd": 606854.0,
+        "text": "Sale at price 257.77 - 260.33 per share."
+      }
+    ],
+    "openinsider_purchases_url": "http://openinsider.com/screener?s=AMZN&tc=P&xp=1",
+    "openinsider_all_url": "http://openinsider.com/screener?s=AMZN",
+    "sec_edgar_url": "https://www.sec.gov/edgar/browse/?CIK=AMZN",
+    "sentiment_label": "BULLISH",
+    "sentiment_score": 0.314,
+    "discussion_velocity": 0.0,
+    "viral_politician_buzz": false,
+    "is_pelosi_effect": false,
+    "retail_hype_score": 0,
+    "buzz_keywords": [],
+    "social_volume": 40,
+    "pelosi_effect": {
+      "is_active": false,
+      "intensity": "QUIET / DORMANT",
+      "hype_score": 0,
+      "primary_catalyst": "DORMANT",
+      "prominent_figures": [
+        "Corporate CEO / C-Suite"
+      ],
+      "lifecycle_stage": "DORMANT",
+      "narrative_summary": "No active politician copy-trading or viral smart-money chatter detected on social streams.",
+      "matched_keywords": [],
+      "mentions_count": 0,
+      "verbatim_quotes": []
+    },
+    "recent_headlines": [],
+    "contracts": {
+      "total_value_usd": 2535565705.05,
+      "contract_count": 15,
+      "has_major_contract": true,
+      "is_defense_contract": true,
+      "contract_score": 100,
+      "top_agencies": [
+        "National Aeronautics and Space Administration",
+        "Social Security Administration",
+        "Department of Health and Human Services",
+        "Department of Veterans Affairs",
+        "Department of Commerce",
+        "Department of the Treasury"
+      ],
+      "top_award_amount_usd": 583194637.0,
+      "recent_contracts": [
+        {
+          "award_id": "75FCMC25FJ022",
+          "generated_internal_id": "CONT_AWD_75FCMC25FJ022_7530_47QTCK18D0003_4732",
+          "award_permalink_id": "CONT_AWD_75FCMC25FJ022_7530_47QTCK18D0003_4732",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_75FCMC25FJ022_7530_47QTCK18D0003_4732",
+          "recipient": "GENERAL DYNAMICS INFORMATION TECHNOLOGY, INC.",
+          "amount_usd": 583194637.0,
+          "agency": "Department of Health and Human Services",
+          "sub_agency": "Centers for Medicare and Medicaid Services",
+          "description": "THE CLOUD PRODUCTS AND TOOLS (CPT) CONTRACT IS USED TO PROVIDE CLOUD-BASED INFRASTRUCTURE FROM COMMERCIAL CLOUD SERVICE PROVIDERS (CSP) SUCH AS MICROSOFT AZURE GOVERNMENT (MAG) AND AMAZON WEB SERVICES (AWS), AS WELL AS SOFTWARE, HARDWARE, TOOLS, PROF",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "36C10B22F0207",
+          "generated_internal_id": "CONT_AWD_36C10B22F0207_3600_NNG15SD22B_8000",
+          "award_permalink_id": "CONT_AWD_36C10B22F0207_3600_NNG15SD22B_8000",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_36C10B22F0207_3600_NNG15SD22B_8000",
+          "recipient": "FOUR POINTS TECHNOLOGY, L.L.C.",
+          "amount_usd": 521824443.39,
+          "agency": "Department of Veterans Affairs",
+          "sub_agency": "Department of Veterans Affairs",
+          "description": "ENTERPRISE CLOUD CAPACITY - AMAZON WEB SERVICES",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "28321324FA0010214",
+          "generated_internal_id": "CONT_AWD_28321324FA0010214_2800_28321321A00040003_2800",
+          "award_permalink_id": "CONT_AWD_28321324FA0010214_2800_28321321A00040003_2800",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_28321324FA0010214_2800_28321321A00040003_2800",
+          "recipient": "FOUR POINTS TECHNOLOGY, L.L.C.",
+          "amount_usd": 234794253.74,
+          "agency": "Social Security Administration",
+          "sub_agency": "Social Security Administration",
+          "description": "CALL ORDER FOR AMAZON WEB SERVICES (AWS) CONNECT FOR CONTACT CENTER AS A SERVICE (CCAAS) - BLANKET PURCHASE AGREEMENT 28321321A00040003",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "70B04C24F00000413",
+          "generated_internal_id": "CONT_AWD_70B04C24F00000413_7014_NNG15SD22B_8000",
+          "award_permalink_id": "CONT_AWD_70B04C24F00000413_7014_NNG15SD22B_8000",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_70B04C24F00000413_7014_NNG15SD22B_8000",
+          "recipient": "FOUR POINTS TECHNOLOGY, L.L.C.",
+          "amount_usd": 227195012.42,
+          "agency": "Department of Homeland Security",
+          "sub_agency": "U.S. Customs and Border Protection",
+          "description": "AMAZON WEB SERVICES FOR CBP.",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "W519TC25FA004",
+          "generated_internal_id": "CONT_AWD_W519TC25FA004_9700_HC105023D0005_9700",
+          "award_permalink_id": "CONT_AWD_W519TC25FA004_9700_HC105023D0005_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_W519TC25FA004_9700_HC105023D0005_9700",
+          "recipient": "AMAZON WEB SERVICES, INC.",
+          "amount_usd": 167351022.24,
+          "agency": "Department of Defense",
+          "sub_agency": "Department of the Army",
+          "description": "TASK ORDER AWARD AGAINST JWCC MULTIPLE-AWARD IDIQ CONTRACT HC105023D0005 TO AMAZON WEB SERVICES, INC. FOR AWS SECRET IL 4, 5, AND 6 (SECRET) CLOUD COMPUTE AND STORAGE SERVICES FOR THE ENTERPRISE CLOUD MANAGEMENT AGENCY (ECMA).",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "47QDCB21F0015",
+          "generated_internal_id": "CONT_AWD_47QDCB21F0015_4732_47QTCA19D000C_4732",
+          "award_permalink_id": "CONT_AWD_47QDCB21F0015_4732_47QTCA19D000C_4732",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_47QDCB21F0015_4732_47QTCA19D000C_4732",
+          "recipient": "AMAZON WEB SERVICES, INC.",
+          "amount_usd": 104554319.03,
+          "agency": "General Services Administration",
+          "sub_agency": "Federal Acquisition Service",
+          "description": "AWS CLOUD SERVICE AND VAR SUPPORT SERVICES",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "N6523624F0453",
+          "generated_internal_id": "CONT_AWD_N6523624F0453_9700_N6600123A0005_9700",
+          "award_permalink_id": "CONT_AWD_N6523624F0453_9700_N6600123A0005_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_N6523624F0453_9700_N6600123A0005_9700",
+          "recipient": "AMAZON WEB SERVICES, INC.",
+          "amount_usd": 94751464.0,
+          "agency": "Department of Defense",
+          "sub_agency": "Department of the Navy",
+          "description": "AWS CLOUD SERVICES",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "80ARC018F0055",
+          "generated_internal_id": "CONT_AWD_80ARC018F0055_8000_NNG15SC74B_8000",
+          "award_permalink_id": "CONT_AWD_80ARC018F0055_8000_NNG15SC74B_8000",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_80ARC018F0055_8000_NNG15SC74B_8000",
+          "recipient": "FOUR POINTS TECHNOLOGY, L.L.C.",
+          "amount_usd": 92967913.34,
+          "agency": "National Aeronautics and Space Administration",
+          "sub_agency": "National Aeronautics and Space Administration",
+          "description": "THIS DELIVERY ORDER FOR AMAZON WEB SERVICES WITH OPTION QUANTITIES PROVIDES AND ENTERPRISE-WIDE SOLUTION FOR CLOUD SERVICES AGAINST NASA SEWP CONTRACT NUMBER NNG15SC74B.",
+          "action_date": "Active"
+        }
+      ],
+      "usaspending_search_url": "https://www.usaspending.gov/search/?keyword=AMZN",
+      "usaspending_recipient_url": "https://www.usaspending.gov/recipient"
+    }
+  },
+  "checks": [
+    {
+      "rule": "Institutional Volume Surge",
+      "passed": false,
+      "detail": "RVOL is 0.62x (required >= 1.50x or >= 1.30x on squeeze)"
+    },
+    {
+      "rule": "Closing Range Strength",
+      "passed": false,
+      "detail": "Finished at 50.0% of daily range (required >= 68%)"
+    },
+    {
+      "rule": "Structural Range Expansion",
+      "passed": false,
+      "detail": "Inside existing range"
+    },
+    {
+      "rule": "Fast EMA Trend Stack",
+      "passed": false,
+      "detail": "Price ($nan) > 5 EMA ($265.57) >= 20 EMA ($258.62)"
+    },
+    {
+      "rule": "Anti-Exhaustion Safe Zone",
+      "passed": false,
+      "detail": "Price is +nan% from 20 EMA (max safe limit +8.5%)"
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-08-21",
+      "open": 260.74,
+      "high": 261.09,
+      "low": 257.04,
+      "close": 258.63,
+      "volume": 35723000,
+      "ema5": 261.38,
+      "ema20": 260.78
+    },
+    {
+      "date": "2026-08-24",
+      "open": 259.6,
+      "high": 263.32,
+      "low": 259.05,
+      "close": 262.07,
+      "volume": 28070500,
+      "ema5": 261.61,
+      "ema20": 260.9
+    },
+    {
+      "date": "2026-08-25",
+      "open": 262.51,
+      "high": 263.89,
+      "low": 259.83,
+      "close": 261.06,
+      "volume": 25550200,
+      "ema5": 261.43,
+      "ema20": 260.92
+    },
+    {
+      "date": "2026-08-26",
+      "open": 261.28,
+      "high": 262.05,
+      "low": 258.24,
+      "close": 260.28,
+      "volume": 21528400,
+      "ema5": 261.04,
+      "ema20": 260.86
+    },
+    {
+      "date": "2026-08-27",
+      "open": 259.23,
+      "high": 259.66,
+      "low": 255.02,
+      "close": 256.26,
+      "volume": 35927800,
+      "ema5": 259.45,
+      "ema20": 260.42
+    },
+    {
+      "date": "2026-08-28",
+      "open": 258.32,
+      "high": 267.56,
+      "low": 257.78,
+      "close": 266.43,
+      "volume": 49547400,
+      "ema5": 261.78,
+      "ema20": 260.99
+    },
+    {
+      "date": "2026-08-31",
+      "open": 263.83,
+      "high": 264.36,
+      "low": 257.12,
+      "close": 259.77,
+      "volume": 46089400,
+      "ema5": 261.11,
+      "ema20": 260.88
+    },
+    {
+      "date": "2026-09-01",
+      "open": 254.83,
+      "high": 255.82,
+      "low": 251.93,
+      "close": 254.92,
+      "volume": 31700100,
+      "ema5": 259.04,
+      "ema20": 260.31
+    },
+    {
+      "date": "2026-09-02",
+      "open": 254.26,
+      "high": 256.24,
+      "low": 253.4,
+      "close": 254.98,
+      "volume": 24013300,
+      "ema5": 257.69,
+      "ema20": 259.8
+    },
+    {
+      "date": "2026-09-03",
+      "open": 256.2,
+      "high": 259.5,
+      "low": 256.0,
+      "close": 258.9,
+      "volume": 26891500,
+      "ema5": 258.09,
+      "ema20": 259.72
+    },
+    {
+      "date": "2026-09-04",
+      "open": 259.07,
+      "high": 261.12,
+      "low": 255.29,
+      "close": 258.51,
+      "volume": 30749900,
+      "ema5": 258.23,
+      "ema20": 259.6
+    },
+    {
+      "date": "2026-09-08",
+      "open": 256.68,
+      "high": 257.99,
+      "low": 254.75,
+      "close": 256.97,
+      "volume": 29398000,
+      "ema5": 257.81,
+      "ema20": 259.35
+    },
+    {
+      "date": "2026-09-09",
+      "open": 253.12,
+      "high": 254.69,
+      "low": 250.65,
+      "close": 252.4,
+      "volume": 33055500,
+      "ema5": 256.01,
+      "ema20": 258.69
+    },
+    {
+      "date": "2026-09-10",
+      "open": 250.11,
+      "high": 253.15,
+      "low": 249.58,
+      "close": 251.89,
+      "volume": 25484800,
+      "ema5": 254.64,
+      "ema20": 258.04
+    },
+    {
+      "date": "2026-09-11",
+      "open": 254.09,
+      "high": 257.59,
+      "low": 253.14,
+      "close": 256.78,
+      "volume": 26724100,
+      "ema5": 255.35,
+      "ema20": 257.92
+    },
+    {
+      "date": "2026-09-14",
+      "open": 253.15,
+      "high": 255.95,
+      "low": 250.74,
+      "close": 253.54,
+      "volume": 34352800,
+      "ema5": 254.75,
+      "ema20": 257.5
+    },
+    {
+      "date": "2026-09-15",
+      "open": 252.24,
+      "high": 253.27,
+      "low": 247.22,
+      "close": 248.42,
+      "volume": 36275400,
+      "ema5": 252.64,
+      "ema20": 256.64
+    },
+    {
+      "date": "2026-09-16",
+      "open": 248.1,
+      "high": 249.26,
+      "low": 244.3,
+      "close": 245.96,
+      "volume": 33488500,
+      "ema5": 250.41,
+      "ema20": 255.62
+    },
+    {
+      "date": "2026-09-17",
+      "open": 251.07,
+      "high": 252.73,
+      "low": 249.24,
+      "close": 251.19,
+      "volume": 30438800,
+      "ema5": 250.67,
+      "ema20": 255.2
+    },
+    {
+      "date": "2026-09-18",
+      "open": 252.92,
+      "high": 255.43,
+      "low": 251.88,
+      "close": 253.71,
+      "volume": 52274700,
+      "ema5": 251.68,
+      "ema20": 255.06
+    },
+    {
+      "date": "2026-09-21",
+      "open": 256.4,
+      "high": 259.49,
+      "low": 253.6,
+      "close": 258.45,
+      "volume": 42979400,
+      "ema5": 253.94,
+      "ema20": 255.38
+    },
+    {
+      "date": "2026-09-22",
+      "open": 255.11,
+      "high": 259.0,
+      "low": 253.78,
+      "close": 254.98,
+      "volume": 41982600,
+      "ema5": 254.29,
+      "ema20": 255.34
+    },
+    {
+      "date": "2026-09-23",
+      "open": 253.0,
+      "high": 253.99,
+      "low": 247.76,
+      "close": 249.27,
+      "volume": 44209200,
+      "ema5": 252.61,
+      "ema20": 254.76
+    },
+    {
+      "date": "2026-09-24",
+      "open": 246.02,
+      "high": 250.43,
+      "low": 245.6,
+      "close": 249.38,
+      "volume": 33040100,
+      "ema5": 251.54,
+      "ema20": 254.25
+    },
+    {
+      "date": "2026-09-25",
+      "open": 248.56,
+      "high": 250.88,
+      "low": 247.18,
+      "close": 249.67,
+      "volume": 34263900,
+      "ema5": 250.91,
+      "ema20": 253.82
+    },
+    {
+      "date": "2026-09-28",
+      "open": 246.63,
+      "high": 247.77,
+      "low": 244.73,
+      "close": 246.15,
+      "volume": 32596700,
+      "ema5": 249.33,
+      "ema20": 253.09
+    },
+    {
+      "date": "2026-09-29",
+      "open": 246.71,
+      "high": 248.84,
+      "low": 245.14,
+      "close": 246.67,
+      "volume": 33730400,
+      "ema5": 248.44,
+      "ema20": 252.47
+    },
+    {
+      "date": "2026-09-30",
+      "open": 246.79,
+      "high": 252.44,
+      "low": 246.08,
+      "close": 249.15,
+      "volume": 41913100,
+      "ema5": 248.68,
+      "ema20": 252.16
+    },
+    {
+      "date": "2026-10-01",
+      "open": 251.61,
+      "high": 251.83,
+      "low": 246.12,
+      "close": 248.23,
+      "volume": 33243900,
+      "ema5": 248.53,
+      "ema20": 251.78
+    },
+    {
+      "date": "2026-10-02",
+      "open": 251.51,
+      "high": 253.56,
+      "low": 250.02,
+      "close": 251.52,
+      "volume": 33433400,
+      "ema5": 249.53,
+      "ema20": 251.76
+    },
+    {
+      "date": "2026-10-05",
+      "open": 250.19,
+      "high": 254.53,
+      "low": 250.18,
+      "close": 251.4,
+      "volume": 39273900,
+      "ema5": 250.15,
+      "ema20": 251.72
+    },
+    {
+      "date": "2026-10-06",
+      "open": 253.4,
+      "high": 256.68,
+      "low": 251.08,
+      "close": 256.29,
+      "volume": 34120800,
+      "ema5": 252.2,
+      "ema20": 252.16
+    },
+    {
+      "date": "2026-10-07",
+      "open": 254.23,
+      "high": 260.14,
+      "low": 253.17,
+      "close": 259.92,
+      "volume": 36225800,
+      "ema5": 254.77,
+      "ema20": 252.9
+    },
+    {
+      "date": "2026-10-08",
+      "open": 259.74,
+      "high": 259.86,
+      "low": 253.78,
+      "close": 254.06,
+      "volume": 38649900,
+      "ema5": 254.53,
+      "ema20": 253.01
+    },
+    {
+      "date": "2026-10-09",
+      "open": 256.5,
+      "high": 262.8,
+      "low": 256.0,
+      "close": 262.43,
+      "volume": 34770000,
+      "ema5": 257.17,
+      "ema20": 253.91
+    },
+    {
+      "date": "2026-10-12",
+      "open": 262.5,
+      "high": 263.7,
+      "low": 259.27,
+      "close": 259.53,
+      "volume": 26577900,
+      "ema5": 257.95,
+      "ema20": 254.44
+    },
+    {
+      "date": "2026-10-13",
+      "open": 259.44,
+      "high": 262.84,
+      "low": 258.42,
+      "close": 258.58,
+      "volume": 25299500,
+      "ema5": 258.16,
+      "ema20": 254.84
+    },
+    {
+      "date": "2026-10-14",
+      "open": 258.01,
+      "high": 259.65,
+      "low": 252.66,
+      "close": 254.08,
+      "volume": 34821000,
+      "ema5": 256.8,
+      "ema20": 254.76
+    },
+    {
+      "date": "2026-10-15",
+      "open": 250.89,
+      "high": 255.6,
+      "low": 248.65,
+      "close": 254.76,
+      "volume": 34564200,
+      "ema5": 256.12,
+      "ema20": 254.76
+    },
+    {
+      "date": "2026-10-16",
+      "open": 255.1,
+      "high": 255.54,
+      "low": 248.6,
+      "close": 250.0,
+      "volume": 40427300,
+      "ema5": 254.08,
+      "ema20": 254.31
+    },
+    {
+      "date": "2026-10-19",
+      "open": 255.25,
+      "high": 263.72,
+      "low": 255.22,
+      "close": 262.45,
+      "volume": 56188800,
+      "ema5": 256.87,
+      "ema20": 255.09
+    },
+    {
+      "date": "2026-10-20",
+      "open": 264.08,
+      "high": 265.34,
+      "low": 260.42,
+      "close": 262.63,
+      "volume": 34927200,
+      "ema5": 258.79,
+      "ema20": 255.8
+    },
+    {
+      "date": "2026-10-21",
+      "open": 262.71,
+      "high": 264.36,
+      "low": 259.29,
+      "close": 262.37,
+      "volume": 31214700,
+      "ema5": 259.98,
+      "ema20": 256.43
+    },
+    {
+      "date": "2026-10-22",
+      "open": 258.18,
+      "high": 258.41,
+      "low": 248.0,
+      "close": 250.38,
+      "volume": 48814000,
+      "ema5": 256.78,
+      "ema20": 255.85
+    },
+    {
+      "date": "2026-10-23",
+      "open": 248.85,
+      "high": 250.01,
+      "low": 246.45,
+      "close": 248.0,
+      "volume": 25569000,
+      "ema5": 253.85,
+      "ema20": 255.11
+    },
+    {
+      "date": "2026-10-26",
+      "open": 249.47,
+      "high": 250.79,
+      "low": 247.23,
+      "close": 249.09,
+      "volume": 32696400,
+      "ema5": 252.27,
+      "ema20": 254.53
+    },
+    {
+      "date": "2026-10-27",
+      "open": 250.43,
+      "high": 254.68,
+      "low": 248.71,
+      "close": 253.1,
+      "volume": 34477800,
+      "ema5": 252.54,
+      "ema20": 254.4
+    },
+    {
+      "date": "2026-10-28",
+      "open": 253.0,
+      "high": 255.36,
+      "low": 251.98,
+      "close": 254.6,
+      "volume": 34915900,
+      "ema5": 253.23,
+      "ema20": 254.42
+    },
+    {
+      "date": "2026-10-29",
+      "open": 246.95,
+      "high": 249.14,
+      "low": 241.24,
+      "close": 243.79,
+      "volume": 85234400,
+      "ema5": 250.08,
+      "ema20": 253.4
+    },
+    {
+      "date": "2026-10-30",
+      "open": 232.54,
+      "high": 241.55,
+      "low": 229.36,
+      "close": 240.35,
+      "volume": 104894700,
+      "ema5": 246.84,
+      "ema20": 252.16
+    },
+    {
+      "date": "2026-11-02",
+      "open": 243.01,
+      "high": 253.81,
+      "low": 242.28,
+      "close": 245.63,
+      "volume": 58348000,
+      "ema5": 246.44,
+      "ema20": 251.54
+    },
+    {
+      "date": "2026-11-03",
+      "open": 248.59,
+      "high": 252.45,
+      "low": 245.88,
+      "close": 250.69,
+      "volume": 37853500,
+      "ema5": 247.85,
+      "ema20": 251.46
+    },
+    {
+      "date": "2026-11-04",
+      "open": 264.82,
+      "high": 271.49,
+      "low": 263.85,
+      "close": 266.03,
+      "volume": 93162200,
+      "ema5": 253.91,
+      "ema20": 252.85
+    },
+    {
+      "date": "2026-11-05",
+      "open": 271.43,
+      "high": 273.23,
+      "low": 252.27,
+      "close": 260.21,
+      "volume": 85796800,
+      "ema5": 256.01,
+      "ema20": 253.55
+    },
+    {
+      "date": "2026-11-06",
+      "open": 259.81,
+      "high": 264.18,
+      "low": 258.53,
+      "close": 259.3,
+      "volume": 42571500,
+      "ema5": 257.11,
+      "ema20": 254.09
+    },
+    {
+      "date": "2026-11-09",
+      "open": 269.32,
+      "high": 275.34,
+      "low": 266.91,
+      "close": 266.93,
+      "volume": 51523200,
+      "ema5": 260.38,
+      "ema20": 255.32
+    },
+    {
+      "date": "2026-11-10",
+      "open": 266.21,
+      "high": 272.88,
+      "low": 266.14,
+      "close": 270.87,
+      "volume": 38968300,
+      "ema5": 263.88,
+      "ema20": 256.8
+    },
+    {
+      "date": "2026-11-11",
+      "open": 273.52,
+      "high": 274.87,
+      "low": 265.62,
+      "close": 266.17,
+      "volume": 37943300,
+      "ema5": 264.64,
+      "ema20": 257.69
+    },
+    {
+      "date": "2026-11-12",
+      "open": 267.92,
+      "high": 273.6,
+      "low": 267.2,
+      "close": 267.44,
+      "volume": 34501500,
+      "ema5": 265.57,
+      "ema20": 258.62
+    },
+    {
+      "date": "2026-11-13",
+      "open": NaN,
+      "high": NaN,
+      "low": NaN,
+      "close": NaN,
+      "volume": 30818727,
+      "ema5": 265.57,
+      "ema20": 258.62
+    }
+  ],
+  "name": "Amazon.com Inc.",
+  "category": "Mega-Cap & Enterprise Cloud",
+  "role": "AWS cloud infrastructure and hyperscale server demand",
+  "technicals": {
+    "rvol_20d": 0.62,
+    "crr": 0.5,
+    "bb_width": 0.0,
+    "ema5": 265.57,
+    "ema20": 258.62,
+    "volume": 30818727,
+    "vol_sma20": 50020996,
+    "high": NaN,
+    "low": NaN,
+    "open": NaN
+  }
+}

@@ -1,0 +1,918 @@
+{
+  "ticker": "AAPL",
+  "date": "2026-11-12",
+  "current_price": 354.88,
+  "change_pct": -0.14,
+  "is_ignition": false,
+  "ignition_type": "NONE",
+  "wave_probability": 39.4,
+  "composite_score": 28,
+  "rvol": 0.6612621237872323,
+  "crr": 0.09475847387235509,
+  "target_1": 367.3,
+  "target_2": 376.17,
+  "stop_loss": 346.01,
+  "smart_money": {
+    "politician_buy": false,
+    "jurisdiction_match": false,
+    "matched_committees": [],
+    "congress_score": 0,
+    "politicians": [],
+    "high_jurisdiction_buyers": [],
+    "congress_buy_count": 0,
+    "congress_sell_count": 0,
+    "congress_total_trades": 0,
+    "congress_trades": [],
+    "quiver_stock_url": "https://www.quiverquant.com/congresstrading/stock/AAPL",
+    "capitoltrades_url": "https://www.capitoltrades.com/issuers",
+    "house_disclosure_url": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+    "senate_disclosure_url": "https://efdsearch.senate.gov/search/",
+    "insider_buy": false,
+    "insider_cluster": false,
+    "insider_score": 0,
+    "total_buy_value_usd": 0,
+    "c_suite_buyers": [],
+    "insider_buy_count": 0,
+    "insider_sell_count": 16,
+    "net_shares": -287813,
+    "unique_buyers": 0,
+    "recent_buys": [],
+    "recent_transactions": [
+      {
+        "date": "2026-11-10",
+        "insider": "NEWSTEAD JENNIFER",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 2399,
+        "value_usd": 842913.0,
+        "text": "Sale at price 351.36 per share."
+      },
+      {
+        "date": "2026-11-03",
+        "insider": "NEWSTEAD JENNIFER",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 2399,
+        "value_usd": 781474.0,
+        "text": "Sale at price 325.75 per share."
+      },
+      {
+        "date": "2026-10-20",
+        "insider": "NEWSTEAD JENNIFER",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 2399,
+        "value_usd": 814748.0,
+        "text": "Sale at price 339.62 per share."
+      },
+      {
+        "date": "2026-10-16",
+        "insider": "PAREKH KEVAN",
+        "position": "Chief Financial Officer",
+        "type": "SELL",
+        "shares": 1392,
+        "value_usd": 480315.0,
+        "text": "Sale at price 342.66 - 347.46 per share."
+      },
+      {
+        "date": "2026-10-16",
+        "insider": "BORDERS BEN",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 1280,
+        "value_usd": 442108.0,
+        "text": "Sale at price 343.08 - 347.43 per share."
+      },
+      {
+        "date": "2026-10-15",
+        "insider": "PAREKH KEVAN",
+        "position": "Chief Financial Officer",
+        "type": "OTHER",
+        "shares": 10926,
+        "value_usd": 0.0,
+        "text": ""
+      },
+      {
+        "date": "2026-10-15",
+        "insider": "BORDERS BEN",
+        "position": "Officer",
+        "type": "OTHER",
+        "shares": 1714,
+        "value_usd": 0.0,
+        "text": ""
+      },
+      {
+        "date": "2026-10-06",
+        "insider": "NEWSTEAD JENNIFER",
+        "position": "General Counsel",
+        "type": "SELL",
+        "shares": 2399,
+        "value_usd": 796492.0,
+        "text": "Sale at price 332.01 per share."
+      },
+      {
+        "date": "2026-10-02",
+        "insider": "COOK TIMOTHY D",
+        "position": "Officer and Director",
+        "type": "SELL",
+        "shares": 191753,
+        "value_usd": 63845841.0,
+        "text": "Sale at price 331.44 - 333.94 per share."
+      },
+      {
+        "date": "2026-10-02",
+        "insider": "O'BRIEN DEIRDRE",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 46389,
+        "value_usd": 15466923.0,
+        "text": "Sale at price 333.35 - 333.91 per share."
+      }
+    ],
+    "openinsider_purchases_url": "http://openinsider.com/screener?s=AAPL&tc=P&xp=1",
+    "openinsider_all_url": "http://openinsider.com/screener?s=AAPL",
+    "sec_edgar_url": "https://www.sec.gov/edgar/browse/?CIK=AAPL",
+    "sentiment_label": "NEUTRAL",
+    "sentiment_score": -0.062,
+    "discussion_velocity": 0.0,
+    "viral_politician_buzz": false,
+    "is_pelosi_effect": false,
+    "retail_hype_score": 0,
+    "buzz_keywords": [],
+    "social_volume": 40,
+    "pelosi_effect": {
+      "is_active": false,
+      "intensity": "QUIET / DORMANT",
+      "hype_score": 0,
+      "primary_catalyst": "DORMANT",
+      "prominent_figures": [
+        "Corporate CEO / C-Suite"
+      ],
+      "lifecycle_stage": "DORMANT",
+      "narrative_summary": "No active politician copy-trading or viral smart-money chatter detected on social streams.",
+      "matched_keywords": [],
+      "mentions_count": 0,
+      "verbatim_quotes": []
+    },
+    "recent_headlines": [],
+    "contracts": {
+      "total_value_usd": 293961.04,
+      "contract_count": 15,
+      "has_major_contract": false,
+      "is_defense_contract": false,
+      "contract_score": 25,
+      "top_agencies": [
+        "Department of the Interior",
+        "U.S. Agency for Global Media",
+        "Department of State",
+        "Department of Justice",
+        "Agency for International Development"
+      ],
+      "top_award_amount_usd": 63555.61,
+      "recent_contracts": [
+        {
+          "award_id": "19UP3022P1072",
+          "generated_internal_id": "CONT_AWD_19UP3022P1072_1900_-NONE-_-NONE-",
+          "award_permalink_id": "CONT_AWD_19UP3022P1072_1900_-NONE-_-NONE-",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_19UP3022P1072_1900_-NONE-_-NONE-",
+          "recipient": "APPLE INC",
+          "amount_usd": 63555.61,
+          "agency": "Department of State",
+          "sub_agency": "Department of State",
+          "description": "ICASS/PROG: IPHONE 13 PRO/PRO MAX, UNLOCKED 128 GB, 256 GB",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "140A2320P0666",
+          "generated_internal_id": "CONT_AWD_140A2320P0666_1450_-NONE-_-NONE-",
+          "award_permalink_id": "CONT_AWD_140A2320P0666_1450_-NONE-_-NONE-",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_140A2320P0666_1450_-NONE-_-NONE-",
+          "recipient": "APPLE INC",
+          "amount_usd": 58060.0,
+          "agency": "Department of the Interior",
+          "sub_agency": "Bureau of Indian Affairs and Bureau of Indian Education",
+          "description": "IPAD AIR FOR NENAHNEZAD COMMUNITY SCHOOL",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "72MC1019PC00097",
+          "generated_internal_id": "CONT_AWD_72MC1019PC00097_7200_-NONE-_-NONE-",
+          "award_permalink_id": "CONT_AWD_72MC1019PC00097_7200_-NONE-_-NONE-",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_72MC1019PC00097_7200_-NONE-_-NONE-",
+          "recipient": "APPLE INC",
+          "amount_usd": 46160.02,
+          "agency": "Agency for International Development",
+          "sub_agency": "Agency for International Development",
+          "description": "THIS ACTION IS TO PURCHASE 15 MACBOOK AIR AND 15 MACBOOK PRO COMPUTERS AND SOME PERIPHERALS UNDER THE IT DEVICE REFRESH PROJECT WHICH WILL BE USED BY USAID STAFF IN DIFFERENT LOCATIONS. THE ESTIMATED COST IS $48,227.50 (PLEASE REFER TO THE ATTACHED QUOTE DATED MARCH 21, 20",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "19JA8024P1361",
+          "generated_internal_id": "CONT_AWD_19JA8024P1361_1900_-NONE-_-NONE-",
+          "award_permalink_id": "CONT_AWD_19JA8024P1361_1900_-NONE-_-NONE-",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_19JA8024P1361_1900_-NONE-_-NONE-",
+          "recipient": "APPLE INC",
+          "amount_usd": 27487.34,
+          "agency": "Department of State",
+          "sub_agency": "Department of State",
+          "description": "SMARTPHONE",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "19BE2024P1002",
+          "generated_internal_id": "CONT_AWD_19BE2024P1002_1900_-NONE-_-NONE-",
+          "award_permalink_id": "CONT_AWD_19BE2024P1002_1900_-NONE-_-NONE-",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_19BE2024P1002_1900_-NONE-_-NONE-",
+          "recipient": "APPLE INC",
+          "amount_usd": 19709.59,
+          "agency": "Department of State",
+          "sub_agency": "Department of State",
+          "description": "ICASS SPARE IPHONES",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "19FR6326K0799",
+          "generated_internal_id": "CONT_AWD_19FR6326K0799_1900_-NONE-_-NONE-",
+          "award_permalink_id": "CONT_AWD_19FR6326K0799_1900_-NONE-_-NONE-",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_19FR6326K0799_1900_-NONE-_-NONE-",
+          "recipient": "APPLE INC",
+          "amount_usd": 15236.93,
+          "agency": "Department of State",
+          "sub_agency": "Department of State",
+          "description": "COMMUNICATION DEVICES AND ACCESSORIES",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "19FR6325K1014",
+          "generated_internal_id": "CONT_AWD_19FR6325K1014_1900_-NONE-_-NONE-",
+          "award_permalink_id": "CONT_AWD_19FR6325K1014_1900_-NONE-_-NONE-",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_19FR6325K1014_1900_-NONE-_-NONE-",
+          "recipient": "APPLE INC",
+          "amount_usd": 13598.11,
+          "agency": "Department of State",
+          "sub_agency": "Department of State",
+          "description": "TELEPHONE DEVICES",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "19FR6325K1263",
+          "generated_internal_id": "CONT_AWD_19FR6325K1263_1900_-NONE-_-NONE-",
+          "award_permalink_id": "CONT_AWD_19FR6325K1263_1900_-NONE-_-NONE-",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_19FR6325K1263_1900_-NONE-_-NONE-",
+          "recipient": "APPLE INC",
+          "amount_usd": 13080.0,
+          "agency": "Department of State",
+          "sub_agency": "Department of State",
+          "description": "TELECOM CONSULAR PROJECT NEW DESK PHONE PART",
+          "action_date": "Active"
+        }
+      ],
+      "usaspending_search_url": "https://www.usaspending.gov/search/?keyword=AAPL",
+      "usaspending_recipient_url": "https://www.usaspending.gov/recipient"
+    }
+  },
+  "checks": [
+    {
+      "rule": "Institutional Volume Surge",
+      "passed": false,
+      "detail": "RVOL is 0.83x (required >= 1.50x or >= 1.30x on squeeze)"
+    },
+    {
+      "rule": "Closing Range Strength",
+      "passed": false,
+      "detail": "Finished at 50.0% of daily range (required >= 68%)"
+    },
+    {
+      "rule": "Structural Range Expansion",
+      "passed": false,
+      "detail": "Inside existing range"
+    },
+    {
+      "rule": "Fast EMA Trend Stack",
+      "passed": false,
+      "detail": "Price ($nan) > 5 EMA ($351.16) >= 20 EMA ($345.29)"
+    },
+    {
+      "rule": "Anti-Exhaustion Safe Zone",
+      "passed": false,
+      "detail": "Price is +nan% from 20 EMA (max safe limit +8.5%)"
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-08-21",
+      "open": 311.81,
+      "high": 312.14,
+      "low": 306.78,
+      "close": 309.12,
+      "volume": 46876800,
+      "ema5": 310.07,
+      "ema20": 311.72
+    },
+    {
+      "date": "2026-08-24",
+      "open": 311.23,
+      "high": 313.12,
+      "low": 309.73,
+      "close": 310.1,
+      "volume": 34673600,
+      "ema5": 310.08,
+      "ema20": 311.56
+    },
+    {
+      "date": "2026-08-25",
+      "open": 310.55,
+      "high": 313.35,
+      "low": 307.98,
+      "close": 309.66,
+      "volume": 25869800,
+      "ema5": 309.94,
+      "ema20": 311.38
+    },
+    {
+      "date": "2026-08-26",
+      "open": 310.06,
+      "high": 315.19,
+      "low": 308.57,
+      "close": 313.21,
+      "volume": 34024500,
+      "ema5": 311.03,
+      "ema20": 311.56
+    },
+    {
+      "date": "2026-08-27",
+      "open": 310.31,
+      "high": 315.16,
+      "low": 309.17,
+      "close": 314.34,
+      "volume": 32419200,
+      "ema5": 312.13,
+      "ema20": 311.82
+    },
+    {
+      "date": "2026-08-28",
+      "open": 316.61,
+      "high": 322.13,
+      "low": 315.21,
+      "close": 319.46,
+      "volume": 38649400,
+      "ema5": 314.58,
+      "ema20": 312.55
+    },
+    {
+      "date": "2026-08-31",
+      "open": 319.36,
+      "high": 321.0,
+      "low": 312.56,
+      "close": 316.61,
+      "volume": 41242700,
+      "ema5": 315.25,
+      "ema20": 312.94
+    },
+    {
+      "date": "2026-09-01",
+      "open": 316.74,
+      "high": 327.05,
+      "low": 314.49,
+      "close": 324.88,
+      "volume": 53167400,
+      "ema5": 318.46,
+      "ema20": 314.07
+    },
+    {
+      "date": "2026-09-02",
+      "open": 326.62,
+      "high": 328.15,
+      "low": 323.28,
+      "close": 324.71,
+      "volume": 33776400,
+      "ema5": 320.55,
+      "ema20": 315.09
+    },
+    {
+      "date": "2026-09-03",
+      "open": 324.62,
+      "high": 330.56,
+      "low": 323.86,
+      "close": 327.96,
+      "volume": 37225800,
+      "ema5": 323.02,
+      "ema20": 316.31
+    },
+    {
+      "date": "2026-09-04",
+      "open": 328.06,
+      "high": 328.68,
+      "low": 317.62,
+      "close": 319.73,
+      "volume": 39606900,
+      "ema5": 321.92,
+      "ema20": 316.64
+    },
+    {
+      "date": "2026-09-08",
+      "open": 316.86,
+      "high": 320.46,
+      "low": 314.66,
+      "close": 315.98,
+      "volume": 35477100,
+      "ema5": 319.94,
+      "ema20": 316.58
+    },
+    {
+      "date": "2026-09-09",
+      "open": 315.25,
+      "high": 318.91,
+      "low": 309.66,
+      "close": 315.1,
+      "volume": 65640000,
+      "ema5": 318.33,
+      "ema20": 316.44
+    },
+    {
+      "date": "2026-09-10",
+      "open": 316.43,
+      "high": 326.49,
+      "low": 316.27,
+      "close": 326.32,
+      "volume": 70011900,
+      "ema5": 320.99,
+      "ema20": 317.38
+    },
+    {
+      "date": "2026-09-11",
+      "open": 327.2,
+      "high": 335.96,
+      "low": 326.05,
+      "close": 332.02,
+      "volume": 50716900,
+      "ema5": 324.67,
+      "ema20": 318.77
+    },
+    {
+      "date": "2026-09-14",
+      "open": 334.54,
+      "high": 335.25,
+      "low": 331.09,
+      "close": 332.83,
+      "volume": 39269100,
+      "ema5": 327.39,
+      "ema20": 320.11
+    },
+    {
+      "date": "2026-09-15",
+      "open": 329.89,
+      "high": 331.53,
+      "low": 328.1,
+      "close": 331.09,
+      "volume": 31748200,
+      "ema5": 328.62,
+      "ema20": 321.16
+    },
+    {
+      "date": "2026-09-16",
+      "open": 332.28,
+      "high": 335.23,
+      "low": 330.45,
+      "close": 332.16,
+      "volume": 35981000,
+      "ema5": 329.8,
+      "ema20": 322.2
+    },
+    {
+      "date": "2026-09-17",
+      "open": 334.52,
+      "high": 338.08,
+      "low": 329.93,
+      "close": 336.74,
+      "volume": 36700200,
+      "ema5": 332.11,
+      "ema20": 323.59
+    },
+    {
+      "date": "2026-09-18",
+      "open": 337.65,
+      "high": 338.23,
+      "low": 332.28,
+      "close": 335.87,
+      "volume": 86588200,
+      "ema5": 333.37,
+      "ema20": 324.76
+    },
+    {
+      "date": "2026-09-21",
+      "open": 335.03,
+      "high": 339.38,
+      "low": 332.8,
+      "close": 338.72,
+      "volume": 34999200,
+      "ema5": 335.15,
+      "ema20": 326.09
+    },
+    {
+      "date": "2026-09-22",
+      "open": 339.88,
+      "high": 345.08,
+      "low": 338.49,
+      "close": 339.49,
+      "volume": 40711800,
+      "ema5": 336.6,
+      "ema20": 327.36
+    },
+    {
+      "date": "2026-09-23",
+      "open": 340.82,
+      "high": 341.54,
+      "low": 335.25,
+      "close": 336.76,
+      "volume": 31658800,
+      "ema5": 336.65,
+      "ema20": 328.26
+    },
+    {
+      "date": "2026-09-24",
+      "open": 336.46,
+      "high": 338.65,
+      "low": 334.05,
+      "close": 335.66,
+      "volume": 24733100,
+      "ema5": 336.32,
+      "ema20": 328.97
+    },
+    {
+      "date": "2026-09-25",
+      "open": 335.78,
+      "high": 341.41,
+      "low": 334.28,
+      "close": 340.81,
+      "volume": 30002500,
+      "ema5": 337.82,
+      "ema20": 330.09
+    },
+    {
+      "date": "2026-09-28",
+      "open": 340.11,
+      "high": 342.73,
+      "low": 337.78,
+      "close": 338.14,
+      "volume": 32820800,
+      "ema5": 337.93,
+      "ema20": 330.86
+    },
+    {
+      "date": "2026-09-29",
+      "open": 336.71,
+      "high": 336.83,
+      "low": 328.45,
+      "close": 329.15,
+      "volume": 38478000,
+      "ema5": 335.0,
+      "ema20": 330.7
+    },
+    {
+      "date": "2026-09-30",
+      "open": 330.55,
+      "high": 339.24,
+      "low": 329.89,
+      "close": 332.77,
+      "volume": 49988600,
+      "ema5": 334.26,
+      "ema20": 330.89
+    },
+    {
+      "date": "2026-10-01",
+      "open": 329.75,
+      "high": 332.23,
+      "low": 325.56,
+      "close": 330.07,
+      "volume": 36306300,
+      "ema5": 332.86,
+      "ema20": 330.82
+    },
+    {
+      "date": "2026-10-02",
+      "open": 333.01,
+      "high": 334.29,
+      "low": 330.36,
+      "close": 333.44,
+      "volume": 33278600,
+      "ema5": 333.05,
+      "ema20": 331.07
+    },
+    {
+      "date": "2026-10-05",
+      "open": 332.57,
+      "high": 335.95,
+      "low": 331.4,
+      "close": 332.64,
+      "volume": 34400900,
+      "ema5": 332.91,
+      "ema20": 331.22
+    },
+    {
+      "date": "2026-10-06",
+      "open": 332.03,
+      "high": 334.13,
+      "low": 330.37,
+      "close": 333.38,
+      "volume": 30449000,
+      "ema5": 333.07,
+      "ema20": 331.42
+    },
+    {
+      "date": "2026-10-07",
+      "open": 336.7,
+      "high": 338.41,
+      "low": 332.53,
+      "close": 336.41,
+      "volume": 34147900,
+      "ema5": 334.18,
+      "ema20": 331.9
+    },
+    {
+      "date": "2026-10-08",
+      "open": 336.56,
+      "high": 341.31,
+      "low": 335.64,
+      "close": 340.16,
+      "volume": 35332400,
+      "ema5": 336.18,
+      "ema20": 332.68
+    },
+    {
+      "date": "2026-10-09",
+      "open": 331.45,
+      "high": 338.35,
+      "low": 330.45,
+      "close": 336.38,
+      "volume": 37881200,
+      "ema5": 336.25,
+      "ema20": 333.04
+    },
+    {
+      "date": "2026-10-12",
+      "open": 337.96,
+      "high": 342.37,
+      "low": 337.34,
+      "close": 340.71,
+      "volume": 25900600,
+      "ema5": 337.73,
+      "ema20": 333.77
+    },
+    {
+      "date": "2026-10-13",
+      "open": 344.41,
+      "high": 347.89,
+      "low": 340.48,
+      "close": 341.01,
+      "volume": 38983800,
+      "ema5": 338.83,
+      "ema20": 334.46
+    },
+    {
+      "date": "2026-10-14",
+      "open": 344.35,
+      "high": 346.83,
+      "low": 341.46,
+      "close": 342.7,
+      "volume": 50061100,
+      "ema5": 340.12,
+      "ema20": 335.24
+    },
+    {
+      "date": "2026-10-15",
+      "open": 346.69,
+      "high": 347.59,
+      "low": 341.34,
+      "close": 341.74,
+      "volume": 39767300,
+      "ema5": 340.66,
+      "ema20": 335.86
+    },
+    {
+      "date": "2026-10-16",
+      "open": 345.83,
+      "high": 347.56,
+      "low": 340.2,
+      "close": 343.2,
+      "volume": 59946400,
+      "ema5": 341.51,
+      "ema20": 336.56
+    },
+    {
+      "date": "2026-10-19",
+      "open": 340.52,
+      "high": 345.74,
+      "low": 339.86,
+      "close": 342.68,
+      "volume": 34573200,
+      "ema5": 341.9,
+      "ema20": 337.14
+    },
+    {
+      "date": "2026-10-20",
+      "open": 339.6,
+      "high": 342.8,
+      "low": 338.44,
+      "close": 339.24,
+      "volume": 35851400,
+      "ema5": 341.01,
+      "ema20": 337.34
+    },
+    {
+      "date": "2026-10-21",
+      "open": 339.1,
+      "high": 344.99,
+      "low": 338.57,
+      "close": 343.73,
+      "volume": 35614100,
+      "ema5": 341.92,
+      "ema20": 337.95
+    },
+    {
+      "date": "2026-10-22",
+      "open": 344.68,
+      "high": 348.1,
+      "low": 342.02,
+      "close": 347.96,
+      "volume": 46898900,
+      "ema5": 343.93,
+      "ema20": 338.9
+    },
+    {
+      "date": "2026-10-23",
+      "open": 348.85,
+      "high": 351.46,
+      "low": 345.49,
+      "close": 347.47,
+      "volume": 39539700,
+      "ema5": 345.11,
+      "ema20": 339.72
+    },
+    {
+      "date": "2026-10-26",
+      "open": 343.66,
+      "high": 346.83,
+      "low": 340.77,
+      "close": 343.65,
+      "volume": 42743600,
+      "ema5": 344.62,
+      "ema20": 340.09
+    },
+    {
+      "date": "2026-10-27",
+      "open": 342.91,
+      "high": 347.52,
+      "low": 342.13,
+      "close": 346.84,
+      "volume": 39984400,
+      "ema5": 345.36,
+      "ema20": 340.74
+    },
+    {
+      "date": "2026-10-28",
+      "open": 346.66,
+      "high": 346.92,
+      "low": 343.26,
+      "close": 343.57,
+      "volume": 35714300,
+      "ema5": 344.76,
+      "ema20": 341.01
+    },
+    {
+      "date": "2026-10-29",
+      "open": 347.74,
+      "high": 351.16,
+      "low": 347.04,
+      "close": 348.65,
+      "volume": 42582100,
+      "ema5": 346.06,
+      "ema20": 341.73
+    },
+    {
+      "date": "2026-10-30",
+      "open": 346.46,
+      "high": 348.92,
+      "low": 334.1,
+      "close": 344.37,
+      "volume": 67841600,
+      "ema5": 345.49,
+      "ema20": 341.98
+    },
+    {
+      "date": "2026-11-02",
+      "open": 342.41,
+      "high": 343.54,
+      "low": 335.57,
+      "close": 338.06,
+      "volume": 64757700,
+      "ema5": 343.02,
+      "ema20": 341.61
+    },
+    {
+      "date": "2026-11-03",
+      "open": 325.33,
+      "high": 334.25,
+      "low": 325.08,
+      "close": 331.65,
+      "volume": 63160000,
+      "ema5": 339.23,
+      "ema20": 340.66
+    },
+    {
+      "date": "2026-11-04",
+      "open": 341.31,
+      "high": 354.23,
+      "low": 340.73,
+      "close": 349.24,
+      "volume": 89637700,
+      "ema5": 342.57,
+      "ema20": 341.48
+    },
+    {
+      "date": "2026-11-05",
+      "open": 353.62,
+      "high": 355.11,
+      "low": 341.8,
+      "close": 343.91,
+      "volume": 75678900,
+      "ema5": 343.01,
+      "ema20": 341.71
+    },
+    {
+      "date": "2026-11-06",
+      "open": 338.47,
+      "high": 345.53,
+      "low": 338.04,
+      "close": 342.11,
+      "volume": 44703800,
+      "ema5": 342.71,
+      "ema20": 341.75
+    },
+    {
+      "date": "2026-11-09",
+      "open": 344.74,
+      "high": 352.06,
+      "low": 344.52,
+      "close": 350.42,
+      "volume": 48753100,
+      "ema5": 345.28,
+      "ema20": 342.57
+    },
+    {
+      "date": "2026-11-10",
+      "open": 351.08,
+      "high": 353.6,
+      "low": 346.2,
+      "close": 348.25,
+      "volume": 29756100,
+      "ema5": 346.27,
+      "ema20": 343.11
+    },
+    {
+      "date": "2026-11-11",
+      "open": 349.28,
+      "high": 355.64,
+      "low": 349.06,
+      "close": 355.36,
+      "volume": 34453500,
+      "ema5": 349.3,
+      "ema20": 344.28
+    },
+    {
+      "date": "2026-11-12",
+      "open": 357.81,
+      "high": 359.37,
+      "low": 354.41,
+      "close": 354.88,
+      "volume": 31875000,
+      "ema5": 351.16,
+      "ema20": 345.29
+    },
+    {
+      "date": "2026-11-13",
+      "open": NaN,
+      "high": NaN,
+      "low": NaN,
+      "close": NaN,
+      "volume": 39099985,
+      "ema5": 351.16,
+      "ema20": 345.29
+    }
+  ],
+  "name": "Apple Inc.",
+  "category": "Mega-Cap & Enterprise Cloud",
+  "role": "Consumer silicon ecosystem with world-class cash reserves",
+  "technicals": {
+    "rvol_20d": 0.83,
+    "crr": 0.5,
+    "bb_width": 0.0,
+    "ema5": 351.16,
+    "ema20": 345.29,
+    "volume": 39099985,
+    "vol_sma20": 47160954,
+    "high": NaN,
+    "low": NaN,
+    "open": NaN
+  }
+}

@@ -1,0 +1,503 @@
+{
+  "ticker": "AMZN",
+  "1y": {
+    "ticker": "AMZN",
+    "initial_capital": 10000.0,
+    "final_balance": 10000.0,
+    "net_profit": 0.0,
+    "strategy_return_pct": 0.0,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate_pct": 0.0,
+    "profit_factor": 1.0,
+    "expectancy_dollar": 0.0,
+    "max_drawdown_pct": 0.0,
+    "avg_bars_held": 0.0,
+    "avg_win": 0.0,
+    "avg_loss": 0.0,
+    "equity_curve": [
+      {
+        "date": "2026-01-29",
+        "balance": 10000.0
+      }
+    ],
+    "trades": []
+  },
+  "2y": {
+    "ticker": "AMZN",
+    "initial_capital": 10000.0,
+    "final_balance": 9977.55,
+    "net_profit": -22.45,
+    "strategy_return_pct": -0.22,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 3,
+    "wins": 2,
+    "losses": 1,
+    "win_rate_pct": 66.7,
+    "profit_factor": 0.85,
+    "expectancy_dollar": -7.48,
+    "max_drawdown_pct": 1.47,
+    "avg_bars_held": 4.7,
+    "avg_win": 62.43,
+    "avg_loss": 147.3,
+    "equity_curve": [
+      {
+        "date": "2025-01-30",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-06-30",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-07-01",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-07-02",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-07-03",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-07-07",
+        "balance": 10004.42
+      },
+      {
+        "date": "2025-09-05",
+        "balance": 10004.42
+      },
+      {
+        "date": "2025-09-08",
+        "balance": 10004.42
+      },
+      {
+        "date": "2025-09-09",
+        "balance": 10004.42
+      },
+      {
+        "date": "2025-09-10",
+        "balance": 9857.12
+      },
+      {
+        "date": "2026-01-07",
+        "balance": 9857.12
+      },
+      {
+        "date": "2026-01-08",
+        "balance": 9857.12
+      },
+      {
+        "date": "2026-01-09",
+        "balance": 9857.12
+      },
+      {
+        "date": "2026-01-12",
+        "balance": 9943.85
+      },
+      {
+        "date": "2026-01-13",
+        "balance": 9977.55
+      }
+    ],
+    "trades": [
+      {
+        "id": 3,
+        "ticker": "AMZN",
+        "entry_date": "2026-01-06",
+        "exit_date": "2026-01-13",
+        "entry_price": 240.93,
+        "exit_price": 243.74,
+        "shares": 24,
+        "pnl": 120.43,
+        "return_pct": 2.08,
+        "bars_held": 5,
+        "result": "WIN",
+        "exit_reason": "Trailing EMA Stop"
+      },
+      {
+        "id": 2,
+        "ticker": "AMZN",
+        "entry_date": "2025-09-04",
+        "exit_date": "2025-09-10",
+        "entry_price": 235.68,
+        "exit_price": 229.79,
+        "shares": 25,
+        "pnl": -147.3,
+        "return_pct": -2.5,
+        "bars_held": 4,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 1,
+        "ticker": "AMZN",
+        "entry_date": "2025-06-27",
+        "exit_date": "2025-07-07",
+        "entry_price": 223.3,
+        "exit_price": 223.47,
+        "shares": 26,
+        "pnl": 4.42,
+        "return_pct": 0.08,
+        "bars_held": 5,
+        "result": "WIN",
+        "exit_reason": "5-Day Time Stop (Capital Recycled)"
+      }
+    ]
+  },
+  "3y": {
+    "ticker": "AMZN",
+    "initial_capital": 10000.0,
+    "final_balance": 10172.63,
+    "net_profit": 172.63,
+    "strategy_return_pct": 1.73,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 6,
+    "wins": 4,
+    "losses": 2,
+    "win_rate_pct": 66.7,
+    "profit_factor": 1.66,
+    "expectancy_dollar": 28.77,
+    "max_drawdown_pct": 1.44,
+    "avg_bars_held": 5.0,
+    "avg_win": 108.12,
+    "avg_loss": 129.92,
+    "equity_curve": [
+      {
+        "date": "2024-01-29",
+        "balance": 10000.0
+      },
+      {
+        "date": "2024-06-24",
+        "balance": 10000.0
+      },
+      {
+        "date": "2024-06-25",
+        "balance": 10000.0
+      },
+      {
+        "date": "2024-06-26",
+        "balance": 10085.09
+      },
+      {
+        "date": "2024-06-27",
+        "balance": 10085.09
+      },
+      {
+        "date": "2024-06-28",
+        "balance": 10151.81
+      },
+      {
+        "date": "2024-09-23",
+        "balance": 10151.81
+      },
+      {
+        "date": "2024-09-24",
+        "balance": 10151.81
+      },
+      {
+        "date": "2024-09-25",
+        "balance": 10151.81
+      },
+      {
+        "date": "2024-09-26",
+        "balance": 10151.81
+      },
+      {
+        "date": "2024-09-27",
+        "balance": 10039.28
+      },
+      {
+        "date": "2024-11-07",
+        "balance": 10039.28
+      },
+      {
+        "date": "2024-11-08",
+        "balance": 10039.28
+      },
+      {
+        "date": "2024-11-11",
+        "balance": 10039.28
+      },
+      {
+        "date": "2024-11-12",
+        "balance": 10039.28
+      },
+      {
+        "date": "2024-11-13",
+        "balance": 10126.25
+      },
+      {
+        "date": "2024-11-14",
+        "balance": 10192.1
+      },
+      {
+        "date": "2025-06-30",
+        "balance": 10192.1
+      },
+      {
+        "date": "2025-07-01",
+        "balance": 10192.1
+      },
+      {
+        "date": "2025-07-02",
+        "balance": 10192.1
+      },
+      {
+        "date": "2025-07-03",
+        "balance": 10192.1
+      },
+      {
+        "date": "2025-07-07",
+        "balance": 10196.69
+      },
+      {
+        "date": "2025-09-05",
+        "balance": 10196.69
+      },
+      {
+        "date": "2025-09-08",
+        "balance": 10196.69
+      },
+      {
+        "date": "2025-09-09",
+        "balance": 10196.69
+      },
+      {
+        "date": "2025-09-10",
+        "balance": 10049.39
+      },
+      {
+        "date": "2026-01-07",
+        "balance": 10049.39
+      },
+      {
+        "date": "2026-01-08",
+        "balance": 10049.39
+      },
+      {
+        "date": "2026-01-09",
+        "balance": 10049.39
+      },
+      {
+        "date": "2026-01-12",
+        "balance": 10136.13
+      },
+      {
+        "date": "2026-01-13",
+        "balance": 10172.63
+      }
+    ],
+    "trades": [
+      {
+        "id": 6,
+        "ticker": "AMZN",
+        "entry_date": "2026-01-06",
+        "exit_date": "2026-01-13",
+        "entry_price": 240.93,
+        "exit_price": 243.74,
+        "shares": 25,
+        "pnl": 123.23,
+        "return_pct": 2.05,
+        "bars_held": 5,
+        "result": "WIN",
+        "exit_reason": "Trailing EMA Stop"
+      },
+      {
+        "id": 5,
+        "ticker": "AMZN",
+        "entry_date": "2025-09-04",
+        "exit_date": "2025-09-10",
+        "entry_price": 235.68,
+        "exit_price": 229.79,
+        "shares": 25,
+        "pnl": -147.3,
+        "return_pct": -2.5,
+        "bars_held": 4,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 4,
+        "ticker": "AMZN",
+        "entry_date": "2025-06-27",
+        "exit_date": "2025-07-07",
+        "entry_price": 223.3,
+        "exit_price": 223.47,
+        "shares": 27,
+        "pnl": 4.59,
+        "return_pct": 0.08,
+        "bars_held": 5,
+        "result": "WIN",
+        "exit_reason": "5-Day Time Stop (Capital Recycled)"
+      },
+      {
+        "id": 3,
+        "ticker": "AMZN",
+        "entry_date": "2024-11-06",
+        "exit_date": "2024-11-14",
+        "entry_price": 207.09,
+        "exit_price": 211.48,
+        "shares": 29,
+        "pnl": 152.83,
+        "return_pct": 2.54,
+        "bars_held": 6,
+        "result": "WIN",
+        "exit_reason": "5-Day Time Stop (Capital Recycled)"
+      },
+      {
+        "id": 2,
+        "ticker": "AMZN",
+        "entry_date": "2024-09-20",
+        "exit_date": "2024-09-27",
+        "entry_price": 191.6,
+        "exit_price": 187.97,
+        "shares": 31,
+        "pnl": -112.53,
+        "return_pct": -1.89,
+        "bars_held": 5,
+        "result": "LOSS",
+        "exit_reason": "5-Day Time Stop (Capital Recycled)"
+      },
+      {
+        "id": 1,
+        "ticker": "AMZN",
+        "entry_date": "2024-06-21",
+        "exit_date": "2024-06-28",
+        "entry_price": 189.08,
+        "exit_price": 193.25,
+        "shares": 31,
+        "pnl": 151.81,
+        "return_pct": 2.59,
+        "bars_held": 5,
+        "result": "WIN",
+        "exit_reason": "5-Day Time Stop (Capital Recycled)"
+      }
+    ]
+  },
+  "initial_capital": 10000.0,
+  "final_balance": 9977.55,
+  "net_profit": -22.45,
+  "strategy_return_pct": -0.22,
+  "buy_and_hold_return_pct": NaN,
+  "total_trades": 3,
+  "wins": 2,
+  "losses": 1,
+  "win_rate_pct": 66.7,
+  "profit_factor": 0.85,
+  "expectancy_dollar": -7.48,
+  "max_drawdown_pct": 1.47,
+  "avg_bars_held": 4.7,
+  "avg_win": 62.43,
+  "avg_loss": 147.3,
+  "equity_curve": [
+    {
+      "date": "2025-01-30",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-06-30",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-07-01",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-07-02",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-07-03",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-07-07",
+      "balance": 10004.42
+    },
+    {
+      "date": "2025-09-05",
+      "balance": 10004.42
+    },
+    {
+      "date": "2025-09-08",
+      "balance": 10004.42
+    },
+    {
+      "date": "2025-09-09",
+      "balance": 10004.42
+    },
+    {
+      "date": "2025-09-10",
+      "balance": 9857.12
+    },
+    {
+      "date": "2026-01-07",
+      "balance": 9857.12
+    },
+    {
+      "date": "2026-01-08",
+      "balance": 9857.12
+    },
+    {
+      "date": "2026-01-09",
+      "balance": 9857.12
+    },
+    {
+      "date": "2026-01-12",
+      "balance": 9943.85
+    },
+    {
+      "date": "2026-01-13",
+      "balance": 9977.55
+    }
+  ],
+  "trades": [
+    {
+      "id": 3,
+      "ticker": "AMZN",
+      "entry_date": "2026-01-06",
+      "exit_date": "2026-01-13",
+      "entry_price": 240.93,
+      "exit_price": 243.74,
+      "shares": 24,
+      "pnl": 120.43,
+      "return_pct": 2.08,
+      "bars_held": 5,
+      "result": "WIN",
+      "exit_reason": "Trailing EMA Stop"
+    },
+    {
+      "id": 2,
+      "ticker": "AMZN",
+      "entry_date": "2025-09-04",
+      "exit_date": "2025-09-10",
+      "entry_price": 235.68,
+      "exit_price": 229.79,
+      "shares": 25,
+      "pnl": -147.3,
+      "return_pct": -2.5,
+      "bars_held": 4,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    },
+    {
+      "id": 1,
+      "ticker": "AMZN",
+      "entry_date": "2025-06-27",
+      "exit_date": "2025-07-07",
+      "entry_price": 223.3,
+      "exit_price": 223.47,
+      "shares": 26,
+      "pnl": 4.42,
+      "return_pct": 0.08,
+      "bars_held": 5,
+      "result": "WIN",
+      "exit_reason": "5-Day Time Stop (Capital Recycled)"
+    }
+  ]
+}

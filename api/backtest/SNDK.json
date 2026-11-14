@@ -1,0 +1,223 @@
+{
+  "ticker": "SNDK",
+  "1y": {
+    "ticker": "SNDK",
+    "initial_capital": 10000.0,
+    "final_balance": 10000.0,
+    "net_profit": 0.0,
+    "strategy_return_pct": 0.0,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate_pct": 0.0,
+    "profit_factor": 1.0,
+    "expectancy_dollar": 0.0,
+    "max_drawdown_pct": 0.0,
+    "avg_bars_held": 0.0,
+    "avg_win": 0.0,
+    "avg_loss": 0.0,
+    "equity_curve": [
+      {
+        "date": "2026-01-29",
+        "balance": 10000.0
+      }
+    ],
+    "trades": []
+  },
+  "2y": {
+    "ticker": "SNDK",
+    "initial_capital": 10000.0,
+    "final_balance": 10116.48,
+    "net_profit": 116.48,
+    "strategy_return_pct": 1.16,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 2,
+    "wins": 1,
+    "losses": 1,
+    "win_rate_pct": 50.0,
+    "profit_factor": 1.76,
+    "expectancy_dollar": 58.24,
+    "max_drawdown_pct": 1.49,
+    "avg_bars_held": 1.5,
+    "avg_win": 269.45,
+    "avg_loss": 152.97,
+    "equity_curve": [
+      {
+        "date": "2025-04-28",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-05-09",
+        "balance": 10089.08
+      },
+      {
+        "date": "2025-05-12",
+        "balance": 10269.45
+      },
+      {
+        "date": "2025-08-11",
+        "balance": 10116.48
+      }
+    ],
+    "trades": [
+      {
+        "id": 2,
+        "ticker": "SNDK",
+        "entry_date": "2025-08-08",
+        "exit_date": "2025-08-11",
+        "entry_price": 44.34,
+        "exit_price": 43.23,
+        "shares": 138,
+        "pnl": -152.97,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 1,
+        "ticker": "SNDK",
+        "entry_date": "2025-05-08",
+        "exit_date": "2025-05-12",
+        "entry_price": 36.66,
+        "exit_price": 38.86,
+        "shares": 163,
+        "pnl": 269.45,
+        "return_pct": 4.51,
+        "bars_held": 2,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      }
+    ]
+  },
+  "3y": {
+    "ticker": "SNDK",
+    "initial_capital": 10000.0,
+    "final_balance": 10116.48,
+    "net_profit": 116.48,
+    "strategy_return_pct": 1.16,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 2,
+    "wins": 1,
+    "losses": 1,
+    "win_rate_pct": 50.0,
+    "profit_factor": 1.76,
+    "expectancy_dollar": 58.24,
+    "max_drawdown_pct": 1.49,
+    "avg_bars_held": 1.5,
+    "avg_win": 269.45,
+    "avg_loss": 152.97,
+    "equity_curve": [
+      {
+        "date": "2025-04-28",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-05-09",
+        "balance": 10089.08
+      },
+      {
+        "date": "2025-05-12",
+        "balance": 10269.45
+      },
+      {
+        "date": "2025-08-11",
+        "balance": 10116.48
+      }
+    ],
+    "trades": [
+      {
+        "id": 2,
+        "ticker": "SNDK",
+        "entry_date": "2025-08-08",
+        "exit_date": "2025-08-11",
+        "entry_price": 44.34,
+        "exit_price": 43.23,
+        "shares": 138,
+        "pnl": -152.97,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 1,
+        "ticker": "SNDK",
+        "entry_date": "2025-05-08",
+        "exit_date": "2025-05-12",
+        "entry_price": 36.66,
+        "exit_price": 38.86,
+        "shares": 163,
+        "pnl": 269.45,
+        "return_pct": 4.51,
+        "bars_held": 2,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      }
+    ]
+  },
+  "initial_capital": 10000.0,
+  "final_balance": 10116.48,
+  "net_profit": 116.48,
+  "strategy_return_pct": 1.16,
+  "buy_and_hold_return_pct": NaN,
+  "total_trades": 2,
+  "wins": 1,
+  "losses": 1,
+  "win_rate_pct": 50.0,
+  "profit_factor": 1.76,
+  "expectancy_dollar": 58.24,
+  "max_drawdown_pct": 1.49,
+  "avg_bars_held": 1.5,
+  "avg_win": 269.45,
+  "avg_loss": 152.97,
+  "equity_curve": [
+    {
+      "date": "2025-04-28",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-05-09",
+      "balance": 10089.08
+    },
+    {
+      "date": "2025-05-12",
+      "balance": 10269.45
+    },
+    {
+      "date": "2025-08-11",
+      "balance": 10116.48
+    }
+  ],
+  "trades": [
+    {
+      "id": 2,
+      "ticker": "SNDK",
+      "entry_date": "2025-08-08",
+      "exit_date": "2025-08-11",
+      "entry_price": 44.34,
+      "exit_price": 43.23,
+      "shares": 138,
+      "pnl": -152.97,
+      "return_pct": -2.5,
+      "bars_held": 1,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    },
+    {
+      "id": 1,
+      "ticker": "SNDK",
+      "entry_date": "2025-05-08",
+      "exit_date": "2025-05-12",
+      "entry_price": 36.66,
+      "exit_price": 38.86,
+      "shares": 163,
+      "pnl": 269.45,
+      "return_pct": 4.51,
+      "bars_held": 2,
+      "result": "WIN",
+      "exit_reason": "Full Target 2 Reached (+6.0%)"
+    }
+  ]
+}

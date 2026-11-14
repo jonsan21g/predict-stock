@@ -1,0 +1,209 @@
+{
+  "ticker": "WDC",
+  "1y": {
+    "ticker": "WDC",
+    "initial_capital": 10000.0,
+    "final_balance": 10000.0,
+    "net_profit": 0.0,
+    "strategy_return_pct": 0.0,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate_pct": 0.0,
+    "profit_factor": 1.0,
+    "expectancy_dollar": 0.0,
+    "max_drawdown_pct": 0.0,
+    "avg_bars_held": 0.0,
+    "avg_win": 0.0,
+    "avg_loss": 0.0,
+    "equity_curve": [
+      {
+        "date": "2026-01-29",
+        "balance": 10000.0
+      }
+    ],
+    "trades": []
+  },
+  "2y": {
+    "ticker": "WDC",
+    "initial_capital": 10000.0,
+    "final_balance": 10269.19,
+    "net_profit": 269.19,
+    "strategy_return_pct": 2.69,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 1,
+    "wins": 1,
+    "losses": 0,
+    "win_rate_pct": 100.0,
+    "profit_factor": 269.19,
+    "expectancy_dollar": 269.19,
+    "max_drawdown_pct": 0.0,
+    "avg_bars_held": 2.0,
+    "avg_win": 269.19,
+    "avg_loss": 0.0,
+    "equity_curve": [
+      {
+        "date": "2025-01-30",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-07-31",
+        "balance": 10089.73
+      },
+      {
+        "date": "2025-08-01",
+        "balance": 10269.19
+      }
+    ],
+    "trades": [
+      {
+        "id": 1,
+        "ticker": "WDC",
+        "entry_date": "2025-07-30",
+        "exit_date": "2025-08-01",
+        "entry_price": 71.21,
+        "exit_price": 75.49,
+        "shares": 84,
+        "pnl": 269.19,
+        "return_pct": 4.5,
+        "bars_held": 2,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      }
+    ]
+  },
+  "3y": {
+    "ticker": "WDC",
+    "initial_capital": 10000.0,
+    "final_balance": 9963.82,
+    "net_profit": -36.18,
+    "strategy_return_pct": -0.36,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 3,
+    "wins": 1,
+    "losses": 2,
+    "win_rate_pct": 33.3,
+    "profit_factor": 0.88,
+    "expectancy_dollar": -12.06,
+    "max_drawdown_pct": 2.97,
+    "avg_bars_held": 1.7,
+    "avg_win": 260.64,
+    "avg_loss": 148.42,
+    "equity_curve": [
+      {
+        "date": "2024-01-29",
+        "balance": 10000.0
+      },
+      {
+        "date": "2024-05-30",
+        "balance": 9850.03
+      },
+      {
+        "date": "2024-09-23",
+        "balance": 9850.03
+      },
+      {
+        "date": "2024-09-24",
+        "balance": 9703.17
+      },
+      {
+        "date": "2025-07-31",
+        "balance": 9788.63
+      },
+      {
+        "date": "2025-08-01",
+        "balance": 9963.82
+      }
+    ],
+    "trades": [
+      {
+        "id": 3,
+        "ticker": "WDC",
+        "entry_date": "2025-07-30",
+        "exit_date": "2025-08-01",
+        "entry_price": 71.21,
+        "exit_price": 75.49,
+        "shares": 81,
+        "pnl": 260.64,
+        "return_pct": 4.52,
+        "bars_held": 2,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      },
+      {
+        "id": 2,
+        "ticker": "WDC",
+        "entry_date": "2024-09-20",
+        "exit_date": "2024-09-24",
+        "entry_price": 50.21,
+        "exit_price": 48.95,
+        "shares": 117,
+        "pnl": -146.86,
+        "return_pct": -2.5,
+        "bars_held": 2,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 1,
+        "ticker": "WDC",
+        "entry_date": "2024-05-29",
+        "exit_date": "2024-05-30",
+        "entry_price": 58.24,
+        "exit_price": 56.78,
+        "shares": 103,
+        "pnl": -149.97,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "initial_capital": 10000.0,
+  "final_balance": 10269.19,
+  "net_profit": 269.19,
+  "strategy_return_pct": 2.69,
+  "buy_and_hold_return_pct": NaN,
+  "total_trades": 1,
+  "wins": 1,
+  "losses": 0,
+  "win_rate_pct": 100.0,
+  "profit_factor": 269.19,
+  "expectancy_dollar": 269.19,
+  "max_drawdown_pct": 0.0,
+  "avg_bars_held": 2.0,
+  "avg_win": 269.19,
+  "avg_loss": 0.0,
+  "equity_curve": [
+    {
+      "date": "2025-01-30",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-07-31",
+      "balance": 10089.73
+    },
+    {
+      "date": "2025-08-01",
+      "balance": 10269.19
+    }
+  ],
+  "trades": [
+    {
+      "id": 1,
+      "ticker": "WDC",
+      "entry_date": "2025-07-30",
+      "exit_date": "2025-08-01",
+      "entry_price": 71.21,
+      "exit_price": 75.49,
+      "shares": 84,
+      "pnl": 269.19,
+      "return_pct": 4.5,
+      "bars_held": 2,
+      "result": "WIN",
+      "exit_reason": "Full Target 2 Reached (+6.0%)"
+    }
+  ]
+}

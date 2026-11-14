@@ -1,0 +1,456 @@
+{
+  "ticker": "META",
+  "1y": {
+    "ticker": "META",
+    "initial_capital": 10000.0,
+    "final_balance": 10265.01,
+    "net_profit": 265.01,
+    "strategy_return_pct": 2.65,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 1,
+    "wins": 1,
+    "losses": 0,
+    "win_rate_pct": 100.0,
+    "profit_factor": 265.01,
+    "expectancy_dollar": 265.01,
+    "max_drawdown_pct": 0.0,
+    "avg_bars_held": 2.0,
+    "avg_win": 265.01,
+    "avg_loss": 0.0,
+    "equity_curve": [
+      {
+        "date": "2026-01-29",
+        "balance": 10000.0
+      },
+      {
+        "date": "2026-07-10",
+        "balance": 10075.72
+      },
+      {
+        "date": "2026-07-13",
+        "balance": 10265.01
+      }
+    ],
+    "trades": [
+      {
+        "id": 1,
+        "ticker": "META",
+        "entry_date": "2026-07-09",
+        "exit_date": "2026-07-13",
+        "entry_price": 630.98,
+        "exit_price": 668.84,
+        "shares": 9,
+        "pnl": 265.01,
+        "return_pct": 4.67,
+        "bars_held": 2,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      }
+    ]
+  },
+  "2y": {
+    "ticker": "META",
+    "initial_capital": 10000.0,
+    "final_balance": 10118.88,
+    "net_profit": 118.88,
+    "strategy_return_pct": 1.19,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 2,
+    "wins": 1,
+    "losses": 1,
+    "win_rate_pct": 50.0,
+    "profit_factor": 1.81,
+    "expectancy_dollar": 59.44,
+    "max_drawdown_pct": 1.46,
+    "avg_bars_held": 2.5,
+    "avg_win": 265.01,
+    "avg_loss": 146.13,
+    "equity_curve": [
+      {
+        "date": "2025-01-30",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-06-30",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-07-01",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-07-02",
+        "balance": 9853.87
+      },
+      {
+        "date": "2026-07-10",
+        "balance": 9929.59
+      },
+      {
+        "date": "2026-07-13",
+        "balance": 10118.88
+      }
+    ],
+    "trades": [
+      {
+        "id": 2,
+        "ticker": "META",
+        "entry_date": "2026-07-09",
+        "exit_date": "2026-07-13",
+        "entry_price": 630.98,
+        "exit_price": 668.84,
+        "shares": 9,
+        "pnl": 265.01,
+        "return_pct": 4.67,
+        "bars_held": 2,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      },
+      {
+        "id": 1,
+        "ticker": "META",
+        "entry_date": "2025-06-27",
+        "exit_date": "2025-07-02",
+        "entry_price": 730.66,
+        "exit_price": 712.39,
+        "shares": 8,
+        "pnl": -146.13,
+        "return_pct": -2.5,
+        "bars_held": 3,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "3y": {
+    "ticker": "META",
+    "initial_capital": 10000.0,
+    "final_balance": 9874.11,
+    "net_profit": -125.89,
+    "strategy_return_pct": -1.26,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 9,
+    "wins": 4,
+    "losses": 5,
+    "win_rate_pct": 44.4,
+    "profit_factor": 0.83,
+    "expectancy_dollar": -13.99,
+    "max_drawdown_pct": 3.91,
+    "avg_bars_held": 3.0,
+    "avg_win": 148.93,
+    "avg_loss": 144.32,
+    "equity_curve": [
+      {
+        "date": "2024-01-29",
+        "balance": 10000.0
+      },
+      {
+        "date": "2024-04-08",
+        "balance": 10000.0
+      },
+      {
+        "date": "2024-04-09",
+        "balance": 9856.2
+      },
+      {
+        "date": "2024-06-06",
+        "balance": 9856.2
+      },
+      {
+        "date": "2024-06-07",
+        "balance": 9856.2
+      },
+      {
+        "date": "2024-06-10",
+        "balance": 9856.2
+      },
+      {
+        "date": "2024-06-11",
+        "balance": 9856.2
+      },
+      {
+        "date": "2024-06-12",
+        "balance": 9944.56
+      },
+      {
+        "date": "2024-06-13",
+        "balance": 9982.24
+      },
+      {
+        "date": "2024-07-08",
+        "balance": 9982.24
+      },
+      {
+        "date": "2024-07-09",
+        "balance": 9982.24
+      },
+      {
+        "date": "2024-07-10",
+        "balance": 9982.24
+      },
+      {
+        "date": "2024-07-11",
+        "balance": 9834.87
+      },
+      {
+        "date": "2024-09-20",
+        "balance": 9834.87
+      },
+      {
+        "date": "2024-09-23",
+        "balance": 9834.87
+      },
+      {
+        "date": "2024-09-24",
+        "balance": 9834.87
+      },
+      {
+        "date": "2024-09-25",
+        "balance": 9918.19
+      },
+      {
+        "date": "2024-09-26",
+        "balance": 9961.6
+      },
+      {
+        "date": "2024-12-09",
+        "balance": 9822.17
+      },
+      {
+        "date": "2025-01-27",
+        "balance": 9677.31
+      },
+      {
+        "date": "2025-01-30",
+        "balance": 9758.03
+      },
+      {
+        "date": "2025-01-31",
+        "balance": 9758.03
+      },
+      {
+        "date": "2025-02-03",
+        "balance": 9755.23
+      },
+      {
+        "date": "2025-06-30",
+        "balance": 9755.23
+      },
+      {
+        "date": "2025-07-01",
+        "balance": 9755.23
+      },
+      {
+        "date": "2025-07-02",
+        "balance": 9609.1
+      },
+      {
+        "date": "2026-07-10",
+        "balance": 9684.82
+      },
+      {
+        "date": "2026-07-13",
+        "balance": 9874.11
+      }
+    ],
+    "trades": [
+      {
+        "id": 9,
+        "ticker": "META",
+        "entry_date": "2026-07-09",
+        "exit_date": "2026-07-13",
+        "entry_price": 630.98,
+        "exit_price": 668.84,
+        "shares": 9,
+        "pnl": 265.01,
+        "return_pct": 4.67,
+        "bars_held": 2,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      },
+      {
+        "id": 8,
+        "ticker": "META",
+        "entry_date": "2025-06-27",
+        "exit_date": "2025-07-02",
+        "entry_price": 730.66,
+        "exit_price": 712.39,
+        "shares": 8,
+        "pnl": -146.13,
+        "return_pct": -2.5,
+        "bars_held": 3,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 7,
+        "ticker": "META",
+        "entry_date": "2025-01-29",
+        "exit_date": "2025-02-03",
+        "entry_price": 672.63,
+        "exit_price": 671.93,
+        "shares": 8,
+        "pnl": 77.92,
+        "return_pct": 1.45,
+        "bars_held": 3,
+        "result": "WIN",
+        "exit_reason": "Trailing EMA Stop"
+      },
+      {
+        "id": 6,
+        "ticker": "META",
+        "entry_date": "2025-01-24",
+        "exit_date": "2025-01-27",
+        "entry_price": 643.8,
+        "exit_price": 627.7,
+        "shares": 9,
+        "pnl": -144.85,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 5,
+        "ticker": "META",
+        "entry_date": "2024-12-06",
+        "exit_date": "2024-12-09",
+        "entry_price": 619.71,
+        "exit_price": 604.22,
+        "shares": 9,
+        "pnl": -139.44,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 4,
+        "ticker": "META",
+        "entry_date": "2024-09-19",
+        "exit_date": "2024-09-26",
+        "entry_price": 555.46,
+        "exit_price": 564.15,
+        "shares": 10,
+        "pnl": 126.74,
+        "return_pct": 2.28,
+        "bars_held": 5,
+        "result": "WIN",
+        "exit_reason": "5-Day Time Stop (Capital Recycled)"
+      },
+      {
+        "id": 3,
+        "ticker": "META",
+        "entry_date": "2024-07-05",
+        "exit_date": "2024-07-11",
+        "entry_price": 535.89,
+        "exit_price": 522.49,
+        "shares": 11,
+        "pnl": -147.37,
+        "return_pct": -2.5,
+        "bars_held": 4,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 2,
+        "ticker": "META",
+        "entry_date": "2024-06-05",
+        "exit_date": "2024-06-13",
+        "entry_price": 490.88,
+        "exit_price": 497.16,
+        "shares": 12,
+        "pnl": 126.03,
+        "return_pct": 2.14,
+        "bars_held": 6,
+        "result": "WIN",
+        "exit_reason": "Trailing EMA Stop"
+      },
+      {
+        "id": 1,
+        "ticker": "META",
+        "entry_date": "2024-04-05",
+        "exit_date": "2024-04-09",
+        "entry_price": 522.89,
+        "exit_price": 509.82,
+        "shares": 11,
+        "pnl": -143.8,
+        "return_pct": -2.5,
+        "bars_held": 2,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "initial_capital": 10000.0,
+  "final_balance": 10118.88,
+  "net_profit": 118.88,
+  "strategy_return_pct": 1.19,
+  "buy_and_hold_return_pct": NaN,
+  "total_trades": 2,
+  "wins": 1,
+  "losses": 1,
+  "win_rate_pct": 50.0,
+  "profit_factor": 1.81,
+  "expectancy_dollar": 59.44,
+  "max_drawdown_pct": 1.46,
+  "avg_bars_held": 2.5,
+  "avg_win": 265.01,
+  "avg_loss": 146.13,
+  "equity_curve": [
+    {
+      "date": "2025-01-30",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-06-30",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-07-01",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-07-02",
+      "balance": 9853.87
+    },
+    {
+      "date": "2026-07-10",
+      "balance": 9929.59
+    },
+    {
+      "date": "2026-07-13",
+      "balance": 10118.88
+    }
+  ],
+  "trades": [
+    {
+      "id": 2,
+      "ticker": "META",
+      "entry_date": "2026-07-09",
+      "exit_date": "2026-07-13",
+      "entry_price": 630.98,
+      "exit_price": 668.84,
+      "shares": 9,
+      "pnl": 265.01,
+      "return_pct": 4.67,
+      "bars_held": 2,
+      "result": "WIN",
+      "exit_reason": "Full Target 2 Reached (+6.0%)"
+    },
+    {
+      "id": 1,
+      "ticker": "META",
+      "entry_date": "2025-06-27",
+      "exit_date": "2025-07-02",
+      "entry_price": 730.66,
+      "exit_price": 712.39,
+      "shares": 8,
+      "pnl": -146.13,
+      "return_pct": -2.5,
+      "bars_held": 3,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    }
+  ]
+}

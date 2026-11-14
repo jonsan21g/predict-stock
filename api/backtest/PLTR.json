@@ -1,0 +1,205 @@
+{
+  "ticker": "PLTR",
+  "1y": {
+    "ticker": "PLTR",
+    "initial_capital": 10000.0,
+    "final_balance": 10000.0,
+    "net_profit": 0.0,
+    "strategy_return_pct": 0.0,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate_pct": 0.0,
+    "profit_factor": 1.0,
+    "expectancy_dollar": 0.0,
+    "max_drawdown_pct": 0.0,
+    "avg_bars_held": 0.0,
+    "avg_win": 0.0,
+    "avg_loss": 0.0,
+    "equity_curve": [
+      {
+        "date": "2026-01-29",
+        "balance": 10000.0
+      }
+    ],
+    "trades": []
+  },
+  "2y": {
+    "ticker": "PLTR",
+    "initial_capital": 10000.0,
+    "final_balance": 9850.13,
+    "net_profit": -149.87,
+    "strategy_return_pct": -1.5,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 1,
+    "wins": 0,
+    "losses": 1,
+    "win_rate_pct": 0.0,
+    "profit_factor": 0.0,
+    "expectancy_dollar": -149.87,
+    "max_drawdown_pct": 1.5,
+    "avg_bars_held": 5.0,
+    "avg_win": 0.0,
+    "avg_loss": 149.87,
+    "equity_curve": [
+      {
+        "date": "2025-01-30",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-12-22",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-12-23",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-12-24",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-12-26",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-12-29",
+        "balance": 9850.13
+      }
+    ],
+    "trades": [
+      {
+        "id": 1,
+        "ticker": "PLTR",
+        "entry_date": "2025-12-19",
+        "exit_date": "2025-12-29",
+        "entry_price": 193.38,
+        "exit_price": 188.55,
+        "shares": 31,
+        "pnl": -149.87,
+        "return_pct": -2.5,
+        "bars_held": 5,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "3y": {
+    "ticker": "PLTR",
+    "initial_capital": 10000.0,
+    "final_balance": 9850.13,
+    "net_profit": -149.87,
+    "strategy_return_pct": -1.5,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 1,
+    "wins": 0,
+    "losses": 1,
+    "win_rate_pct": 0.0,
+    "profit_factor": 0.0,
+    "expectancy_dollar": -149.87,
+    "max_drawdown_pct": 1.5,
+    "avg_bars_held": 5.0,
+    "avg_win": 0.0,
+    "avg_loss": 149.87,
+    "equity_curve": [
+      {
+        "date": "2024-01-29",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-12-22",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-12-23",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-12-24",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-12-26",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-12-29",
+        "balance": 9850.13
+      }
+    ],
+    "trades": [
+      {
+        "id": 1,
+        "ticker": "PLTR",
+        "entry_date": "2025-12-19",
+        "exit_date": "2025-12-29",
+        "entry_price": 193.38,
+        "exit_price": 188.55,
+        "shares": 31,
+        "pnl": -149.87,
+        "return_pct": -2.5,
+        "bars_held": 5,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "initial_capital": 10000.0,
+  "final_balance": 9850.13,
+  "net_profit": -149.87,
+  "strategy_return_pct": -1.5,
+  "buy_and_hold_return_pct": NaN,
+  "total_trades": 1,
+  "wins": 0,
+  "losses": 1,
+  "win_rate_pct": 0.0,
+  "profit_factor": 0.0,
+  "expectancy_dollar": -149.87,
+  "max_drawdown_pct": 1.5,
+  "avg_bars_held": 5.0,
+  "avg_win": 0.0,
+  "avg_loss": 149.87,
+  "equity_curve": [
+    {
+      "date": "2025-01-30",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-12-22",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-12-23",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-12-24",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-12-26",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-12-29",
+      "balance": 9850.13
+    }
+  ],
+  "trades": [
+    {
+      "id": 1,
+      "ticker": "PLTR",
+      "entry_date": "2025-12-19",
+      "exit_date": "2025-12-29",
+      "entry_price": 193.38,
+      "exit_price": 188.55,
+      "shares": 31,
+      "pnl": -149.87,
+      "return_pct": -2.5,
+      "bars_held": 5,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    }
+  ]
+}

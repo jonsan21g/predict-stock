@@ -1,0 +1,320 @@
+{
+  "ticker": "AMD",
+  "1y": {
+    "ticker": "AMD",
+    "initial_capital": 10000.0,
+    "final_balance": 9851.32,
+    "net_profit": -148.68,
+    "strategy_return_pct": -1.49,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 1,
+    "wins": 0,
+    "losses": 1,
+    "win_rate_pct": 0.0,
+    "profit_factor": 0.0,
+    "expectancy_dollar": -148.68,
+    "max_drawdown_pct": 1.49,
+    "avg_bars_held": 1.0,
+    "avg_win": 0.0,
+    "avg_loss": 148.68,
+    "equity_curve": [
+      {
+        "date": "2026-01-29",
+        "balance": 10000.0
+      },
+      {
+        "date": "2026-03-26",
+        "balance": 9851.32
+      }
+    ],
+    "trades": [
+      {
+        "id": 1,
+        "ticker": "AMD",
+        "entry_date": "2026-03-25",
+        "exit_date": "2026-03-26",
+        "entry_price": 220.27,
+        "exit_price": 214.76,
+        "shares": 27,
+        "pnl": -148.68,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "2y": {
+    "ticker": "AMD",
+    "initial_capital": 10000.0,
+    "final_balance": 9562.74,
+    "net_profit": -437.26,
+    "strategy_return_pct": -4.37,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 3,
+    "wins": 0,
+    "losses": 3,
+    "win_rate_pct": 0.0,
+    "profit_factor": 0.0,
+    "expectancy_dollar": -145.75,
+    "max_drawdown_pct": 4.37,
+    "avg_bars_held": 2.0,
+    "avg_win": 0.0,
+    "avg_loss": 145.75,
+    "equity_curve": [
+      {
+        "date": "2025-01-30",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-03-25",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-03-26",
+        "balance": 9852.0
+      },
+      {
+        "date": "2025-06-10",
+        "balance": 9852.0
+      },
+      {
+        "date": "2025-06-11",
+        "balance": 9852.0
+      },
+      {
+        "date": "2025-06-12",
+        "balance": 9705.92
+      },
+      {
+        "date": "2026-03-26",
+        "balance": 9562.74
+      }
+    ],
+    "trades": [
+      {
+        "id": 3,
+        "ticker": "AMD",
+        "entry_date": "2026-03-25",
+        "exit_date": "2026-03-26",
+        "entry_price": 220.27,
+        "exit_price": 214.76,
+        "shares": 26,
+        "pnl": -143.18,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 2,
+        "ticker": "AMD",
+        "entry_date": "2025-06-09",
+        "exit_date": "2025-06-12",
+        "entry_price": 121.73,
+        "exit_price": 118.69,
+        "shares": 48,
+        "pnl": -146.08,
+        "return_pct": -2.5,
+        "bars_held": 3,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 1,
+        "ticker": "AMD",
+        "entry_date": "2025-03-24",
+        "exit_date": "2025-03-26",
+        "entry_price": 113.85,
+        "exit_price": 111.0,
+        "shares": 52,
+        "pnl": -148.0,
+        "return_pct": -2.5,
+        "bars_held": 2,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "3y": {
+    "ticker": "AMD",
+    "initial_capital": 10000.0,
+    "final_balance": 9562.74,
+    "net_profit": -437.26,
+    "strategy_return_pct": -4.37,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 3,
+    "wins": 0,
+    "losses": 3,
+    "win_rate_pct": 0.0,
+    "profit_factor": 0.0,
+    "expectancy_dollar": -145.75,
+    "max_drawdown_pct": 4.37,
+    "avg_bars_held": 2.0,
+    "avg_win": 0.0,
+    "avg_loss": 145.75,
+    "equity_curve": [
+      {
+        "date": "2024-01-29",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-03-25",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-03-26",
+        "balance": 9852.0
+      },
+      {
+        "date": "2025-06-10",
+        "balance": 9852.0
+      },
+      {
+        "date": "2025-06-11",
+        "balance": 9852.0
+      },
+      {
+        "date": "2025-06-12",
+        "balance": 9705.92
+      },
+      {
+        "date": "2026-03-26",
+        "balance": 9562.74
+      }
+    ],
+    "trades": [
+      {
+        "id": 3,
+        "ticker": "AMD",
+        "entry_date": "2026-03-25",
+        "exit_date": "2026-03-26",
+        "entry_price": 220.27,
+        "exit_price": 214.76,
+        "shares": 26,
+        "pnl": -143.18,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 2,
+        "ticker": "AMD",
+        "entry_date": "2025-06-09",
+        "exit_date": "2025-06-12",
+        "entry_price": 121.73,
+        "exit_price": 118.69,
+        "shares": 48,
+        "pnl": -146.08,
+        "return_pct": -2.5,
+        "bars_held": 3,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 1,
+        "ticker": "AMD",
+        "entry_date": "2025-03-24",
+        "exit_date": "2025-03-26",
+        "entry_price": 113.85,
+        "exit_price": 111.0,
+        "shares": 52,
+        "pnl": -148.0,
+        "return_pct": -2.5,
+        "bars_held": 2,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "initial_capital": 10000.0,
+  "final_balance": 9562.74,
+  "net_profit": -437.26,
+  "strategy_return_pct": -4.37,
+  "buy_and_hold_return_pct": NaN,
+  "total_trades": 3,
+  "wins": 0,
+  "losses": 3,
+  "win_rate_pct": 0.0,
+  "profit_factor": 0.0,
+  "expectancy_dollar": -145.75,
+  "max_drawdown_pct": 4.37,
+  "avg_bars_held": 2.0,
+  "avg_win": 0.0,
+  "avg_loss": 145.75,
+  "equity_curve": [
+    {
+      "date": "2025-01-30",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-03-25",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-03-26",
+      "balance": 9852.0
+    },
+    {
+      "date": "2025-06-10",
+      "balance": 9852.0
+    },
+    {
+      "date": "2025-06-11",
+      "balance": 9852.0
+    },
+    {
+      "date": "2025-06-12",
+      "balance": 9705.92
+    },
+    {
+      "date": "2026-03-26",
+      "balance": 9562.74
+    }
+  ],
+  "trades": [
+    {
+      "id": 3,
+      "ticker": "AMD",
+      "entry_date": "2026-03-25",
+      "exit_date": "2026-03-26",
+      "entry_price": 220.27,
+      "exit_price": 214.76,
+      "shares": 26,
+      "pnl": -143.18,
+      "return_pct": -2.5,
+      "bars_held": 1,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    },
+    {
+      "id": 2,
+      "ticker": "AMD",
+      "entry_date": "2025-06-09",
+      "exit_date": "2025-06-12",
+      "entry_price": 121.73,
+      "exit_price": 118.69,
+      "shares": 48,
+      "pnl": -146.08,
+      "return_pct": -2.5,
+      "bars_held": 3,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    },
+    {
+      "id": 1,
+      "ticker": "AMD",
+      "entry_date": "2025-03-24",
+      "exit_date": "2025-03-26",
+      "entry_price": 113.85,
+      "exit_price": 111.0,
+      "shares": 52,
+      "pnl": -148.0,
+      "return_pct": -2.5,
+      "bars_held": 2,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    }
+  ]
+}

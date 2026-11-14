@@ -1,0 +1,743 @@
+{
+  "ticker": "SKHY",
+  "date": "2026-11-12",
+  "current_price": 137.71,
+  "change_pct": -3.19,
+  "is_ignition": false,
+  "ignition_type": "NONE",
+  "wave_probability": 42.9,
+  "composite_score": 42,
+  "rvol": 0.6273123675912136,
+  "crr": 0.6648569904273287,
+  "target_1": 142.53,
+  "target_2": 145.97,
+  "stop_loss": 134.27,
+  "smart_money": {
+    "politician_buy": false,
+    "jurisdiction_match": false,
+    "matched_committees": [],
+    "congress_score": 0,
+    "politicians": [],
+    "high_jurisdiction_buyers": [],
+    "congress_buy_count": 0,
+    "congress_sell_count": 0,
+    "congress_total_trades": 0,
+    "congress_trades": [],
+    "quiver_stock_url": "https://www.quiverquant.com/congresstrading/stock/SKHY",
+    "capitoltrades_url": "https://www.capitoltrades.com/issuers",
+    "house_disclosure_url": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+    "senate_disclosure_url": "https://efdsearch.senate.gov/search/",
+    "insider_buy": false,
+    "insider_cluster": false,
+    "insider_score": 0,
+    "total_buy_value_usd": 0,
+    "c_suite_buyers": [],
+    "insider_buy_count": 0,
+    "insider_sell_count": 0,
+    "net_shares": 0,
+    "unique_buyers": 0,
+    "recent_buys": [],
+    "recent_transactions": [],
+    "openinsider_purchases_url": "http://openinsider.com/screener?s=SKHY&tc=P&xp=1",
+    "openinsider_all_url": "http://openinsider.com/screener?s=SKHY",
+    "sec_edgar_url": "https://www.sec.gov/edgar/browse/?CIK=SKHY",
+    "sentiment_label": "BULLISH",
+    "sentiment_score": 0.441,
+    "discussion_velocity": 0.0,
+    "viral_politician_buzz": true,
+    "is_pelosi_effect": true,
+    "retail_hype_score": 70,
+    "buzz_keywords": [
+      "congress",
+      "senator"
+    ],
+    "social_volume": 40,
+    "pelosi_effect": {
+      "is_active": true,
+      "intensity": "HIGH_VELOCITY",
+      "hype_score": 70,
+      "primary_catalyst": "CAPITOL_HILL_DISCLOSURE",
+      "prominent_figures": [
+        "Corporate CEO / C-Suite"
+      ],
+      "lifecycle_stage": "IGNITION_ACCELERATION",
+      "narrative_summary": "Active Pelosi Effect (HIGH_VELOCITY - Hype Score: 70/100): Retail social streams are actively circulating Capitol Hill Disclosure citing Corporate CEO / C-Suite. Discussion demonstrates rapid copy-trading accumulation with strong bullish bias.",
+      "matched_keywords": [
+        "congress",
+        "senator"
+      ],
+      "mentions_count": 2,
+      "verbatim_quotes": [
+        {
+          "text": "What Could A CXMT Ban Mean For SK Hynix (KOSE:A000660)?. US-listed SK hynix (KOSE:A000660) faces fresh policy risk as a US Sena...",
+          "url": "https://finance.yahoo.com/technology/ai/articles/could-cxmt-ban-mean-sk-101448604.html",
+          "source": "News (Simply Wall St.)",
+          "author": "Simply Wall St."
+        },
+        {
+          "text": "5 Best Growth Stocks for the Next 5 Years. Technology stocks went from celebration to rout within two sessions this month. On W...",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/5-best-growth-stocks-next-231119066.html",
+          "source": "News (Insider Monkey)",
+          "author": "Insider Monkey"
+        }
+      ]
+    },
+    "recent_headlines": [],
+    "contracts": {
+      "total_value_usd": 0,
+      "contract_count": 0,
+      "has_major_contract": false,
+      "is_defense_contract": false,
+      "contract_score": 0,
+      "top_agencies": [],
+      "top_award_amount_usd": 0.0,
+      "recent_contracts": [],
+      "usaspending_search_url": "https://www.usaspending.gov/search/?keyword=SKHY",
+      "usaspending_recipient_url": "https://www.usaspending.gov/recipient"
+    }
+  },
+  "checks": [
+    {
+      "rule": "Institutional Volume Surge",
+      "passed": false,
+      "detail": "RVOL is 0.69x (required >= 1.50x or >= 1.30x on squeeze)"
+    },
+    {
+      "rule": "Closing Range Strength",
+      "passed": false,
+      "detail": "Finished at 50.0% of daily range (required >= 68%)"
+    },
+    {
+      "rule": "Structural Range Expansion",
+      "passed": false,
+      "detail": "Inside existing range"
+    },
+    {
+      "rule": "Fast EMA Trend Stack",
+      "passed": false,
+      "detail": "Price ($nan) > 5 EMA ($136.83) >= 20 EMA ($144.29)"
+    },
+    {
+      "rule": "Anti-Exhaustion Safe Zone",
+      "passed": false,
+      "detail": "Price is +nan% from 20 EMA (max safe limit +8.5%)"
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-08-21",
+      "open": 167.05,
+      "high": 167.46,
+      "low": 162.57,
+      "close": 163.41,
+      "volume": 15475700,
+      "ema5": 161.17,
+      "ema20": 156.11
+    },
+    {
+      "date": "2026-08-24",
+      "open": 157.37,
+      "high": 157.55,
+      "low": 151.5,
+      "close": 155.37,
+      "volume": 16711100,
+      "ema5": 159.24,
+      "ema20": 156.04
+    },
+    {
+      "date": "2026-08-25",
+      "open": 159.9,
+      "high": 161.2,
+      "low": 156.24,
+      "close": 159.53,
+      "volume": 12287300,
+      "ema5": 159.33,
+      "ema20": 156.37
+    },
+    {
+      "date": "2026-08-26",
+      "open": 158.61,
+      "high": 161.21,
+      "low": 157.59,
+      "close": 158.02,
+      "volume": 10327400,
+      "ema5": 158.9,
+      "ema20": 156.53
+    },
+    {
+      "date": "2026-08-27",
+      "open": 163.88,
+      "high": 164.73,
+      "low": 158.61,
+      "close": 161.61,
+      "volume": 13394000,
+      "ema5": 159.8,
+      "ema20": 157.01
+    },
+    {
+      "date": "2026-08-28",
+      "open": 159.2,
+      "high": 163.56,
+      "low": 157.97,
+      "close": 161.04,
+      "volume": 11712000,
+      "ema5": 160.21,
+      "ema20": 157.4
+    },
+    {
+      "date": "2026-08-31",
+      "open": 160.75,
+      "high": 165.07,
+      "low": 160.5,
+      "close": 164.58,
+      "volume": 12183300,
+      "ema5": 161.67,
+      "ema20": 158.08
+    },
+    {
+      "date": "2026-09-01",
+      "open": 161.5,
+      "high": 164.04,
+      "low": 158.52,
+      "close": 160.78,
+      "volume": 10875700,
+      "ema5": 161.37,
+      "ema20": 158.34
+    },
+    {
+      "date": "2026-09-02",
+      "open": 159.77,
+      "high": 165.47,
+      "low": 158.67,
+      "close": 164.98,
+      "volume": 11261900,
+      "ema5": 162.58,
+      "ema20": 158.97
+    },
+    {
+      "date": "2026-09-03",
+      "open": 160.82,
+      "high": 164.63,
+      "low": 157.73,
+      "close": 163.68,
+      "volume": 14757700,
+      "ema5": 162.94,
+      "ema20": 159.42
+    },
+    {
+      "date": "2026-09-04",
+      "open": 164.61,
+      "high": 177.7,
+      "low": 164.61,
+      "close": 177.0,
+      "volume": 20803200,
+      "ema5": 167.63,
+      "ema20": 161.09
+    },
+    {
+      "date": "2026-09-08",
+      "open": 184.67,
+      "high": 189.82,
+      "low": 183.96,
+      "close": 185.55,
+      "volume": 23156300,
+      "ema5": 173.6,
+      "ema20": 163.42
+    },
+    {
+      "date": "2026-09-09",
+      "open": 188.08,
+      "high": 199.87,
+      "low": 187.53,
+      "close": 198.63,
+      "volume": 30460300,
+      "ema5": 181.95,
+      "ema20": 166.78
+    },
+    {
+      "date": "2026-09-10",
+      "open": 189.43,
+      "high": 193.55,
+      "low": 187.17,
+      "close": 188.3,
+      "volume": 22099400,
+      "ema5": 184.06,
+      "ema20": 168.83
+    },
+    {
+      "date": "2026-09-11",
+      "open": 192.94,
+      "high": 192.94,
+      "low": 187.0,
+      "close": 190.07,
+      "volume": 14934600,
+      "ema5": 186.07,
+      "ema20": 170.85
+    },
+    {
+      "date": "2026-09-14",
+      "open": 174.93,
+      "high": 179.9,
+      "low": 174.59,
+      "close": 175.63,
+      "volume": 20965200,
+      "ema5": 182.59,
+      "ema20": 171.3
+    },
+    {
+      "date": "2026-09-15",
+      "open": 179.25,
+      "high": 181.29,
+      "low": 172.23,
+      "close": 174.83,
+      "volume": 14158600,
+      "ema5": 180.0,
+      "ema20": 171.64
+    },
+    {
+      "date": "2026-09-16",
+      "open": 180.34,
+      "high": 180.66,
+      "low": 172.78,
+      "close": 174.87,
+      "volume": 15889400,
+      "ema5": 178.29,
+      "ema20": 171.95
+    },
+    {
+      "date": "2026-09-17",
+      "open": 181.98,
+      "high": 185.33,
+      "low": 181.26,
+      "close": 182.99,
+      "volume": 16880700,
+      "ema5": 179.86,
+      "ema20": 173.0
+    },
+    {
+      "date": "2026-09-18",
+      "open": 184.91,
+      "high": 192.01,
+      "low": 182.8,
+      "close": 187.5,
+      "volume": 71104200,
+      "ema5": 182.4,
+      "ema20": 174.38
+    },
+    {
+      "date": "2026-09-21",
+      "open": 188.31,
+      "high": 190.25,
+      "low": 185.91,
+      "close": 188.86,
+      "volume": 20475200,
+      "ema5": 184.56,
+      "ema20": 175.76
+    },
+    {
+      "date": "2026-09-22",
+      "open": 187.05,
+      "high": 196.48,
+      "low": 186.37,
+      "close": 195.37,
+      "volume": 18693800,
+      "ema5": 188.16,
+      "ema20": 177.63
+    },
+    {
+      "date": "2026-09-23",
+      "open": 191.6,
+      "high": 193.08,
+      "low": 186.11,
+      "close": 189.28,
+      "volume": 13960700,
+      "ema5": 188.53,
+      "ema20": 178.74
+    },
+    {
+      "date": "2026-09-24",
+      "open": 185.57,
+      "high": 188.9,
+      "low": 184.74,
+      "close": 186.37,
+      "volume": 9582400,
+      "ema5": 187.81,
+      "ema20": 179.46
+    },
+    {
+      "date": "2026-09-25",
+      "open": 189.36,
+      "high": 192.83,
+      "low": 187.8,
+      "close": 191.56,
+      "volume": 13710500,
+      "ema5": 189.06,
+      "ema20": 180.62
+    },
+    {
+      "date": "2026-09-28",
+      "open": 185.8,
+      "high": 186.7,
+      "low": 179.31,
+      "close": 181.92,
+      "volume": 16342100,
+      "ema5": 186.68,
+      "ema20": 180.74
+    },
+    {
+      "date": "2026-09-29",
+      "open": 185.1,
+      "high": 188.41,
+      "low": 183.05,
+      "close": 186.68,
+      "volume": 13140600,
+      "ema5": 186.68,
+      "ema20": 181.31
+    },
+    {
+      "date": "2026-09-30",
+      "open": 186.18,
+      "high": 187.7,
+      "low": 183.9,
+      "close": 184.15,
+      "volume": 11066900,
+      "ema5": 185.84,
+      "ema20": 181.58
+    },
+    {
+      "date": "2026-10-01",
+      "open": 185.5,
+      "high": 193.83,
+      "low": 182.68,
+      "close": 193.5,
+      "volume": 17483700,
+      "ema5": 188.39,
+      "ema20": 182.71
+    },
+    {
+      "date": "2026-10-02",
+      "open": 194.2,
+      "high": 195.53,
+      "low": 191.39,
+      "close": 195.13,
+      "volume": 15606600,
+      "ema5": 190.64,
+      "ema20": 183.89
+    },
+    {
+      "date": "2026-10-05",
+      "open": 193.64,
+      "high": 195.97,
+      "low": 190.42,
+      "close": 195.02,
+      "volume": 12266200,
+      "ema5": 192.1,
+      "ema20": 184.95
+    },
+    {
+      "date": "2026-10-06",
+      "open": 191.8,
+      "high": 191.84,
+      "low": 180.91,
+      "close": 182.56,
+      "volume": 21911600,
+      "ema5": 188.92,
+      "ema20": 184.73
+    },
+    {
+      "date": "2026-10-07",
+      "open": 178.27,
+      "high": 181.14,
+      "low": 176.7,
+      "close": 178.25,
+      "volume": 20918200,
+      "ema5": 185.36,
+      "ema20": 184.11
+    },
+    {
+      "date": "2026-10-08",
+      "open": 176.4,
+      "high": 177.18,
+      "low": 167.21,
+      "close": 170.5,
+      "volume": 22531100,
+      "ema5": 180.41,
+      "ema20": 182.81
+    },
+    {
+      "date": "2026-10-09",
+      "open": 172.79,
+      "high": 173.3,
+      "low": 168.77,
+      "close": 169.03,
+      "volume": 12087400,
+      "ema5": 176.62,
+      "ema20": 181.5
+    },
+    {
+      "date": "2026-10-12",
+      "open": 164.32,
+      "high": 164.49,
+      "low": 161.31,
+      "close": 162.23,
+      "volume": 14724500,
+      "ema5": 171.82,
+      "ema20": 179.67
+    },
+    {
+      "date": "2026-10-13",
+      "open": 152.02,
+      "high": 157.3,
+      "low": 151.92,
+      "close": 157.06,
+      "volume": 22199300,
+      "ema5": 166.9,
+      "ema20": 177.51
+    },
+    {
+      "date": "2026-10-14",
+      "open": 150.55,
+      "high": 152.37,
+      "low": 147.13,
+      "close": 147.55,
+      "volume": 23746500,
+      "ema5": 160.45,
+      "ema20": 174.66
+    },
+    {
+      "date": "2026-10-15",
+      "open": 137.88,
+      "high": 146.39,
+      "low": 137.8,
+      "close": 146.11,
+      "volume": 34072700,
+      "ema5": 155.67,
+      "ema20": 171.94
+    },
+    {
+      "date": "2026-10-16",
+      "open": 141.33,
+      "high": 141.51,
+      "low": 136.23,
+      "close": 136.49,
+      "volume": 29664000,
+      "ema5": 149.28,
+      "ema20": 168.56
+    },
+    {
+      "date": "2026-10-19",
+      "open": 143.25,
+      "high": 148.0,
+      "low": 141.27,
+      "close": 142.87,
+      "volume": 19608000,
+      "ema5": 147.14,
+      "ema20": 166.12
+    },
+    {
+      "date": "2026-10-20",
+      "open": 137.61,
+      "high": 142.45,
+      "low": 137.14,
+      "close": 139.79,
+      "volume": 15769600,
+      "ema5": 144.69,
+      "ema20": 163.61
+    },
+    {
+      "date": "2026-10-21",
+      "open": 145.36,
+      "high": 145.97,
+      "low": 139.93,
+      "close": 143.25,
+      "volume": 14058800,
+      "ema5": 144.21,
+      "ema20": 161.67
+    },
+    {
+      "date": "2026-10-22",
+      "open": 137.01,
+      "high": 139.3,
+      "low": 130.79,
+      "close": 131.69,
+      "volume": 24312600,
+      "ema5": 140.04,
+      "ema20": 158.82
+    },
+    {
+      "date": "2026-10-23",
+      "open": 136.61,
+      "high": 138.52,
+      "low": 135.21,
+      "close": 137.02,
+      "volume": 16311700,
+      "ema5": 139.03,
+      "ema20": 156.74
+    },
+    {
+      "date": "2026-10-26",
+      "open": 140.59,
+      "high": 143.47,
+      "low": 139.15,
+      "close": 142.62,
+      "volume": 17139300,
+      "ema5": 140.23,
+      "ema20": 155.39
+    },
+    {
+      "date": "2026-10-27",
+      "open": 146.44,
+      "high": 146.89,
+      "low": 143.91,
+      "close": 145.36,
+      "volume": 26667700,
+      "ema5": 141.94,
+      "ema20": 154.44
+    },
+    {
+      "date": "2026-10-28",
+      "open": 157.76,
+      "high": 166.06,
+      "low": 156.5,
+      "close": 164.7,
+      "volume": 49982100,
+      "ema5": 149.53,
+      "ema20": 155.42
+    },
+    {
+      "date": "2026-10-29",
+      "open": 163.45,
+      "high": 164.75,
+      "low": 159.04,
+      "close": 162.09,
+      "volume": 22835000,
+      "ema5": 153.71,
+      "ema20": 156.05
+    },
+    {
+      "date": "2026-10-30",
+      "open": 150.52,
+      "high": 153.49,
+      "low": 145.34,
+      "close": 149.21,
+      "volume": 33268000,
+      "ema5": 152.21,
+      "ema20": 155.4
+    },
+    {
+      "date": "2026-11-02",
+      "open": 154.3,
+      "high": 156.06,
+      "low": 146.29,
+      "close": 147.71,
+      "volume": 21461600,
+      "ema5": 150.71,
+      "ema20": 154.67
+    },
+    {
+      "date": "2026-11-03",
+      "open": 151.9,
+      "high": 154.05,
+      "low": 149.79,
+      "close": 150.79,
+      "volume": 14927600,
+      "ema5": 150.74,
+      "ema20": 154.3
+    },
+    {
+      "date": "2026-11-04",
+      "open": 146.4,
+      "high": 151.84,
+      "low": 141.18,
+      "close": 143.07,
+      "volume": 21232400,
+      "ema5": 148.18,
+      "ema20": 153.23
+    },
+    {
+      "date": "2026-11-05",
+      "open": 133.29,
+      "high": 134.07,
+      "low": 122.2,
+      "close": 123.9,
+      "volume": 52949700,
+      "ema5": 140.09,
+      "ema20": 150.44
+    },
+    {
+      "date": "2026-11-06",
+      "open": 129.13,
+      "high": 133.45,
+      "low": 124.83,
+      "close": 127.34,
+      "volume": 27987600,
+      "ema5": 135.84,
+      "ema20": 148.24
+    },
+    {
+      "date": "2026-11-09",
+      "open": 126.87,
+      "high": 135.6,
+      "low": 125.83,
+      "close": 134.38,
+      "volume": 23137700,
+      "ema5": 135.35,
+      "ema20": 146.92
+    },
+    {
+      "date": "2026-11-10",
+      "open": 131.0,
+      "high": 135.15,
+      "low": 127.38,
+      "close": 129.66,
+      "volume": 15796500,
+      "ema5": 133.45,
+      "ema20": 145.27
+    },
+    {
+      "date": "2026-11-11",
+      "open": 139.63,
+      "high": 145.79,
+      "low": 137.49,
+      "close": 142.25,
+      "volume": 20898200,
+      "ema5": 136.39,
+      "ema20": 144.99
+    },
+    {
+      "date": "2026-11-12",
+      "open": 134.25,
+      "high": 139.56,
+      "low": 134.04,
+      "close": 137.71,
+      "volume": 15154700,
+      "ema5": 136.83,
+      "ema20": 144.29
+    },
+    {
+      "date": "2026-11-13",
+      "open": NaN,
+      "high": NaN,
+      "low": NaN,
+      "close": NaN,
+      "volume": 16222672,
+      "ema5": 136.83,
+      "ema20": 144.29
+    }
+  ],
+  "name": "SK hynix Inc.",
+  "category": "Pure Memory & Storage",
+  "role": "Global memory & HBM titan",
+  "technicals": {
+    "rvol_20d": 0.69,
+    "crr": 0.5,
+    "bb_width": 0.0,
+    "ema5": 136.83,
+    "ema20": 144.29,
+    "volume": 16222672,
+    "vol_sma20": 23486073,
+    "high": NaN,
+    "low": NaN,
+    "open": NaN
+  }
+}

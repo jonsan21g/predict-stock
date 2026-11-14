@@ -1,0 +1,179 @@
+{
+  "ticker": "STX",
+  "1y": {
+    "ticker": "STX",
+    "initial_capital": 10000.0,
+    "final_balance": 10000.0,
+    "net_profit": 0.0,
+    "strategy_return_pct": 0.0,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate_pct": 0.0,
+    "profit_factor": 1.0,
+    "expectancy_dollar": 0.0,
+    "max_drawdown_pct": 0.0,
+    "avg_bars_held": 0.0,
+    "avg_win": 0.0,
+    "avg_loss": 0.0,
+    "equity_curve": [
+      {
+        "date": "2026-01-29",
+        "balance": 10000.0
+      }
+    ],
+    "trades": []
+  },
+  "2y": {
+    "ticker": "STX",
+    "initial_capital": 10000.0,
+    "final_balance": 9852.18,
+    "net_profit": -147.82,
+    "strategy_return_pct": -1.48,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 1,
+    "wins": 0,
+    "losses": 1,
+    "win_rate_pct": 0.0,
+    "profit_factor": 0.0,
+    "expectancy_dollar": -147.82,
+    "max_drawdown_pct": 1.48,
+    "avg_bars_held": 1.0,
+    "avg_win": 0.0,
+    "avg_loss": 147.82,
+    "equity_curve": [
+      {
+        "date": "2025-01-30",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-08-01",
+        "balance": 9852.18
+      }
+    ],
+    "trades": [
+      {
+        "id": 1,
+        "ticker": "STX",
+        "entry_date": "2025-07-31",
+        "exit_date": "2025-08-01",
+        "entry_price": 155.6,
+        "exit_price": 151.71,
+        "shares": 38,
+        "pnl": -147.82,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "3y": {
+    "ticker": "STX",
+    "initial_capital": 10000.0,
+    "final_balance": 10114.73,
+    "net_profit": 114.73,
+    "strategy_return_pct": 1.15,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 2,
+    "wins": 1,
+    "losses": 1,
+    "win_rate_pct": 50.0,
+    "profit_factor": 1.76,
+    "expectancy_dollar": 57.36,
+    "max_drawdown_pct": 1.48,
+    "avg_bars_held": 1.5,
+    "avg_win": 266.44,
+    "avg_loss": 151.71,
+    "equity_curve": [
+      {
+        "date": "2024-01-29",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-01-21",
+        "balance": 10088.81
+      },
+      {
+        "date": "2025-01-22",
+        "balance": 10266.44
+      },
+      {
+        "date": "2025-08-01",
+        "balance": 10114.73
+      }
+    ],
+    "trades": [
+      {
+        "id": 2,
+        "ticker": "STX",
+        "entry_date": "2025-07-31",
+        "exit_date": "2025-08-01",
+        "entry_price": 155.6,
+        "exit_price": 151.71,
+        "shares": 39,
+        "pnl": -151.71,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 1,
+        "ticker": "STX",
+        "entry_date": "2025-01-17",
+        "exit_date": "2025-01-22",
+        "entry_price": 95.5,
+        "exit_price": 101.23,
+        "shares": 62,
+        "pnl": 266.44,
+        "return_pct": 4.5,
+        "bars_held": 2,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      }
+    ]
+  },
+  "initial_capital": 10000.0,
+  "final_balance": 9852.18,
+  "net_profit": -147.82,
+  "strategy_return_pct": -1.48,
+  "buy_and_hold_return_pct": NaN,
+  "total_trades": 1,
+  "wins": 0,
+  "losses": 1,
+  "win_rate_pct": 0.0,
+  "profit_factor": 0.0,
+  "expectancy_dollar": -147.82,
+  "max_drawdown_pct": 1.48,
+  "avg_bars_held": 1.0,
+  "avg_win": 0.0,
+  "avg_loss": 147.82,
+  "equity_curve": [
+    {
+      "date": "2025-01-30",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-08-01",
+      "balance": 9852.18
+    }
+  ],
+  "trades": [
+    {
+      "id": 1,
+      "ticker": "STX",
+      "entry_date": "2025-07-31",
+      "exit_date": "2025-08-01",
+      "entry_price": 155.6,
+      "exit_price": 151.71,
+      "shares": 38,
+      "pnl": -147.82,
+      "return_pct": -2.5,
+      "bars_held": 1,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    }
+  ]
+}

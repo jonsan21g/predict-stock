@@ -1,0 +1,358 @@
+{
+  "ticker": "TSLA",
+  "1y": {
+    "ticker": "TSLA",
+    "initial_capital": 10000.0,
+    "final_balance": 9707.68,
+    "net_profit": -292.32,
+    "strategy_return_pct": -2.92,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 2,
+    "wins": 0,
+    "losses": 2,
+    "win_rate_pct": 0.0,
+    "profit_factor": 0.0,
+    "expectancy_dollar": -146.16,
+    "max_drawdown_pct": 2.92,
+    "avg_bars_held": 1.0,
+    "avg_win": 0.0,
+    "avg_loss": 146.16,
+    "equity_curve": [
+      {
+        "date": "2026-01-29",
+        "balance": 10000.0
+      },
+      {
+        "date": "2026-08-24",
+        "balance": 9854.86
+      },
+      {
+        "date": "2026-09-01",
+        "balance": 9707.68
+      }
+    ],
+    "trades": [
+      {
+        "id": 2,
+        "ticker": "TSLA",
+        "entry_date": "2026-08-31",
+        "exit_date": "2026-09-01",
+        "entry_price": 367.95,
+        "exit_price": 358.75,
+        "shares": 16,
+        "pnl": -147.18,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 1,
+        "ticker": "TSLA",
+        "entry_date": "2026-08-21",
+        "exit_date": "2026-08-24",
+        "entry_price": 362.86,
+        "exit_price": 353.79,
+        "shares": 16,
+        "pnl": -145.14,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "2y": {
+    "ticker": "TSLA",
+    "initial_capital": 10000.0,
+    "final_balance": 9973.22,
+    "net_profit": -26.78,
+    "strategy_return_pct": -0.27,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 3,
+    "wins": 1,
+    "losses": 2,
+    "win_rate_pct": 33.3,
+    "profit_factor": 0.91,
+    "expectancy_dollar": -8.93,
+    "max_drawdown_pct": 2.85,
+    "avg_bars_held": 1.3,
+    "avg_win": 265.54,
+    "avg_loss": 146.16,
+    "equity_curve": [
+      {
+        "date": "2025-01-30",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-09-12",
+        "balance": 10088.51
+      },
+      {
+        "date": "2025-09-15",
+        "balance": 10265.54
+      },
+      {
+        "date": "2026-08-24",
+        "balance": 10120.4
+      },
+      {
+        "date": "2026-09-01",
+        "balance": 9973.22
+      }
+    ],
+    "trades": [
+      {
+        "id": 3,
+        "ticker": "TSLA",
+        "entry_date": "2026-08-31",
+        "exit_date": "2026-09-01",
+        "entry_price": 367.95,
+        "exit_price": 358.75,
+        "shares": 16,
+        "pnl": -147.18,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 2,
+        "ticker": "TSLA",
+        "entry_date": "2026-08-21",
+        "exit_date": "2026-08-24",
+        "entry_price": 362.86,
+        "exit_price": 353.79,
+        "shares": 16,
+        "pnl": -145.14,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 1,
+        "ticker": "TSLA",
+        "entry_date": "2025-09-11",
+        "exit_date": "2025-09-15",
+        "entry_price": 368.81,
+        "exit_price": 390.94,
+        "shares": 16,
+        "pnl": 265.54,
+        "return_pct": 4.5,
+        "bars_held": 2,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      }
+    ]
+  },
+  "3y": {
+    "ticker": "TSLA",
+    "initial_capital": 10000.0,
+    "final_balance": 10079.3,
+    "net_profit": 79.3,
+    "strategy_return_pct": 0.79,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 5,
+    "wins": 2,
+    "losses": 3,
+    "win_rate_pct": 40.0,
+    "profit_factor": 1.18,
+    "expectancy_dollar": 15.86,
+    "max_drawdown_pct": 2.9,
+    "avg_bars_held": 1.6,
+    "avg_win": 265.32,
+    "avg_loss": 150.45,
+    "equity_curve": [
+      {
+        "date": "2024-01-29",
+        "balance": 10000.0
+      },
+      {
+        "date": "2024-06-18",
+        "balance": 9850.05
+      },
+      {
+        "date": "2024-06-27",
+        "balance": 9850.05
+      },
+      {
+        "date": "2024-06-28",
+        "balance": 9938.41
+      },
+      {
+        "date": "2024-07-01",
+        "balance": 10115.15
+      },
+      {
+        "date": "2025-09-12",
+        "balance": 10203.66
+      },
+      {
+        "date": "2025-09-15",
+        "balance": 10380.69
+      },
+      {
+        "date": "2026-08-24",
+        "balance": 10226.48
+      },
+      {
+        "date": "2026-09-01",
+        "balance": 10079.3
+      }
+    ],
+    "trades": [
+      {
+        "id": 5,
+        "ticker": "TSLA",
+        "entry_date": "2026-08-31",
+        "exit_date": "2026-09-01",
+        "entry_price": 367.95,
+        "exit_price": 358.75,
+        "shares": 16,
+        "pnl": -147.18,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 4,
+        "ticker": "TSLA",
+        "entry_date": "2026-08-21",
+        "exit_date": "2026-08-24",
+        "entry_price": 362.86,
+        "exit_price": 353.79,
+        "shares": 17,
+        "pnl": -154.22,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 3,
+        "ticker": "TSLA",
+        "entry_date": "2025-09-11",
+        "exit_date": "2025-09-15",
+        "entry_price": 368.81,
+        "exit_price": 390.94,
+        "shares": 16,
+        "pnl": 265.54,
+        "return_pct": 4.5,
+        "bars_held": 2,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      },
+      {
+        "id": 2,
+        "ticker": "TSLA",
+        "entry_date": "2024-06-26",
+        "exit_date": "2024-07-01",
+        "entry_price": 196.37,
+        "exit_price": 208.15,
+        "shares": 30,
+        "pnl": 265.1,
+        "return_pct": 4.5,
+        "bars_held": 3,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      },
+      {
+        "id": 1,
+        "ticker": "TSLA",
+        "entry_date": "2024-06-17",
+        "exit_date": "2024-06-18",
+        "entry_price": 187.44,
+        "exit_price": 182.75,
+        "shares": 32,
+        "pnl": -149.95,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "initial_capital": 10000.0,
+  "final_balance": 9973.22,
+  "net_profit": -26.78,
+  "strategy_return_pct": -0.27,
+  "buy_and_hold_return_pct": NaN,
+  "total_trades": 3,
+  "wins": 1,
+  "losses": 2,
+  "win_rate_pct": 33.3,
+  "profit_factor": 0.91,
+  "expectancy_dollar": -8.93,
+  "max_drawdown_pct": 2.85,
+  "avg_bars_held": 1.3,
+  "avg_win": 265.54,
+  "avg_loss": 146.16,
+  "equity_curve": [
+    {
+      "date": "2025-01-30",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-09-12",
+      "balance": 10088.51
+    },
+    {
+      "date": "2025-09-15",
+      "balance": 10265.54
+    },
+    {
+      "date": "2026-08-24",
+      "balance": 10120.4
+    },
+    {
+      "date": "2026-09-01",
+      "balance": 9973.22
+    }
+  ],
+  "trades": [
+    {
+      "id": 3,
+      "ticker": "TSLA",
+      "entry_date": "2026-08-31",
+      "exit_date": "2026-09-01",
+      "entry_price": 367.95,
+      "exit_price": 358.75,
+      "shares": 16,
+      "pnl": -147.18,
+      "return_pct": -2.5,
+      "bars_held": 1,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    },
+    {
+      "id": 2,
+      "ticker": "TSLA",
+      "entry_date": "2026-08-21",
+      "exit_date": "2026-08-24",
+      "entry_price": 362.86,
+      "exit_price": 353.79,
+      "shares": 16,
+      "pnl": -145.14,
+      "return_pct": -2.5,
+      "bars_held": 1,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    },
+    {
+      "id": 1,
+      "ticker": "TSLA",
+      "entry_date": "2025-09-11",
+      "exit_date": "2025-09-15",
+      "entry_price": 368.81,
+      "exit_price": 390.94,
+      "shares": 16,
+      "pnl": 265.54,
+      "return_pct": 4.5,
+      "bars_held": 2,
+      "result": "WIN",
+      "exit_reason": "Full Target 2 Reached (+6.0%)"
+    }
+  ]
+}

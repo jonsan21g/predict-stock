@@ -1,0 +1,371 @@
+{
+  "ticker": "GOOGL",
+  "1y": {
+    "ticker": "GOOGL",
+    "initial_capital": 10000.0,
+    "final_balance": 10000.0,
+    "net_profit": 0.0,
+    "strategy_return_pct": 0.0,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate_pct": 0.0,
+    "profit_factor": 1.0,
+    "expectancy_dollar": 0.0,
+    "max_drawdown_pct": 0.0,
+    "avg_bars_held": 0.0,
+    "avg_win": 0.0,
+    "avg_loss": 0.0,
+    "equity_curve": [
+      {
+        "date": "2026-01-29",
+        "balance": 10000.0
+      }
+    ],
+    "trades": []
+  },
+  "2y": {
+    "ticker": "GOOGL",
+    "initial_capital": 10000.0,
+    "final_balance": 9967.39,
+    "net_profit": -32.61,
+    "strategy_return_pct": -0.33,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 2,
+    "wins": 1,
+    "losses": 1,
+    "win_rate_pct": 50.0,
+    "profit_factor": 0.78,
+    "expectancy_dollar": -16.3,
+    "max_drawdown_pct": 1.49,
+    "avg_bars_held": 2.5,
+    "avg_win": 116.15,
+    "avg_loss": 148.75,
+    "equity_curve": [
+      {
+        "date": "2025-01-30",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-02-05",
+        "balance": 9851.25
+      },
+      {
+        "date": "2025-10-30",
+        "balance": 9933.4
+      },
+      {
+        "date": "2025-10-31",
+        "balance": 9933.4
+      },
+      {
+        "date": "2025-11-03",
+        "balance": 9933.4
+      },
+      {
+        "date": "2025-11-04",
+        "balance": 9967.39
+      }
+    ],
+    "trades": [
+      {
+        "id": 2,
+        "ticker": "GOOGL",
+        "entry_date": "2025-10-29",
+        "exit_date": "2025-11-04",
+        "entry_price": 273.86,
+        "exit_price": 276.95,
+        "shares": 21,
+        "pnl": 116.15,
+        "return_pct": 2.02,
+        "bars_held": 4,
+        "result": "WIN",
+        "exit_reason": "Trailing EMA Stop"
+      },
+      {
+        "id": 1,
+        "ticker": "GOOGL",
+        "entry_date": "2025-02-04",
+        "exit_date": "2025-02-05",
+        "entry_price": 205.18,
+        "exit_price": 200.05,
+        "shares": 29,
+        "pnl": -148.75,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "3y": {
+    "ticker": "GOOGL",
+    "initial_capital": 10000.0,
+    "final_balance": 10603.19,
+    "net_profit": 603.19,
+    "strategy_return_pct": 6.03,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 6,
+    "wins": 5,
+    "losses": 1,
+    "win_rate_pct": 83.3,
+    "profit_factor": 4.79,
+    "expectancy_dollar": 100.53,
+    "max_drawdown_pct": 1.49,
+    "avg_bars_held": 3.7,
+    "avg_win": 152.44,
+    "avg_loss": 159.01,
+    "equity_curve": [
+      {
+        "date": "2024-01-29",
+        "balance": 10000.0
+      },
+      {
+        "date": "2024-06-24",
+        "balance": 10000.0
+      },
+      {
+        "date": "2024-06-25",
+        "balance": 10000.0
+      },
+      {
+        "date": "2024-06-26",
+        "balance": 10000.0
+      },
+      {
+        "date": "2024-06-27",
+        "balance": 10085.51
+      },
+      {
+        "date": "2024-06-28",
+        "balance": 10136.45
+      },
+      {
+        "date": "2024-10-30",
+        "balance": 10227.44
+      },
+      {
+        "date": "2024-10-31",
+        "balance": 10227.44
+      },
+      {
+        "date": "2024-11-01",
+        "balance": 10229.86
+      },
+      {
+        "date": "2024-11-07",
+        "balance": 10229.86
+      },
+      {
+        "date": "2024-11-08",
+        "balance": 10229.86
+      },
+      {
+        "date": "2024-11-11",
+        "balance": 10229.86
+      },
+      {
+        "date": "2024-11-12",
+        "balance": 10319.25
+      },
+      {
+        "date": "2024-11-13",
+        "balance": 10361.7
+      },
+      {
+        "date": "2024-12-11",
+        "balance": 10450.07
+      },
+      {
+        "date": "2024-12-12",
+        "balance": 10450.07
+      },
+      {
+        "date": "2024-12-13",
+        "balance": 10450.07
+      },
+      {
+        "date": "2024-12-16",
+        "balance": 10637.84
+      },
+      {
+        "date": "2025-02-05",
+        "balance": 10478.83
+      },
+      {
+        "date": "2025-10-30",
+        "balance": 10569.2
+      },
+      {
+        "date": "2025-10-31",
+        "balance": 10569.2
+      },
+      {
+        "date": "2025-11-03",
+        "balance": 10569.2
+      },
+      {
+        "date": "2025-11-04",
+        "balance": 10603.19
+      }
+    ],
+    "trades": [
+      {
+        "id": 6,
+        "ticker": "GOOGL",
+        "entry_date": "2025-10-29",
+        "exit_date": "2025-11-04",
+        "entry_price": 273.86,
+        "exit_price": 276.95,
+        "shares": 22,
+        "pnl": 124.36,
+        "return_pct": 2.06,
+        "bars_held": 4,
+        "result": "WIN",
+        "exit_reason": "Trailing EMA Stop"
+      },
+      {
+        "id": 5,
+        "ticker": "GOOGL",
+        "entry_date": "2025-02-04",
+        "exit_date": "2025-02-05",
+        "entry_price": 205.18,
+        "exit_price": 200.05,
+        "shares": 31,
+        "pnl": -159.01,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 4,
+        "ticker": "GOOGL",
+        "entry_date": "2024-12-10",
+        "exit_date": "2024-12-16",
+        "entry_price": 184.09,
+        "exit_price": 195.13,
+        "shares": 33,
+        "pnl": 276.13,
+        "return_pct": 4.55,
+        "bars_held": 4,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      },
+      {
+        "id": 3,
+        "ticker": "GOOGL",
+        "entry_date": "2024-11-06",
+        "exit_date": "2024-11-13",
+        "entry_price": 175.28,
+        "exit_price": 177.64,
+        "shares": 35,
+        "pnl": 131.85,
+        "return_pct": 2.15,
+        "bars_held": 5,
+        "result": "WIN",
+        "exit_reason": "Trailing EMA Stop"
+      },
+      {
+        "id": 2,
+        "ticker": "GOOGL",
+        "entry_date": "2024-10-29",
+        "exit_date": "2024-11-01",
+        "entry_price": 168.5,
+        "exit_price": 168.63,
+        "shares": 36,
+        "pnl": 93.41,
+        "return_pct": 1.54,
+        "bars_held": 3,
+        "result": "WIN",
+        "exit_reason": "Trailing EMA Stop"
+      },
+      {
+        "id": 1,
+        "ticker": "GOOGL",
+        "entry_date": "2024-06-21",
+        "exit_date": "2024-06-28",
+        "entry_price": 178.14,
+        "exit_price": 181.14,
+        "shares": 33,
+        "pnl": 136.45,
+        "return_pct": 2.32,
+        "bars_held": 5,
+        "result": "WIN",
+        "exit_reason": "Trailing EMA Stop"
+      }
+    ]
+  },
+  "initial_capital": 10000.0,
+  "final_balance": 9967.39,
+  "net_profit": -32.61,
+  "strategy_return_pct": -0.33,
+  "buy_and_hold_return_pct": NaN,
+  "total_trades": 2,
+  "wins": 1,
+  "losses": 1,
+  "win_rate_pct": 50.0,
+  "profit_factor": 0.78,
+  "expectancy_dollar": -16.3,
+  "max_drawdown_pct": 1.49,
+  "avg_bars_held": 2.5,
+  "avg_win": 116.15,
+  "avg_loss": 148.75,
+  "equity_curve": [
+    {
+      "date": "2025-01-30",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-02-05",
+      "balance": 9851.25
+    },
+    {
+      "date": "2025-10-30",
+      "balance": 9933.4
+    },
+    {
+      "date": "2025-10-31",
+      "balance": 9933.4
+    },
+    {
+      "date": "2025-11-03",
+      "balance": 9933.4
+    },
+    {
+      "date": "2025-11-04",
+      "balance": 9967.39
+    }
+  ],
+  "trades": [
+    {
+      "id": 2,
+      "ticker": "GOOGL",
+      "entry_date": "2025-10-29",
+      "exit_date": "2025-11-04",
+      "entry_price": 273.86,
+      "exit_price": 276.95,
+      "shares": 21,
+      "pnl": 116.15,
+      "return_pct": 2.02,
+      "bars_held": 4,
+      "result": "WIN",
+      "exit_reason": "Trailing EMA Stop"
+    },
+    {
+      "id": 1,
+      "ticker": "GOOGL",
+      "entry_date": "2025-02-04",
+      "exit_date": "2025-02-05",
+      "entry_price": 205.18,
+      "exit_price": 200.05,
+      "shares": 29,
+      "pnl": -148.75,
+      "return_pct": -2.5,
+      "bars_held": 1,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    }
+  ]
+}

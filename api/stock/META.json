@@ -1,0 +1,925 @@
+{
+  "ticker": "META",
+  "date": "2026-11-12",
+  "current_price": 623.61,
+  "change_pct": -0.82,
+  "is_ignition": false,
+  "ignition_type": "NONE",
+  "wave_probability": 41.3,
+  "composite_score": 53,
+  "rvol": 0.4302670561417421,
+  "crr": 0.41140284187645226,
+  "target_1": 645.44,
+  "target_2": 661.03,
+  "stop_loss": 608.02,
+  "smart_money": {
+    "politician_buy": false,
+    "jurisdiction_match": false,
+    "matched_committees": [],
+    "congress_score": 0,
+    "politicians": [],
+    "high_jurisdiction_buyers": [],
+    "congress_buy_count": 0,
+    "congress_sell_count": 0,
+    "congress_total_trades": 0,
+    "congress_trades": [],
+    "quiver_stock_url": "https://www.quiverquant.com/congresstrading/stock/META",
+    "capitoltrades_url": "https://www.capitoltrades.com/issuers",
+    "house_disclosure_url": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+    "senate_disclosure_url": "https://efdsearch.senate.gov/search/",
+    "insider_buy": false,
+    "insider_cluster": false,
+    "insider_score": 0,
+    "total_buy_value_usd": 0,
+    "c_suite_buyers": [],
+    "insider_buy_count": 0,
+    "insider_sell_count": 20,
+    "net_shares": -170187,
+    "unique_buyers": 0,
+    "recent_buys": [],
+    "recent_transactions": [
+      {
+        "date": "2026-11-09",
+        "insider": "OLIVAN JAVIER",
+        "position": "Chief Operating Officer",
+        "type": "SELL",
+        "shares": 1575,
+        "value_usd": 993872.0,
+        "text": "Sale at price 631.03 per share."
+      },
+      {
+        "date": "2026-11-02",
+        "insider": "ANDREESSEN MARC L",
+        "position": "Director",
+        "type": "SELL",
+        "shares": 20951,
+        "value_usd": 12774646.0,
+        "text": "Sale at price 606.85 - 613.88 per share."
+      },
+      {
+        "date": "2026-11-02",
+        "insider": "OLIVAN JAVIER",
+        "position": "Chief Operating Officer",
+        "type": "SELL",
+        "shares": 1575,
+        "value_usd": 967286.0,
+        "text": "Sale at price 614.15 per share."
+      },
+      {
+        "date": "2026-10-26",
+        "insider": "OLIVAN JAVIER",
+        "position": "Chief Operating Officer",
+        "type": "SELL",
+        "shares": 1575,
+        "value_usd": 1008000.0,
+        "text": "Sale at price 640.00 per share."
+      },
+      {
+        "date": "2026-10-26",
+        "insider": "ALFORD PEGGY",
+        "position": "Director",
+        "type": "SELL",
+        "shares": 390,
+        "value_usd": 249600.0,
+        "text": "Sale at price 640.00 per share."
+      },
+      {
+        "date": "2026-10-19",
+        "insider": "OLIVAN JAVIER",
+        "position": "Chief Operating Officer",
+        "type": "SELL",
+        "shares": 1575,
+        "value_usd": 1113840.0,
+        "text": "Sale at price 707.20 per share."
+      },
+      {
+        "date": "2026-10-12",
+        "insider": "OLIVAN JAVIER",
+        "position": "Chief Operating Officer",
+        "type": "SELL",
+        "shares": 1575,
+        "value_usd": 1146758.0,
+        "text": "Sale at price 728.10 per share."
+      },
+      {
+        "date": "2026-10-05",
+        "insider": "OLIVAN JAVIER",
+        "position": "Chief Operating Officer",
+        "type": "SELL",
+        "shares": 1575,
+        "value_usd": 1146726.0,
+        "text": "Sale at price 728.08 per share."
+      },
+      {
+        "date": "2026-09-28",
+        "insider": "OLIVAN JAVIER",
+        "position": "Chief Operating Officer",
+        "type": "SELL",
+        "shares": 1575,
+        "value_usd": 1180966.0,
+        "text": "Sale at price 748.91 - 750.42 per share."
+      },
+      {
+        "date": "2026-09-24",
+        "insider": "ZUCKERBERG MARK",
+        "position": "Chief Executive Officer",
+        "type": "SELL",
+        "shares": 27474,
+        "value_usd": 21359454.0,
+        "text": "Sale at price 775.32 - 779.33 per share."
+      }
+    ],
+    "openinsider_purchases_url": "http://openinsider.com/screener?s=META&tc=P&xp=1",
+    "openinsider_all_url": "http://openinsider.com/screener?s=META",
+    "sec_edgar_url": "https://www.sec.gov/edgar/browse/?CIK=META",
+    "sentiment_label": "BULLISH",
+    "sentiment_score": 0.389,
+    "discussion_velocity": 0.0,
+    "viral_politician_buzz": true,
+    "is_pelosi_effect": true,
+    "retail_hype_score": 65,
+    "buzz_keywords": [
+      "whale"
+    ],
+    "social_volume": 40,
+    "pelosi_effect": {
+      "is_active": true,
+      "intensity": "HIGH_VELOCITY",
+      "hype_score": 65,
+      "primary_catalyst": "RETAIL_HERD_WHALE_COPYTRADE",
+      "prominent_figures": [],
+      "lifecycle_stage": "IGNITION_ACCELERATION",
+      "narrative_summary": "Active Pelosi Effect (HIGH_VELOCITY - Hype Score: 65/100): Retail social streams are actively circulating Retail Herd Whale Copytrade. Discussion demonstrates rapid copy-trading accumulation with strong bullish bias.",
+      "matched_keywords": [
+        "whale"
+      ],
+      "mentions_count": 1,
+      "verbatim_quotes": [
+        {
+          "text": "Alex Sacerdote returned an outstanding +239.39% profit in 3 yrs!    His 13F is out now.    \ud835\udde0\ud835\uddfc\ud835\ude00\ud835\ude01 \ud835\uddf6\ud835\uddfb\ud835\ude01\ud835\uddf2\ud835\uddff\ud835\uddf2\ud835\ude00\ud835\ude01\ud835\uddf6\ud835\uddfb\ud835\uddf4 \ud835\uddfb\ud835\uddf2\ud835\ude04 \ud835\uddef\ud835\ude02\ud835\ude06: $HPE - bou...",
+          "url": "https://stocktwits.com/message/669106883",
+          "source": "StockTwits",
+          "author": "HedgeFollow"
+        }
+      ]
+    },
+    "recent_headlines": [],
+    "contracts": {
+      "total_value_usd": 5186588899.08,
+      "contract_count": 15,
+      "has_major_contract": true,
+      "is_defense_contract": true,
+      "contract_score": 100,
+      "top_agencies": [
+        "Department of Homeland Security",
+        "Department of Defense",
+        "National Aeronautics and Space Administration"
+      ],
+      "top_award_amount_usd": 2022176160.58,
+      "recent_contracts": [
+        {
+          "award_id": "70B01C26C00000006",
+          "generated_internal_id": "CONT_AWD_70B01C26C00000006_7014_-NONE-_-NONE-",
+          "award_permalink_id": "CONT_AWD_70B01C26C00000006_7014_-NONE-_-NONE-",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_70B01C26C00000006_7014_-NONE-_-NONE-",
+          "recipient": "AMI METALS, INC",
+          "amount_usd": 2022176160.58,
+          "agency": "Department of Homeland Security",
+          "sub_agency": "U.S. Customs and Border Protection",
+          "description": "BULK STEEL FOR SOUTHWEST BORDER BARRIER CONSTRUCTION PROJECTS",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "80NM0018F0645",
+          "generated_internal_id": "CONT_AWD_80NM0018F0645_8000_80NM0018D0004_8000",
+          "award_permalink_id": "CONT_AWD_80NM0018F0645_8000_80NM0018D0004_8000",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_80NM0018F0645_8000_80NM0018D0004_8000",
+          "recipient": "CALIFORNIA INSTITUTE OF TECHNOLOGY",
+          "amount_usd": 826465671.59,
+          "agency": "National Aeronautics and Space Administration",
+          "sub_agency": "National Aeronautics and Space Administration",
+          "description": "PSYCHE: JOURNEY TO A METAL WORLD  THE CONTRACT IS THE SPONSORING AGREEMENT BETWEEN THE NATIONAL AERONAUTICS AND SPACE ADMINISTRATION (NASA) AND THE CALIFORNIA INSTITUTE OF TECHNOLOGY (CONTRACTOR), A PRIVATE NONPROFIT EDUCATIONAL INSTITUTION, WHICH ESTABLISHES THE RELATIONSHIP FOR THE OPERATION OF THE FEDERALLY FUNDED RESEARCH AND DEVELOPMENT CENTER (FFRDC) KNOWN AS THE JET PROPULSION LABORATORY. THE CONTRACTOR, JPL, IS REQUIRED TO PERFORM WORK THAT IS DESIGNATED IN TASK ORDERS ISSUED BY THE NASA MANAGEMENT OFFICE (NMO) CONTRACTING OFFICERS.   NASA - SPONSORED WORK: JPL'S PRIMARY MISSION IS TO SUPPORT THE NASA SCIENCE MISSION DIRECTORATE (SMD) IN CARRYING OUT THE SPECIFIC OBJECTIVES IDENTIFIED IN THE SMD SCIENCE PLAN.  THE FOUR BROAD SCIENTIFIC AREAS ARE: EARTH SCIENCE, PLANETARY SCIENCE, HELIOPHYSICS, AND ASTROPHYSICS.  IN PERFORMANCE OF THIS CONTRACT, JPL SHALL:   1) SUPPLY A BROAD BASE OF SCIENTIFIC AND TECHNICAL CAPABILITIES RELEVANT TO NASA PROGRAM AND PROJECT RESPONSIBILITIES AND ASSIGNMENTS. 2) FOSTER ITS UNIQUE RELATIONSHIP WITH A TOP-TIER UNIVERSITY TO FACILITATE THE INVOLVEMENT OF SCIENTISTS, ENGINEERS, AND STUDENTS FROM THE UNIVERSITY AND RESEARCH COMMUNITIES IN NASA MISSION AND IN SUPPORTING OTHER GOVERNMENT AGENCIES. 3) SUPPORT NASA IN ENABLING PROGRAM AND INSTITUTIONAL CAPABILITIES. 4) DEVELOP SPACECRAFT AND INSTRUMENTS THAT ARE SENT TO VARIOUS DESTINATIONS WITH OUR SOLAR SYSTEM, INCLUDING EARTH ORBIT, PLANETS, PLANETARY SATELLITES, ASTEROIDS, AND COMETS.  THESE MISSIONS MAY BE ORBITERS, LANDERS, OR ROVERS, AND TYPICALLY INCLUDE CUTTING-EDGE TECHNOLOGIES REQUIRED TO MEET SCIENTIFIC REQUIREMENTS. 5) PERFORM PROJECT TASKS INVOLVING: (I) AUTONOMOUS DEEP-SPACE, INNER-SPACE AND EARTH-ORBITING SPACECRAFT OR MAJOR SUBSYSTEMS, (II) EXPERIMENTS, INSTRUMENTS, OR OTHER DEVICES WHICH MAY BE CARRIED AS PAYLOAD ON SPACECRAFTS IN MISSIONS MANAGED BY OTHERS, AND/OR (III) GROUND-BASED SYSTEMS. 6) BEYOND ITS PRIMARY MISSION, JPL MAY PERFORM WORK FOR OTHER NASA MISSION DIRECTORATES OR OFFICES. 7) JPL IS ALSO RESPONSIBLE FOR THE OPERATION, RESEARCH, TECHNOLOGY INSERTION, AND MANAGEMENT OF NASA S DEEP SPACE NETWORK TO PROVIDE TELECOMMUNICATION AND OPERATION SERVICES, INCLUDING DATA ACQUISITION AND DATA DELIVERY REQUIRED TO MEET ESTABLISHED AGENCY OBJECTIVES. 8) JPL IS ALSO REQUIRED TO MAINTAIN AND CONDUCT AN EDUCATION PROGRAM IN CLOSE COORDINATION WITH THE NASA HEADQUARTERS EDUCATION OFFICE, THE ACADEMIC COMMUNITY AT LARGE, AND IN SUPPORT TO NASA STRATEGIC OBJECTIVES TO IMPROVE STUDENT RETENTION IN THE SCIENCE, TECHNOLOGY, ENGINEERING, AND MATHEMATICS (STEM) DISCIPLINES.   WORK FOR NON-NASA SPONSORS:  JPL MAY PERFORM WORK FOR NON-NASA SPONSORS.  THIS WORK WILL BE DESIGNATED IN TASK ORDERS ISSUED BY NMO CONTRACTING OFFICERS BASED ON TASK PLANS INITIATED BY THE CONTRACTOR.",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "W15QKN26F0176",
+          "generated_internal_id": "CONT_AWD_W15QKN26F0176_9700_W15QKN24D0052_9700",
+          "award_permalink_id": "CONT_AWD_W15QKN26F0176_9700_W15QKN24D0052_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_W15QKN26F0176_9700_W15QKN24D0052_9700",
+          "recipient": "GENERAL DYNAMICS OTS (WILKES BARRE), LLC",
+          "amount_usd": 367836131.11,
+          "agency": "Department of Defense",
+          "sub_agency": "Department of the Army",
+          "description": "MANUFACTURE AND DELIVER 155MM M795 METAL PART ASSEMBLIES",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "SP800026F0036",
+          "generated_internal_id": "CONT_AWD_SP800026F0036_9700_SP800026D0012_9700",
+          "award_permalink_id": "CONT_AWD_SP800026F0036_9700_SP800026D0012_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_SP800026F0036_9700_SP800026D0012_9700",
+          "recipient": "GLENCORE LTD.",
+          "amount_usd": 240325289.5,
+          "agency": "Department of Defense",
+          "sub_agency": "Defense Logistics Agency",
+          "description": "COBALT DELIVERY ORDER 2",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "W15QKN21F0097",
+          "generated_internal_id": "CONT_AWD_W15QKN21F0097_9700_W15QKN19D0084_9700",
+          "award_permalink_id": "CONT_AWD_W15QKN21F0097_9700_W15QKN19D0084_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_W15QKN21F0097_9700_W15QKN19D0084_9700",
+          "recipient": "GENERAL DYNAMICS OTS (WILKES BARRE), LLC",
+          "amount_usd": 230428501.52,
+          "agency": "Department of Defense",
+          "sub_agency": "Department of the Army",
+          "description": "M795 METAL PARTS",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "SP800026F0024",
+          "generated_internal_id": "CONT_AWD_SP800026F0024_9700_SP800026D0012_9700",
+          "award_permalink_id": "CONT_AWD_SP800026F0024_9700_SP800026D0012_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_SP800026F0024_9700_SP800026D0012_9700",
+          "recipient": "GLENCORE LTD.",
+          "amount_usd": 210737898.98,
+          "agency": "Department of Defense",
+          "sub_agency": "Defense Logistics Agency",
+          "description": "COBALT DELIVERY ORDER 1",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "W15QKN19F0710",
+          "generated_internal_id": "CONT_AWD_W15QKN19F0710_9700_W15QKN19D0084_9700",
+          "award_permalink_id": "CONT_AWD_W15QKN19F0710_9700_W15QKN19D0084_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_W15QKN19F0710_9700_W15QKN19D0084_9700",
+          "recipient": "GENERAL DYNAMICS OTS (WILKES BARRE), LLC",
+          "amount_usd": 177680689.12,
+          "agency": "Department of Defense",
+          "sub_agency": "Department of the Army",
+          "description": "PURCHASE OF M795 AND 120MM LARGE CALIBER METAL PARTS",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "W15QKN23F0615",
+          "generated_internal_id": "CONT_AWD_W15QKN23F0615_9700_W15QKN23D0009_9700",
+          "award_permalink_id": "CONT_AWD_W15QKN23F0615_9700_W15QKN23D0009_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_W15QKN23F0615_9700_W15QKN23D0009_9700",
+          "recipient": "IMT DEFENSE CORP",
+          "amount_usd": 165074006.02,
+          "agency": "Department of Defense",
+          "sub_agency": "Department of the Army",
+          "description": "MANUFACTURE, PRODUCE, AND DELIVER 155MM M795 METAL PARTS IN SUPPORT OF UKRAINE.",
+          "action_date": "Active"
+        }
+      ],
+      "usaspending_search_url": "https://www.usaspending.gov/search/?keyword=META",
+      "usaspending_recipient_url": "https://www.usaspending.gov/recipient"
+    }
+  },
+  "checks": [
+    {
+      "rule": "Institutional Volume Surge",
+      "passed": false,
+      "detail": "RVOL is 0.64x (required >= 1.50x or >= 1.30x on squeeze)"
+    },
+    {
+      "rule": "Closing Range Strength",
+      "passed": false,
+      "detail": "Finished at 50.0% of daily range (required >= 68%)"
+    },
+    {
+      "rule": "Structural Range Expansion",
+      "passed": false,
+      "detail": "Inside existing range"
+    },
+    {
+      "rule": "Fast EMA Trend Stack",
+      "passed": false,
+      "detail": "Price ($nan) > 5 EMA ($627.42) >= 20 EMA ($642.91)"
+    },
+    {
+      "rule": "Anti-Exhaustion Safe Zone",
+      "passed": false,
+      "detail": "Price is +nan% from 20 EMA (max safe limit +8.5%)"
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-08-21",
+      "open": 546.46,
+      "high": 553.43,
+      "low": 542.8,
+      "close": 549.47,
+      "volume": 13848000,
+      "ema5": 553.95,
+      "ema20": 576.87
+    },
+    {
+      "date": "2026-08-24",
+      "open": 549.77,
+      "high": 560.98,
+      "low": 545.87,
+      "close": 558.58,
+      "volume": 12990600,
+      "ema5": 555.49,
+      "ema20": 575.13
+    },
+    {
+      "date": "2026-08-25",
+      "open": 563.44,
+      "high": 570.35,
+      "low": 560.96,
+      "close": 569.6,
+      "volume": 9769100,
+      "ema5": 560.2,
+      "ema20": 574.6
+    },
+    {
+      "date": "2026-08-26",
+      "open": 589.84,
+      "high": 592.87,
+      "low": 561.44,
+      "close": 575.69,
+      "volume": 31416300,
+      "ema5": 565.36,
+      "ema20": 574.7
+    },
+    {
+      "date": "2026-08-27",
+      "open": 576.03,
+      "high": 587.93,
+      "low": 567.17,
+      "close": 570.65,
+      "volume": 15221400,
+      "ema5": 567.12,
+      "ema20": 574.32
+    },
+    {
+      "date": "2026-08-28",
+      "open": 571.1,
+      "high": 588.73,
+      "low": 570.55,
+      "close": 577.56,
+      "volume": 16042400,
+      "ema5": 570.6,
+      "ema20": 574.63
+    },
+    {
+      "date": "2026-08-31",
+      "open": 577.17,
+      "high": 578.22,
+      "low": 568.69,
+      "close": 571.89,
+      "volume": 13383800,
+      "ema5": 571.03,
+      "ema20": 574.37
+    },
+    {
+      "date": "2026-09-01",
+      "open": 557.91,
+      "high": 584.49,
+      "low": 555.66,
+      "close": 578.08,
+      "volume": 15796900,
+      "ema5": 573.38,
+      "ema20": 574.72
+    },
+    {
+      "date": "2026-09-02",
+      "open": 578.33,
+      "high": 599.91,
+      "low": 576.54,
+      "close": 592.38,
+      "volume": 16552700,
+      "ema5": 579.72,
+      "ema20": 576.4
+    },
+    {
+      "date": "2026-09-03",
+      "open": 604.01,
+      "high": 618.97,
+      "low": 603.87,
+      "close": 610.2,
+      "volume": 19737100,
+      "ema5": 589.88,
+      "ema20": 579.62
+    },
+    {
+      "date": "2026-09-04",
+      "open": 611.87,
+      "high": 616.97,
+      "low": 604.79,
+      "close": 616.28,
+      "volume": 15966200,
+      "ema5": 598.68,
+      "ema20": 583.11
+    },
+    {
+      "date": "2026-09-08",
+      "open": 615.72,
+      "high": 624.31,
+      "low": 609.26,
+      "close": 613.0,
+      "volume": 18909700,
+      "ema5": 603.45,
+      "ema20": 585.96
+    },
+    {
+      "date": "2026-09-09",
+      "open": 648.13,
+      "high": 657.34,
+      "low": 638.06,
+      "close": 653.17,
+      "volume": 35900700,
+      "ema5": 620.03,
+      "ema20": 592.36
+    },
+    {
+      "date": "2026-09-10",
+      "open": 653.19,
+      "high": 662.98,
+      "low": 641.63,
+      "close": 643.87,
+      "volume": 21531900,
+      "ema5": 627.97,
+      "ema20": 597.27
+    },
+    {
+      "date": "2026-09-11",
+      "open": 652.99,
+      "high": 663.72,
+      "low": 645.69,
+      "close": 647.52,
+      "volume": 16925000,
+      "ema5": 634.49,
+      "ema20": 602.05
+    },
+    {
+      "date": "2026-09-14",
+      "open": 657.31,
+      "high": 668.07,
+      "low": 648.71,
+      "close": 665.08,
+      "volume": 19332300,
+      "ema5": 644.68,
+      "ema20": 608.05
+    },
+    {
+      "date": "2026-09-15",
+      "open": 658.78,
+      "high": 678.33,
+      "low": 655.68,
+      "close": 669.71,
+      "volume": 19502800,
+      "ema5": 653.03,
+      "ema20": 613.93
+    },
+    {
+      "date": "2026-09-16",
+      "open": 679.37,
+      "high": 684.77,
+      "low": 671.38,
+      "close": 672.78,
+      "volume": 17217800,
+      "ema5": 659.61,
+      "ema20": 619.53
+    },
+    {
+      "date": "2026-09-17",
+      "open": 681.9,
+      "high": 682.66,
+      "low": 666.52,
+      "close": 681.77,
+      "volume": 15928000,
+      "ema5": 667.0,
+      "ema20": 625.46
+    },
+    {
+      "date": "2026-09-18",
+      "open": 688.08,
+      "high": 689.61,
+      "low": 660.28,
+      "close": 665.23,
+      "volume": 27596400,
+      "ema5": 666.41,
+      "ema20": 629.25
+    },
+    {
+      "date": "2026-09-21",
+      "open": 680.3,
+      "high": 753.0,
+      "low": 679.6,
+      "close": 741.25,
+      "volume": 48720500,
+      "ema5": 691.35,
+      "ema20": 639.91
+    },
+    {
+      "date": "2026-09-22",
+      "open": 731.4,
+      "high": 757.27,
+      "low": 730.0,
+      "close": 736.6,
+      "volume": 28122100,
+      "ema5": 706.44,
+      "ema20": 649.12
+    },
+    {
+      "date": "2026-09-23",
+      "open": 747.6,
+      "high": 763.9,
+      "low": 739.51,
+      "close": 744.1,
+      "volume": 30829200,
+      "ema5": 718.99,
+      "ema20": 658.17
+    },
+    {
+      "date": "2026-09-24",
+      "open": 744.36,
+      "high": 779.82,
+      "low": 743.01,
+      "close": 777.59,
+      "volume": 34808500,
+      "ema5": 738.52,
+      "ema20": 669.54
+    },
+    {
+      "date": "2026-09-25",
+      "open": 768.85,
+      "high": 769.57,
+      "low": 746.54,
+      "close": 751.66,
+      "volume": 25826700,
+      "ema5": 742.9,
+      "ema20": 677.36
+    },
+    {
+      "date": "2026-09-28",
+      "open": 750.04,
+      "high": 750.58,
+      "low": 713.19,
+      "close": 715.62,
+      "volume": 27943100,
+      "ema5": 733.81,
+      "ema20": 681.01
+    },
+    {
+      "date": "2026-09-29",
+      "open": 725.0,
+      "high": 740.45,
+      "low": 715.1,
+      "close": 738.79,
+      "volume": 23591100,
+      "ema5": 735.47,
+      "ema20": 686.51
+    },
+    {
+      "date": "2026-09-30",
+      "open": 730.27,
+      "high": 738.25,
+      "low": 721.3,
+      "close": 725.18,
+      "volume": 19293000,
+      "ema5": 732.04,
+      "ema20": 690.19
+    },
+    {
+      "date": "2026-10-01",
+      "open": 728.53,
+      "high": 735.88,
+      "low": 721.51,
+      "close": 725.93,
+      "volume": 12408400,
+      "ema5": 730.0,
+      "ema20": 693.6
+    },
+    {
+      "date": "2026-10-02",
+      "open": 733.25,
+      "high": 741.58,
+      "low": 726.2,
+      "close": 728.08,
+      "volume": 12964100,
+      "ema5": 729.36,
+      "ema20": 696.88
+    },
+    {
+      "date": "2026-10-05",
+      "open": 727.71,
+      "high": 746.7,
+      "low": 727.12,
+      "close": 741.9,
+      "volume": 15215300,
+      "ema5": 733.54,
+      "ema20": 701.17
+    },
+    {
+      "date": "2026-10-06",
+      "open": 746.73,
+      "high": 747.6,
+      "low": 736.69,
+      "close": 738.88,
+      "volume": 12563100,
+      "ema5": 735.32,
+      "ema20": 704.76
+    },
+    {
+      "date": "2026-10-07",
+      "open": 738.29,
+      "high": 738.29,
+      "low": 720.15,
+      "close": 721.31,
+      "volume": 13231600,
+      "ema5": 730.65,
+      "ema20": 706.34
+    },
+    {
+      "date": "2026-10-08",
+      "open": 724.54,
+      "high": 724.95,
+      "low": 711.68,
+      "close": 720.89,
+      "volume": 16041100,
+      "ema5": 727.4,
+      "ema20": 707.72
+    },
+    {
+      "date": "2026-10-09",
+      "open": 726.51,
+      "high": 728.07,
+      "low": 716.2,
+      "close": 718.67,
+      "volume": 12619900,
+      "ema5": 724.49,
+      "ema20": 708.76
+    },
+    {
+      "date": "2026-10-12",
+      "open": 728.5,
+      "high": 752.24,
+      "low": 727.64,
+      "close": 742.96,
+      "volume": 24882400,
+      "ema5": 730.65,
+      "ema20": 712.02
+    },
+    {
+      "date": "2026-10-13",
+      "open": 735.99,
+      "high": 771.27,
+      "low": 734.84,
+      "close": 762.5,
+      "volume": 22706200,
+      "ema5": 741.26,
+      "ema20": 716.83
+    },
+    {
+      "date": "2026-10-14",
+      "open": 760.75,
+      "high": 761.5,
+      "low": 734.29,
+      "close": 737.54,
+      "volume": 16236300,
+      "ema5": 740.02,
+      "ema20": 718.8
+    },
+    {
+      "date": "2026-10-15",
+      "open": 726.56,
+      "high": 743.97,
+      "low": 715.58,
+      "close": 736.72,
+      "volume": 16891500,
+      "ema5": 738.92,
+      "ema20": 720.51
+    },
+    {
+      "date": "2026-10-16",
+      "open": 736.7,
+      "high": 738.49,
+      "low": 702.71,
+      "close": 709.33,
+      "volume": 20643800,
+      "ema5": 729.06,
+      "ema20": 719.44
+    },
+    {
+      "date": "2026-10-19",
+      "open": 707.16,
+      "high": 708.83,
+      "low": 693.86,
+      "close": 705.44,
+      "volume": 16260900,
+      "ema5": 721.19,
+      "ema20": 718.11
+    },
+    {
+      "date": "2026-10-20",
+      "open": 694.98,
+      "high": 696.51,
+      "low": 681.05,
+      "close": 694.25,
+      "volume": 17049100,
+      "ema5": 712.21,
+      "ema20": 715.84
+    },
+    {
+      "date": "2026-10-21",
+      "open": 697.6,
+      "high": 713.22,
+      "low": 689.68,
+      "close": 697.52,
+      "volume": 29203900,
+      "ema5": 707.31,
+      "ema20": 714.09
+    },
+    {
+      "date": "2026-10-22",
+      "open": 676.35,
+      "high": 681.07,
+      "low": 639.69,
+      "close": 648.85,
+      "volume": 40571000,
+      "ema5": 687.82,
+      "ema20": 707.88
+    },
+    {
+      "date": "2026-10-23",
+      "open": 638.18,
+      "high": 648.04,
+      "low": 633.27,
+      "close": 642.62,
+      "volume": 14791600,
+      "ema5": 672.76,
+      "ema20": 701.66
+    },
+    {
+      "date": "2026-10-26",
+      "open": 638.36,
+      "high": 647.69,
+      "low": 627.8,
+      "close": 630.56,
+      "volume": 30913600,
+      "ema5": 658.69,
+      "ema20": 694.89
+    },
+    {
+      "date": "2026-10-27",
+      "open": 627.07,
+      "high": 628.46,
+      "low": 619.21,
+      "close": 620.19,
+      "volume": 51334100,
+      "ema5": 645.86,
+      "ema20": 687.78
+    },
+    {
+      "date": "2026-10-28",
+      "open": 621.85,
+      "high": 624.42,
+      "low": 609.0,
+      "close": 612.49,
+      "volume": 35110900,
+      "ema5": 634.73,
+      "ema20": 680.61
+    },
+    {
+      "date": "2026-10-29",
+      "open": 621.29,
+      "high": 634.68,
+      "low": 616.8,
+      "close": 624.52,
+      "volume": 31276200,
+      "ema5": 631.33,
+      "ema20": 675.27
+    },
+    {
+      "date": "2026-10-30",
+      "open": 614.51,
+      "high": 626.37,
+      "low": 610.13,
+      "close": 614.99,
+      "volume": 25364700,
+      "ema5": 625.88,
+      "ema20": 669.53
+    },
+    {
+      "date": "2026-11-02",
+      "open": 614.44,
+      "high": 621.69,
+      "low": 606.41,
+      "close": 606.73,
+      "volume": 19496500,
+      "ema5": 619.5,
+      "ema20": 663.54
+    },
+    {
+      "date": "2026-11-03",
+      "open": 610.76,
+      "high": 624.84,
+      "low": 610.1,
+      "close": 621.03,
+      "volume": 13731300,
+      "ema5": 620.01,
+      "ema20": 659.5
+    },
+    {
+      "date": "2026-11-04",
+      "open": 641.15,
+      "high": 643.09,
+      "low": 624.5,
+      "close": 630.0,
+      "volume": 32441800,
+      "ema5": 623.34,
+      "ema20": 656.69
+    },
+    {
+      "date": "2026-11-05",
+      "open": 632.3,
+      "high": 634.99,
+      "low": 583.8,
+      "close": 605.08,
+      "volume": 28676200,
+      "ema5": 617.25,
+      "ema20": 651.77
+    },
+    {
+      "date": "2026-11-06",
+      "open": 607.33,
+      "high": 625.6,
+      "low": 606.66,
+      "close": 610.15,
+      "volume": 15705500,
+      "ema5": 614.89,
+      "ema20": 647.81
+    },
+    {
+      "date": "2026-11-09",
+      "open": 631.05,
+      "high": 647.25,
+      "low": 630.0,
+      "close": 641.37,
+      "volume": 19143300,
+      "ema5": 623.71,
+      "ema20": 647.19
+    },
+    {
+      "date": "2026-11-10",
+      "open": 637.98,
+      "high": 647.28,
+      "low": 635.5,
+      "close": 641.39,
+      "volume": 13030600,
+      "ema5": 629.61,
+      "ema20": 646.64
+    },
+    {
+      "date": "2026-11-11",
+      "open": 646.74,
+      "high": 648.45,
+      "low": 627.97,
+      "close": 628.77,
+      "volume": 15628600,
+      "ema5": 629.33,
+      "ema20": 644.94
+    },
+    {
+      "date": "2026-11-12",
+      "open": 625.35,
+      "high": 630.32,
+      "low": 618.92,
+      "close": 623.61,
+      "volume": 10341800,
+      "ema5": 627.42,
+      "ema20": 642.91
+    },
+    {
+      "date": "2026-11-13",
+      "open": NaN,
+      "high": NaN,
+      "low": NaN,
+      "close": NaN,
+      "volume": 15088458,
+      "ema5": 627.42,
+      "ema20": 642.91
+    }
+  ],
+  "name": "Meta Platforms Inc.",
+  "category": "Mega-Cap & Enterprise Cloud",
+  "role": "Open-source AI leader and massive compute spender",
+  "technicals": {
+    "rvol_20d": 0.64,
+    "crr": 0.5,
+    "bb_width": 0.0,
+    "ema5": 627.42,
+    "ema20": 642.91,
+    "volume": 15088458,
+    "vol_sma20": 23758002,
+    "high": NaN,
+    "low": NaN,
+    "open": NaN
+  }
+}

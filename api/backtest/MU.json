@@ -1,0 +1,119 @@
+{
+  "ticker": "MU",
+  "1y": {
+    "ticker": "MU",
+    "initial_capital": 10000.0,
+    "final_balance": 10000.0,
+    "net_profit": 0.0,
+    "strategy_return_pct": 0.0,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate_pct": 0.0,
+    "profit_factor": 1.0,
+    "expectancy_dollar": 0.0,
+    "max_drawdown_pct": 0.0,
+    "avg_bars_held": 0.0,
+    "avg_win": 0.0,
+    "avg_loss": 0.0,
+    "equity_curve": [
+      {
+        "date": "2026-01-29",
+        "balance": 10000.0
+      }
+    ],
+    "trades": []
+  },
+  "2y": {
+    "ticker": "MU",
+    "initial_capital": 10000.0,
+    "final_balance": 10000.0,
+    "net_profit": 0.0,
+    "strategy_return_pct": 0.0,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate_pct": 0.0,
+    "profit_factor": 1.0,
+    "expectancy_dollar": 0.0,
+    "max_drawdown_pct": 0.0,
+    "avg_bars_held": 0.0,
+    "avg_win": 0.0,
+    "avg_loss": 0.0,
+    "equity_curve": [
+      {
+        "date": "2025-01-30",
+        "balance": 10000.0
+      }
+    ],
+    "trades": []
+  },
+  "3y": {
+    "ticker": "MU",
+    "initial_capital": 10000.0,
+    "final_balance": 9850.67,
+    "net_profit": -149.33,
+    "strategy_return_pct": -1.49,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 1,
+    "wins": 0,
+    "losses": 1,
+    "win_rate_pct": 0.0,
+    "profit_factor": 0.0,
+    "expectancy_dollar": -149.33,
+    "max_drawdown_pct": 1.49,
+    "avg_bars_held": 1.0,
+    "avg_win": 0.0,
+    "avg_loss": 149.33,
+    "equity_curve": [
+      {
+        "date": "2024-01-29",
+        "balance": 10000.0
+      },
+      {
+        "date": "2024-06-06",
+        "balance": 9850.67
+      }
+    ],
+    "trades": [
+      {
+        "id": 1,
+        "ticker": "MU",
+        "entry_date": "2024-06-05",
+        "exit_date": "2024-06-06",
+        "entry_price": 132.74,
+        "exit_price": 129.42,
+        "shares": 45,
+        "pnl": -149.33,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "initial_capital": 10000.0,
+  "final_balance": 10000.0,
+  "net_profit": 0.0,
+  "strategy_return_pct": 0.0,
+  "buy_and_hold_return_pct": NaN,
+  "total_trades": 0,
+  "wins": 0,
+  "losses": 0,
+  "win_rate_pct": 0.0,
+  "profit_factor": 1.0,
+  "expectancy_dollar": 0.0,
+  "max_drawdown_pct": 0.0,
+  "avg_bars_held": 0.0,
+  "avg_win": 0.0,
+  "avg_loss": 0.0,
+  "equity_curve": [
+    {
+      "date": "2025-01-30",
+      "balance": 10000.0
+    }
+  ],
+  "trades": []
+}
