@@ -24,22 +24,8 @@
     "history": []
   },
   "bot": {
-    "cash": 24168.0,
-    "positions": [
-      {
-        "ticker": "ARM",
-        "shares": 32,
-        "avg_price": 182.25,
-        "cost_basis": 5832.0,
-        "opened_at": "2026-11-17 15:01 UTC",
-        "peak_price": 182.25,
-        "partial_harvested": false,
-        "trailing_stop": 173.77,
-        "structural_stop": 173.77,
-        "sector": "SEMICONDUCTORS",
-        "strategy": "CAPITULATION_CARVE_OUT"
-      }
-    ],
+    "cash": 29845.44,
+    "positions": [],
     "history": [
       {
         "id": "tx_b_1",
@@ -51,6 +37,17 @@
         "price": 182.25,
         "total_usd": 5832.0,
         "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_2",
+        "time": "2026-11-17 17:01 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "ARM",
+        "shares": 32,
+        "price": 177.42,
+        "total_usd": 5677.44,
+        "realized_pnl": -154.56
       }
     ],
     "decision_logs": [
@@ -794,9 +791,31 @@
         "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
         "composite_score": 0,
         "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-17 17:01 UTC",
+        "action": "SELL",
+        "ticker": "ARM",
+        "shares": 32,
+        "price": 177.42,
+        "rationale": "Stop Loss Triggered (-2.7% loss). Cut loss early and quarantined ticker for 48 hours.",
+        "realized_pnl": -154.56,
+        "pnl_pct": -2.65
+      },
+      {
+        "time": "2026-11-17 17:01 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
       }
     ],
-    "quarantine": {},
-    "last_evaluated_at": "2026-11-17 16:01 UTC"
+    "quarantine": {
+      "ARM": "2026-11-19T17:01:34.067324+00:00"
+    },
+    "last_evaluated_at": "2026-11-17 17:01 UTC"
   }
 }
