@@ -24,8 +24,22 @@
     "history": []
   },
   "bot": {
-    "cash": 29845.44,
-    "positions": [],
+    "cash": 23920.64,
+    "positions": [
+      {
+        "ticker": "ALAB",
+        "shares": 28,
+        "avg_price": 211.6,
+        "cost_basis": 5924.8,
+        "opened_at": "2026-11-17 21:05 UTC",
+        "peak_price": 211.6,
+        "partial_harvested": false,
+        "trailing_stop": 200.0,
+        "structural_stop": 200.0,
+        "sector": "MEGACAP_INFRASTRUCTURE",
+        "strategy": "CAPITULATION_CARVE_OUT"
+      }
+    ],
     "history": [
       {
         "id": "tx_b_1",
@@ -48,6 +62,17 @@
         "price": 177.42,
         "total_usd": 5677.44,
         "realized_pnl": -154.56
+      },
+      {
+        "id": "tx_b_3",
+        "time": "2026-11-17 21:05 UTC",
+        "participant": "BOT",
+        "action": "BUY (CAPITULATION CARVE-OUT)",
+        "ticker": "ALAB",
+        "shares": 28,
+        "price": 211.6,
+        "total_usd": 5924.8,
+        "realized_pnl": 0.0
       }
     ],
     "decision_logs": [
@@ -841,11 +866,22 @@
         "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
         "composite_score": 0,
         "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-17 21:05 UTC",
+        "action": "CAPITULATION_BUY",
+        "ticker": "ALAB",
+        "shares": 28,
+        "price": 211.6,
+        "total_usd": 5924.8,
+        "rationale": "Capitulation Reversal Carve-Out: Benchmark QQQ < 20 EMA, but ALAB suffered extreme -8.79% washout on Day T-1 and confirmed green reversal today. Tactical 20% entry ($5,924.80) with structural LOD stop at $200.00.",
+        "composite_score": 90,
+        "wave_probability": 66.9
       }
     ],
     "quarantine": {
       "ARM": "2026-11-19T17:01:34.067324+00:00"
     },
-    "last_evaluated_at": "2026-11-17 20:01 UTC"
+    "last_evaluated_at": "2026-11-17 21:05 UTC"
   }
 }
