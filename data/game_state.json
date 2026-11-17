@@ -32,7 +32,7 @@
         "avg_price": 211.6,
         "cost_basis": 5924.8,
         "opened_at": "2026-11-17 21:05 UTC",
-        "peak_price": 211.6,
+        "peak_price": 211.81,
         "partial_harvested": false,
         "trailing_stop": 200.0,
         "structural_stop": 200.0,
@@ -877,11 +877,21 @@
         "rationale": "Capitulation Reversal Carve-Out: Benchmark QQQ < 20 EMA, but ALAB suffered extreme -8.79% washout on Day T-1 and confirmed green reversal today. Tactical 20% entry ($5,924.80) with structural LOD stop at $200.00.",
         "composite_score": 90,
         "wave_probability": 66.9
+      },
+      {
+        "time": "2026-11-17 22:36 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
       }
     ],
     "quarantine": {
       "ARM": "2026-11-19T17:01:34.067324+00:00"
     },
-    "last_evaluated_at": "2026-11-17 21:05 UTC"
+    "last_evaluated_at": "2026-11-17 22:36 UTC"
   }
 }
