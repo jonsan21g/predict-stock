@@ -784,9 +784,19 @@
         "rationale": "Capitulation Reversal Carve-Out: Benchmark QQQ < 20 EMA, but ARM suffered extreme -8.12% washout on Day T-1 and confirmed green reversal today. Tactical 20% entry ($5,832.00) with structural LOD stop at $173.77.",
         "composite_score": 90,
         "wave_probability": 66.9
+      },
+      {
+        "time": "2026-11-17 16:01 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
       }
     ],
     "quarantine": {},
-    "last_evaluated_at": "2026-11-17 15:01 UTC"
+    "last_evaluated_at": "2026-11-17 16:01 UTC"
   }
 }
