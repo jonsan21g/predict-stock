@@ -24,9 +24,35 @@
     "history": []
   },
   "bot": {
-    "cash": 30000.0,
-    "positions": [],
-    "history": [],
+    "cash": 24168.0,
+    "positions": [
+      {
+        "ticker": "ARM",
+        "shares": 32,
+        "avg_price": 182.25,
+        "cost_basis": 5832.0,
+        "opened_at": "2026-11-17 15:01 UTC",
+        "peak_price": 182.25,
+        "partial_harvested": false,
+        "trailing_stop": 173.77,
+        "structural_stop": 173.77,
+        "sector": "SEMICONDUCTORS",
+        "strategy": "CAPITULATION_CARVE_OUT"
+      }
+    ],
+    "history": [
+      {
+        "id": "tx_b_1",
+        "time": "2026-11-17 15:01 UTC",
+        "participant": "BOT",
+        "action": "BUY (CAPITULATION CARVE-OUT)",
+        "ticker": "ARM",
+        "shares": 32,
+        "price": 182.25,
+        "total_usd": 5832.0,
+        "realized_pnl": 0.0
+      }
+    ],
     "decision_logs": [
       {
         "time": "2026-11-09 14:35 UTC",
@@ -747,9 +773,20 @@
         "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
         "composite_score": 0,
         "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-17 15:01 UTC",
+        "action": "CAPITULATION_BUY",
+        "ticker": "ARM",
+        "shares": 32,
+        "price": 182.25,
+        "total_usd": 5832.0,
+        "rationale": "Capitulation Reversal Carve-Out: Benchmark QQQ < 20 EMA, but ARM suffered extreme -8.12% washout on Day T-1 and confirmed green reversal today. Tactical 20% entry ($5,832.00) with structural LOD stop at $173.77.",
+        "composite_score": 90,
+        "wave_probability": 66.9
       }
     ],
     "quarantine": {},
-    "last_evaluated_at": "2026-11-17 14:35 UTC"
+    "last_evaluated_at": "2026-11-17 15:01 UTC"
   }
 }
