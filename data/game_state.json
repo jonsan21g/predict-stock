@@ -24,17 +24,17 @@
     "history": []
   },
   "bot": {
-    "cash": 23920.64,
+    "cash": 26999.239999999998,
     "positions": [
       {
         "ticker": "ALAB",
-        "shares": 28,
+        "shares": 14,
         "avg_price": 211.6,
-        "cost_basis": 5924.8,
+        "cost_basis": 2962.4,
         "opened_at": "2026-11-17 21:05 UTC",
-        "peak_price": 211.81,
-        "partial_harvested": false,
-        "trailing_stop": 200.0,
+        "peak_price": 219.9,
+        "partial_harvested": true,
+        "trailing_stop": 214.77,
         "structural_stop": 200.0,
         "sector": "MEGACAP_INFRASTRUCTURE",
         "strategy": "CAPITULATION_CARVE_OUT"
@@ -73,6 +73,17 @@
         "price": 211.6,
         "total_usd": 5924.8,
         "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_4",
+        "time": "2026-11-18 15:01 UTC",
+        "participant": "BOT",
+        "action": "SELL (PARTIAL)",
+        "ticker": "ALAB",
+        "shares": 14,
+        "price": 219.9,
+        "total_usd": 3078.6,
+        "realized_pnl": 116.2
       }
     ],
     "decision_logs": [
@@ -927,11 +938,31 @@
         "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
         "composite_score": 0,
         "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-18 15:01 UTC",
+        "action": "SELL_PARTIAL",
+        "ticker": "ALAB",
+        "shares": 14,
+        "price": 219.9,
+        "rationale": "Target 1 Harvest (+3.9% gain). Sold 50% (14 sh) to lock profit into bankroll. Trailing stop on remaining 14 runner shares elevated to Breakeven ($211.60).",
+        "realized_pnl": 116.2,
+        "pnl_pct": 3.92
+      },
+      {
+        "time": "2026-11-18 15:01 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
       }
     ],
     "quarantine": {
       "ARM": "2026-11-19T17:01:34.067324+00:00"
     },
-    "last_evaluated_at": "2026-11-18 14:35 UTC"
+    "last_evaluated_at": "2026-11-18 15:01 UTC"
   }
 }
