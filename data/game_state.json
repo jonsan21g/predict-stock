@@ -24,22 +24,8 @@
     "history": []
   },
   "bot": {
-    "cash": 26999.239999999998,
-    "positions": [
-      {
-        "ticker": "ALAB",
-        "shares": 14,
-        "avg_price": 211.6,
-        "cost_basis": 2962.4,
-        "opened_at": "2026-11-17 21:05 UTC",
-        "peak_price": 219.9,
-        "partial_harvested": true,
-        "trailing_stop": 214.77,
-        "structural_stop": 200.0,
-        "sector": "MEGACAP_INFRASTRUCTURE",
-        "strategy": "CAPITULATION_CARVE_OUT"
-      }
-    ],
+    "cash": 29987.679999999997,
+    "positions": [],
     "history": [
       {
         "id": "tx_b_1",
@@ -84,6 +70,17 @@
         "price": 219.9,
         "total_usd": 3078.6,
         "realized_pnl": 116.2
+      },
+      {
+        "id": "tx_b_5",
+        "time": "2026-11-18 16:01 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "ALAB",
+        "shares": 14,
+        "price": 213.46,
+        "total_usd": 2988.44,
+        "realized_pnl": 26.04
       }
     ],
     "decision_logs": [
@@ -958,11 +955,31 @@
         "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
         "composite_score": 0,
         "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-18 16:01 UTC",
+        "action": "SELL",
+        "ticker": "ALAB",
+        "shares": 14,
+        "price": 213.46,
+        "rationale": "Dynamic Profit Ratchet Exit triggered @ $213.46 (Floor was $214.77, peak was $219.90). Locked in +0.9% gain before pullback.",
+        "realized_pnl": 26.04,
+        "pnl_pct": 0.88
+      },
+      {
+        "time": "2026-11-18 16:01 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
       }
     ],
     "quarantine": {
       "ARM": "2026-11-19T17:01:34.067324+00:00"
     },
-    "last_evaluated_at": "2026-11-18 15:01 UTC"
+    "last_evaluated_at": "2026-11-18 16:01 UTC"
   }
 }
