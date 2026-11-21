@@ -1,0 +1,915 @@
+{
+  "ticker": "MSFT",
+  "date": "2026-11-19",
+  "current_price": 498.3,
+  "change_pct": -1.78,
+  "is_ignition": false,
+  "ignition_type": "NONE",
+  "wave_probability": 41.2,
+  "composite_score": 41,
+  "rvol": 1.0359701971409219,
+  "crr": 0.004941200042657842,
+  "target_1": 515.74,
+  "target_2": 528.2,
+  "stop_loss": 485.84,
+  "smart_money": {
+    "politician_buy": false,
+    "jurisdiction_match": false,
+    "matched_committees": [],
+    "congress_score": 0,
+    "politicians": [],
+    "high_jurisdiction_buyers": [],
+    "congress_buy_count": 0,
+    "congress_sell_count": 0,
+    "congress_total_trades": 0,
+    "congress_trades": [],
+    "quiver_stock_url": "https://www.quiverquant.com/congresstrading/stock/MSFT",
+    "capitoltrades_url": "https://www.capitoltrades.com/issuers",
+    "house_disclosure_url": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+    "senate_disclosure_url": "https://efdsearch.senate.gov/search/",
+    "insider_buy": false,
+    "insider_cluster": false,
+    "insider_score": 0,
+    "total_buy_value_usd": 0,
+    "c_suite_buyers": [],
+    "insider_buy_count": 0,
+    "insider_sell_count": 5,
+    "net_shares": -147809,
+    "unique_buyers": 0,
+    "recent_buys": [],
+    "recent_transactions": [
+      {
+        "date": "2026-11-10",
+        "insider": "NUMOTO TAKESHI",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 5000,
+        "value_usd": 2655000.0,
+        "text": "Sale at price 531.00 per share."
+      },
+      {
+        "date": "2026-11-09",
+        "insider": "HOOD AMY E",
+        "position": "Chief Financial Officer",
+        "type": "SELL",
+        "shares": 7305,
+        "value_usd": 3976633.0,
+        "text": "Sale at price 544.24 - 544.95 per share."
+      },
+      {
+        "date": "2026-11-06",
+        "insider": "NADELLA SATYA",
+        "position": "Chief Executive Officer",
+        "type": "OTHER",
+        "shares": 4704,
+        "value_usd": 0.0,
+        "text": "Stock Gift at price 0.00 per share."
+      },
+      {
+        "date": "2026-10-13",
+        "insider": "HOOD AMY E",
+        "position": "Chief Financial Officer",
+        "type": "SELL",
+        "shares": 7305,
+        "value_usd": 3984303.0,
+        "text": "Sale at price 544.80 - 546.51 per share."
+      },
+      {
+        "date": "2026-09-14",
+        "insider": "HOOD AMY E",
+        "position": "Chief Financial Officer",
+        "type": "SELL",
+        "shares": 41674,
+        "value_usd": 20764845.0,
+        "text": "Sale at price 495.97 - 500.78 per share."
+      },
+      {
+        "date": "2026-09-09",
+        "insider": "SMITH BRADFORD LEE",
+        "position": "Officer",
+        "type": "OTHER",
+        "shares": 14000,
+        "value_usd": 0.0,
+        "text": "Stock Gift at price 0.00 per share."
+      },
+      {
+        "date": "2026-09-04",
+        "insider": "STANTON JOHN W.",
+        "position": "Director",
+        "type": "GRANT",
+        "shares": 125,
+        "value_usd": 0.0,
+        "text": "Stock Award(Grant) at price 0.00 per share."
+      },
+      {
+        "date": "2026-09-04",
+        "insider": "LIST-STOLL TERI L.",
+        "position": "Director",
+        "type": "GRANT",
+        "shares": 125,
+        "value_usd": 0.0,
+        "text": "Stock Award(Grant) at price 0.00 per share."
+      },
+      {
+        "date": "2026-09-04",
+        "insider": "SCHARF CHARLES W",
+        "position": "Director",
+        "type": "GRANT",
+        "shares": 125,
+        "value_usd": 0.0,
+        "text": "Stock Award(Grant) at price 0.00 per share."
+      },
+      {
+        "date": "2026-09-01",
+        "insider": "NADELLA SATYA",
+        "position": "Chief Executive Officer",
+        "type": "SELL",
+        "shares": 86525,
+        "value_usd": 43388532.0,
+        "text": "Sale at price 498.24 - 505.20 per share."
+      }
+    ],
+    "openinsider_purchases_url": "http://openinsider.com/screener?s=MSFT&tc=P&xp=1",
+    "openinsider_all_url": "http://openinsider.com/screener?s=MSFT",
+    "sec_edgar_url": "https://www.sec.gov/edgar/browse/?CIK=MSFT",
+    "sentiment_label": "NEUTRAL",
+    "sentiment_score": -0.072,
+    "discussion_velocity": 0.0,
+    "viral_politician_buzz": false,
+    "is_pelosi_effect": false,
+    "retail_hype_score": 0,
+    "buzz_keywords": [],
+    "social_volume": 40,
+    "pelosi_effect": {
+      "is_active": false,
+      "intensity": "QUIET / DORMANT",
+      "hype_score": 0,
+      "primary_catalyst": "DORMANT",
+      "prominent_figures": [
+        "Corporate CEO / C-Suite"
+      ],
+      "lifecycle_stage": "DORMANT",
+      "narrative_summary": "No active politician copy-trading or viral smart-money chatter detected on social streams.",
+      "matched_keywords": [],
+      "mentions_count": 0,
+      "verbatim_quotes": []
+    },
+    "recent_headlines": [],
+    "contracts": {
+      "total_value_usd": 1596378591.63,
+      "contract_count": 15,
+      "has_major_contract": true,
+      "is_defense_contract": true,
+      "contract_score": 100,
+      "top_agencies": [
+        "Department of Defense",
+        "Department of Agriculture"
+      ],
+      "top_award_amount_usd": 219964603.76,
+      "recent_contracts": [
+        {
+          "award_id": "HC102822F0982",
+          "generated_internal_id": "CONT_AWD_HC102822F0982_9700_HC102817D0001_9700",
+          "award_permalink_id": "CONT_AWD_HC102822F0982_9700_HC102817D0001_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_HC102822F0982_9700_HC102817D0001_9700",
+          "recipient": "MICROSOFT CORPORATION",
+          "amount_usd": 219964603.76,
+          "agency": "Department of Defense",
+          "sub_agency": "Defense Information Systems Agency",
+          "description": "MICROSOFT CONSULTING SERVICES (MCS) AND MICROSOFT PREMIER SUPPORT (MPS) FOR THE UNITED STATES MARINE CORPS (USMC.",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "HC102821F1170",
+          "generated_internal_id": "CONT_AWD_HC102821F1170_9700_HC102817D0001_9700",
+          "award_permalink_id": "CONT_AWD_HC102821F1170_9700_HC102817D0001_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_HC102821F1170_9700_HC102817D0001_9700",
+          "recipient": "MICROSOFT CORPORATION",
+          "amount_usd": 172503499.89,
+          "agency": "Department of Defense",
+          "sub_agency": "Defense Information Systems Agency",
+          "description": "ARMY CYBER COMMANDS MICROSOFT CONSULTING SERVICES AND MICROSOFT PREMIER SUPPORT",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "HC102817F1569",
+          "generated_internal_id": "CONT_AWD_HC102817F1569_9700_HC102817D0001_9700",
+          "award_permalink_id": "CONT_AWD_HC102817F1569_9700_HC102817D0001_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_HC102817F1569_9700_HC102817D0001_9700",
+          "recipient": "MICROSOFT CORPORATION",
+          "amount_usd": 160728592.94,
+          "agency": "Department of Defense",
+          "sub_agency": "Defense Information Systems Agency",
+          "description": "IGF::OT::IGF - METSS FOR USMC",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "HC102817F1408",
+          "generated_internal_id": "CONT_AWD_HC102817F1408_9700_HC102817D0001_9700",
+          "award_permalink_id": "CONT_AWD_HC102817F1408_9700_HC102817D0001_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_HC102817F1408_9700_HC102817D0001_9700",
+          "recipient": "MICROSOFT CORPORATION",
+          "amount_usd": 147963532.55,
+          "agency": "Department of Defense",
+          "sub_agency": "Defense Information Systems Agency",
+          "description": "IGF::OT::IGF LABOR",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "HC102824F0586",
+          "generated_internal_id": "CONT_AWD_HC102824F0586_9700_HC102817D0001_9700",
+          "award_permalink_id": "CONT_AWD_HC102824F0586_9700_HC102817D0001_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_HC102824F0586_9700_HC102817D0001_9700",
+          "recipient": "MICROSOFT CORPORATION",
+          "amount_usd": 139358471.78,
+          "agency": "Department of Defense",
+          "sub_agency": "Defense Information Systems Agency",
+          "description": "MICROSOFT CONSULTING SERVICES (MCS) AND UNIFIED SUPPORT FOR THE U.S. NAVY / PROGRAM EXECUTIVE OFFICE DIGITAL AND ENTERPRISE SERVICES (PEO) DIGITAL",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "12314424F0350",
+          "generated_internal_id": "CONT_AWD_12314424F0350_1205_12314424G0011_1205",
+          "award_permalink_id": "CONT_AWD_12314424F0350_1205_12314424G0011_1205",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_12314424F0350_1205_12314424G0011_1205",
+          "recipient": "MICROSOFT CORPORATION",
+          "amount_usd": 114888285.22,
+          "agency": "Department of Agriculture",
+          "sub_agency": "Office of the Chief Financial Officer",
+          "description": "MICROSOFT AZURE STRATUS HSTXXX0000002144 93A34F",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "N0003922F7903",
+          "generated_internal_id": "CONT_AWD_N0003922F7903_9700_N6600119D0019_9700",
+          "award_permalink_id": "CONT_AWD_N0003922F7903_9700_N6600119D0019_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_N0003922F7903_9700_N6600119D0019_9700",
+          "recipient": "MICROSOFT CORPORATION",
+          "amount_usd": 104437925.14,
+          "agency": "Department of Defense",
+          "sub_agency": "Department of the Navy",
+          "description": "MICROSOFT UNIFIED SUPPORT (MUS)",
+          "action_date": "Active"
+        },
+        {
+          "award_id": "HC102818F0719",
+          "generated_internal_id": "CONT_AWD_HC102818F0719_9700_HC102817D0001_9700",
+          "award_permalink_id": "CONT_AWD_HC102818F0719_9700_HC102817D0001_9700",
+          "award_url": "https://www.usaspending.gov/award/CONT_AWD_HC102818F0719_9700_HC102817D0001_9700",
+          "recipient": "MICROSOFT CORPORATION",
+          "amount_usd": 101532072.99,
+          "agency": "Department of Defense",
+          "sub_agency": "Defense Information Systems Agency",
+          "description": "SE31&SE34 MCS LABOR",
+          "action_date": "Active"
+        }
+      ],
+      "usaspending_search_url": "https://www.usaspending.gov/search/?keyword=MSFT",
+      "usaspending_recipient_url": "https://www.usaspending.gov/recipient"
+    }
+  },
+  "checks": [
+    {
+      "rule": "Institutional Volume Surge",
+      "passed": true,
+      "detail": "RVOL is 1.57x (required >= 1.50x or >= 1.30x on squeeze)"
+    },
+    {
+      "rule": "Closing Range Strength",
+      "passed": false,
+      "detail": "Finished at 50.0% of daily range (required >= 68%)"
+    },
+    {
+      "rule": "Structural Range Expansion",
+      "passed": false,
+      "detail": "Inside existing range"
+    },
+    {
+      "rule": "Fast EMA Trend Stack",
+      "passed": false,
+      "detail": "Price ($nan) > 5 EMA ($508.60) >= 20 EMA ($520.35)"
+    },
+    {
+      "rule": "Anti-Exhaustion Safe Zone",
+      "passed": false,
+      "detail": "Price is +nan% from 20 EMA (max safe limit +8.5%)"
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-08-28",
+      "open": 504.36,
+      "high": 516.78,
+      "low": 503.9,
+      "close": 512.54,
+      "volume": 29207300,
+      "ema5": 500.35,
+      "ema20": 480.49
+    },
+    {
+      "date": "2026-08-31",
+      "open": 509.4,
+      "high": 511.2,
+      "low": 505.41,
+      "close": 506.31,
+      "volume": 27208900,
+      "ema5": 502.33,
+      "ema20": 482.95
+    },
+    {
+      "date": "2026-09-01",
+      "open": 496.56,
+      "high": 504.99,
+      "low": 495.82,
+      "close": 500.05,
+      "volume": 21046900,
+      "ema5": 501.57,
+      "ema20": 484.58
+    },
+    {
+      "date": "2026-09-02",
+      "open": 498.89,
+      "high": 499.31,
+      "low": 492.86,
+      "close": 495.86,
+      "volume": 15336100,
+      "ema5": 499.67,
+      "ema20": 485.65
+    },
+    {
+      "date": "2026-09-03",
+      "open": 500.69,
+      "high": 514.66,
+      "low": 499.83,
+      "close": 509.14,
+      "volume": 24125900,
+      "ema5": 502.83,
+      "ema20": 487.89
+    },
+    {
+      "date": "2026-09-04",
+      "open": 509.02,
+      "high": 510.01,
+      "low": 498.4,
+      "close": 498.74,
+      "volume": 18101800,
+      "ema5": 501.46,
+      "ema20": 488.92
+    },
+    {
+      "date": "2026-09-08",
+      "open": 492.06,
+      "high": 494.24,
+      "low": 489.2,
+      "close": 493.0,
+      "volume": 18882300,
+      "ema5": 498.64,
+      "ema20": 489.31
+    },
+    {
+      "date": "2026-09-09",
+      "open": 492.12,
+      "high": 493.44,
+      "low": 488.86,
+      "close": 490.7,
+      "volume": 12889600,
+      "ema5": 495.99,
+      "ema20": 489.44
+    },
+    {
+      "date": "2026-09-10",
+      "open": 487.38,
+      "high": 493.57,
+      "low": 485.06,
+      "close": 491.49,
+      "volume": 16038800,
+      "ema5": 494.49,
+      "ema20": 489.64
+    },
+    {
+      "date": "2026-09-11",
+      "open": 494.69,
+      "high": 498.01,
+      "low": 491.63,
+      "close": 494.67,
+      "volume": 14510500,
+      "ema5": 494.55,
+      "ema20": 490.12
+    },
+    {
+      "date": "2026-09-14",
+      "open": 496.1,
+      "high": 508.97,
+      "low": 494.38,
+      "close": 504.44,
+      "volume": 23091900,
+      "ema5": 497.85,
+      "ema20": 491.48
+    },
+    {
+      "date": "2026-09-15",
+      "open": 499.1,
+      "high": 504.92,
+      "low": 494.58,
+      "close": 496.16,
+      "volume": 17794600,
+      "ema5": 497.29,
+      "ema20": 491.93
+    },
+    {
+      "date": "2026-09-16",
+      "open": 492.08,
+      "high": 495.01,
+      "low": 486.29,
+      "close": 489.35,
+      "volume": 16670300,
+      "ema5": 494.64,
+      "ema20": 491.68
+    },
+    {
+      "date": "2026-09-17",
+      "open": 496.84,
+      "high": 500.5,
+      "low": 492.22,
+      "close": 496.79,
+      "volume": 17841600,
+      "ema5": 495.36,
+      "ema20": 492.17
+    },
+    {
+      "date": "2026-09-18",
+      "open": 497.01,
+      "high": 497.69,
+      "low": 490.15,
+      "close": 492.83,
+      "volume": 39622300,
+      "ema5": 494.51,
+      "ema20": 492.23
+    },
+    {
+      "date": "2026-09-21",
+      "open": 494.0,
+      "high": 500.9,
+      "low": 490.38,
+      "close": 500.64,
+      "volume": 27959900,
+      "ema5": 496.56,
+      "ema20": 493.03
+    },
+    {
+      "date": "2026-09-22",
+      "open": 506.34,
+      "high": 507.52,
+      "low": 492.7,
+      "close": 497.04,
+      "volume": 21652800,
+      "ema5": 496.72,
+      "ema20": 493.41
+    },
+    {
+      "date": "2026-09-23",
+      "open": 499.79,
+      "high": 508.46,
+      "low": 494.92,
+      "close": 499.62,
+      "volume": 19445600,
+      "ema5": 497.69,
+      "ema20": 494.01
+    },
+    {
+      "date": "2026-09-24",
+      "open": 494.12,
+      "high": 497.94,
+      "low": 490.27,
+      "close": 496.97,
+      "volume": 16657600,
+      "ema5": 497.45,
+      "ema20": 494.29
+    },
+    {
+      "date": "2026-09-25",
+      "open": 498.08,
+      "high": 518.4,
+      "low": 496.29,
+      "close": 515.17,
+      "volume": 38193100,
+      "ema5": 503.36,
+      "ema20": 496.28
+    },
+    {
+      "date": "2026-09-28",
+      "open": 504.5,
+      "high": 512.34,
+      "low": 501.25,
+      "close": 508.24,
+      "volume": 19626900,
+      "ema5": 504.98,
+      "ema20": 497.42
+    },
+    {
+      "date": "2026-09-29",
+      "open": 507.33,
+      "high": 512.65,
+      "low": 501.43,
+      "close": 507.98,
+      "volume": 21341800,
+      "ema5": 505.98,
+      "ema20": 498.42
+    },
+    {
+      "date": "2026-09-30",
+      "open": 510.62,
+      "high": 518.83,
+      "low": 509.33,
+      "close": 511.91,
+      "volume": 27223300,
+      "ema5": 507.96,
+      "ema20": 499.71
+    },
+    {
+      "date": "2026-10-01",
+      "open": 518.88,
+      "high": 521.84,
+      "low": 511.18,
+      "close": 511.81,
+      "volume": 19731900,
+      "ema5": 509.24,
+      "ema20": 500.86
+    },
+    {
+      "date": "2026-10-02",
+      "open": 518.39,
+      "high": 521.49,
+      "low": 512.67,
+      "close": 516.53,
+      "volume": 17822300,
+      "ema5": 511.67,
+      "ema20": 502.35
+    },
+    {
+      "date": "2026-10-05",
+      "open": 520.61,
+      "high": 531.32,
+      "low": 520.46,
+      "close": 524.17,
+      "volume": 26604800,
+      "ema5": 515.84,
+      "ema20": 504.43
+    },
+    {
+      "date": "2026-10-06",
+      "open": 530.65,
+      "high": 534.66,
+      "low": 527.76,
+      "close": 528.28,
+      "volume": 21107500,
+      "ema5": 519.98,
+      "ema20": 506.7
+    },
+    {
+      "date": "2026-10-07",
+      "open": 529.71,
+      "high": 530.7,
+      "low": 523.68,
+      "close": 528.74,
+      "volume": 16790200,
+      "ema5": 522.9,
+      "ema20": 508.8
+    },
+    {
+      "date": "2026-10-08",
+      "open": 528.79,
+      "high": 532.48,
+      "low": 517.79,
+      "close": 521.6,
+      "volume": 20228700,
+      "ema5": 522.47,
+      "ema20": 510.02
+    },
+    {
+      "date": "2026-10-09",
+      "open": 527.22,
+      "high": 536.18,
+      "low": 525.23,
+      "close": 534.04,
+      "volume": 18500600,
+      "ema5": 526.33,
+      "ema20": 512.31
+    },
+    {
+      "date": "2026-10-12",
+      "open": 536.49,
+      "high": 541.69,
+      "low": 534.67,
+      "close": 540.11,
+      "volume": 18314900,
+      "ema5": 530.92,
+      "ema20": 514.95
+    },
+    {
+      "date": "2026-10-13",
+      "open": 543.59,
+      "high": 550.09,
+      "low": 542.01,
+      "close": 542.4,
+      "volume": 23852000,
+      "ema5": 534.75,
+      "ema20": 517.57
+    },
+    {
+      "date": "2026-10-14",
+      "open": 544.22,
+      "high": 544.7,
+      "low": 531.51,
+      "close": 532.66,
+      "volume": 22324300,
+      "ema5": 534.05,
+      "ema20": 519.01
+    },
+    {
+      "date": "2026-10-15",
+      "open": 532.29,
+      "high": 540.09,
+      "low": 530.2,
+      "close": 538.4,
+      "volume": 24151200,
+      "ema5": 535.5,
+      "ema20": 520.85
+    },
+    {
+      "date": "2026-10-16",
+      "open": 540.27,
+      "high": 542.77,
+      "low": 523.42,
+      "close": 528.03,
+      "volume": 24845700,
+      "ema5": 533.01,
+      "ema20": 521.54
+    },
+    {
+      "date": "2026-10-19",
+      "open": 527.68,
+      "high": 534.54,
+      "low": 527.04,
+      "close": 532.49,
+      "volume": 17994900,
+      "ema5": 532.84,
+      "ema20": 522.58
+    },
+    {
+      "date": "2026-10-20",
+      "open": 532.88,
+      "high": 533.18,
+      "low": 524.83,
+      "close": 530.84,
+      "volume": 14576000,
+      "ema5": 532.17,
+      "ema20": 523.37
+    },
+    {
+      "date": "2026-10-21",
+      "open": 528.42,
+      "high": 532.25,
+      "low": 524.01,
+      "close": 531.92,
+      "volume": 13940100,
+      "ema5": 532.09,
+      "ema20": 524.18
+    },
+    {
+      "date": "2026-10-22",
+      "open": 532.11,
+      "high": 532.57,
+      "low": 519.3,
+      "close": 520.08,
+      "volume": 21266600,
+      "ema5": 528.08,
+      "ema20": 523.79
+    },
+    {
+      "date": "2026-10-23",
+      "open": 516.75,
+      "high": 524.76,
+      "low": 514.71,
+      "close": 523.5,
+      "volume": 13671500,
+      "ema5": 526.56,
+      "ema20": 523.76
+    },
+    {
+      "date": "2026-10-26",
+      "open": 526.38,
+      "high": 532.22,
+      "low": 520.68,
+      "close": 531.57,
+      "volume": 19021000,
+      "ema5": 528.23,
+      "ema20": 524.51
+    },
+    {
+      "date": "2026-10-27",
+      "open": 531.32,
+      "high": 533.67,
+      "low": 527.31,
+      "close": 530.31,
+      "volume": 19532300,
+      "ema5": 528.92,
+      "ema20": 525.06
+    },
+    {
+      "date": "2026-10-28",
+      "open": 530.79,
+      "high": 533.97,
+      "low": 525.13,
+      "close": 529.99,
+      "volume": 28594200,
+      "ema5": 529.28,
+      "ema20": 525.53
+    },
+    {
+      "date": "2026-10-29",
+      "open": 539.18,
+      "high": 540.25,
+      "low": 518.56,
+      "close": 529.12,
+      "volume": 39333200,
+      "ema5": 529.22,
+      "ema20": 525.87
+    },
+    {
+      "date": "2026-10-30",
+      "open": 524.26,
+      "high": 524.99,
+      "low": 513.36,
+      "close": 520.9,
+      "volume": 35652000,
+      "ema5": 526.45,
+      "ema20": 525.4
+    },
+    {
+      "date": "2026-11-02",
+      "open": 523.01,
+      "high": 528.61,
+      "low": 503.99,
+      "close": 506.14,
+      "volume": 34743300,
+      "ema5": 519.68,
+      "ema20": 523.56
+    },
+    {
+      "date": "2026-11-03",
+      "open": 508.03,
+      "high": 522.43,
+      "low": 506.84,
+      "close": 519.99,
+      "volume": 20010200,
+      "ema5": 519.78,
+      "ema20": 523.22
+    },
+    {
+      "date": "2026-11-04",
+      "open": 542.65,
+      "high": 558.07,
+      "low": 541.25,
+      "close": 554.73,
+      "volume": 50807800,
+      "ema5": 531.43,
+      "ema20": 526.22
+    },
+    {
+      "date": "2026-11-05",
+      "open": 553.87,
+      "high": 556.54,
+      "low": 531.65,
+      "close": 534.9,
+      "volume": 42507900,
+      "ema5": 532.59,
+      "ema20": 527.05
+    },
+    {
+      "date": "2026-11-06",
+      "open": 524.68,
+      "high": 537.29,
+      "low": 523.46,
+      "close": 529.59,
+      "volume": 26956400,
+      "ema5": 531.59,
+      "ema20": 527.29
+    },
+    {
+      "date": "2026-11-09",
+      "open": 543.44,
+      "high": 547.22,
+      "low": 537.66,
+      "close": 544.13,
+      "volume": 25337400,
+      "ema5": 535.77,
+      "ema20": 528.89
+    },
+    {
+      "date": "2026-11-10",
+      "open": 541.93,
+      "high": 543.14,
+      "low": 525.36,
+      "close": 532.13,
+      "volume": 26940900,
+      "ema5": 534.56,
+      "ema20": 529.2
+    },
+    {
+      "date": "2026-11-11",
+      "open": 533.21,
+      "high": 533.73,
+      "low": 517.45,
+      "close": 520.13,
+      "volume": 29076800,
+      "ema5": 529.75,
+      "ema20": 528.34
+    },
+    {
+      "date": "2026-11-12",
+      "open": 520.1,
+      "high": 528.64,
+      "low": 519.0,
+      "close": 521.99,
+      "volume": 18644000,
+      "ema5": 527.16,
+      "ema20": 527.73
+    },
+    {
+      "date": "2026-11-13",
+      "open": 518.75,
+      "high": 525.41,
+      "low": 512.83,
+      "close": 522.87,
+      "volume": 26189200,
+      "ema5": 525.73,
+      "ema20": 527.27
+    },
+    {
+      "date": "2026-11-16",
+      "open": 524.08,
+      "high": 526.93,
+      "low": 515.82,
+      "close": 516.99,
+      "volume": 30218600,
+      "ema5": 522.82,
+      "ema20": 526.29
+    },
+    {
+      "date": "2026-11-17",
+      "open": 513.58,
+      "high": 514.65,
+      "low": 495.55,
+      "close": 505.26,
+      "volume": 27992800,
+      "ema5": 516.97,
+      "ema20": 524.29
+    },
+    {
+      "date": "2026-11-18",
+      "open": 504.53,
+      "high": 509.46,
+      "low": 500.11,
+      "close": 507.31,
+      "volume": 22050100,
+      "ema5": 513.75,
+      "ema20": 522.67
+    },
+    {
+      "date": "2026-11-19",
+      "open": 519.5,
+      "high": 526.49,
+      "low": 498.16,
+      "close": 498.3,
+      "volume": 29350600,
+      "ema5": 508.6,
+      "ema20": 520.35
+    },
+    {
+      "date": "2026-11-20",
+      "open": NaN,
+      "high": NaN,
+      "low": NaN,
+      "close": NaN,
+      "volume": 47123194,
+      "ema5": 508.6,
+      "ema20": 520.35
+    }
+  ],
+  "name": "Microsoft Corporation",
+  "category": "Mega-Cap & Enterprise Cloud",
+  "role": "AAA balance sheet, Azure Cloud and enterprise AI",
+  "technicals": {
+    "rvol_20d": 1.57,
+    "crr": 0.5,
+    "bb_width": 0.0,
+    "ema5": 508.6,
+    "ema20": 520.35,
+    "volume": 47123194,
+    "vol_sma20": 30004094,
+    "high": NaN,
+    "low": NaN,
+    "open": NaN
+  }
+}

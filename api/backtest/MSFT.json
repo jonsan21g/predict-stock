@@ -1,0 +1,696 @@
+{
+  "ticker": "MSFT",
+  "1y": {
+    "ticker": "MSFT",
+    "initial_capital": 10000.0,
+    "final_balance": 10197.71,
+    "net_profit": 197.71,
+    "strategy_return_pct": 1.98,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 4,
+    "wins": 2,
+    "losses": 2,
+    "win_rate_pct": 50.0,
+    "profit_factor": 1.64,
+    "expectancy_dollar": 49.43,
+    "max_drawdown_pct": 2.92,
+    "avg_bars_held": 2.2,
+    "avg_win": 252.41,
+    "avg_loss": 153.55,
+    "equity_curve": [
+      {
+        "date": "2026-02-04",
+        "balance": 10000.0
+      },
+      {
+        "date": "2026-04-16",
+        "balance": 10000.0
+      },
+      {
+        "date": "2026-04-17",
+        "balance": 10085.84
+      },
+      {
+        "date": "2026-04-20",
+        "balance": 10085.84
+      },
+      {
+        "date": "2026-04-21",
+        "balance": 10085.84
+      },
+      {
+        "date": "2026-04-22",
+        "balance": 10236.84
+      },
+      {
+        "date": "2026-05-29",
+        "balance": 10326.16
+      },
+      {
+        "date": "2026-06-01",
+        "balance": 10504.82
+      },
+      {
+        "date": "2026-09-28",
+        "balance": 10350.27
+      },
+      {
+        "date": "2026-11-05",
+        "balance": 10197.71
+      }
+    ],
+    "trades": [
+      {
+        "id": 4,
+        "ticker": "MSFT",
+        "entry_date": "2026-11-04",
+        "exit_date": "2026-11-05",
+        "entry_price": 554.73,
+        "exit_price": 540.86,
+        "shares": 11,
+        "pnl": -152.55,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 3,
+        "ticker": "MSFT",
+        "entry_date": "2026-09-25",
+        "exit_date": "2026-09-28",
+        "entry_price": 515.17,
+        "exit_price": 502.3,
+        "shares": 12,
+        "pnl": -154.55,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 2,
+        "ticker": "MSFT",
+        "entry_date": "2026-05-28",
+        "exit_date": "2026-06-01",
+        "entry_price": 425.37,
+        "exit_price": 450.89,
+        "shares": 14,
+        "pnl": 267.98,
+        "return_pct": 4.5,
+        "bars_held": 2,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      },
+      {
+        "id": 1,
+        "ticker": "MSFT",
+        "entry_date": "2026-04-15",
+        "exit_date": "2026-04-22",
+        "entry_price": 408.77,
+        "exit_price": 430.34,
+        "shares": 14,
+        "pnl": 236.84,
+        "return_pct": 4.14,
+        "bars_held": 5,
+        "result": "WIN",
+        "exit_reason": "5-Day Time Stop (Capital Recycled)"
+      }
+    ]
+  },
+  "2y": {
+    "ticker": "MSFT",
+    "initial_capital": 10000.0,
+    "final_balance": 10008.43,
+    "net_profit": 8.43,
+    "strategy_return_pct": 0.08,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 6,
+    "wins": 2,
+    "losses": 4,
+    "win_rate_pct": 33.3,
+    "profit_factor": 1.02,
+    "expectancy_dollar": 1.41,
+    "max_drawdown_pct": 2.72,
+    "avg_bars_held": 2.8,
+    "avg_win": 252.41,
+    "avg_loss": 124.09,
+    "equity_curve": [
+      {
+        "date": "2025-02-06",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-08-05",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-08-06",
+        "balance": 10000.0
+      },
+      {
+        "date": "2025-08-07",
+        "balance": 9854.42
+      },
+      {
+        "date": "2025-09-22",
+        "balance": 9854.42
+      },
+      {
+        "date": "2025-09-23",
+        "balance": 9854.42
+      },
+      {
+        "date": "2025-09-24",
+        "balance": 9854.42
+      },
+      {
+        "date": "2025-09-25",
+        "balance": 9854.42
+      },
+      {
+        "date": "2025-09-26",
+        "balance": 9783.97
+      },
+      {
+        "date": "2026-04-16",
+        "balance": 9783.97
+      },
+      {
+        "date": "2026-04-17",
+        "balance": 9869.81
+      },
+      {
+        "date": "2026-04-20",
+        "balance": 9869.81
+      },
+      {
+        "date": "2026-04-21",
+        "balance": 9869.81
+      },
+      {
+        "date": "2026-04-22",
+        "balance": 10020.81
+      },
+      {
+        "date": "2026-05-29",
+        "balance": 10110.13
+      },
+      {
+        "date": "2026-06-01",
+        "balance": 10288.79
+      },
+      {
+        "date": "2026-09-28",
+        "balance": 10147.11
+      },
+      {
+        "date": "2026-11-05",
+        "balance": 10008.43
+      }
+    ],
+    "trades": [
+      {
+        "id": 6,
+        "ticker": "MSFT",
+        "entry_date": "2026-11-04",
+        "exit_date": "2026-11-05",
+        "entry_price": 554.73,
+        "exit_price": 540.86,
+        "shares": 10,
+        "pnl": -138.68,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 5,
+        "ticker": "MSFT",
+        "entry_date": "2026-09-25",
+        "exit_date": "2026-09-28",
+        "entry_price": 515.17,
+        "exit_price": 502.3,
+        "shares": 11,
+        "pnl": -141.67,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 4,
+        "ticker": "MSFT",
+        "entry_date": "2026-05-28",
+        "exit_date": "2026-06-01",
+        "entry_price": 425.37,
+        "exit_price": 450.89,
+        "shares": 14,
+        "pnl": 267.98,
+        "return_pct": 4.5,
+        "bars_held": 2,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      },
+      {
+        "id": 3,
+        "ticker": "MSFT",
+        "entry_date": "2026-04-15",
+        "exit_date": "2026-04-22",
+        "entry_price": 408.77,
+        "exit_price": 430.34,
+        "shares": 14,
+        "pnl": 236.84,
+        "return_pct": 4.14,
+        "bars_held": 5,
+        "result": "WIN",
+        "exit_reason": "5-Day Time Stop (Capital Recycled)"
+      },
+      {
+        "id": 2,
+        "ticker": "MSFT",
+        "entry_date": "2025-09-19",
+        "exit_date": "2025-09-26",
+        "entry_price": 512.71,
+        "exit_price": 506.31,
+        "shares": 11,
+        "pnl": -70.45,
+        "return_pct": -1.25,
+        "bars_held": 5,
+        "result": "LOSS",
+        "exit_reason": "5-Day Time Stop (Capital Recycled)"
+      },
+      {
+        "id": 1,
+        "ticker": "MSFT",
+        "entry_date": "2025-08-04",
+        "exit_date": "2025-08-07",
+        "entry_price": 529.37,
+        "exit_price": 516.14,
+        "shares": 11,
+        "pnl": -145.58,
+        "return_pct": -2.5,
+        "bars_held": 3,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "3y": {
+    "ticker": "MSFT",
+    "initial_capital": 10000.0,
+    "final_balance": 9694.93,
+    "net_profit": -305.07,
+    "strategy_return_pct": -3.05,
+    "buy_and_hold_return_pct": NaN,
+    "total_trades": 8,
+    "wins": 2,
+    "losses": 6,
+    "win_rate_pct": 25.0,
+    "profit_factor": 0.61,
+    "expectancy_dollar": -38.13,
+    "max_drawdown_pct": 5.05,
+    "avg_bars_held": 2.6,
+    "avg_win": 239.89,
+    "avg_loss": 130.81,
+    "equity_curve": [
+      {
+        "date": "2024-02-05",
+        "balance": 10000.0
+      },
+      {
+        "date": "2024-03-15",
+        "balance": 9854.3
+      },
+      {
+        "date": "2025-01-23",
+        "balance": 9854.3
+      },
+      {
+        "date": "2025-01-24",
+        "balance": 9854.3
+      },
+      {
+        "date": "2025-01-27",
+        "balance": 9711.53
+      },
+      {
+        "date": "2025-08-05",
+        "balance": 9711.53
+      },
+      {
+        "date": "2025-08-06",
+        "balance": 9711.53
+      },
+      {
+        "date": "2025-08-07",
+        "balance": 9565.95
+      },
+      {
+        "date": "2025-09-22",
+        "balance": 9565.95
+      },
+      {
+        "date": "2025-09-23",
+        "balance": 9565.95
+      },
+      {
+        "date": "2025-09-24",
+        "balance": 9565.95
+      },
+      {
+        "date": "2025-09-25",
+        "balance": 9565.95
+      },
+      {
+        "date": "2025-09-26",
+        "balance": 9495.49
+      },
+      {
+        "date": "2026-04-16",
+        "balance": 9495.49
+      },
+      {
+        "date": "2026-04-17",
+        "balance": 9569.07
+      },
+      {
+        "date": "2026-04-20",
+        "balance": 9569.07
+      },
+      {
+        "date": "2026-04-21",
+        "balance": 9569.07
+      },
+      {
+        "date": "2026-04-22",
+        "balance": 9720.07
+      },
+      {
+        "date": "2026-05-29",
+        "balance": 9796.63
+      },
+      {
+        "date": "2026-06-01",
+        "balance": 9975.29
+      },
+      {
+        "date": "2026-09-28",
+        "balance": 9833.61
+      },
+      {
+        "date": "2026-11-05",
+        "balance": 9694.93
+      }
+    ],
+    "trades": [
+      {
+        "id": 8,
+        "ticker": "MSFT",
+        "entry_date": "2026-11-04",
+        "exit_date": "2026-11-05",
+        "entry_price": 554.73,
+        "exit_price": 540.86,
+        "shares": 10,
+        "pnl": -138.68,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 7,
+        "ticker": "MSFT",
+        "entry_date": "2026-09-25",
+        "exit_date": "2026-09-28",
+        "entry_price": 515.17,
+        "exit_price": 502.3,
+        "shares": 11,
+        "pnl": -141.67,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 6,
+        "ticker": "MSFT",
+        "entry_date": "2026-05-28",
+        "exit_date": "2026-06-01",
+        "entry_price": 425.37,
+        "exit_price": 450.89,
+        "shares": 13,
+        "pnl": 255.22,
+        "return_pct": 4.62,
+        "bars_held": 2,
+        "result": "WIN",
+        "exit_reason": "Full Target 2 Reached (+6.0%)"
+      },
+      {
+        "id": 5,
+        "ticker": "MSFT",
+        "entry_date": "2026-04-15",
+        "exit_date": "2026-04-22",
+        "entry_price": 408.77,
+        "exit_price": 430.34,
+        "shares": 13,
+        "pnl": 224.57,
+        "return_pct": 4.23,
+        "bars_held": 5,
+        "result": "WIN",
+        "exit_reason": "5-Day Time Stop (Capital Recycled)"
+      },
+      {
+        "id": 4,
+        "ticker": "MSFT",
+        "entry_date": "2025-09-19",
+        "exit_date": "2025-09-26",
+        "entry_price": 512.71,
+        "exit_price": 506.31,
+        "shares": 11,
+        "pnl": -70.45,
+        "return_pct": -1.25,
+        "bars_held": 5,
+        "result": "LOSS",
+        "exit_reason": "5-Day Time Stop (Capital Recycled)"
+      },
+      {
+        "id": 3,
+        "ticker": "MSFT",
+        "entry_date": "2025-08-04",
+        "exit_date": "2025-08-07",
+        "entry_price": 529.37,
+        "exit_price": 516.14,
+        "shares": 11,
+        "pnl": -145.58,
+        "return_pct": -2.5,
+        "bars_held": 3,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 2,
+        "ticker": "MSFT",
+        "entry_date": "2025-01-22",
+        "exit_date": "2025-01-27",
+        "entry_price": 439.29,
+        "exit_price": 428.31,
+        "shares": 13,
+        "pnl": -142.77,
+        "return_pct": -2.5,
+        "bars_held": 3,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      },
+      {
+        "id": 1,
+        "ticker": "MSFT",
+        "entry_date": "2024-03-14",
+        "exit_date": "2024-03-15",
+        "entry_price": 416.3,
+        "exit_price": 405.89,
+        "shares": 14,
+        "pnl": -145.7,
+        "return_pct": -2.5,
+        "bars_held": 1,
+        "result": "LOSS",
+        "exit_reason": "Initial Stop-Loss (-2.5%)"
+      }
+    ]
+  },
+  "initial_capital": 10000.0,
+  "final_balance": 10008.43,
+  "net_profit": 8.43,
+  "strategy_return_pct": 0.08,
+  "buy_and_hold_return_pct": NaN,
+  "total_trades": 6,
+  "wins": 2,
+  "losses": 4,
+  "win_rate_pct": 33.3,
+  "profit_factor": 1.02,
+  "expectancy_dollar": 1.41,
+  "max_drawdown_pct": 2.72,
+  "avg_bars_held": 2.8,
+  "avg_win": 252.41,
+  "avg_loss": 124.09,
+  "equity_curve": [
+    {
+      "date": "2025-02-06",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-08-05",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-08-06",
+      "balance": 10000.0
+    },
+    {
+      "date": "2025-08-07",
+      "balance": 9854.42
+    },
+    {
+      "date": "2025-09-22",
+      "balance": 9854.42
+    },
+    {
+      "date": "2025-09-23",
+      "balance": 9854.42
+    },
+    {
+      "date": "2025-09-24",
+      "balance": 9854.42
+    },
+    {
+      "date": "2025-09-25",
+      "balance": 9854.42
+    },
+    {
+      "date": "2025-09-26",
+      "balance": 9783.97
+    },
+    {
+      "date": "2026-04-16",
+      "balance": 9783.97
+    },
+    {
+      "date": "2026-04-17",
+      "balance": 9869.81
+    },
+    {
+      "date": "2026-04-20",
+      "balance": 9869.81
+    },
+    {
+      "date": "2026-04-21",
+      "balance": 9869.81
+    },
+    {
+      "date": "2026-04-22",
+      "balance": 10020.81
+    },
+    {
+      "date": "2026-05-29",
+      "balance": 10110.13
+    },
+    {
+      "date": "2026-06-01",
+      "balance": 10288.79
+    },
+    {
+      "date": "2026-09-28",
+      "balance": 10147.11
+    },
+    {
+      "date": "2026-11-05",
+      "balance": 10008.43
+    }
+  ],
+  "trades": [
+    {
+      "id": 6,
+      "ticker": "MSFT",
+      "entry_date": "2026-11-04",
+      "exit_date": "2026-11-05",
+      "entry_price": 554.73,
+      "exit_price": 540.86,
+      "shares": 10,
+      "pnl": -138.68,
+      "return_pct": -2.5,
+      "bars_held": 1,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    },
+    {
+      "id": 5,
+      "ticker": "MSFT",
+      "entry_date": "2026-09-25",
+      "exit_date": "2026-09-28",
+      "entry_price": 515.17,
+      "exit_price": 502.3,
+      "shares": 11,
+      "pnl": -141.67,
+      "return_pct": -2.5,
+      "bars_held": 1,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    },
+    {
+      "id": 4,
+      "ticker": "MSFT",
+      "entry_date": "2026-05-28",
+      "exit_date": "2026-06-01",
+      "entry_price": 425.37,
+      "exit_price": 450.89,
+      "shares": 14,
+      "pnl": 267.98,
+      "return_pct": 4.5,
+      "bars_held": 2,
+      "result": "WIN",
+      "exit_reason": "Full Target 2 Reached (+6.0%)"
+    },
+    {
+      "id": 3,
+      "ticker": "MSFT",
+      "entry_date": "2026-04-15",
+      "exit_date": "2026-04-22",
+      "entry_price": 408.77,
+      "exit_price": 430.34,
+      "shares": 14,
+      "pnl": 236.84,
+      "return_pct": 4.14,
+      "bars_held": 5,
+      "result": "WIN",
+      "exit_reason": "5-Day Time Stop (Capital Recycled)"
+    },
+    {
+      "id": 2,
+      "ticker": "MSFT",
+      "entry_date": "2025-09-19",
+      "exit_date": "2025-09-26",
+      "entry_price": 512.71,
+      "exit_price": 506.31,
+      "shares": 11,
+      "pnl": -70.45,
+      "return_pct": -1.25,
+      "bars_held": 5,
+      "result": "LOSS",
+      "exit_reason": "5-Day Time Stop (Capital Recycled)"
+    },
+    {
+      "id": 1,
+      "ticker": "MSFT",
+      "entry_date": "2025-08-04",
+      "exit_date": "2025-08-07",
+      "entry_price": 529.37,
+      "exit_price": 516.14,
+      "shares": 11,
+      "pnl": -145.58,
+      "return_pct": -2.5,
+      "bars_held": 3,
+      "result": "LOSS",
+      "exit_reason": "Initial Stop-Loss (-2.5%)"
+    }
+  ]
+}
