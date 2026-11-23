@@ -24,8 +24,22 @@
     "history": []
   },
   "bot": {
-    "cash": 29987.679999999997,
-    "positions": [],
+    "cash": 24160.78,
+    "positions": [
+      {
+        "ticker": "ONTO",
+        "shares": 30,
+        "avg_price": 194.23,
+        "cost_basis": 5826.9,
+        "opened_at": "2026-11-23 14:35 UTC",
+        "peak_price": 194.23,
+        "partial_harvested": false,
+        "trailing_stop": 165.62,
+        "structural_stop": 165.62,
+        "sector": "SEMICONDUCTORS",
+        "strategy": "CAPITULATION_CARVE_OUT"
+      }
+    ],
     "history": [
       {
         "id": "tx_b_1",
@@ -81,6 +95,17 @@
         "price": 213.46,
         "total_usd": 2988.44,
         "realized_pnl": 26.04
+      },
+      {
+        "id": "tx_b_6",
+        "time": "2026-11-23 14:35 UTC",
+        "participant": "BOT",
+        "action": "BUY (CAPITULATION CARVE-OUT)",
+        "ticker": "ONTO",
+        "shares": 30,
+        "price": 194.23,
+        "total_usd": 5826.9,
+        "realized_pnl": 0.0
       }
     ],
     "decision_logs": [
@@ -1305,11 +1330,22 @@
         "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
         "composite_score": 0,
         "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-23 14:35 UTC",
+        "action": "CAPITULATION_BUY",
+        "ticker": "ONTO",
+        "shares": 30,
+        "price": 194.23,
+        "total_usd": 5826.9,
+        "rationale": "Capitulation Reversal Carve-Out: Benchmark QQQ < 20 EMA, but ONTO suffered extreme -13.15% washout on Day T-1 and confirmed green reversal today. Tactical 20% entry ($5,826.90) with structural LOD stop at $165.62.",
+        "composite_score": 90,
+        "wave_probability": 66.9
       }
     ],
     "quarantine": {
       "ARM": "2026-11-19T17:01:34.067324+00:00"
     },
-    "last_evaluated_at": "2026-11-21 02:28 UTC"
+    "last_evaluated_at": "2026-11-23 14:35 UTC"
   }
 }
