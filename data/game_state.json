@@ -1494,12 +1494,22 @@
         "rationale": "Capitulation Reversal Carve-Out: Benchmark QQQ < 20 EMA, but CRWD suffered extreme -8.92% washout on Day T-1 and confirmed green reversal today. Tactical 20% entry ($5,762.34) with structural LOD stop at $199.53.",
         "composite_score": 90,
         "wave_probability": 66.9
+      },
+      {
+        "time": "2026-11-24 15:01 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
       }
     ],
     "quarantine": {
       "ARM": "2026-11-19T17:01:34.067324+00:00",
       "ONTO": "2026-11-26T14:35:55.077787+00:00"
     },
-    "last_evaluated_at": "2026-11-24 14:35 UTC"
+    "last_evaluated_at": "2026-11-24 15:01 UTC"
   }
 }
