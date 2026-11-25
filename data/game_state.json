@@ -32,7 +32,7 @@
         "avg_price": 317.96,
         "cost_basis": 5723.28,
         "opened_at": "2026-11-25 15:01 UTC",
-        "peak_price": 317.96,
+        "peak_price": 321.99,
         "partial_harvested": false,
         "trailing_stop": 302.71,
         "structural_stop": 302.71,
@@ -1677,6 +1677,16 @@
         "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
         "composite_score": 0,
         "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-25 18:01 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
       }
     ],
     "quarantine": {
@@ -1684,6 +1694,6 @@
       "ONTO": "2026-11-26T14:35:55.077787+00:00",
       "CRWD": "2026-11-27T14:35:46.887331+00:00"
     },
-    "last_evaluated_at": "2026-11-25 17:01 UTC"
+    "last_evaluated_at": "2026-11-25 18:01 UTC"
   }
 }
