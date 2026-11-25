@@ -24,8 +24,22 @@
     "history": []
   },
   "bot": {
-    "cash": 29195.379999999997,
-    "positions": [],
+    "cash": 23472.1,
+    "positions": [
+      {
+        "ticker": "ADI",
+        "shares": 18,
+        "avg_price": 317.96,
+        "cost_basis": 5723.28,
+        "opened_at": "2026-11-25 15:01 UTC",
+        "peak_price": 317.96,
+        "partial_harvested": false,
+        "trailing_stop": 302.71,
+        "structural_stop": 302.71,
+        "sector": "SEMICONDUCTORS",
+        "strategy": "CAPITULATION_CARVE_OUT"
+      }
+    ],
     "history": [
       {
         "id": "tx_b_1",
@@ -125,6 +139,17 @@
         "price": 203.42,
         "total_usd": 5492.34,
         "realized_pnl": -270.0
+      },
+      {
+        "id": "tx_b_10",
+        "time": "2026-11-25 15:01 UTC",
+        "participant": "BOT",
+        "action": "BUY (CAPITULATION CARVE-OUT)",
+        "ticker": "ADI",
+        "shares": 18,
+        "price": 317.96,
+        "total_usd": 5723.28,
+        "realized_pnl": 0.0
       }
     ],
     "decision_logs": [
@@ -1621,6 +1646,17 @@
         "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
         "composite_score": 0,
         "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-25 15:01 UTC",
+        "action": "CAPITULATION_BUY",
+        "ticker": "ADI",
+        "shares": 18,
+        "price": 317.96,
+        "total_usd": 5723.28,
+        "rationale": "Capitulation Reversal Carve-Out: Benchmark QQQ < 20 EMA, but ADI suffered extreme -17.37% washout on Day T-1 and confirmed green reversal today. Tactical 20% entry ($5,723.28) with structural LOD stop at $302.71.",
+        "composite_score": 90,
+        "wave_probability": 66.9
       }
     ],
     "quarantine": {
@@ -1628,6 +1664,6 @@
       "ONTO": "2026-11-26T14:35:55.077787+00:00",
       "CRWD": "2026-11-27T14:35:46.887331+00:00"
     },
-    "last_evaluated_at": "2026-11-25 14:35 UTC"
+    "last_evaluated_at": "2026-11-25 15:01 UTC"
   }
 }
