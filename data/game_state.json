@@ -24,16 +24,16 @@
     "history": []
   },
   "bot": {
-    "cash": 23472.1,
+    "cash": 26425.629999999997,
     "positions": [
       {
         "ticker": "ADI",
-        "shares": 18,
+        "shares": 9,
         "avg_price": 317.96,
-        "cost_basis": 5723.28,
+        "cost_basis": 2861.64,
         "opened_at": "2026-11-25 15:01 UTC",
-        "peak_price": 326.3,
-        "partial_harvested": false,
+        "peak_price": 328.17,
+        "partial_harvested": true,
         "trailing_stop": 317.96,
         "structural_stop": 302.71,
         "sector": "SEMICONDUCTORS",
@@ -150,6 +150,17 @@
         "price": 317.96,
         "total_usd": 5723.28,
         "realized_pnl": 0.0
+      },
+      {
+        "id": "tx_b_11",
+        "time": "2026-11-25 20:01 UTC",
+        "participant": "BOT",
+        "action": "SELL (PARTIAL)",
+        "ticker": "ADI",
+        "shares": 9,
+        "price": 328.17,
+        "total_usd": 2953.53,
+        "realized_pnl": 91.89
       }
     ],
     "decision_logs": [
@@ -1697,6 +1708,26 @@
         "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
         "composite_score": 0,
         "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-25 20:01 UTC",
+        "action": "SELL_PARTIAL",
+        "ticker": "ADI",
+        "shares": 9,
+        "price": 328.17,
+        "rationale": "Target 1 Harvest (+3.2% gain). Sold 50% (9 sh) to lock profit into bankroll. Trailing stop on remaining 9 runner shares elevated to Breakeven ($317.96).",
+        "realized_pnl": 91.89,
+        "pnl_pct": 3.21
+      },
+      {
+        "time": "2026-11-25 20:01 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
       }
     ],
     "quarantine": {
@@ -1704,6 +1735,6 @@
       "ONTO": "2026-11-26T14:35:55.077787+00:00",
       "CRWD": "2026-11-27T14:35:46.887331+00:00"
     },
-    "last_evaluated_at": "2026-11-25 19:01 UTC"
+    "last_evaluated_at": "2026-11-25 20:01 UTC"
   }
 }
