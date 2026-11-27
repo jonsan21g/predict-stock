@@ -24,22 +24,8 @@
     "history": []
   },
   "bot": {
-    "cash": 26425.629999999997,
-    "positions": [
-      {
-        "ticker": "ADI",
-        "shares": 9,
-        "avg_price": 317.96,
-        "cost_basis": 2861.64,
-        "opened_at": "2026-11-25 15:01 UTC",
-        "peak_price": 333.11,
-        "partial_harvested": true,
-        "trailing_stop": 325.91,
-        "structural_stop": 302.71,
-        "sector": "SEMICONDUCTORS",
-        "strategy": "CAPITULATION_CARVE_OUT"
-      }
-    ],
+    "cash": 29482.659999999996,
+    "positions": [],
     "history": [
       {
         "id": "tx_b_1",
@@ -161,6 +147,17 @@
         "price": 328.17,
         "total_usd": 2953.53,
         "realized_pnl": 91.89
+      },
+      {
+        "id": "tx_b_12",
+        "time": "2026-11-27 14:35 UTC",
+        "participant": "BOT",
+        "action": "SELL",
+        "ticker": "ADI",
+        "shares": 9,
+        "price": 339.67,
+        "total_usd": 3057.03,
+        "realized_pnl": 195.39
       }
     ],
     "decision_logs": [
@@ -1898,6 +1895,26 @@
         "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
         "composite_score": 0,
         "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-27 14:35 UTC",
+        "action": "SELL",
+        "ticker": "ADI",
+        "shares": 9,
+        "price": 339.67,
+        "rationale": "Full Target 2 Hit (+6.8% gain). Locked in profit on remaining runner to recycle capital.",
+        "realized_pnl": 195.39,
+        "pnl_pct": 6.83
+      },
+      {
+        "time": "2026-11-27 14:35 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
       }
     ],
     "quarantine": {
@@ -1905,6 +1922,6 @@
       "ONTO": "2026-11-26T14:35:55.077787+00:00",
       "CRWD": "2026-11-27T14:35:46.887331+00:00"
     },
-    "last_evaluated_at": "2026-11-27 03:40 UTC"
+    "last_evaluated_at": "2026-11-27 14:35 UTC"
   }
 }
