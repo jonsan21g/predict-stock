@@ -1,0 +1,825 @@
+{
+  "ticker": "PLTR",
+  "date": "2026-11-27",
+  "current_price": 172.17,
+  "change_pct": 5.24,
+  "is_ignition": false,
+  "ignition_type": "NONE",
+  "wave_probability": 40.9,
+  "composite_score": 42,
+  "rvol": 0.5885990193860968,
+  "crr": 0.8752965225538362,
+  "target_1": 178.2,
+  "target_2": 182.5,
+  "stop_loss": 167.87,
+  "smart_money": {
+    "politician_buy": false,
+    "jurisdiction_match": false,
+    "matched_committees": [],
+    "congress_score": 0,
+    "politicians": [],
+    "high_jurisdiction_buyers": [],
+    "congress_buy_count": 0,
+    "congress_sell_count": 0,
+    "congress_total_trades": 0,
+    "congress_trades": [],
+    "quiver_stock_url": "https://www.quiverquant.com/congresstrading/stock/PLTR",
+    "capitoltrades_url": "https://www.capitoltrades.com/issuers",
+    "house_disclosure_url": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+    "senate_disclosure_url": "https://efdsearch.senate.gov/search/",
+    "insider_buy": true,
+    "insider_cluster": false,
+    "insider_score": 70,
+    "total_buy_value_usd": 122253519.0,
+    "c_suite_buyers": [
+      "THIEL PETER A. J.D. (Director)"
+    ],
+    "insider_buy_count": 1,
+    "insider_sell_count": 17,
+    "net_shares": -557745,
+    "unique_buyers": 1,
+    "recent_buys": [
+      {
+        "date": "2026-11-20",
+        "insider": "THIEL PETER A. J.D.",
+        "position": "Director",
+        "type": "BUY",
+        "shares": 850100,
+        "value_usd": 122253519.0,
+        "text": "Purchase at price 142.91 - 144.61 per share."
+      }
+    ],
+    "recent_transactions": [
+      {
+        "date": "2026-11-24",
+        "insider": "BUCKLEY JEFFREY JOHANSING",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 3478,
+        "value_usd": 539721.0,
+        "text": "Sale at price 142.92 - 160.90 per share."
+      },
+      {
+        "date": "2026-11-23",
+        "insider": "SANKAR SHYAM",
+        "position": "Chief Technology Officer",
+        "type": "SELL",
+        "shares": 62355,
+        "value_usd": 9574092.0,
+        "text": "Sale at price 142.92 - 160.90 per share."
+      },
+      {
+        "date": "2026-11-23",
+        "insider": "TAYLOR RYAN DOUGLAS",
+        "position": "Officer",
+        "type": "SELL",
+        "shares": 47319,
+        "value_usd": 7265437.0,
+        "text": "Sale at price 142.92 - 160.90 per share."
+      },
+      {
+        "date": "2026-11-23",
+        "insider": "GLAZER DAVID ALAN",
+        "position": "Chief Financial Officer",
+        "type": "SELL",
+        "shares": 40687,
+        "value_usd": 6247149.0,
+        "text": "Sale at price 142.92 - 160.90 per share."
+      },
+      {
+        "date": "2026-11-23",
+        "insider": "KARP ALEXANDER C.",
+        "position": "Chief Executive Officer",
+        "type": "SELL",
+        "shares": 239944,
+        "value_usd": 37936132.0,
+        "text": "Sale at price 155.26 - 160.90 per share."
+      },
+      {
+        "date": "2026-11-23",
+        "insider": "KARP ALEXANDER C.",
+        "position": "Chief Executive Officer",
+        "type": "OTHER",
+        "shares": 239944,
+        "value_usd": 0.0,
+        "text": ""
+      },
+      {
+        "date": "2026-11-20",
+        "insider": "THIEL PETER A. J.D.",
+        "position": "Director",
+        "type": "BUY",
+        "shares": 850100,
+        "value_usd": 122253519.0,
+        "text": "Purchase at price 142.91 - 144.61 per share."
+      },
+      {
+        "date": "2026-11-20",
+        "insider": "KARP ALEXANDER C.",
+        "position": "Chief Executive Officer",
+        "type": "OTHER",
+        "shares": 58562,
+        "value_usd": 0.0,
+        "text": "Stock Gift at price 0.00 per share."
+      },
+      {
+        "date": "2026-11-20",
+        "insider": "KARP ALEXANDER C.",
+        "position": "Chief Executive Officer",
+        "type": "SELL",
+        "shares": 253319,
+        "value_usd": 37180171.0,
+        "text": "Sale at price 142.90 - 151.88 per share."
+      },
+      {
+        "date": "2026-11-20",
+        "insider": "KARP ALEXANDER C.",
+        "position": "Chief Executive Officer",
+        "type": "OTHER",
+        "shares": 311881,
+        "value_usd": 0.0,
+        "text": ""
+      }
+    ],
+    "openinsider_purchases_url": "http://openinsider.com/screener?s=PLTR&tc=P&xp=1",
+    "openinsider_all_url": "http://openinsider.com/screener?s=PLTR",
+    "sec_edgar_url": "https://www.sec.gov/edgar/browse/?CIK=PLTR",
+    "sentiment_label": "BULLISH",
+    "sentiment_score": 0.527,
+    "discussion_velocity": 0.0,
+    "viral_politician_buzz": false,
+    "is_pelosi_effect": false,
+    "retail_hype_score": 0,
+    "buzz_keywords": [],
+    "social_volume": 40,
+    "pelosi_effect": {
+      "is_active": false,
+      "intensity": "QUIET / DORMANT",
+      "hype_score": 0,
+      "primary_catalyst": "DORMANT",
+      "prominent_figures": [],
+      "lifecycle_stage": "DORMANT",
+      "narrative_summary": "No active politician copy-trading or viral smart-money chatter detected on social streams.",
+      "matched_keywords": [],
+      "mentions_count": 0,
+      "verbatim_quotes": []
+    },
+    "recent_headlines": [],
+    "contracts": {
+      "total_value_usd": 0,
+      "contract_count": 0,
+      "has_major_contract": false,
+      "is_defense_contract": false,
+      "contract_score": 0,
+      "top_agencies": [],
+      "top_award_amount_usd": 0.0,
+      "recent_contracts": [],
+      "usaspending_search_url": "https://www.usaspending.gov/search/?keyword=PLTR",
+      "usaspending_recipient_url": "https://www.usaspending.gov/recipient"
+    }
+  },
+  "checks": [
+    {
+      "rule": "Institutional Volume Surge",
+      "passed": false,
+      "detail": "RVOL is 0.59x (required >= 1.50x or >= 1.30x on squeeze)"
+    },
+    {
+      "rule": "Closing Range Strength",
+      "passed": true,
+      "detail": "Finished at 87.5% of daily range (required >= 68%)"
+    },
+    {
+      "rule": "Structural Range Expansion",
+      "passed": false,
+      "detail": "Inside existing range"
+    },
+    {
+      "rule": "Fast EMA Trend Stack",
+      "passed": false,
+      "detail": "Price ($172.17) > 5 EMA ($163.69) >= 20 EMA ($167.19)"
+    },
+    {
+      "rule": "Anti-Exhaustion Safe Zone",
+      "passed": true,
+      "detail": "Price is +3.0% from 20 EMA (max safe limit +8.5%)"
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-09-03",
+      "open": 172.5,
+      "high": 185.83,
+      "low": 171.91,
+      "close": 182.53,
+      "volume": 38108000,
+      "ema5": 179.41,
+      "ema20": 172.4
+    },
+    {
+      "date": "2026-09-04",
+      "open": 180.01,
+      "high": 182.19,
+      "low": 173.67,
+      "close": 174.33,
+      "volume": 27963000,
+      "ema5": 177.72,
+      "ema20": 172.58
+    },
+    {
+      "date": "2026-09-08",
+      "open": 173.6,
+      "high": 175.82,
+      "low": 170.0,
+      "close": 170.3,
+      "volume": 24582300,
+      "ema5": 175.25,
+      "ema20": 172.37
+    },
+    {
+      "date": "2026-09-09",
+      "open": 171.47,
+      "high": 171.86,
+      "low": 168.61,
+      "close": 169.53,
+      "volume": 20356800,
+      "ema5": 173.34,
+      "ema20": 172.1
+    },
+    {
+      "date": "2026-09-10",
+      "open": 167.35,
+      "high": 169.0,
+      "low": 164.55,
+      "close": 165.86,
+      "volume": 21330700,
+      "ema5": 170.85,
+      "ema20": 171.5
+    },
+    {
+      "date": "2026-09-11",
+      "open": 168.1,
+      "high": 168.61,
+      "low": 165.4,
+      "close": 167.23,
+      "volume": 15410400,
+      "ema5": 169.64,
+      "ema20": 171.09
+    },
+    {
+      "date": "2026-09-14",
+      "open": 169.7,
+      "high": 174.36,
+      "low": 166.42,
+      "close": 173.31,
+      "volume": 29149500,
+      "ema5": 170.86,
+      "ema20": 171.31
+    },
+    {
+      "date": "2026-09-15",
+      "open": 170.5,
+      "high": 176.59,
+      "low": 169.45,
+      "close": 172.56,
+      "volume": 31238200,
+      "ema5": 171.43,
+      "ema20": 171.43
+    },
+    {
+      "date": "2026-09-16",
+      "open": 170.39,
+      "high": 174.76,
+      "low": 168.96,
+      "close": 174.34,
+      "volume": 20984000,
+      "ema5": 172.4,
+      "ema20": 171.7
+    },
+    {
+      "date": "2026-09-17",
+      "open": 175.95,
+      "high": 177.88,
+      "low": 172.61,
+      "close": 176.24,
+      "volume": 23776100,
+      "ema5": 173.68,
+      "ema20": 172.13
+    },
+    {
+      "date": "2026-09-18",
+      "open": 177.18,
+      "high": 177.75,
+      "low": 172.0,
+      "close": 177.64,
+      "volume": 39302700,
+      "ema5": 175.0,
+      "ema20": 172.66
+    },
+    {
+      "date": "2026-09-21",
+      "open": 178.73,
+      "high": 183.38,
+      "low": 176.76,
+      "close": 183.09,
+      "volume": 22006700,
+      "ema5": 177.7,
+      "ema20": 173.65
+    },
+    {
+      "date": "2026-09-22",
+      "open": 185.12,
+      "high": 185.54,
+      "low": 182.03,
+      "close": 184.99,
+      "volume": 21991700,
+      "ema5": 180.13,
+      "ema20": 174.73
+    },
+    {
+      "date": "2026-09-23",
+      "open": 186.29,
+      "high": 193.79,
+      "low": 182.94,
+      "close": 191.79,
+      "volume": 35119600,
+      "ema5": 184.02,
+      "ema20": 176.36
+    },
+    {
+      "date": "2026-09-24",
+      "open": 189.2,
+      "high": 194.68,
+      "low": 188.24,
+      "close": 192.59,
+      "volume": 22675800,
+      "ema5": 186.87,
+      "ema20": 177.9
+    },
+    {
+      "date": "2026-09-25",
+      "open": 192.71,
+      "high": 194.21,
+      "low": 189.35,
+      "close": 189.67,
+      "volume": 17807100,
+      "ema5": 187.81,
+      "ema20": 179.02
+    },
+    {
+      "date": "2026-09-28",
+      "open": 186.23,
+      "high": 190.25,
+      "low": 185.62,
+      "close": 187.48,
+      "volume": 18464100,
+      "ema5": 187.7,
+      "ema20": 179.83
+    },
+    {
+      "date": "2026-09-29",
+      "open": 187.34,
+      "high": 188.63,
+      "low": 184.81,
+      "close": 186.97,
+      "volume": 14754100,
+      "ema5": 187.45,
+      "ema20": 180.51
+    },
+    {
+      "date": "2026-09-30",
+      "open": 187.91,
+      "high": 190.99,
+      "low": 187.0,
+      "close": 187.05,
+      "volume": 17921200,
+      "ema5": 187.32,
+      "ema20": 181.13
+    },
+    {
+      "date": "2026-10-01",
+      "open": 190.09,
+      "high": 191.8,
+      "low": 186.6,
+      "close": 190.04,
+      "volume": 17902000,
+      "ema5": 188.23,
+      "ema20": 181.98
+    },
+    {
+      "date": "2026-10-02",
+      "open": 193.03,
+      "high": 194.78,
+      "low": 188.26,
+      "close": 188.75,
+      "volume": 17932100,
+      "ema5": 188.4,
+      "ema20": 182.63
+    },
+    {
+      "date": "2026-10-05",
+      "open": 189.45,
+      "high": 192.69,
+      "low": 187.63,
+      "close": 189.4,
+      "volume": 17710000,
+      "ema5": 188.73,
+      "ema20": 183.27
+    },
+    {
+      "date": "2026-10-06",
+      "open": 191.04,
+      "high": 194.56,
+      "low": 190.22,
+      "close": 192.07,
+      "volume": 17651200,
+      "ema5": 189.85,
+      "ema20": 184.11
+    },
+    {
+      "date": "2026-10-07",
+      "open": 192.71,
+      "high": 194.7,
+      "low": 190.11,
+      "close": 194.12,
+      "volume": 15729200,
+      "ema5": 191.27,
+      "ema20": 185.06
+    },
+    {
+      "date": "2026-10-08",
+      "open": 199.0,
+      "high": 204.44,
+      "low": 195.65,
+      "close": 198.78,
+      "volume": 41865400,
+      "ema5": 193.77,
+      "ema20": 186.37
+    },
+    {
+      "date": "2026-10-09",
+      "open": 201.48,
+      "high": 209.58,
+      "low": 198.3,
+      "close": 209.05,
+      "volume": 37622500,
+      "ema5": 198.87,
+      "ema20": 188.53
+    },
+    {
+      "date": "2026-10-12",
+      "open": 208.9,
+      "high": 212.94,
+      "low": 206.05,
+      "close": 209.0,
+      "volume": 24308800,
+      "ema5": 202.24,
+      "ema20": 190.48
+    },
+    {
+      "date": "2026-10-13",
+      "open": 208.08,
+      "high": 210.88,
+      "low": 205.97,
+      "close": 208.67,
+      "volume": 18535900,
+      "ema5": 204.39,
+      "ema20": 192.21
+    },
+    {
+      "date": "2026-10-14",
+      "open": 207.02,
+      "high": 209.29,
+      "low": 199.74,
+      "close": 200.97,
+      "volume": 24263800,
+      "ema5": 203.25,
+      "ema20": 193.04
+    },
+    {
+      "date": "2026-10-15",
+      "open": 196.85,
+      "high": 200.91,
+      "low": 192.6,
+      "close": 200.5,
+      "volume": 24781500,
+      "ema5": 202.33,
+      "ema20": 193.75
+    },
+    {
+      "date": "2026-10-16",
+      "open": 201.79,
+      "high": 203.55,
+      "low": 184.45,
+      "close": 186.03,
+      "volume": 33354900,
+      "ema5": 196.9,
+      "ema20": 193.02
+    },
+    {
+      "date": "2026-10-19",
+      "open": 186.99,
+      "high": 196.99,
+      "low": 186.15,
+      "close": 194.15,
+      "volume": 23934800,
+      "ema5": 195.98,
+      "ema20": 193.13
+    },
+    {
+      "date": "2026-10-20",
+      "open": 192.44,
+      "high": 196.11,
+      "low": 189.42,
+      "close": 192.6,
+      "volume": 15095200,
+      "ema5": 194.85,
+      "ema20": 193.08
+    },
+    {
+      "date": "2026-10-21",
+      "open": 191.72,
+      "high": 202.55,
+      "low": 189.88,
+      "close": 201.72,
+      "volume": 21398400,
+      "ema5": 197.14,
+      "ema20": 193.9
+    },
+    {
+      "date": "2026-10-22",
+      "open": 200.76,
+      "high": 202.63,
+      "low": 194.54,
+      "close": 196.19,
+      "volume": 22933600,
+      "ema5": 196.83,
+      "ema20": 194.12
+    },
+    {
+      "date": "2026-10-23",
+      "open": 195.02,
+      "high": 197.49,
+      "low": 190.57,
+      "close": 196.75,
+      "volume": 17668400,
+      "ema5": 196.8,
+      "ema20": 194.37
+    },
+    {
+      "date": "2026-10-26",
+      "open": 197.9,
+      "high": 200.05,
+      "low": 192.91,
+      "close": 198.84,
+      "volume": 16380400,
+      "ema5": 197.48,
+      "ema20": 194.79
+    },
+    {
+      "date": "2026-10-27",
+      "open": 198.12,
+      "high": 201.83,
+      "low": 196.79,
+      "close": 198.73,
+      "volume": 19907300,
+      "ema5": 197.9,
+      "ema20": 195.17
+    },
+    {
+      "date": "2026-10-28",
+      "open": 197.01,
+      "high": 198.74,
+      "low": 193.13,
+      "close": 196.81,
+      "volume": 20821300,
+      "ema5": 197.53,
+      "ema20": 195.33
+    },
+    {
+      "date": "2026-10-29",
+      "open": 198.37,
+      "high": 198.51,
+      "low": 190.36,
+      "close": 196.42,
+      "volume": 20102900,
+      "ema5": 197.16,
+      "ema20": 195.43
+    },
+    {
+      "date": "2026-10-30",
+      "open": 193.62,
+      "high": 193.92,
+      "low": 180.81,
+      "close": 184.11,
+      "volume": 27070000,
+      "ema5": 192.81,
+      "ema20": 194.35
+    },
+    {
+      "date": "2026-11-02",
+      "open": 186.52,
+      "high": 187.55,
+      "low": 178.13,
+      "close": 178.34,
+      "volume": 37183900,
+      "ema5": 187.99,
+      "ema20": 192.83
+    },
+    {
+      "date": "2026-11-03",
+      "open": 168.18,
+      "high": 176.54,
+      "low": 165.25,
+      "close": 175.4,
+      "volume": 53062500,
+      "ema5": 183.79,
+      "ema20": 191.17
+    },
+    {
+      "date": "2026-11-04",
+      "open": 164.95,
+      "high": 177.43,
+      "low": 164.6,
+      "close": 171.7,
+      "volume": 35044600,
+      "ema5": 179.76,
+      "ema20": 189.31
+    },
+    {
+      "date": "2026-11-05",
+      "open": 166.71,
+      "high": 167.25,
+      "low": 152.6,
+      "close": 154.99,
+      "volume": 50014300,
+      "ema5": 171.5,
+      "ema20": 186.04
+    },
+    {
+      "date": "2026-11-06",
+      "open": 158.68,
+      "high": 163.97,
+      "low": 157.24,
+      "close": 160.38,
+      "volume": 24335100,
+      "ema5": 167.8,
+      "ema20": 183.6
+    },
+    {
+      "date": "2026-11-09",
+      "open": 161.27,
+      "high": 170.83,
+      "low": 161.0,
+      "close": 169.2,
+      "volume": 23856900,
+      "ema5": 168.26,
+      "ema20": 182.23
+    },
+    {
+      "date": "2026-11-10",
+      "open": 168.21,
+      "high": 170.0,
+      "low": 164.0,
+      "close": 168.82,
+      "volume": 19588000,
+      "ema5": 168.45,
+      "ema20": 180.95
+    },
+    {
+      "date": "2026-11-11",
+      "open": 173.59,
+      "high": 175.41,
+      "low": 170.8,
+      "close": 172.4,
+      "volume": 16119500,
+      "ema5": 169.77,
+      "ema20": 180.14
+    },
+    {
+      "date": "2026-11-12",
+      "open": 170.2,
+      "high": 173.05,
+      "low": 168.25,
+      "close": 171.58,
+      "volume": 12458600,
+      "ema5": 170.37,
+      "ema20": 179.32
+    },
+    {
+      "date": "2026-11-13",
+      "open": 171.74,
+      "high": 172.28,
+      "low": 164.75,
+      "close": 167.99,
+      "volume": 15233400,
+      "ema5": 169.58,
+      "ema20": 178.24
+    },
+    {
+      "date": "2026-11-16",
+      "open": 165.76,
+      "high": 166.09,
+      "low": 158.68,
+      "close": 160.39,
+      "volume": 17766800,
+      "ema5": 166.51,
+      "ema20": 176.54
+    },
+    {
+      "date": "2026-11-17",
+      "open": 160.15,
+      "high": 162.59,
+      "low": 153.91,
+      "close": 156.56,
+      "volume": 17552400,
+      "ema5": 163.2,
+      "ema20": 174.64
+    },
+    {
+      "date": "2026-11-18",
+      "open": 158.07,
+      "high": 158.44,
+      "low": 153.5,
+      "close": 156.67,
+      "volume": 14922400,
+      "ema5": 161.02,
+      "ema20": 172.93
+    },
+    {
+      "date": "2026-11-19",
+      "open": 160.63,
+      "high": 167.13,
+      "low": 153.2,
+      "close": 153.68,
+      "volume": 21382600,
+      "ema5": 158.57,
+      "ema20": 171.09
+    },
+    {
+      "date": "2026-11-20",
+      "open": 149.7,
+      "high": 152.51,
+      "low": 142.28,
+      "close": 143.49,
+      "volume": 36629800,
+      "ema5": 153.55,
+      "ema20": 168.47
+    },
+    {
+      "date": "2026-11-23",
+      "open": 157.32,
+      "high": 161.19,
+      "low": 154.57,
+      "close": 159.36,
+      "volume": 32072100,
+      "ema5": 155.48,
+      "ema20": 167.6
+    },
+    {
+      "date": "2026-11-24",
+      "open": 157.63,
+      "high": 163.02,
+      "low": 157.62,
+      "close": 161.18,
+      "volume": 20703300,
+      "ema5": 157.38,
+      "ema20": 166.99
+    },
+    {
+      "date": "2026-11-25",
+      "open": 154.22,
+      "high": 164.75,
+      "low": 151.51,
+      "close": 163.59,
+      "volume": 21486000,
+      "ema5": 159.45,
+      "ema20": 166.66
+    },
+    {
+      "date": "2026-11-27",
+      "open": 169.89,
+      "high": 173.22,
+      "low": 164.8,
+      "close": 172.17,
+      "volume": 15054500,
+      "ema5": 163.69,
+      "ema20": 167.19
+    }
+  ],
+  "name": "Palantir Technologies Inc.",
+  "category": "AI Compute & Systems",
+  "role": "Defense AI, US intelligence & enterprise data analytics",
+  "technicals": {
+    "rvol_20d": 0.59,
+    "crr": 0.88,
+    "bb_width": 0.236,
+    "ema5": 163.69,
+    "ema20": 167.19,
+    "volume": 15054500,
+    "vol_sma20": 25576835,
+    "high": 173.22,
+    "low": 164.8,
+    "open": 169.89
+  }
+}
