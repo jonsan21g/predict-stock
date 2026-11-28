@@ -2015,6 +2015,16 @@
         "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
         "composite_score": 0,
         "wave_probability": 0.0
+      },
+      {
+        "time": "2026-11-28 03:21 UTC",
+        "action": "MACRO_HOLD",
+        "ticker": "QQQ",
+        "shares": 0,
+        "price": 0.0,
+        "rationale": "Macro Regime Gatekeeper: Benchmark QQQ is trading below its 20-day EMA. No confirmed capitulation washouts detected. Preserving cash.",
+        "composite_score": 0,
+        "wave_probability": 0.0
       }
     ],
     "quarantine": {
@@ -2022,6 +2032,6 @@
       "ONTO": "2026-11-26T14:35:55.077787+00:00",
       "CRWD": "2026-11-27T14:35:46.887331+00:00"
     },
-    "last_evaluated_at": "2026-11-28 03:13 UTC"
+    "last_evaluated_at": "2026-11-28 03:21 UTC"
   }
 }
